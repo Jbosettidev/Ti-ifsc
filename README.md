@@ -1,6 +1,6 @@
 # 👥 Guia Rápido – Como Rodar o Projeto 
 
-Este guia é apenas para configurar e executar localmente.
+Este guia é para configurar e executar.
 
 Stack:
 
@@ -142,12 +142,6 @@ Erro de porta ocupada?
 
 ---
 
-# 📌 Regra Final
+# Anotacoes
 
-Se todos:
-
-* Atualizarem antes de começar
-* Usarem branch própria
-* Não mexerem direto na main
-
-O projeto permanece estável.
+* <a href="https://www.notion.so/falta-31861d5ce24d80fda17cc223b4075d76?source=copy_link" target="_blank">Notion</a>
