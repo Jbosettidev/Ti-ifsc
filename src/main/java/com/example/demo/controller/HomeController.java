@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.User;
+import com.example.demo.user.User;
 import com.example.demo.services.ApiFuncionandoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +19,6 @@ public class HomeController {
 
     @PostMapping //usado quando você quer enviar dados para o servidor,
     public String HelloWorldPost(@RequestBody User body){
-        return "Hello World "+ body.getName();
+        return body.getName() + body.getEmail();
     }
 }
