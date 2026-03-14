@@ -1,14 +1,11 @@
 package com.example.demo.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RequestMapping("/usuarios")
 @RestController
-public class UsuarioController { //algo errado
+public class UsuarioController {
 
     private final UsuarioServices usuarioServices;
     public UsuarioController(UsuarioServices usuarioServices){
@@ -18,5 +15,10 @@ public class UsuarioController { //algo errado
     @PostMapping
     public Usuario criarUsuario(@RequestBody Usuario usuario){
         return usuarioServices.salvar(usuario);
+    }
+
+    @GetMapping
+    public List<Usuario> listarUsuarios() {
+        return usuarioServices.listarTodos();
     }
 }
