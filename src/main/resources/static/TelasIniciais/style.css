@@ -1,0 +1,212 @@
+* {
+    scroll-behavior: smooth;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+:root {
+    --ciano-escuro: #548687;
+    --off-white: #fdfdfd;
+    --ciano: #3d989b;
+    --ciano-maisescuro: #325c5e;
+    --cinza: #eae7ea;
+}
+
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    min-height: 100vh;
+    /* Garante que ocupe a tela toda */
+    margin: 0;
+    /* Esse padding aqui em baixo resolve a box colada na borda 
+       e dá espaço para o robô aparecer no topo */
+    padding: 100px 20px 40px 20px;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+.fundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -10;
+    opacity: 0.95;
+}
+
+.imagem {
+    /* Garante que a logo não fique atrás de nada */
+    z-index: 100;
+    width: 110px;
+    height: 110px;
+    position: absolute;
+    top: -90px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.card-total {
+    background-color: var(--off-white);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    position: relative;
+    text-align: center;
+    box-shadow: 0px 10px 20px #28999ffc;
+
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+
+    animation: entradaCard 1.5s ease-out;
+    animation-fill-mode: backwards;
+    /*Pra animação não dar um 'pulo' de repente*/
+}
+
+.titulo {
+    color: var(--ciano-maisescuro);
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    animation: entradaCard 1.5s ease-out;
+    animation-fill-mode: backwards;
+}
+
+#p {
+    font-size: 1.3rem;
+}
+
+.inputbox {
+    padding: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    animation: entradaCard 1.5s ease-out;
+    animation-fill-mode: backwards;
+}
+
+.inputbox input {
+    padding: 1rem;
+    padding-right: 3rem;
+    border: none;
+    outline: none;
+    background-color: var(--cinza);
+    border-radius: 20px;
+    border-bottom: 2px solid var(--ciano-maisescuro);
+    transition: 0.3s;
+    font-size: 20px;
+    width: 100%;
+    box-sizing: border-box;
+
+    animation: entradaCard 1.5s ease-out;
+    animation-fill-mode: backwards;
+}
+
+.inputbox input:focus {
+    color: var(--ciano);
+    box-shadow: 0px 10px 30px #325c5e99;
+}
+
+.icone {
+    position: absolute;
+    right: 2rem;
+    /* Distância da direita */
+    font-size: 1.5rem;
+    color: var(--ciano-maisescuro);
+    pointer-events: none;
+
+    animation: entradaCard 1.5s ease-out;
+    animation-fill-mode: backwards;
+}
+
+.botao-secundario {
+    font-size: 0.8rem;
+    color: var(--ciano);
+    text-decoration: none;
+    margin-top: 5px;
+    transition: 0.3s;
+
+    animation: entradaCard 1.5s ease-out;
+    animation-fill-mode: backwards;
+}
+
+.botao-secundario:hover {
+    text-decoration: none;
+    background-color: var(--ciano);
+    color: var(--off-white);
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.botao-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1.5rem;
+
+    animation: entradaCard 1.5s ease-out;
+    animation-fill-mode: backwards;
+}
+
+.botao {
+    font-size: 1.3rem;
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    transition: 0.7s;
+    color: var(--off-white);
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: var(--ciano);
+    min-width: 150px;
+}
+
+.botao:hover {
+    background-color: var(--ciano-maisescuro);
+    color: var(--off-white);
+    border-radius: 20px;
+    transform: translate(0, -10px);
+}
+
+#voltar {
+    background-color: #ff4d4d;
+}
+
+#voltar:hover {
+    background-color: #971d1d;
+}
+
+@media (max-width: 500px) {
+    .botao-container {
+        flex-direction: column; /* Coloca um em cima do outro */
+        gap: 10px;              /* Diminui o espaço entre eles */
+    }
+
+    .botao {
+        width: 100%;    /* Faz o botão ocupar a largura toda do card */
+        min-width: 0;   /* Remove aquele min-width que a gente tinha fixado */
+    }
+}
+
+@keyframes entradaCard {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+        /* Começa 30px abaixo */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Termina na posição original */
+    }
+}

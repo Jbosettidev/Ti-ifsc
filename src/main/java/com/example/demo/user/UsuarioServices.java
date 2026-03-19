@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public class UsuarioServices {
 
-    @Autowired
+    @Autowired //chama a classe que da as consultas sql
     private UsuarioRepository usuarioRepository;
 
     public Usuario salvar(Usuario usuario){

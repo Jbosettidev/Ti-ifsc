@@ -1,13 +1,13 @@
 package com.example.demo.user;
-
+//controller recebe requisicoes e repostatas http pra aplicacao
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RequestMapping("/usuarios")
+@RequestMapping("/usuarios") //cria o endpoint /usuarios
 @RestController
 public class UsuarioController {
 
-    private final UsuarioServices usuarioServices;
+    private final UsuarioServices usuarioServices; // esse bloco e a msm coisa do autowired mas e menos chance de causar erro
     public UsuarioController(UsuarioServices usuarioServices){
         this.usuarioServices = usuarioServices;
     }

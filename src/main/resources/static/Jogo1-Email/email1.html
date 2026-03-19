@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-mail 1</title>
+
+    <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" type="module"></script>
+    <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" nomodule></script>
+
+    <link rel="stylesheet" href="email1.css">
+</head>
+
+
+
+<body>
+    <header class="cabecalho">
+
+        <img src="img/logo-capuz.png" class="logo" id="logo">
+
+        <nav class="navegacao">
+            <ul class="navegacao-itens">
+                <li>
+                    <ion-icon name="home" class="icone"></ion-icon>
+                    <a href="#">Inicio</a>
+                </li>
+
+                <li>
+                    <ion-icon name="archive" class="icone"></ion-icon>
+                    <a href=#>Arquivar</a>
+                </li>
+
+                <li>
+                    <ion-icon name="send" class="icone"></ion-icon>
+                    <a href="#">Enviar</a>
+                </li>
+
+                <li>
+                    <ion-icon name="trash" class="icone"></ion-icon>
+                    <a href="#">Lixeira</a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <section id="email" class="email">
+        <div class="email-container">
+
+            <article class="email-card">
+
+                <div class="email-header">
+                    <h2 class="assunto-email">
+                        Bloqueio de sua conta ocorrerá em 24 Horas!
+                    </h2>
+
+                    <div class="email-info">
+                        <span class="email-remetente">
+                            bancocentralooficial123@gmail.com
+                        </span>
+                        <span class="email-data">30/02/2027</span>
+                        <!--Diferente da tag <p>, a tag <span> não realiza uma quebra de linha ao fim.-->
+                    </div>
+                </div>
+
+                <div class="email-corpo">
+                    <p class="email-texto">
+                        Prezado cliente, identificamos atividades suspeitas...
+                    </p>
+                </div>
+
+                <div class="email-acoes">
+                    <button id="manter">Manter</button>
+                    <button id="excluir">Deletar</button>
+                </div>
+
+            </article>
+
+        </div>
+    </section>
+
+    <div id="popup" class="popup">
+        <div class="popup-conteudo">
+            <p id="popup-texto"></p>
+            <button onclick="fecharPopup()" class="popup-botao">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+
+        // Pega o botão com id="manter" no HTML
+        const manter = document.getElementById("manter");
+
+        // Pega o botão com id="excluir"
+        const excluir = document.getElementById("excluir");
+
+        // Pega a div inteira do popup
+        const popup = document.getElementById("popup");
+
+        // Pega o parágrafo onde o texto do popup vai aparecer
+        const popupTexto = document.getElementById("popup-texto");
+
+        // Define se esse e-mail é fraudulento ou não
+        // true = é fraude
+        // false = não é fraude
+        const emailEhFraude = true;
+
+
+        // Quando clicar no botão "manter"
+        manter.addEventListener("click", () => {
+
+            // Verifica se o email é fraude
+            if (emailEhFraude) {
+
+                // Se for fraude e a pessoa manteve → errou
+                popupTexto.textContent = "❌ Errado! Esse e-mail é fraudulento.";
+
+            } else {
+
+                // Se não for fraude e a pessoa manteve → acertou
+                popupTexto.textContent = "✅ Correto!";
+            }
+
+            // Mostra o popup (ele estava escondido)
+            popup.style.display = "flex";
+        });
+
+
+        // Quando clicar no botão "excluir"
+        excluir.addEventListener("click", () => {
+
+            // Verifica se o email é fraude
+            if (emailEhFraude) {
+
+                // Se for fraude e a pessoa excluiu → acertou
+                popupTexto.textContent = "✅ Correto! Você identificou a fraude.";
+
+            } else {
+
+                // Se não for fraude e a pessoa excluiu → errou
+                popupTexto.textContent = "❌ Errado! Esse e-mail era legítimo.";
+            }
+
+            // Mostra o popup
+            popup.style.display = "flex";
+        });
+
+
+        // Função que fecha o popup
+        function fecharPopup() {
+
+            // Esconde o popup novamente
+            popup.style.display = "none";
+        }
+
+    </script>
+</body>
+
+</html>
