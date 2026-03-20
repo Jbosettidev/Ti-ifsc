@@ -5,7 +5,7 @@ import java.util.List;
 
 @RequestMapping("/usuarios") //cria o endpoint /usuarios
 @RestController
-public class UsuarioController {
+public class UsuarioController { //TODO fazer o crud aqui
 
     private final UsuarioServices usuarioServices; // esse bloco e a msm coisa do autowired mas e menos chance de causar erro
     public UsuarioController(UsuarioServices usuarioServices){
