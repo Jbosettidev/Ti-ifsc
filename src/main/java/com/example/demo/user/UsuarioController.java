@@ -13,12 +13,27 @@ public class UsuarioController { //TODO fazer o crud aqui
     }
 
     @PostMapping
-    public Usuario criarUsuario(@RequestBody Usuario usuario){
+    public Usuario criarUsuario(@RequestBody Usuario usuario){ // requestBody obrigatorio se nn nao consegue pegar o corpo da requisicao
         return usuarioServices.salvar(usuario);
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
+    public Usuario buscarPorId(@PathVariable Long id) {
+        return usuarioServices.buscar(id);
+    }
+
+    @GetMapping //pega todos os ids
     public List<Usuario> listarUsuarios() {
         return usuarioServices.listarTodos();
+    }
+
+    @PatchMapping("/{id}")
+    public Usuario atualizar(@PathVariable Long id,@RequestBody Usuario dados) {
+        return usuarioServices.atualizarParcial(id, dados);
+    }
+
+    @DeleteMapping("/{id}") //deleta o usuario com tal id
+    public void deletarUsusario(@PathVariable Long id){
+        usuarioServices.deletar(id);
     }
 }
