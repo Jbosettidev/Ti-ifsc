@@ -1,6 +1,7 @@
 package com.example.demo.user;
 //parte que vai pro banco de dados,, aqui cria as entidades pra usar no sql e java
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -31,5 +32,8 @@ public class Usuario { //essa ta no /cyber do properties
     @NotBlank
     @Column(nullable = false,unique = true) @Size(min = 5, max = 50)
     private String nomeusuario; // arrumar pra nomeUsuario no banco e aqui dps
+
+    @Min(0)//nn aceita valor negativo
+    private int xpTotal; //sempre inicializa como zero
 
 }

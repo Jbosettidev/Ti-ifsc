@@ -40,3 +40,4 @@ public class GlobalExceptionHandler { //essa classe gera o Json do erro com todo
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);//sai a resposta
     }
 }
+//pra que tudo isso, no fim tdo mundo vai virar uber msm
