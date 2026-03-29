@@ -4,9 +4,9 @@
 Antes de rodar o projeto, instale:
 
 - Java 21
-- Git
-- PostgreSQL
-- Postman
+- Git/Github desktop
+- PostgreSQL 16
+- Postman (pra testes)
 - IntelliJ
 
 Também é necessário ter **um banco PostgreSQL já criado** para o projeto.
@@ -30,16 +30,6 @@ http://localhost:8080
 ```
 http://localhost:8080
 ```
-
-4. Escolha o método HTTP adequado:
-
-- **GET** → buscar dados  
-- **POST** → criar dados  
-- **PUT** → atualizar dados  
-- **DELETE** → remover dados  
-
-5. Para requisições **POST ou PUT**, envie os dados em **JSON** no Body.
-
 ---
 
 # Uso de Git e GitHub
