@@ -1,0 +1,190 @@
+* {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+}
+
+:root {
+    --cor-primaria: #160181;
+    --off-white: #fffbde;
+    --off-offwhite: #fdfdfd;
+    --cor-secundaria: #0080c0;
+    --cor-tres: #080159;
+    --amarelo: #ffde59;
+    --mascote-roupa: #1c2b73;
+    --azure: #33c7df;
+}
+
+body {
+    background-color: var(--off-offwhite);
+    background-image:
+        linear-gradient(rgba(8, 1, 89, 0.1) 4px, transparent 4px),
+        linear-gradient(90deg, rgba(8, 1, 89, 0.1) 4px, transparent 4px);
+    background-size: 50px 50px;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.titulo_conquistas {
+    background-color: var(--cor-tres);
+    padding: 2rem 1rem;
+    color: var(--off-offwhite);
+    text-align: center;
+    font-style: italic;
+}
+
+.titulo {
+    font-size: 2rem;
+}
+
+.rodape {
+    background-color: var(--cor-tres);
+    backdrop-filter: blur(10px);
+    padding: 10px 0 20px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.material-symbols-outlined {
+    font-size: 3rem;
+    color: var(--off-offwhite);
+    cursor: pointer;
+    font-variation-settings: 'FILL' 1;
+    transition: all 0.7s ease;
+}
+
+.material-symbols-outlined:hover {
+    color: var(--amarelo);
+    transform: translateY(-3px);
+}
+
+.titulo-medalhas {
+    margin: 30px 20px 10px;
+    text-align: center;
+    font-size: 1.7rem;
+    color: var(--cor-tres);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding-bottom: 120px;
+}
+
+.conquistas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: -8px 9px 5px -4px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    max-width: 450px;
+    width: 100%;
+    padding: 20px;
+    gap: 15px;
+    flex: 1 1 400px;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+}
+
+
+.conquistas:hover {
+    transform: translateY(-8px) scale(1.02);
+    background-color: var(--cor-tres);
+    border-color: var(--amarelo);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+.conquistas:hover .titulo-conquistas,
+.conquistas:hover .descricao-conquista {
+    color: white;
+}
+
+.conquista-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.titulo-conquistas {
+    color: var(--amarelo);
+    margin: 0;
+    font-size: 1.2rem;
+    transition: color 0.4s ease;
+}
+
+.descricao-conquista {
+    color: #444;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    transition: color 0.4s ease;
+}
+
+.medalha-imagem {
+    width: 70px;
+    height: auto;
+    flex-shrink: 0;
+    transition: transform 0.4s ease;
+}
+
+.conquistas:hover .medalha-imagem {
+    transform: rotate(10deg) scale(1.1);
+}
+
+
+#conquista_amarela {
+    color: #ffde59;
+}
+
+#conquista_cinza {
+    color: #b3b3b3;
+}
+
+#conquista_verde {
+    color: #44cc44;
+}
+
+#conquista_cobre {
+    color: #cd7f32;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .conquistas {
+        max-width: 100%;
+        width: 100%;
+        flex: none;
+    }
+
+    .medalha-imagem {
+        width: 60px;
+    }
+
+    .titulo {
+        font-size: 1.5rem;
+    }
+}
