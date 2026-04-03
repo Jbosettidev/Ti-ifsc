@@ -11,3 +11,4 @@ public class TiApplication {
 	}
 
 }
+//nn precisa do controller pra funcionar
