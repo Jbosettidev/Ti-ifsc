@@ -41,28 +41,6 @@ Antes de começar a trabalhar:
 ```bash
 git pull
 ```
-
-## Criar uma nova branch
-
-```bash
-git checkout -b nome-da-feature
-```
-
-## Salvar alterações
-
-```bash
-git add .
-git commit -m "descrição da mudança"
-```
-
-## Enviar para o GitHub
-
-```bash
-git push origin nome-da-feature
-```
-
-Depois disso, abra um **Pull Request no GitHub**.
-
 ---
 
 # Observações
