@@ -1,17 +1,12 @@
 package com.example.demo.user;
-
 //services manda salvar no repositorio
-
-import com.example.demo.respostas.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class UsuarioServices {
     //TODO faz o validador aqui, e um exception pra null
-
     @Autowired //chama a classe que da as consultas sql
     private UsuarioRepository usuarioRepository;
 
@@ -43,5 +38,4 @@ public class UsuarioServices {
         }
         usuarioRepository.deleteById(id); //cai como else e deleta usuario
     }
-
 }

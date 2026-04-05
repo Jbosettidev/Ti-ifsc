@@ -1,5 +1,6 @@
 package com.example.demo.user;
 //controller recebe requisicoes e repostatas http pra aplicacao
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -7,10 +8,8 @@ import java.util.List;
 @RestController
 public class UsuarioController { //TODO fazer o crud aqui
 
-    private final UsuarioServices usuarioServices; // esse bloco e a msm coisa do autowired mas e menos chance de causar erro
-    public UsuarioController(UsuarioServices usuarioServices){
-        this.usuarioServices = usuarioServices;
-    }
+    @Autowired
+    private UsuarioServices usuarioServices;
 
     @PostMapping
     public Usuario criarUsuario(@RequestBody Usuario usuario){ // requestBody obrigatorio se nn nao consegue pegar o corpo da requisicao

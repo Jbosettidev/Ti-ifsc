@@ -22,5 +22,7 @@ public class Fase {
 
     @NotBlank @Column(nullable = false)
     private String descricao;
+
+    private Boolean concluida;
 }
 //todo fazer relacionamento com usuario e o resto do arquivo do docs
