@@ -238,6 +238,11 @@ p{
     border-radius: 15px;
     text-align: center;
 }
+.configuracaoicon {
+    display: flex;
+    justify-content: end;
+    height: 40px;
+}
 
 @media (max-width: 768px) {
     .titulo {
