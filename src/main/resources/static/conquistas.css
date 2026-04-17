@@ -3,7 +3,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Fredoka", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 
 :root {
@@ -17,32 +18,81 @@
     --azure: #33c7df;
 }
 
-body {
-    background-color: var(--off-offwhite);
-    background-image:
-        linear-gradient(rgba(8, 1, 89, 0.1) 4px, transparent 4px),
-        linear-gradient(90deg, rgba(8, 1, 89, 0.1) 4px, transparent 4px);
-    background-size: 50px 50px;
-    background-attachment: fixed;
-    overflow-x: hidden;
+
+.caixa_conquistas {
+
+    border-radius: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    background: linear-gradient(135deg, #EEEDFE 2%, #CECBF6 30%, #9279e9 100%);
+    padding: 3rem 2.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.caixa_conquistas h1 {
+    margin-bottom: 1rem;
+}
+
+progress {
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
     width: 100%;
+    /* ocupa todo o espaço disponível */
+    max-width: 45rem;
+    /* limite opcional */
+    height: 1.7rem;
+    /* altura ajustavel */
+
+
+    -webkit-appearance: none;
+    appearance: none;
 }
 
-.titulo_conquistas {
-    background-color: var(--cor-tres);
-    padding: 2rem 1rem;
-    color: var(--off-offwhite);
-    text-align: center;
-    font-style: italic;
+/* fundo da barra de baixo */
+progress::-webkit-progress-bar {
+    background-color: #EEEDFE;
+    border-radius: 10rem;
 }
 
-.titulo {
-    font-size: 2rem;
+/* fundo da barra de cima */
+progress::-webkit-progress-value {
+    background: linear-gradient(90deg, #CECBF6, #7F77DD);
+    border-radius: 10rem;
 }
+
+.caixa_conquistas h1 {
+    font-family: "Fredoka", sans-serif;
+    font-size: 2.5rem;
+}
+
+.progresso {
+    display: flex;
+    justify-content: space-around;
+    gap: 3rem;
+}
+
+.progresso h2 {
+    font-size: 1.8rem;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.progresso p {
+    font-size: 0.90rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 .rodape {
-    background-color: var(--cor-tres);
-    backdrop-filter: blur(10px);
+    background-color: rgba(93, 44, 216, 0.3);
+    /*TEM Q SER RGBA PRA FICAR BLUR TOPZEIRA*/
+    backdrop-filter: saturate(160%) blur(25px);
+    /*DEIXA COM EFEITO LEGAL DE BLUR*/
+    border: 0.1rem solid rgba(208, 187, 211, 0.2);
     padding: 10px 0 20px 0;
     position: fixed;
     bottom: 0;
@@ -63,7 +113,7 @@ body {
 }
 
 .material-symbols-outlined:hover {
-    color: var(--amarelo);
+    color: #9279e9;
     transform: translateY(-3px);
 }
 
@@ -71,7 +121,8 @@ body {
     margin: 30px 20px 10px;
     text-align: center;
     font-size: 1.7rem;
-    color: var(--cor-tres);
+    color: black;
+    font-family: "Fredoka", sans-serif;
 }
 
 .container {
@@ -107,15 +158,16 @@ body {
 
 .conquistas:hover {
     transform: translateY(-8px) scale(1.02);
-    background-color: var(--cor-tres);
-    border-color: var(--amarelo);
+    background: linear-gradient(135deg, #EEEDFE 2%, #CECBF6 50%, #9279e9 100%);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: #EEEDFE;
 }
 
 
 .conquistas:hover .titulo-conquistas,
 .conquistas:hover .descricao-conquista {
-    color: white;
+    color: black;
+    font-weight: bold;
 }
 
 .conquista-texto {
@@ -153,38 +205,17 @@ body {
 
 
 #conquista_amarela {
-    color: #ffde59;
+    color: black;
 }
 
 #conquista_cinza {
-    color: #b3b3b3;
+    color: black;
 }
 
 #conquista_verde {
-    color: #44cc44;
+    color: black;
 }
 
 #conquista_cobre {
-    color: #cd7f32;
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-        gap: 15px;
-    }
-
-    .conquistas {
-        max-width: 100%;
-        width: 100%;
-        flex: none;
-    }
-
-    .medalha-imagem {
-        width: 60px;
-    }
-
-    .titulo {
-        font-size: 1.5rem;
-    }
+    color: black;
 }
