@@ -1,0 +1,221 @@
+* {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+:root {
+    --cor-primaria: #160181;
+    --off-white: #fffbde;
+    --off-offwhite: #fdfdfd;
+    --cor-secundaria: #0080c0;
+    --cor-tres: #080159;
+    --amarelo: #ffde59;
+    --mascote-roupa: #1c2b73;
+    --azure: #33c7df;
+}
+
+
+.caixa_conquistas {
+
+    border-radius: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    background: linear-gradient(135deg, #EEEDFE 2%, #CECBF6 30%, #9279e9 100%);
+    padding: 3rem 2.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.caixa_conquistas h1 {
+    margin-bottom: 1rem;
+}
+
+progress {
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    width: 100%;
+    /* ocupa todo o espaço disponível */
+    max-width: 45rem;
+    /* limite opcional */
+    height: 1.7rem;
+    /* altura ajustavel */
+
+
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* fundo da barra de baixo */
+progress::-webkit-progress-bar {
+    background-color: #EEEDFE;
+    border-radius: 10rem;
+}
+
+/* fundo da barra de cima */
+progress::-webkit-progress-value {
+    background: linear-gradient(90deg, #CECBF6, #7F77DD);
+    border-radius: 10rem;
+}
+
+.caixa_conquistas h1 {
+    font-family: "Fredoka", sans-serif;
+    font-size: 2.5rem;
+}
+
+.progresso {
+    display: flex;
+    justify-content: space-around;
+    gap: 3rem;
+}
+
+.progresso h2 {
+    font-size: 1.8rem;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.progresso p {
+    font-size: 0.90rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.rodape {
+    background-color: rgba(93, 44, 216, 0.3);
+    /*TEM Q SER RGBA PRA FICAR BLUR TOPZEIRA*/
+    backdrop-filter: saturate(160%) blur(25px);
+    /*DEIXA COM EFEITO LEGAL DE BLUR*/
+    border: 0.1rem solid rgba(208, 187, 211, 0.2);
+    padding: 10px 0 20px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.material-symbols-outlined {
+    font-size: 3rem;
+    color: var(--off-offwhite);
+    cursor: pointer;
+    font-variation-settings: 'FILL' 1;
+    transition: all 0.7s ease;
+}
+
+.material-symbols-outlined:hover {
+    color: #9279e9;
+    transform: translateY(-3px);
+}
+
+.titulo-medalhas {
+    margin: 30px 20px 10px;
+    text-align: center;
+    font-size: 1.7rem;
+    color: black;
+    font-family: "Fredoka", sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding-bottom: 120px;
+}
+
+.conquistas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: -8px 9px 5px -4px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    max-width: 450px;
+    width: 100%;
+    padding: 20px;
+    gap: 15px;
+    flex: 1 1 400px;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+}
+
+
+.conquistas:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: linear-gradient(135deg, #EEEDFE 2%, #CECBF6 50%, #9279e9 100%);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: #EEEDFE;
+}
+
+
+.conquistas:hover .titulo-conquistas,
+.conquistas:hover .descricao-conquista {
+    color: black;
+    font-weight: bold;
+}
+
+.conquista-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.titulo-conquistas {
+    color: var(--amarelo);
+    margin: 0;
+    font-size: 1.2rem;
+    transition: color 0.4s ease;
+}
+
+.descricao-conquista {
+    color: #444;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    transition: color 0.4s ease;
+}
+
+.medalha-imagem {
+    width: 70px;
+    height: auto;
+    flex-shrink: 0;
+    transition: transform 0.4s ease;
+}
+
+.conquistas:hover .medalha-imagem {
+    transform: rotate(10deg) scale(1.1);
+}
+
+
+#conquista_amarela {
+    color: black;
+}
+
+#conquista_cinza {
+    color: black;
+}
+
+#conquista_verde {
+    color: black;
+}
+
+#conquista_cobre {
+    color: black;
+}
