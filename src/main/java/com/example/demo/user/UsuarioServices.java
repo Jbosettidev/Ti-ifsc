@@ -33,7 +33,7 @@ public class UsuarioServices {
     }
 
     public void deletar(Long id) {
-        if (usuarioRepository.existsById(id)) { //caso nn ache o id roda a mensagem
+        if (!usuarioRepository.existsById(id)) { //caso nn ache o id roda a mensagem
             throw new RuntimeException("Usuário não encontrado");
         }
         usuarioRepository.deleteById(id); //cai como else e deleta usuario

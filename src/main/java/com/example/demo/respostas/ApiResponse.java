@@ -15,4 +15,4 @@ public class ApiResponse {
         this.path = path;
     }
 }
-//essa classe cria o log, da pra ele o status ex (404,500), uma mensagem definida, e o caminho do erro
+//essa classe cria o log, da pra ele o status ex (4z04,500), uma mensagem definida, e o caminho do erro
