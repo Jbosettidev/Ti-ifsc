@@ -4,16 +4,20 @@
 }
 
 :root {
-    --ciano-escuro: #548687;
-    --off-white: #fdfdfd;
-    --ciano: #3d989b;
-    --ciano-maisescuro: #325c5e;
     --cinza: #eae7ea;
+    --violeta-azulado: #7F77DD;
+    --violeta-claro: #CECBF6;
+    --off-white: #EEEDFE;
+    --roxo-dark: #26215C;
+    --violeta-medio: #9279e9;
+
 }
 
 
 html {
     height: 100%;
+    background: linear-gradient(135deg, #EEEDFE 2%, #CECBF6 30%, #9279e9 100%);
+    background-attachment: fixed;
 }
 
 body {
@@ -29,18 +33,6 @@ body {
        e dá espaço para o robô aparecer no topo */
     padding: 100px 20px 40px 20px;
     box-sizing: border-box;
-    background: transparent;
-}
-
-.fundo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -10;
-    opacity: 0.95;
 }
 
 .imagem {
@@ -60,7 +52,7 @@ body {
     border-radius: 1rem;
     position: relative;
     text-align: center;
-    box-shadow: 0px 10px 20px #28999ffc;
+    box-shadow: 0px 10px 20px var(--violeta-azulado);
 
     width: 100%;
     max-width: 400px;
@@ -72,7 +64,7 @@ body {
 }
 
 .titulo {
-    color: var(--ciano-maisescuro);
+    color: var(--roxo-dark);
     font-size: 1.5rem;
     margin-top: 1rem;
     animation: entradaCard 1.5s ease-out;
@@ -99,7 +91,7 @@ body {
     outline: none;
     background-color: var(--cinza);
     border-radius: 20px;
-    border-bottom: 2px solid var(--ciano-maisescuro);
+    border-bottom: 2px solid var(--roxo-dark);
     transition: 0.3s;
     font-size: 20px;
     width: 100%;
@@ -111,7 +103,7 @@ body {
 
 .inputbox input:focus {
     color: var(--ciano);
-    box-shadow: 0px 10px 30px #325c5e99;
+    box-shadow: 0px 10px 30px #26215c62;
 }
 
 .icone {
@@ -119,7 +111,7 @@ body {
     right: 2rem;
     /* Distância da direita */
     font-size: 1.5rem;
-    color: var(--ciano-maisescuro);
+    color: var(--roxo-dark);
     pointer-events: none;
 
     animation: entradaCard 1.5s ease-out;
@@ -128,7 +120,7 @@ body {
 
 .botao-secundario {
     font-size: 0.8rem;
-    color: var(--ciano);
+    color: var(--roxo-dark);
     text-decoration: none;
     margin-top: 5px;
     transition: 0.3s;
@@ -139,10 +131,10 @@ body {
 
 .botao-secundario:hover {
     text-decoration: none;
-    background-color: var(--ciano);
+    background-color: var(--roxo-dark);
     color: var(--off-white);
-    border-radius: 20px;
-    padding: 5px;
+    border-radius: 15px;
+    padding: 8px;
 }
 
 .botao-container {
@@ -166,23 +158,26 @@ body {
     color: var(--off-white);
     border-radius: 20px;
     cursor: pointer;
-    background-color: var(--ciano);
+    background-image: linear-gradient(135deg, #484099 0%, #7F77DD 50%, #9279e9 100%);
     min-width: 150px;
 }
 
 .botao:hover {
-    background-color: var(--ciano-maisescuro);
+    background-color: var(--roxo-dark);
+    background-image: none;
     color: var(--off-white);
     border-radius: 20px;
     transform: translate(0, -10px);
+    box-shadow: 0px 10px 30px #26215c52;
 }
 
-#voltar {
-    background-color: #ff4d4d;
-}
+/*#voltar {
+    background-color: #bc2424;
+    background-image: none;
+}*/
 
 #voltar:hover {
-    background-color: #971d1d;
+    background-color: #a80a0a;
 }
 
 @media (max-width: 500px) {
