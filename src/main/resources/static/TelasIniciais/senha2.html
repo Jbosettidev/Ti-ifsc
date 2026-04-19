@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SecureByte - Verificar Código</title>
+    <title>Verificar Código</title>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -17,7 +17,7 @@
 
     <div class="card-total">
         <img src="img/logo-capuz.png" class="imagem">
-        <h2 class="titulo">VERIFICAÇÃO</h2>
+        <h2 class="titulo">Verificação</h2>
         <p class="titulo" id="p">Insira o código de 6 dígitos enviado para seu e-mail.</p>
 
         <div class="inputbox">
@@ -34,5 +34,73 @@
             Não recebeu? <a href="#" style="color: var(--ciano); font-weight: bold;">Reenviar</a>
         </p>
     </div>
+       <canvas id="bolhas"></canvas>
+
+                
+        <script>
+            const canvas = document.getElementById('bolhas');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+
+            let bolhas = [];
+            setInterval(() => {
+                if (bolhas.length < 60) {
+                    bolhas.push(novaBolha());
+                }
+            }, 800);
+
+            function novaBolha(x, y) {
+                return {
+                    x: x ?? Math.random() * canvas.width,
+                    y: y ?? canvas.height + Math.random() * 200,
+                    r: 3 + Math.random() * 10,
+                    velocidade: 0.4 + Math.random() * 0.10,
+                    opacidade: 0.08 + Math.random() * 0.08,
+                    drift: (Math.random() - 0.5) * 0.4
+                };
+            }
+
+            window.addEventListener('mousemove', (e) => {
+                if (bolhas.length < 60) {
+                    bolhas.push(novaBolha(e.clientX, e.clientY));
+                }
+            });
+
+            window.addEventListener('click', (e) => {
+                for (let i = 0; i < 12; i++) {
+                    bolhas.push(novaBolha(
+                        e.clientX + (Math.random() - 0.5) * 60,
+                        e.clientY + (Math.random() - 0.5) * 60
+                    ));
+                }
+            });
+
+            function animar() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                bolhas.forEach((b, i) => {
+                    ctx.beginPath();
+                    ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${b.opacidade})`;
+                    ctx.fill();
+
+                    b.y -= b.velocidade;
+                    b.x += b.drift;
+
+                    if (b.y + b.r < 0) bolhas.splice(i, 1);
+                });
+
+                requestAnimationFrame(animar);
+            }
+
+            animar();
+        </script>
 </body>
 </html>
