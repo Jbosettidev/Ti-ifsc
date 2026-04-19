@@ -8,10 +8,16 @@
 }
 
 :root {
-    --cor-primaria: #160181;
+
+    --cor-primaria: #7F77DD;
+    --cor-roxo-claro: #CECBF6;
+    --cor-roxo-clarinho: #EEEDFE;
+    --roxo-forte: #26215C;
+    --cor-roxo-médio: #9279e9;
+
+    --azul: #160181;
     --off-white: #fffbde;
     --off-offwhite: #fdfdfd;
-    --cor-secundaria: #0080c0;
     --cor-tres: #080159;
     --amarelo: #ffde59;
     --mascote-roupa: #1c2b73;
@@ -23,6 +29,7 @@
     border-radius: 2rem;
     margin-left: 2rem;
     margin-right: 2rem;
+    margin-top: 2rem;
     background: linear-gradient(135deg, #EEEDFE 2%, #CECBF6 30%, #9279e9 100%);
     padding: 3rem 2.5rem 2.5rem;
     position: relative;
@@ -40,11 +47,10 @@ progress {
 
     width: 100%;
     /* ocupa todo o espaço disponível */
-    max-width: 45rem;
+    max-width: 110rem;
     /* limite opcional */
-    height: 1.7rem;
+    height: 1.5rem;
     /* altura ajustavel */
-
 
     -webkit-appearance: none;
     appearance: none;
@@ -62,29 +68,65 @@ progress::-webkit-progress-value {
     border-radius: 10rem;
 }
 
+.barra-de-progresso {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1.8rem;
+    font-size: 0.9rem;
+}
+
+.linha-divisoria {
+    /*div sozinha (como ta no HTML) serve de linha */
+    width: 100%;
+    height: 1.5px;
+    background: rgba(120, 100, 210, 0.25);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+}
+
 .caixa_conquistas h1 {
     font-family: "Fredoka", sans-serif;
     font-size: 2.5rem;
+    color: var(--roxo-forte);
+    font-weight: 630;
 }
 
 .progresso {
-    display: flex;
+
     justify-content: space-around;
     gap: 3rem;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    /*stretch é o valor padrão do CSS Flexbox que faz com que os itens filhos (flex itens) se estiquem para preencher todo o espaço disponível no eixo secundário (vertical, por padrão) do contêiner pai*/
+    /*para nao bugar a linha vertical se usa steatch ao invés de center */
+    text-align: center;
+    gap: 3rem;
+
 }
 
 .progresso h2 {
     font-size: 1.8rem;
-    align-items: center;
-    justify-content: space-around;
+    color: var(--roxo-forte);
 }
 
 
 .progresso p {
     font-size: 0.90rem;
     font-family: Arial, Helvetica, sans-serif;
+    color: var(--roxo-forte);
 }
 
+.divisor-vertical {
+
+    width: 1px;
+    background: rgba(120, 100, 210, 0.25);
+    margin: 0 1.5rem;
+}
 
 .rodape {
     background-color: rgba(93, 44, 216, 0.3);
@@ -120,8 +162,9 @@ progress::-webkit-progress-value {
     margin: 30px 20px 10px;
     text-align: center;
     font-size: 1.7rem;
-    color: black;
+    color: var(--roxo-forte);
     font-family: "Fredoka", sans-serif;
+    font-weight: 600;
 }
 
 .container {
@@ -165,7 +208,7 @@ progress::-webkit-progress-value {
 
 .conquistas:hover .titulo-conquistas,
 .conquistas:hover .descricao-conquista {
-    color: black;
+    color: var(--roxo-forte);
     font-weight: bold;
 }
 
@@ -177,10 +220,11 @@ progress::-webkit-progress-value {
 }
 
 .titulo-conquistas {
-    color: var(--amarelo);
+    color: var(--roxo-forte);
     margin: 0;
     font-size: 1.2rem;
     transition: color 0.4s ease;
+
 }
 
 .descricao-conquista {
@@ -200,21 +244,4 @@ progress::-webkit-progress-value {
 
 .conquistas:hover .medalha-imagem {
     transform: rotate(10deg) scale(1.1);
-}
-
-
-#conquista_amarela {
-    color: black;
-}
-
-#conquista_cinza {
-    color: black;
-}
-
-#conquista_verde {
-    color: black;
-}
-
-#conquista_cobre {
-    color: black;
 }
