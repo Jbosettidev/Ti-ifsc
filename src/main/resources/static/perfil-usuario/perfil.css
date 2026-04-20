@@ -41,6 +41,7 @@
     .geral {
         display: flex;
         flex-wrap: wrap;
+        flex-direction: column;
         /* Permite que as caixas pulem de linha */
         gap: 15px;
         /* Espaçamento entre as caixas */
@@ -284,7 +285,10 @@
     }
     
     .esse {
-        margin-bottom: 10px;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
     }
     
     .progresso2 {
@@ -300,9 +304,9 @@
     .card-progresso {
         background-color: #EEEDFE;
         width: 50rem;
-        height: auto;
+        min-height: auto;
+        padding: 2rem;
         border-radius: 10px;
-        margin-bottom: 30px;
         box-shadow: gray -0.8rem -0.8rem 90px;
     }
     
@@ -311,7 +315,20 @@
         display: flex;
         font-weight: bold;
         font-size: 1.4rem;
+    }
+    
+    .head-progresso {
+        display: flex;
+        justify-content: space-between;
         padding: 2rem;
+    }
+    
+    .separacao-progresso {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 1.7rem;
+        margin: 1.7rem;
     }
     
     .container {
@@ -350,10 +367,10 @@
     .card-curso {
         background-color: #EEEDFE;
         width: 800px;
-        height: 9rem;
+        height: auto;
         border-radius: 10px;
         margin-bottom: 30px;
-        padding: 10px;
+        padding: 1.5rem;
         box-shadow: gray -0.8rem -0.8rem 90px;
     }
     
