@@ -71,6 +71,14 @@
         /* Ocupa a largura total da linha de baixo */
     }
     
+    .perfil-icon {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        height: 200px;
+        width: auto;
+    }
+    
     .avatar {
         padding: 40px;
         width: 100%;
@@ -186,6 +194,7 @@
         display: flex;
         justify-content: center;
         /* centraliza horizontal */
+        color: #26215C;
     }
     
     .nome figure {
