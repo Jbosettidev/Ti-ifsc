@@ -1,5 +1,6 @@
 package com.example.demo.user;
 //parte que vai pro banco de dados,, aqui cria as entidades pra usar no sql e java
+import com.example.demo.progresso.Progresso;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -8,6 +9,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity @Data @NoArgsConstructor
 @Getter @Setter
@@ -37,5 +40,5 @@ public class Usuario { //essa ta no /cyber do properties
     private int xpTotal; //sempre inicializa como zero
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<com.example.demo.progresso.Progresso> progressos;
+    private Set<Progresso> progressos;
 }

@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.questao;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

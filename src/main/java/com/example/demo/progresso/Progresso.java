@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.progresso;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
