@@ -18,59 +18,61 @@
 <main>
 
     <header class="avatar">
-        <figure class="configuracaoicon">
-            <a href="/src/main/resources/static/perfil-usuario/configuracoes.html" target="_blank" title="Configurações">
+        <div class="perfil-icon">
+            <a href="/src/main/resources/static/perfil-usuario/configuracoes.html" class="config-link" title="Configurações" target="_blank">
                 <img src="/src/main/resources/static/perfil-usuario/img/iconconfig.png" alt="Configurações">
             </a>
-        </figure>
 
-        <figure>
-            <div class="perfil-icon">
-                <img src="/src/main/resources/static/perfil-usuario/img/person-icon-1682.png" alt="avatar">
+            <div class="moldura">
+                <img src="/src/main/resources/static/perfil-usuario/img/perfilicon.png" alt="Avatar">
             </div>
-            <h1 class="nome">NOME</h1>
-        </figure>
+        </div>
+        <h1 class="nome">NOME</h1>
+    </header>
 
-        <section class="nivel">
-            <div class="card-progresso-bonitinho">
-                <div class="topo-card">
-                    <span class="label-progresso">Progresso do Nível</span>
-                    <span class="badge-nivel">Nível 1</span>
-                </div>
-
-                <progress class="barra-roxo" value="80" max="100"></progress>
-
-                <div class="rodape-card">
-                    <span class="xp-texto">800 / 1000 XP para o próximo nível</span>
-                    <span class="porcentagem">80%</span>
-                </div>
+    <section class="nivel">
+        <div class="card-progresso-bonitinho">
+            <div class="topo-card">
+                <span class="escrita-progresso">Progresso do Nível</span>
+                <span class="escrita-nivel">Nível 1</span>
             </div>
-        </section>
+
+            <progress class="barra-roxo" value="80" max="100"></progress>
+
+            <div class="rodape-card">
+                <span class="xp-texto">800 / 1000 XP para o próximo nível</span>
+                <span class="porcentagem">80%</span>
+            </div>
+        </div>
+    </section>
     </header>
 
     <body>
 
         <section class="geral">
-            <section class="stats-container">
-                <div class="stat-card">
-                    <span class="stat-number">12</span>
-                    <span class="stat-label">Lições</span>
+            <section class="cardizinhos">
+                <div class="card-pequeno">
+                    <span class="numero">12</span>
+                    <span class="descricao-numero">Lições</span>
                 </div>
 
-                <div class="stat-card">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Cursos</span>
+                <div class="card-pequeno">
+                    <span class="numero">3</span>
+                    <span class="descricao-numero">Cursos</span>
                 </div>
 
-                <div class="stat-card">
+                <div class="card-pequeno">
                     <div class="streak-wrapper">
-                        <span class="stat-number">7</span>
+                        <span class="numero">7</span>
                         <span class="fire-icon">🔥</span>
                     </div>
-                    <span class="stat-label">Sequência</span>
+                    <span class="descricao-numero">Sequência</span>
                 </div>
             </section>
-            <h1>VISÃO GERAL</h1>
+            <div class="separacao-geral">
+                <h1>VISÃO GERAL</h1>
+                <div class="divisoria2"></div>
+            </div>
             <div class="xp">
 
                 <span>XP Total Acumulado</span>
@@ -78,12 +80,11 @@
 
                 <p class="classificação"> Iniciante</p>
 
-
             </div>
             <div class="card-progresso">
                 <div class="head-progresso">
                     <span>Conquistas</span>
-                    <p>Ver todas ➔</p>
+
                 </div>
 
                 <figure class="container">
@@ -93,16 +94,31 @@
                 </figure>
 
             </div>
-            <p class="separacao-progresso">CURSO ATUAL</p>
+            <div class="separacao-progresso">
+                <p>CURSO ATUAL</p>
+                <div class="divisoria"></div>
+            </div>
+
+
             <div class="card-curso">
+                <div class="secureicon">
+                    <figure class="moldura-secure">
+                        <img src="/src/main/resources/static/perfil-usuario/img/1746650.png" alt="">
+                    </figure>
+                    <div class="descricao-card">
+                        <p class="aqui">Você está em:</p>
+                        <p>Curso de Cibersegurança</p>
+                    </div>
 
-
-
-                <p class="aqui">Você está em:</p>
+                </div>
+                <div class="head-curso">
+                    <p>Progresso</p>
+                    <p>50%</p>
+                </div>
                 <progress class="progresso2" value="50" max="100"></progress>
                 <div class="esse">
                     <p>5 de 10 módulos concluídos</p>
-                    <p>Curso de Cibersegurança</p>
+
                 </div>
 
             </div>

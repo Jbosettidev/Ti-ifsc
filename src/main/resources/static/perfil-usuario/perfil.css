@@ -47,36 +47,103 @@
         /* Espaçamento entre as caixas */
         max-width: 80rem;
         font-family: sans-serif;
-        min-height: 70rem;
         justify-content: center;
         height: auto;
     }
-    /* O título "Visão Geral" deve ocupar a largura toda sozinho */
-    
-    .geral h1 {
-        width: 100%;
-        color: #26215C;
-        margin-bottom: 5px;
-        display: flex;
-        justify-content: center;
-    }
-    /* Estilo da caixa que fica embaixo (Curso) */
     
     .card-curso {
         background-color: #EEEDFE;
         border-radius: 12px;
         padding: 15px;
-        color: white;
         width: 100%;
         /* Ocupa a largura total da linha de baixo */
     }
+    /* Container principal do avatar */
     
     .perfil-icon {
+        position: relative;
+        /* Necessário para o ícone se posicionar em relação a ele */
         display: flex;
         justify-content: center;
-        margin-bottom: 2rem;
+        align-items: center;
+        width: 220px;
+        /* Um pouco maior que a moldura para dar respiro */
+        height: 220px;
+        margin: 0 auto;
+        /* Centraliza o bloco todo na tela */
+    }
+    /* A Moldura Circular */
+    
+    .moldura {
+        width: 200px;
         height: 200px;
-        width: auto;
+        border-radius: 50%;
+        border: 4px solid #8a8fb5;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--branco);
+        /* Evita transparência se a foto falhar */
+    }
+    
+    .moldura img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    /* O Ícone de Configurações na Direita */
+    
+    .config-link {
+        position: absolute;
+        top: 10px;
+        /* Ajuste para descer ou subir */
+        right: -5rem;
+        /* Move para a direita com espaçamento */
+        z-index: 10;
+        /* Garante que fique por cima */
+        text-decoration: none;
+    }
+    
+    .config-link img {
+        width: 30px;
+        /* Tamanho da engrenagem */
+        height: 30px;
+        transition: transform 0.3s ease;
+    }
+    
+    .config-link:hover img {
+        transform: rotate(90deg);
+        /* Efeito bonitinho ao passar o mouse */
+    }
+    
+    .secureicon {
+        display: flex;
+        justify-content: start;
+        gap: 2rem;
+    }
+    
+    .moldura-secure {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 1rem;
+        border: #26215C solid 3.5px;
+        background: #9279e9;
+    }
+    
+    .descricao-card {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .secureicon img {
+        height: 5rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 0.1rem;
+        margin-top: 0.4rem;
+        margin-right: 0.8rem;
     }
     
     .avatar {
@@ -123,14 +190,14 @@
         /* 15px */
     }
     
-    .label-progresso {
+    .escrita-progresso {
         color: var(--cor-escura);
         /* Texto escuro para fundo claro */
         font-size: 1.1rem;
         font-weight: 500;
     }
     
-    .badge-nivel {
+    .escrita-nivel {
         background-color: var(--cor-suave);
         /* Lilás médio */
         color: var(--cor-escura);
@@ -213,7 +280,7 @@
     }
     /* --- Container dos Novos Cards --- */
     
-    .stats-container {
+    .cardizinhos {
         display: flex;
         justify-content: center;
         gap: 1rem;
@@ -227,7 +294,7 @@
     }
     /* --- Estilo dos Cards Individuais (Versão Clara) --- */
     
-    .stat-card {
+    .card-pequeno {
         background-color: var(--branco);
         /* Fundo branco para destacar do fundo da página */
         border: 0.125rem solid var(--cor-suave);
@@ -245,13 +312,13 @@
         transition: transform 0.2s ease;
     }
     
-    .stat-card:hover {
+    .card-pequeno:hover {
         transform: translateY(-3px);
         border-color: var(--cor-principal);
     }
     /* --- Números e Textos --- */
     
-    .stat-number {
+    .numero {
         font-size: 1.5rem;
         /* 24px */
         font-weight: 700;
@@ -259,7 +326,7 @@
         line-height: 1;
     }
     
-    .stat-label {
+    .descricao-numero {
         font-size: 0.875rem;
         /* 14px */
         color: var(--cor-principal);
@@ -290,7 +357,14 @@
     }
     
     .aqui {
-        margin-bottom: 10px;
+        font-weight: normal;
+        font-size: 1.4rem;
+    }
+    
+    .head-curso {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.4;
     }
     
     .esse {
@@ -312,7 +386,8 @@
     
     .card-progresso {
         background-color: #EEEDFE;
-        width: 50rem;
+        width: 100%;
+        max-width: 50rem;
         min-height: auto;
         padding: 2rem;
         border-radius: 10px;
@@ -328,16 +403,34 @@
     
     .head-progresso {
         display: flex;
-        justify-content: space-between;
-        padding: 2rem;
+        justify-content: start;
+        padding: 1rem;
     }
     
     .separacao-progresso {
         display: flex;
         justify-content: center;
-        flex-wrap: wrap;
         font-size: 1.7rem;
-        margin: 1.7rem;
+        margin: 1rem;
+    }
+    
+    .separacao-geral {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        color: #26215C;
+    }
+    
+    .divisoria,
+    .divisoria2 {
+        width: 100%;
+        /* A linha se adapta ao tamanho do card */
+        max-width: 35rem;
+        /* Não passa do tamanho original */
+        height: 2px;
+        background: rgba(120, 100, 210, 0.25);
+        margin: 1rem auto;
+        /* Centraliza a linha */
     }
     
     .container {
@@ -357,8 +450,10 @@
     
     .xp {
         background-color: #EEEDFE;
-        width: 800px;
-        height: 16rem;
+        width: 100%;
+        max-width: 50rem;
+        height: auto;
+        min-height: 16rem;
         border-radius: 10px;
         margin-bottom: 30px;
         padding: 1.5rem 1.5rem;
@@ -375,12 +470,14 @@
     
     .card-curso {
         background-color: #EEEDFE;
-        width: 800px;
-        height: auto;
+        width: 100%;
+        max-width: 50rem;
+        min-height: 16rem;
         border-radius: 10px;
         margin-bottom: 30px;
         padding: 1.5rem;
         box-shadow: gray -0.8rem -0.8rem 90px;
+        gap: 4rem;
     }
     
     p {
@@ -493,12 +590,6 @@
         padding: 20px;
         border-radius: 15px;
         text-align: center;
-    }
-    
-    .configuracaoicon {
-        display: flex;
-        justify-content: end;
-        height: 40px;
     }
     
     @media (max-width: 768px) {
