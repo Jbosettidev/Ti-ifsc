@@ -24,5 +24,12 @@ public class Fase {
     private String descricao;
 
     private Boolean concluida;
+
+    @ManyToOne
+    @JoinColumn(name = "curso_id", nullable = false)
+    private com.example.demo.curso.Curso curso;
+
+    @OneToMany(mappedBy = "fase", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<com.example.demo.quiz.Quiz> quizzes;
 }
 //todo fazer relacionamento com usuario e o resto do arquivo do docs

@@ -1,5 +1,6 @@
 package com.example.demo.fase;
 
+import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -28,7 +29,7 @@ public class FaseServices {
         return faseRepository.findAll();
     }
 
-    public Fase atualizarParcial(Long id, Fase dados) {
+    public Fase atualizarParcial(Long id, @NonNull Fase dados) {
         Fase fase = faseRepository.findById(id).orElseThrow();
 
         if (dados.getTitulo() != null) {

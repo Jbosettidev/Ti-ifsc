@@ -36,4 +36,6 @@ public class Usuario { //essa ta no /cyber do properties
     @Min(0)//nn aceita valor negativo
     private int xpTotal; //sempre inicializa como zero
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<com.example.demo.progresso.Progresso> progressos;
 }
