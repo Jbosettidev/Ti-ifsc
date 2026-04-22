@@ -1,5 +1,6 @@
 package com.example.demo.user;
 //services manda salvar no repositorio
+import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -22,7 +23,7 @@ public class UsuarioServices {
         return usuarioRepository.findAll();
     }
 
-    public Usuario atualizarParcial(Long id, Usuario dados) { //patch, ele atualiza o dado que vir
+    public Usuario atualizarParcial(Long id, @NonNull Usuario dados) { //patch, ele atualiza o dado que vir
         Usuario usuario = usuarioRepository.findById(id).orElseThrow();
 
         if (dados.getNome() != null) {

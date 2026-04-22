@@ -1,11 +1,14 @@
 package com.example.demo.fase;
 
+import com.example.demo.quiz.Quiz;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity @Data @NoArgsConstructor
 @Getter @Setter
@@ -24,5 +27,8 @@ public class Fase {
     private String descricao;
 
     private Boolean concluida;
+
+    @OneToMany(mappedBy = "fase", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Quiz> quizzes;
 }
 //todo fazer relacionamento com usuario e o resto do arquivo do docs

@@ -1,5 +1,6 @@
 package com.example.demo.user;
 //parte que vai pro banco de dados,, aqui cria as entidades pra usar no sql e java
+import com.example.demo.progresso.Progresso;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -9,10 +10,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity @Data @NoArgsConstructor
 @Getter @Setter
 @Table(name = "usuario")
-public class Usuario { //essa ta no /cyber do properties
+public class Usuario {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)//configura o bd pra gerar e incrementar este valor a cada novo usuário.
     private Long id; //gera um id unico e que se autoincrementa
@@ -36,4 +39,6 @@ public class Usuario { //essa ta no /cyber do properties
     @Min(0)//nn aceita valor negativo
     private int xpTotal; //sempre inicializa como zero
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Progresso> progressos;
 }
