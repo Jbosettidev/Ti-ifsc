@@ -28,10 +28,6 @@ public class Fase {
 
     private Boolean concluida;
 
-    @ManyToOne
-    @JoinColumn(name = "curso_id", nullable = false)
-    private com.example.demo.curso.Curso curso;
-
     @OneToMany(mappedBy = "fase", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Quiz> quizzes;
 }

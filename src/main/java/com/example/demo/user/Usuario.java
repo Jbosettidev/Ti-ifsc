@@ -15,7 +15,7 @@ import java.util.Set;
 @Entity @Data @NoArgsConstructor
 @Getter @Setter
 @Table(name = "usuario")
-public class Usuario { //essa ta no /cyber do properties
+public class Usuario {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)//configura o bd pra gerar e incrementar este valor a cada novo usuário.
     private Long id; //gera um id unico e que se autoincrementa

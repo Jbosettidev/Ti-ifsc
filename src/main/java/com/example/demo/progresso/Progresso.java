@@ -25,10 +25,6 @@ public class Progresso {
     private com.example.demo.user.Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "curso_id", nullable = false)
-    private com.example.demo.curso.Curso curso;
-
-    @ManyToOne
     @JoinColumn(name = "fase_id", nullable = false)
     private com.example.demo.fase.Fase fase;
 

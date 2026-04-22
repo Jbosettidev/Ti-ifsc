@@ -28,6 +28,4 @@ public class Medalha {
     @Size(max = 300)
     private String descricao;
 
-    @OneToMany(mappedBy = "medalha", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<com.example.demo.curso.Curso> cursos;
 }
