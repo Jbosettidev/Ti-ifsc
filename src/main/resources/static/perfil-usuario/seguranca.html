@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segurança</title>
+    <link rel="stylesheet" href="/src/main/resources/static/perfil-usuario/abas.css">
+</head>
+
+<body>
+    <main class="container-seguranca">
+        <header class="topo-pagina">
+            <a href="configuracoes.html" class="voltar-config" style="text-decoration: none;">
+                <span class="setinha">←</span>
+            </a>
+            <h1>SEGURANÇA</h1>
+        </header>
+        <p class="subtitulo">Gerencie suas informações de login</p>
+        <form action="seguranca.html" method="post" class="formulario" id="formSeguranca">
+            <div class="campos">
+                <label for="email">E-mail Cadastrado</label>
+                <input type="email" name="email_atual" value="email@atual.com" readonly class="input-readondely">
+            </div>
+            <div class="campos">
+                <label for="">Senha</label>
+                <input type="password" name="senha_validacao" placeholder="Confirme sua senha" required>
+            </div>
+            <div class="campos">
+                <label for="">Modificar E-mail</label>
+                <input type="email" name="novo_email" placeholder="Digite o novo e-mail" required>
+            </div>
+            <button type="submit" class="botao-salvar">Salvar alterações</button>
+        </form>
+    </main>
+</body>
+
+</html>
