@@ -97,16 +97,13 @@ progress::-webkit-progress-value {
 .progresso {
 
     justify-content: space-around;
-    gap: 3rem;
+    gap: 1rem;
 
     display: flex;
-    justify-content: space-around;
     align-items: stretch;
     /*stretch é o valor padrão do CSS Flexbox que faz com que os itens filhos (flex itens) se estiquem para preencher todo o espaço disponível no eixo secundário (vertical, por padrão) do contêiner pai*/
     /*para nao bugar a linha vertical se usa steatch ao invés de center */
     text-align: center;
-    gap: 3rem;
-
 }
 
 .progresso h2 {
@@ -244,4 +241,23 @@ progress::-webkit-progress-value {
 
 .conquistas:hover .medalha-imagem {
     transform: rotate(10deg) scale(1.1);
+}
+
+@media (max-width: 768px){
+    .caixa_conquistas {
+        padding: 1.5rem 1rem; /* Menos espaço interno */
+        margin: 1rem; /* Menos espaço externo */
+    }
+
+    .progresso h2 {
+        font-size: 0.9rem; /* Letras menores para o 89% caber */
+    }
+
+    .progresso p {
+        font-size: 0.6rem;
+    }
+
+    .divisor-vertical {
+        margin: 0 0px; /* Quase cola os itens, mas mantém tudo na tela */
+    }
 }
