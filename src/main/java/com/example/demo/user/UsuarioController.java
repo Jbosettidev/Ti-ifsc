@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RequestMapping("/usuarios") //cria o endpoint /usuarios
 @RestController
+@RequestMapping("/usuarios") //cria o endpoint /usuarios
+@CrossOrigin(origins = "*")
 public class UsuarioController { //TODO fazer o crud aqui
 
     @Autowired
