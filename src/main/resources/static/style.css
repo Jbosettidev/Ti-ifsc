@@ -33,6 +33,7 @@ main {
     flex-direction: column;
     align-items: center;
     padding-bottom: 110px;
+    padding-top: 70px;
 }
 
 .cabecalho {
@@ -46,6 +47,8 @@ main {
     letter-spacing: 2px;
     text-align: center;
     width: 100%;
+    position: fixed;
+    z-index: 1000;
 }
 
 main h3.titulo {
@@ -60,7 +63,7 @@ main h3.titulo {
     border-radius: 15px;
     letter-spacing: 1px;
     font-size: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3); 
 }
 
 .rodape {
@@ -96,11 +99,11 @@ main h3.titulo {
 .container {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 70px;
     align-items: center;
     padding: 50px 20px;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
     position: relative;
 }
