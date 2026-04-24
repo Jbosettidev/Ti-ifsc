@@ -39,11 +39,26 @@
     
     .cabecalho {
         color: var(--cor-escura);
-        margin: 3rem;
+        padding: 2rem 1rem;
+        /* Padding em vez de margin fixa */
         display: flex;
         margin: 3rem;
         font-size: 2rem;
         justify-content: center;
+    }
+    
+    .topo {
+        display: flex;
+        gap: 4rem;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .seta {
+        font-weight: bold;
+        font-size: 2.5rem;
     }
     
     .container-informacoes {
@@ -96,4 +111,51 @@
         color: var(--cor-viva);
         transform: scale(0.98);
         cursor: pointer;
+    }
+    /* Para tablets e celulares */
+    
+    @media (max-width: 768px) {
+        .cabecalho {
+            margin: 1.5rem 0;
+            /* Reduzi a margem externa */
+            padding: 0 1rem;
+        }
+        .topo {
+            gap: 1.3rem;
+            /* Reduzi o espaço entre a seta e o título de 4rem para 1rem */
+            width: 100%;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 1rem;
+        }
+        .seta {
+            font-size: 1.8rem;
+            /* Seta menor para não empurrar o texto */
+        }
+        h1 {
+            font-size: 1.4rem;
+            /* Diminuí o título para caber em uma linha só */
+        }
+        .container-informacoes {
+            gap: 1rem;
+            /* Espaço menor entre os cards */
+            width: 95%;
+            /* Ganha mais espaço horizontal */
+        }
+        .card {
+            padding: 1.2rem;
+            /* Menos preenchimento interno nos cards */
+            box-shadow: 0.4rem 0.4rem 1.5rem rgba(146, 121, 233, 0.4);
+            /* Seta a sombra mais sutil */
+        }
+    }
+    /* Para celulares muito pequenos (iPhone SE, etc) */
+    
+    @media (max-width: 380px) {
+        h1 {
+            font-size: 1.1rem;
+        }
+        .card p {
+            font-size: 1.1rem;
+        }
     }

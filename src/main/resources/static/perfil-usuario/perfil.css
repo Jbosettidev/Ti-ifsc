@@ -1,605 +1,660 @@
-    * {
-        margin: 0;
-        padding: 0;
-        scroll-behavior: smooth;
-        font-family: "Fredoka", sans-serif;
-        box-sizing: border-box;
-    }
-    
-     :root {
-        --cor-fundo: #EEEDFE;
-        /* Tom mais claro para o fundo da página */
-        --cor-suave: #CECBF6;
-        /* Tom médio para detalhes e bordas */
-        --cor-principal: #7F77DD;
-        /* Roxo médio para elementos de destaque */
-        --cor-viva: #9279e9;
-        /* Roxo vibrante para hovers e botões */
-        --cor-escura: #26215C;
-        /* Roxo bem escuro para textos e rodapé */
-        --branco: #FFFFFF;
-    }
-    
-    body {
-        background-color: var(--cor-fundo);
-        /* Grade grossa usando a cor escura --cor-tres */
-        background-attachment: fixed;
-        overflow-x: hidden;
-        width: 100%;
-    }
-    
-    main {
-        background: none;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-bottom: 110px;
-    }
-    /* O container pai */
-    
-    .geral {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        /* Permite que as caixas pulem de linha */
-        gap: 15px;
-        /* Espaçamento entre as caixas */
-        max-width: 80rem;
-        font-family: sans-serif;
-        justify-content: center;
-        height: auto;
-    }
-    
-    .card-curso {
-        background-color: #EEEDFE;
-        border-radius: 12px;
-        padding: 15px;
-        width: 100%;
-        /* Ocupa a largura total da linha de baixo */
-    }
-    /* Container principal do avatar */
-    
-    .perfil-icon {
-        position: relative;
-        /* Necessário para o ícone se posicionar em relação a ele */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 220px;
-        /* Um pouco maior que a moldura para dar respiro */
-        height: 220px;
-        margin: 0 auto;
-        /* Centraliza o bloco todo na tela */
-    }
-    /* A Moldura Circular */
-    
-    .moldura {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        border: 4px solid #8a8fb5;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--branco);
-        /* Evita transparência se a foto falhar */
-    }
-    
-    .moldura img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    /* O Ícone de Configurações na Direita */
-    
-    .config-link {
-        position: absolute;
-        top: 10px;
-        /* Ajuste para descer ou subir */
-        right: -5rem;
-        /* Move para a direita com espaçamento */
-        z-index: 10;
-        /* Garante que fique por cima */
-        text-decoration: none;
-    }
-    
-    .config-link img {
-        width: 30px;
-        /* Tamanho da engrenagem */
-        height: 30px;
-        transition: transform 0.3s ease;
-    }
-    
-    .config-link:hover img {
-        transform: rotate(90deg);
-        /* Efeito bonitinho ao passar o mouse */
-    }
-    
-    .secureicon {
-        display: flex;
-        justify-content: start;
-        gap: 2rem;
-    }
-    
-    .moldura-secure {
-        width: 6rem;
-        height: 6rem;
-        border-radius: 1rem;
-        border: #26215C solid 3.5px;
-        background: #9279e9;
-    }
-    
-    .descricao-card {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-    }
-    
-    .secureicon img {
-        height: 5rem;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        margin: 0.1rem;
-        margin-top: 0.4rem;
-        margin-right: 0.8rem;
-    }
-    
-    .avatar {
-        padding: 40px;
-        width: 100%;
-        text-align: center;
-        color: white;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    /* Container que centraliza o card na tela */
-    
-    .nivel {
-        background: none;
-        padding: 1.25rem;
-        /* 20px */
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-    /* O Card Claro (Inspirado na Imagem 1, mas com cores da sua paleta clara) */
-    
-    .card-progresso-bonitinho {
-        background: linear-gradient(90deg, var(--cor-suave), var(--cor-principal));
-        /* #EEEDFE */
-        border-radius: 1.25rem;
-        /* 20px */
-        padding: 1.5rem;
-        /* 24px */
-        width: 100%;
-        max-width: 50rem;
-        /* 500px */
-        box-shadow: 0.25rem 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
-        /* Sombra mais suave */
-        border: 0.0625rem solid var(--cor-suave);
-        /* Borda fina para definir o card */
-    }
-    /* Linha de cima: Texto e o "Pill" do nível */
-    
-    .topo-card {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 0.9375rem;
-        /* 15px */
-    }
-    
-    .escrita-progresso {
-        color: var(--cor-escura);
-        /* Texto escuro para fundo claro */
-        font-size: 1.1rem;
-        font-weight: 500;
-    }
-    
-    .escrita-nivel {
-        background-color: var(--cor-suave);
-        /* Lilás médio */
-        color: var(--cor-escura);
-        padding: 0.3125rem 0.9375rem;
-        /* 5px 15px */
-        border-radius: 1.25rem;
-        /* 20px */
-        font-weight: bold;
-        font-size: 0.875rem;
-    }
-    /* A Barra de Progresso Customizada */
-    
-    .barra-roxo {
-        width: 100%;
-        height: 2rem;
-        /* 12px */
-        appearance: none;
-        -webkit-appearance: none;
-    }
-    
-    .barra-roxo::-webkit-progress-bar {
-        background-color: #EEEDFE;
-        /* Fundo da trilha levemente mais escuro que o card */
-        border-radius: 1rem;
-    }
-    
-    .barra-roxo::-webkit-progress-value {
-        background: linear-gradient(90deg, var(--cor-fundo), var(--cor-principal));
-        border-radius: 1rem;
-    }
-    /* Linha de baixo: XP e Porcentagem */
-    
-    .rodape-card {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 0.625rem;
-        /* 10px */
-    }
-    
-    .xp-texto {
-        color: var(--cor-escura);
-        font-size: 0.875rem;
-        opacity: 0.7;
-    }
-    
-    .porcentagem {
-        color: var(--cor-escura);
-        font-weight: bold;
-        font-size: 0.875rem;
-    }
-    /* Classe .nivel (alinhando o círculo e a barra) */
-    
-    .nivel {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-    }
-    
-    .nome {
-        display: flex;
-        justify-content: center;
-        /* centraliza horizontal */
-        color: #26215C;
-    }
-    
-    .nome figure {
-        text-align: center;
-        /* centraliza o texto */
-    }
-    
-    .nivel {
-        flex: 1;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .nivel {
-        flex: 1;
-    }
-    /* --- Container dos Novos Cards --- */
-    
-    .cardizinhos {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        /* Espaço entre os cards */
-        width: 100%;
-        max-width: 32rem;
-        /* Mesma largura do card-progresso-dark para alinhar */
-        margin: 0 auto 2rem auto;
-        /* Centraliza o container e dá margem em baixo */
-        padding: 0;
-    }
-    /* --- Estilo dos Cards Individuais (Versão Clara) --- */
-    
-    .card-pequeno {
-        background-color: var(--branco);
-        /* Fundo branco para destacar do fundo da página */
-        border: 0.125rem solid var(--cor-suave);
-        border-radius: 1rem;
-        /* 16px */
-        flex: 1;
-        /* Faz os 3 cards terem o mesmo tamanho */
-        height: 6.25rem;
-        /* 100px */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.05);
-        transition: transform 0.2s ease;
-    }
-    
-    .card-pequeno:hover {
-        transform: translateY(-3px);
-        border-color: var(--cor-principal);
-    }
-    /* --- Números e Textos --- */
-    
-    .numero {
-        font-size: 1.5rem;
-        /* 24px */
-        font-weight: 700;
-        color: var(--cor-escura);
-        line-height: 1;
-    }
-    
-    .descricao-numero {
-        font-size: 0.875rem;
-        /* 14px */
-        color: var(--cor-principal);
-        font-weight: 500;
-        margin-top: 0.25rem;
-    }
-    /* --- Alinhamento da Sequência (Fogo) --- */
-    
-    .streak-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-    }
-    
-    .fire-icon {
-        font-size: 1.2rem;
-    }
-    /* 1. Reset do estilo padrão (Remove a aparência cinza do Windows/Mac) */
-    
-    .progresso {
-        width: 100%;
-        height: 20px;
-    }
-    
-    .progresso p {
-        color: #080159;
-        /* Cor do texto para aparecer no fundo branco */
-    }
-    
-    .aqui {
-        font-weight: normal;
-        font-size: 1.4rem;
-    }
-    
-    .head-curso {
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.4;
-    }
-    
-    .esse {
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .progresso2 {
-        width: 100%;
-        /* Controle aqui o progresso */
-        height: 30px;
-    }
-    
-    .progresso2 p {
-        color: #26215C;
-    }
-    
-    .card-progresso {
-        background-color: #EEEDFE;
-        width: 100%;
-        max-width: 50rem;
-        min-height: auto;
-        padding: 2rem;
-        border-radius: 10px;
-        box-shadow: gray -0.8rem -0.8rem 90px;
-    }
-    
-    .card-progresso span {
-        color: #26215C;
-        display: flex;
-        font-weight: bold;
-        font-size: 1.4rem;
-    }
-    
-    .head-progresso {
-        display: flex;
-        justify-content: start;
-        padding: 1rem;
-    }
-    
-    .separacao-progresso {
-        display: flex;
-        justify-content: center;
-        font-size: 1.7rem;
-        margin: 1rem;
-    }
-    
-    .separacao-geral {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2rem;
-        color: #26215C;
-    }
-    
-    .divisoria,
-    .divisoria2 {
-        width: 100%;
-        /* A linha se adapta ao tamanho do card */
-        max-width: 35rem;
-        /* Não passa do tamanho original */
-        height: 2px;
-        background: rgba(120, 100, 210, 0.25);
-        margin: 1rem auto;
-        /* Centraliza a linha */
-    }
-    
-    .container {
-        display: flex;
-        /* coloca lado a lado */
-        gap: 20px;
-        /* espaço entre elas */
-        justify-content: center;
-        /* centraliza */
-    }
-    
-    .container img {
-        width: 80px;
-        /* ajusta tamanho */
-        border-radius: 10px;
-    }
-    
-    .xp {
-        background-color: #EEEDFE;
-        width: 100%;
-        max-width: 50rem;
-        height: auto;
-        min-height: 16rem;
-        border-radius: 10px;
-        margin-bottom: 30px;
-        padding: 1.5rem 1.5rem;
-        box-shadow: gray -0.8rem -0.8rem 90px;
-    }
-    
-    .xp span {
-        color: #26215C;
-        font-weight: bold;
-        display: flex;
-        align-items: start;
-        font-size: 1.4rem;
-    }
-    
-    .card-curso {
-        background-color: #EEEDFE;
-        width: 100%;
-        max-width: 50rem;
-        min-height: 16rem;
-        border-radius: 10px;
-        margin-bottom: 30px;
-        padding: 1.5rem;
-        box-shadow: gray -0.8rem -0.8rem 90px;
-        gap: 4rem;
-    }
-    
-    p {
-        color: #26215C;
-        font-weight: bold;
-    }
-    
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: "Fredoka", sans-serif;
+    box-sizing: border-box;
+}
+
+ :root {
+    --cor-fundo: #EEEDFE;
+    /* Tom mais claro para o fundo da página */
+    --cor-suave: #CECBF6;
+    /* Tom médio para detalhes e bordas */
+    --cor-principal: #7F77DD;
+    /* Roxo médio para elementos de destaque */
+    --cor-viva: #9279e9;
+    /* Roxo vibrante para hovers e botões */
+    --cor-escura: #26215C;
+    /* Roxo bem escuro para textos e rodapé */
+    --branco: #FFFFFF;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    /* Grade grossa usando a cor escura --cor-tres */
+    background-attachment: fixed;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+main {
+    background: none;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 110px;
+}
+
+
+/* O container pai */
+
+.geral {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /* Permite que as caixas pulem de linha */
+    gap: 15px;
+    /* Espaçamento entre as caixas */
+    max-width: 80rem;
+    font-family: sans-serif;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    padding: 0 15px;
+    /* Cria uma margem interna de 15px nas laterais */
+    box-sizing: border-box;
+    /* Garante que o padding não aumente o tamanho total */
+}
+
+.card-curso {
+    background-color: #EEEDFE;
+    border-radius: 12px;
+    padding: 15px;
+    width: 100%;
+    /* Ocupa a largura total da linha de baixo */
+}
+
+
+/* Container principal do avatar */
+
+.perfil-icon {
+    position: relative;
+    /* Necessário para o ícone se posicionar em relação a ele */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    /* Um pouco maior que a moldura para dar respiro */
+    height: 220px;
+    margin: 0 auto;
+    /* Centraliza o bloco todo na tela */
+}
+
+
+/* A Moldura Circular */
+
+.moldura {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 4px solid #8a8fb5;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--branco);
+    /* Evita transparência se a foto falhar */
+}
+
+.moldura img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* O Ícone de Configurações na Direita */
+
+.config-link {
+    position: absolute;
+    top: 10px;
+    /* Ajuste para descer ou subir */
+    right: -5rem;
+    /* Move para a direita com espaçamento */
+    z-index: 10;
+    /* Garante que fique por cima */
+    text-decoration: none;
+}
+
+.config-link img {
+    width: 30px;
+    /* Tamanho da engrenagem */
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.config-link:hover img {
+    transform: rotate(90deg);
+    /* Efeito bonitinho ao passar o mouse */
+}
+
+.secureicon {
+    display: flex;
+    justify-content: start;
+    gap: 2rem;
+}
+
+.moldura-secure {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 1rem;
+    border: #26215C solid 3.5px;
+    background: #9279e9;
+}
+
+.descricao-card {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.secureicon img {
+    height: 5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0.1rem;
+    margin-top: 0.4rem;
+    margin-right: 0.8rem;
+}
+
+.avatar {
+    padding: 40px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Container que centraliza o card na tela */
+
+.nivel {
+    background: none;
+    padding: 1.25rem;
+    /* 20px */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+/* O Card Claro (Inspirado na Imagem 1, mas com cores da sua paleta clara) */
+
+.card-progresso-bonitinho {
+    background: linear-gradient(90deg, var(--cor-suave), var(--cor-principal));
+    /* #EEEDFE */
+    border-radius: 1.25rem;
+    /* 20px */
+    padding: 1.5rem;
+    /* 24px */
+    width: 100%;
+    max-width: 50rem;
+    /* 500px */
+    box-shadow: 0.25rem 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
+    /* Sombra mais suave */
+    border: 0.0625rem solid var(--cor-suave);
+    /* Borda fina para definir o card */
+}
+
+
+/* Linha de cima: Texto e o "Pill" do nível */
+
+.topo-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.9375rem;
+    /* 15px */
+}
+
+.escrita-progresso {
+    color: var(--cor-escura);
+    /* Texto escuro para fundo claro */
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.escrita-nivel {
+    background-color: var(--cor-suave);
+    /* Lilás médio */
+    color: var(--cor-escura);
+    padding: 0.3125rem 0.9375rem;
+    /* 5px 15px */
+    border-radius: 1.25rem;
+    /* 20px */
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+
+/* A Barra de Progresso Customizada */
+
+.barra-roxo {
+    width: 100%;
+    height: 2rem;
+    /* 12px */
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.barra-roxo::-webkit-progress-bar {
+    background-color: #EEEDFE;
+    /* Fundo da trilha levemente mais escuro que o card */
+    border-radius: 1rem;
+}
+
+.barra-roxo::-webkit-progress-value {
+    background: linear-gradient(90deg, var(--cor-fundo), var(--cor-principal));
+    border-radius: 1rem;
+}
+
+
+/* Linha de baixo: XP e Porcentagem */
+
+.rodape-card {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.625rem;
+    /* 10px */
+}
+
+.xp-texto {
+    color: var(--cor-escura);
+    font-size: 0.875rem;
+    opacity: 0.7;
+}
+
+.porcentagem {
+    color: var(--cor-escura);
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+
+/* Classe .nivel (alinhando o círculo e a barra) */
+
+.nivel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.nome {
+    display: flex;
+    justify-content: center;
+    /* centraliza horizontal */
+    color: #26215C;
+}
+
+.nome figure {
+    text-align: center;
+    /* centraliza o texto */
+}
+
+.nivel {
+    flex: 1;
+    align-items: center;
+    gap: 10px;
+}
+
+.nivel {
+    flex: 1;
+}
+
+
+/* --- Container dos Novos Cards --- */
+
+.cardizinhos {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    /* Espaço entre os cards */
+    width: 100%;
+    max-width: 30rem;
+    /* Mesma largura do card-progresso-dark para alinhar */
+    margin: 0 auto 1rem auto;
+    /* Centraliza o container e dá margem em baixo */
+    padding: 0;
+}
+
+
+/* --- Estilo dos Cards Individuais (Versão Clara) --- */
+
+.card-pequeno {
+    background-color: var(--branco);
+    /* Fundo branco para destacar do fundo da página */
+    border: 0.125rem solid var(--cor-suave);
+    border-radius: 1rem;
+    /* 16px */
+    flex: 1;
+    /* Faz os 3 cards terem o mesmo tamanho */
+    height: 6rem;
+    /* 100px */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.card-pequeno:hover {
+    transform: translateY(-3px);
+    border-color: var(--cor-principal);
+}
+
+
+/* --- Números e Textos --- */
+
+.numero {
+    font-size: 1.5rem;
+    /* 24px */
+    font-weight: 700;
+    color: var(--cor-escura);
+    line-height: 1;
+}
+
+.descricao-numero {
+    font-size: 0.875rem;
+    /* 14px */
+    color: var(--cor-principal);
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+
+/* --- Alinhamento da Sequência (Fogo) --- */
+
+.streak-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.fire-icon {
+    font-size: 1.2rem;
+}
+
+
+/* 1. Reset do estilo padrão (Remove a aparência cinza do Windows/Mac) */
+
+.progresso {
+    width: 100%;
+    height: 20px;
+}
+
+.progresso p {
+    color: #080159;
+    /* Cor do texto para aparecer no fundo branco */
+}
+
+.aqui {
+    font-weight: normal;
+    font-size: 1.4rem;
+}
+
+.head-curso {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4;
+}
+
+.esse {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.progresso2 {
+    width: 100%;
+    /* Controle aqui o progresso */
+    height: 30px;
+}
+
+.progresso2 p {
+    color: #26215C;
+}
+
+.card-progresso {
+    background-color: #EEEDFE;
+    width: 100%;
+    max-width: 50rem;
+    min-height: auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: gray -0.8rem -0.8rem 90px;
+}
+
+.card-progresso span {
+    color: #26215C;
+    display: flex;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.head-progresso {
+    display: flex;
+    justify-content: start;
+    padding: 1rem;
+}
+
+.separacao-progresso {
+    display: flex;
+    justify-content: center;
+    font-size: 1.7rem;
+    margin: 1rem;
+}
+
+.separacao-geral {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    color: #26215C;
+}
+
+.divisoria,
+.divisoria2 {
+    width: 100%;
+    /* A linha se adapta ao tamanho do card */
+    max-width: 35rem;
+    /* Não passa do tamanho original */
+    height: 2px;
+    background: rgba(120, 100, 210, 0.25);
+    margin: 1rem auto;
+    /* Centraliza a linha */
+}
+
+.container {
+    display: flex;
+    /* coloca lado a lado */
+    gap: 20px;
+    /* espaço entre elas */
+    justify-content: center;
+    /* centraliza */
+}
+
+.container img {
+    width: 80px;
+    /* ajusta tamanho */
+    border-radius: 10px;
+}
+
+.xp {
+    background-color: #EEEDFE;
+    width: 100%;
+    max-width: 50rem;
+    height: auto;
+    min-height: 16rem;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 1.5rem 1.5rem;
+    box-shadow: gray -0.8rem -0.8rem 90px;
+}
+
+.xp span {
+    color: #26215C;
+    font-weight: bold;
+    display: flex;
+    align-items: start;
+    font-size: 1.4rem;
+}
+
+.card-curso {
+    background-color: #EEEDFE;
+    width: 100%;
+    max-width: 50rem;
+    min-height: 16rem;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 1.5rem;
+    box-shadow: gray -0.8rem -0.8rem 90px;
+    gap: 4rem;
+}
+
+p {
+    color: #26215C;
+    font-weight: bold;
+}
+
+.xpp {
+    font-size: 3rem;
+    color: #26215C;
+    font-weight: bold;
+    display: flex;
+    padding-top: 1rem;
+}
+
+.classificação {
+    background-color: #26215C;
+    border-radius: 2rem;
+    color: #CECBF6;
+    width: 100%;
+    max-width: 5rem;
+    display: flex;
+    justify-content: center;
+    height: 1.4rem;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+
+/*Animação para quando o usuário clicar nos negocios*/
+
+.card-progresso,
+.xp,
+.card-curso {
+    transition: all 0.3s ease;
+    /* deixa um tempinho pra mudança */
+    cursor: pointer;
+    /* muda quando mouse da o "clique" */
+}
+
+
+/* Quando o mouse estiver em cima */
+
+.card-progresso:hover,
+.xp:hover,
+.card-curso:hover {
+    background: linear-gradient(90deg, var(--cor-fundo), var(--cor-principal));
+    /* Uma cor um pouco mais escura que o original */
+    transform: scale(0.98);
+    /* da o  efeito de "aperto" */
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
+    /* sombra pra parecer que o cad afundou */
+}
+
+progress {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    /* ocupa todo o espaço disponível */
+    max-width: 110rem;
+    /* limite opcional */
+    height: 1.5rem;
+    /* altura ajustavel */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+
+/* fundo da barra de baixo */
+
+progress::-webkit-progress-bar {
+    background-color: #EEEDFE;
+    border-radius: 10rem;
+}
+
+
+/* fundo da barra de cima */
+
+progress::-webkit-progress-value {
+    background: linear-gradient(90deg, #CECBF6, #7F77DD);
+    border-radius: 10rem;
+}
+
+
+/* Footer atualizado com a cor escura da paleta */
+
+.rodape {
+    background: linear-gradient(90deg, #CECBF6, #c8bdf1);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    padding-bottom: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.material-symbols-outlined {
+    font-size: 3rem;
+    color: var(--cor-fundo);
+    cursor: pointer;
+    font-variation-settings: 'FILL' 1;
+    transition: all 0.7s ease;
+}
+
+.material-symbols-outlined:hover {
+    color: var(--amarelo);
+    transform: translateY(-3px);
+}
+
+
+/* Estilo padrão para os títulos no main (se houver) */
+
+.titulo {
+    background-color: var(--cor-tres);
+    color: var(--off-offwhite);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
     .xpp {
-        font-size: 3rem;
-        color: #26215C;
-        font-weight: bold;
-        display: flex;
-        padding-top: 1rem;
+        font-size: 2rem;
+        /* XP menor para não quebrar o card */
     }
-    
-    .classificação {
-        background-color: #26215C;
-        border-radius: 2rem;
-        color: #CECBF6;
-        width: 100%;
-        max-width: 5rem;
-        display: flex;
-        justify-content: center;
-        height: 1.4rem;
-        font-weight: bold;
-        font-size: 1rem;
-        margin-top: 1rem;
+    .descricao-card {
+        font-size: 1.2rem;
+        /* Nome do curso menor */
     }
-    /*Animação para quando o usuário clicar nos negocios*/
-    
-    .card-progresso,
-    .xp,
-    .card-curso {
-        transition: all 0.3s ease;
-        /* deixa um tempinho pra mudança */
-        cursor: pointer;
-        /* muda quando mouse da o "clique" */
+    .moldura {
+        width: 150px;
+        /* Avatar menor no mobile */
+        height: 150px;
     }
-    /* Quando o mouse estiver em cima */
-    
-    .card-progresso:hover,
-    .xp:hover,
-    .card-curso:hover {
-        background: linear-gradient(90deg, var(--cor-fundo), var(--cor-principal));
-        /* Uma cor um pouco mais escura que o original */
-        transform: scale(0.98);
-        /* da o  efeito de "aperto" */
-        box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
-        /* sombra pra parecer que o cad afundou */
+    .perfil-icon {
+        width: 160px;
+        height: 160px;
     }
-    
-    progress {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        width: 100%;
-        /* ocupa todo o espaço disponível */
-        max-width: 110rem;
-        /* limite opcional */
-        height: 1.5rem;
-        /* altura ajustavel */
-        -webkit-appearance: none;
-        appearance: none;
-    }
-    /* fundo da barra de baixo */
-    
-    progress::-webkit-progress-bar {
-        background-color: #EEEDFE;
-        border-radius: 10rem;
-    }
-    /* fundo da barra de cima */
-    
-    progress::-webkit-progress-value {
-        background: linear-gradient(90deg, #CECBF6, #7F77DD);
-        border-radius: 10rem;
-    }
-    /* Footer atualizado com a cor escura da paleta */
-    
-    .rodape {
-        background: linear-gradient(90deg, #CECBF6, #c8bdf1);
-        backdrop-filter: blur(10px);
-        padding: 10px;
-        padding-bottom: 20px;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        z-index: 1000;
-    }
-    
-    .material-symbols-outlined {
-        font-size: 3rem;
-        color: var(--cor-fundo);
-        cursor: pointer;
-        font-variation-settings: 'FILL' 1;
-        transition: all 0.7s ease;
-    }
-    
-    .material-symbols-outlined:hover {
-        color: var(--amarelo);
-        transform: translateY(-3px);
-    }
-    /* Estilo padrão para os títulos no main (se houver) */
-    
-    .titulo {
-        background-color: var(--cor-tres);
-        color: var(--off-offwhite);
-        padding: 20px;
-        border-radius: 15px;
-        text-align: center;
-    }
-    
-    @media (max-width: 768px) {
-        .titulo {
-            width: 80%;
-            margin: 20px auto;
-            font-size: 0.9rem;
-        }
-        /* Ajuste para botões gerais se você for usar no mapa */
-        .botao-geral {
-            margin: 20px;
-        }
-    }
+}
