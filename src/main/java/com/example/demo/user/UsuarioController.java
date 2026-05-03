@@ -1,19 +1,23 @@
 package com.example.demo.user;
-//controller recebe requisicoes e repostatas http pra aplicacao
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios") //cria o endpoint /usuarios
+@RequestMapping("/usuarios")
 @CrossOrigin(origins = "*")
-public class UsuarioController { //TODO fazer o crud aqui
+public class UsuarioController {
 
     @Autowired
     private UsuarioServices usuarioServices;
 
+    record AtualizarEmailRequest(String senha, String novoEmail) {}
+
     @PostMapping
-    public Usuario criarUsuario(@RequestBody Usuario usuario){ // requestBody obrigatorio se nn nao consegue pegar o corpo da requisicao
+    public Usuario criarUsuario(@RequestBody Usuario usuario) {
         return usuarioServices.salvar(usuario);
     }
 
@@ -22,18 +26,29 @@ public class UsuarioController { //TODO fazer o crud aqui
         return usuarioServices.buscar(id);
     }
 
-    @GetMapping //pega todos os ids
+    @GetMapping
     public List<Usuario> listarUsuarios() {
         return usuarioServices.listarTodos();
     }
 
     @PatchMapping("/{id}")
-    public Usuario atualizar(@PathVariable Long id,@RequestBody Usuario dados) {
+    public Usuario atualizar(@PathVariable Long id, @RequestBody Usuario dados) {
         return usuarioServices.atualizarParcial(id, dados);
     }
 
-    @DeleteMapping("/{id}") //deleta o usuario com tal id
-    public void deletarUsusario(@PathVariable Long id){
+    @PatchMapping("/{id}/seguranca")
+    public ResponseEntity<?> atualizarEmail(@PathVariable Long id,
+                                            @RequestBody AtualizarEmailRequest req) {
+        try {
+            Usuario atualizado = usuarioServices.atualizarEmail(id, req.senha(), req.novoEmail());
+            return ResponseEntity.ok(atualizado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletarUsuario(@PathVariable Long id) {
         usuarioServices.deletar(id);
     }
 }
