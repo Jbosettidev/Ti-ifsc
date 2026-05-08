@@ -3,42 +3,41 @@ package com.example.demo.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-@RestController
+@RestController // aqui mantem o direcionamento dos dados
 @RequestMapping("/usuarios")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*") // deixar obrigatorio pra poder mecher no front
 public class UsuarioController {
 
     @Autowired
-    private UsuarioServices usuarioServices;
+    private UsuarioServices usuarioServices; // chama a classe services
 
-    record AtualizarEmailRequest(String senha, String novoEmail) {}
+    record AtualizarEmailRequest(String senha, String novoEmail) {
+    } // nn sei
 
     @PostMapping
-    public Usuario criarUsuario(@RequestBody Usuario usuario) {
+    public Usuario criarUsuario(@RequestBody Usuario usuario) { // request e obrigatoio pra poder puxar os dados
         return usuarioServices.salvar(usuario);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // pega o email pra buscar
     public Usuario buscarPorId(@PathVariable Long id) {
         return usuarioServices.buscar(id);
     }
 
-    @GetMapping
+    @GetMapping // lista os user pro front
     public List<Usuario> listarUsuarios() {
         return usuarioServices.listarTodos();
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}") // attualizar parte de tal coisa pegando o id
     public Usuario atualizar(@PathVariable Long id, @RequestBody Usuario dados) {
         return usuarioServices.atualizarParcial(id, dados);
     }
 
-    @PatchMapping("/{id}/seguranca")
-    public ResponseEntity<?> atualizarEmail(@PathVariable Long id,
-                                            @RequestBody AtualizarEmailRequest req) {
+    @PatchMapping("/{id}/seguranca") // direciona pra pagina do seguranca.html
+    public ResponseEntity<?> atualizarEmail(@PathVariable Long id, @RequestBody AtualizarEmailRequest req) {
         try {
             Usuario atualizado = usuarioServices.atualizarEmail(id, req.senha(), req.novoEmail());
             return ResponseEntity.ok(atualizado);
@@ -47,7 +46,7 @@ public class UsuarioController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") // deltar id de acordo com o id do user
     public void deletarUsuario(@PathVariable Long id) {
         usuarioServices.deletar(id);
     }

@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service //aqui mantem as regras de negocio
 public class UsuarioServices {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioRepository usuarioRepository; // chama om banco
 
     public Usuario salvar(Usuario usuario) {
         return usuarioRepository.save(usuario);
@@ -24,7 +24,7 @@ public class UsuarioServices {
         return usuarioRepository.findAll();
     }
 
-    public Usuario atualizarParcial(Long id, @NonNull Usuario dados) {
+    public Usuario atualizarParcial(Long id, @NonNull Usuario dados) { //mini validador pra atualizar parte do dado recebido
         Usuario usuario = usuarioRepository.findById(id).orElseThrow();
 
         if (dados.getNome() != null) {
@@ -37,19 +37,15 @@ public class UsuarioServices {
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario atualizarEmail(Long id, String senhaInformada, String novoEmail) {
+    public Usuario atualizarEmail(Long id, String senhaInformada, String novoEmail) { //msm coisa so q pra email
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Usuário não encontrado")
         );
-
         if (!usuario.getSenha().equals(senhaInformada)) {
             throw new RuntimeException("Senha incorreta");
-        }
-
-        if (usuarioRepository.existsByEmail(novoEmail)) {
+        }if (usuarioRepository.existsByEmail(novoEmail)) {
             throw new RuntimeException("E-mail já cadastrado");
         }
-
         usuario.setEmail(novoEmail);
         return usuarioRepository.save(usuario);
     }
@@ -57,7 +53,7 @@ public class UsuarioServices {
     public void deletar(Long id) {
         if (!usuarioRepository.existsById(id)) {
             throw new RuntimeException("Usuário não encontrado");
-        }
-        usuarioRepository.deleteById(id);
+        } else{
+            usuarioRepository.deleteById(id);}
     }
 }
