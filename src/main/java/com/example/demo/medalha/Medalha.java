@@ -8,8 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
-
 @Entity @Data @NoArgsConstructor
 @Getter @Setter
 @Table(name = "medalha")

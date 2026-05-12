@@ -36,10 +36,10 @@
     </div>
 </main>
 
-<script>
+<script> // criar um arquivo js 
     const USER_ID = 1; // trocar pelo id do usuário logado
 
-    async function carregarEmail() {
+    async function carregarEmail() { // Preenche o campo “E-mail Cadastrado”.
         const res = await fetch(`/usuarios/${USER_ID}`);
         if (res.ok) {
             const usuario = await res.json();
@@ -47,7 +47,7 @@
         }
     }
 
-    async function salvar() {
+    async function salvar() { // valida senha e novo e-mail no cliente, depois chama exatamente o endpoint acima
         const senha = document.getElementById('senha').value;
         const novoEmail = document.getElementById('novoEmail').value;
         const msg = document.getElementById('msg');
@@ -71,7 +71,7 @@
             body: JSON.stringify({ senha, novoEmail })
         });
 
-        if (res.ok) {
+        if (res.ok) { // interpreta o corpo como JSON do usuário e atualiza o e-mail exibido e mostra sucesso.
             const usuario = await res.json();
             document.getElementById('emailAtual').value = usuario.email;
             document.getElementById('senha').value = '';

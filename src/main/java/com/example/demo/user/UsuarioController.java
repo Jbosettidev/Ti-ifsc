@@ -1,7 +1,7 @@
 package com.example.demo.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity;  //meio obvio
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -13,8 +13,8 @@ public class UsuarioController {
     @Autowired
     private UsuarioServices usuarioServices; // chama a classe services
 
-    record AtualizarEmailRequest(String senha, String novoEmail) {
-    } // nn sei
+    record AtualizarEmailRequest(String senha, String novoEmail) { //corpo da requisicao deve ser json
+    } // é uma forma curta de declarar uma classe que só carrega dados,, basicamnte uma classe
 
     @PostMapping
     public Usuario criarUsuario(@RequestBody Usuario usuario) { // request e obrigatoio pra poder puxar os dados
@@ -36,7 +36,7 @@ public class UsuarioController {
         return usuarioServices.atualizarParcial(id, dados);
     }
 
-    @PatchMapping("/{id}/seguranca") // direciona pra pagina do seguranca.html
+    @PatchMapping("/{id}/seguranca") //expoe o endpoint pra alterar o email // o <?> é pra nao precisar especificar o tipo de retorno
     public ResponseEntity<?> atualizarEmail(@PathVariable Long id, @RequestBody AtualizarEmailRequest req) {
         try {
             Usuario atualizado = usuarioServices.atualizarEmail(id, req.senha(), req.novoEmail());
