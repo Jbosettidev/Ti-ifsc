@@ -10,6 +10,10 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * Avaliação vinculada a uma {@link com.example.demo.fase.Fase}; contém questões e registros
+ * de {@link com.example.demo.progresso.Progresso} dos usuários.
+ */
 @Entity @Data @NoArgsConstructor
 @Getter @Setter
 @Table(name = "quiz")

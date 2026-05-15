@@ -5,16 +5,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+/**
+ * Regras de negócio e persistência de {@link Fase} via {@link FaseRepository}.
+ */
 @Service
 public class FaseServices {
 
     @Autowired
     private static FaseRepository faseRepository;
 
-    public static Fase salvar(Fase fase){
+    /** Persiste uma nova fase ou atualiza conforme o estado da entidade. */
+    public static Fase salvar(Fase fase) {
         return faseRepository.save(fase);
     }
 
+    /** Marca a fase como concluída ({@code concluida = true}). */
     public Fase marcarComoConcluida(Long id) {
         Fase fase = faseRepository.findById(id).orElseThrow(() -> new RuntimeException("Fase não encontrada"));
         fase.setConcluida(true);
@@ -25,10 +30,11 @@ public class FaseServices {
         return faseRepository.findById(id).orElseThrow();
     }
 
-    public List<Fase> listarTodos() { //lista todas as fases
+    public List<Fase> listarTodos() {
         return faseRepository.findAll();
     }
 
+    /** Atualiza apenas campos não nulos enviados no corpo (título, descrição, concluída). */
     public Fase atualizarParcial(Long id, @NonNull Fase dados) {
         Fase fase = faseRepository.findById(id).orElseThrow();
 
@@ -42,9 +48,9 @@ public class FaseServices {
     }
 
     public void deletar(Long id) {
-        if (faseRepository.existsById(id)) { //caso nn ache o id roda a mensagem
+        if (faseRepository.existsById(id)) {
             throw new RuntimeException("Fase não encontrada");
         }
-        faseRepository.deleteById(id); //cai como else e deleta fase
+        faseRepository.deleteById(id);
     }
 }
