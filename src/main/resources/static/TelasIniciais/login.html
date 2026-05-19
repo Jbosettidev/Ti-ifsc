@@ -4,106 +4,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Login</title>
+    <title>Login</title>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <link rel="stylesheet" href="style.css">
-
     <link rel="icon" href="img/logo-capuz.png" type="image/png">
 </head>
 
 <body>
+    <form id="form-login">
+        <div class="card-total">
+            <img src="img/logo-capuz.png" class="imagem" alt="Logo">
+            <h2 class="titulo">Bem vindo de volta!</h2>
 
-    <div class="card-total">
-        <img src="img/logo-capuz.png" class="imagem">
-        <h2 class="titulo">Bem vindo de volta!</h2>
+            <div class="inputbox">
+                <input type="email" id="email" placeholder="Email" required>
+                <ion-icon class="icone" name="mail"></ion-icon>
+            </div>
+            <div class="inputbox">
+                <input type="password" id="senha" placeholder="Senha" required minlength="8">
+                <ion-icon class="icone" name="key"></ion-icon>
+            </div>
 
-        <div class="inputbox">
-            <input type="email" placeholder="Email" required>
-            <ion-icon class="icone" name="mail"></ion-icon>
+            <a href="senha1.html" class="botao-secundario">Esqueceu a senha?</a>
+
+            <div class="botao-container">
+                <button type="submit" class="botao" id="botao-login">Entrar</button>
+                <button type="button" onclick="window.location.href='cadastro.html';" class="botao">Cadastrar</button>
+            </div>
+            <p id="msg" style="text-align: center; margin-top: 1rem; color: #26215C; font-weight: 600;"></p>
         </div>
+    </form>
+    <canvas id="bolhas"></canvas>
 
-        <div class="inputbox">
-            <input type="password" placeholder="Senha" required>
-            <ion-icon class="icone" name="key"></ion-icon>
-        </div>
+    <script>
+        const form = document.getElementById('form-login');
+        const msg = document.getElementById('msg');
+        const botao = document.getElementById('botao-login');
+        const apiUrl = window.location.origin + '/usuarios/login';
 
-        <a href="senha1.html" class="botao-secundario">Esqueceu a senha?</a>
+        if (localStorage.getItem('userId')) {
+            window.location.replace('../index.html');
+        }
 
-        <div class="botao-container">
-            <button class="botao" id="botao-login">Entrar</button>
-            <button onclick="window.location.href='cadastro.html';" class="botao">Cadastrar</button>
-        </div>
-    </div>
-       <canvas id="bolhas"></canvas>
+        if (window.location.protocol === 'file:') {
+            msg.style.color = '#a80a0a';
+            msg.textContent = 'Abra pelo servidor: http://localhost:8080/TelasIniciais/login.html';
+        }
 
-                
-        <script>
-            const canvas = document.getElementById('bolhas');
-            const ctx = canvas.getContext('2d');
+        function mostrarErro(texto) {
+            msg.style.color = '#a80a0a';
+            msg.textContent = texto;
+        }
 
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            msg.textContent = '';
 
-            window.addEventListener('resize', () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
-
-            let bolhas = [];
-            setInterval(() => {
-                if (bolhas.length < 60) {
-                    bolhas.push(novaBolha());
-                }
-            }, 800);
-
-            function novaBolha(x, y) {
-                return {
-                    x: x ?? Math.random() * canvas.width,
-                    y: y ?? canvas.height + Math.random() * 200,
-                    r: 3 + Math.random() * 8,
-                    velocidade: 0.4 + Math.random() * 0.10,
-                    opacidade: 0.08 + Math.random() * 0.08,
-                    drift: (Math.random() - 0.5) * 0.4
-                };
+            if (window.location.protocol === 'file:') {
+                mostrarErro('Use http://localhost:8080/TelasIniciais/login.html');
+                return;
             }
 
-            window.addEventListener('mousemove', (e) => {
-                if (bolhas.length < 60) {
-                    bolhas.push(novaBolha(e.clientX, e.clientY));
-                }
-            });
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value;
 
-            window.addEventListener('click', (e) => {
-                for (let i = 0; i < 12; i++) {
-                    bolhas.push(novaBolha(
-                        e.clientX + (Math.random() - 0.5) * 60,
-                        e.clientY + (Math.random() - 0.5) * 60
-                    ));
-                }
-            });
+            botao.disabled = true;
+            botao.textContent = 'Entrando...';
 
-            function animar() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                bolhas.forEach((b, i) => {
-                    ctx.beginPath();
-                    ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${b.opacidade})`;
-                    ctx.fill();
-
-                    b.y -= b.velocidade;
-                    b.x += b.drift;
-
-                    if (b.y + b.r < 0) bolhas.splice(i, 1);
+            try {
+                const res = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha })
                 });
 
-                requestAnimationFrame(animar);
-            }
+                const texto = await res.text();
 
-            animar();
-        </script>
+                if (res.ok) {
+                    const usuario = JSON.parse(texto);
+                    localStorage.setItem('userId', usuario.id);
+                    msg.style.color = '#1a7a3a';
+                    msg.textContent = 'Login realizado! Redirecionando...';
+                    setTimeout(() => { window.location.href = '../index.html'; }, 600);
+                    return;
+                }
+
+                try {
+                    const erro = JSON.parse(texto);
+                    mostrarErro(erro.message || texto);
+                } catch {
+                    mostrarErro(texto || 'E-mail ou senha incorretos.');
+                }
+            } catch {
+                mostrarErro('Erro de conexão. O Spring Boot está rodando na porta 8080?');
+            } finally {
+                if (msg.textContent !== 'Login realizado! Redirecionando...') {
+                    botao.disabled = false;
+                    botao.textContent = 'Entrar';
+                }
+            }
+        });
+
+        const canvas = document.getElementById('bolhas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        let bolhas = [];
+        setInterval(() => {
+            if (bolhas.length < 60) {
+                bolhas.push(novaBolha());
+            }
+        }, 800);
+
+        function novaBolha(x, y) {
+            return {
+                x: x ?? Math.random() * canvas.width,
+                y: y ?? canvas.height + Math.random() * 200,
+                r: 3 + Math.random() * 8,
+                velocidade: 0.4 + Math.random() * 0.10,
+                opacidade: 0.08 + Math.random() * 0.08,
+                drift: (Math.random() - 0.5) * 0.4
+            };
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            if (bolhas.length < 60) {
+                bolhas.push(novaBolha(e.clientX, e.clientY));
+            }
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target.closest('#form-login')) return;
+            for (let i = 0; i < 12; i++) {
+                bolhas.push(novaBolha(
+                    e.clientX + (Math.random() - 0.5) * 60,
+                    e.clientY + (Math.random() - 0.5) * 60
+                ));
+            }
+        });
+
+        function animar() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            bolhas.forEach((b, i) => {
+                ctx.beginPath();
+                ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${b.opacidade})`;
+                ctx.fill();
+
+                b.y -= b.velocidade;
+                b.x += b.drift;
+
+                if (b.y + b.r < 0) bolhas.splice(i, 1);
+            });
+
+            requestAnimationFrame(animar);
+        }
+
+        animar();
+    </script>
 </body>
 
 </html>

@@ -28,9 +28,25 @@ public class UsuarioController {
     record AtualizarEmailRequest(String senha, String novoEmail) {
     }
 
+    record LoginRequest(String email, String senha) {
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest req) {
+        try {
+            return ResponseEntity.ok(usuarioServices.autenticar(req.email(), req.senha()));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(401).body(e.getMessage());
+        }
+    }
+
     @PostMapping
-    public Usuario criarUsuario(@RequestBody Usuario usuario) {
-        return usuarioServices.salvar(usuario);
+    public ResponseEntity<?> criarUsuario(@RequestBody Usuario usuario) {
+        try {
+            return ResponseEntity.status(201).body(usuarioServices.salvar(usuario));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")

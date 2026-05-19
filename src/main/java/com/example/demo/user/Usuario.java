@@ -1,6 +1,7 @@
 package com.example.demo.user;
 
 import com.example.demo.progresso.Progresso;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -38,6 +39,7 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotBlank @Size(min = 8, max = 50)
     @Column(nullable = false)
     private String senha;

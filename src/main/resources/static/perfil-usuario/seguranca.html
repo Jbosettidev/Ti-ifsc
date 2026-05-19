@@ -36,10 +36,14 @@
     </div>
 </main>
 
-<script> // criar um arquivo js 
-    const USER_ID = 1; // trocar pelo id do usuário logado
+<script>
+    const USER_ID = Number(localStorage.getItem('userId'));
 
-    async function carregarEmail() { // Preenche o campo “E-mail Cadastrado”.
+    if (!USER_ID) {
+        window.location.href = '/TelasIniciais/login.html';
+    }
+
+    async function carregarEmail() {
         const res = await fetch(`/usuarios/${USER_ID}`);
         if (res.ok) {
             const usuario = await res.json();

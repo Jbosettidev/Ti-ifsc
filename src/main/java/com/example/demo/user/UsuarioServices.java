@@ -18,7 +18,22 @@ public class UsuarioServices {
     private UsuarioRepository usuarioRepository;
 
     public Usuario salvar(Usuario usuario) {
+        if (usuarioRepository.existsByEmail(usuario.getEmail())) {
+            throw new RuntimeException("E-mail já cadastrado");
+        }
+        if (usuarioRepository.existsByNomeusuario(usuario.getNomeusuario())) {
+            throw new RuntimeException("Nome de usuário já cadastrado");
+        }
         return usuarioRepository.save(usuario);
+    }
+
+    public Usuario autenticar(String email, String senha) {
+        Usuario usuario = usuarioRepository.findByEmail(email.trim())
+                .orElseThrow(() -> new RuntimeException("E-mail ou senha incorretos"));
+        if (!usuario.getSenha().equals(senha)) {
+            throw new RuntimeException("E-mail ou senha incorretos");
+        }
+        return usuario;
     }
 
     public Usuario buscar(Long id) {

@@ -1,5 +1,6 @@
 package com.example.demo.excessoes;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -84,6 +85,20 @@ public class GlobalExceptionHandler {
         ApiResponse response = new ApiResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 "Requisição inválida ou malformada",
+                request.getRequestURI()
+        );
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ApiResponse> handleDataIntegrity(
+            DataIntegrityViolationException ex,
+            HttpServletRequest request) {
+
+        ApiResponse response = new ApiResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                "E-mail ou nome de usuário já cadastrado",
                 request.getRequestURI()
         );
 
