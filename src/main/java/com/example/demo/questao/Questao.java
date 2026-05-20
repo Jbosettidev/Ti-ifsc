@@ -1,5 +1,6 @@
 package com.example.demo.questao;
 
+import com.example.demo.quiz.Quiz;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -8,11 +9,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Questão de um {@link Quiz}: enunciado, resposta esperada, metadados opcionais e alternativas
+ * (ex.: JSON ou texto serializado, conforme o front).
+ */
 @Entity @Data @NoArgsConstructor
 @Getter @Setter
 @Table(name = "questao")
 public class Questao {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -24,13 +28,14 @@ public class Questao {
     @Column(nullable = false)
     private String respostaCorreta;
 
+    /** Coluna auxiliar legada / genérica; considerar renomear no schema para nome semântico. */
     @Size(max = 45)
-    private String questaoCol; // Mantendo o nome original, mas pode ser renomeado para algo mais descritivo
+    private String questaoCol;
 
     @Size(max = 700)
     private String alternativas;
 
     @ManyToOne
-    @JoinColumn(name = "quiz_id", nullable = false) // Relacionamento com Quiz
-    private com.example.demo.quiz.Quiz quiz;
+    @JoinColumn(name = "quiz_id", nullable = false)
+    private Quiz quiz;
 }

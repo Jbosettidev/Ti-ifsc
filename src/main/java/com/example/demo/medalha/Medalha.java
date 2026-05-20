@@ -8,8 +8,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
-
+/**
+ * Conquista ou distintivo (tabela {@code medalha}): nome obrigatório; critério e descrição
+ * opcionais para explicar como a medalha é obtida.
+ */
 @Entity @Data @NoArgsConstructor
 @Getter @Setter
 @Table(name = "medalha")

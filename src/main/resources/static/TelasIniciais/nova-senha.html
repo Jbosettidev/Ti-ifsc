@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureByte</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo-capuz.png" type="image/png">
+</head>
+<body>
+    <form id="form-novaSenha">
+        <div class="card-total">
+            <img src="img/logo-capuz.png" class="imagem">
+            <h2 class="titulo">Redefinindo sua senha</h2>
+            <div class="inputbox">
+                <input type="password" id="nova-senha" placeholder=" Nova senha" required minlength="8">
+                <ion-icon class="icone" name="key"></ion-icon>        
+            </div>
+            <div class="inputbox">
+                <input type="password" id="nova-senha-confirmada" placeholder="Confirme a nova senha" required minlength="8">
+                <ion-icon class="icone" name="key"></ion-icon>        
+            </div>
+            <div class="botao-container">
+                <input type="submit"  class="botao" id="trocarSenha" value="Confirmar">
+                <input type="button" onclick="window.location.href='senha2.html';" class="botao" id="voltar" value="Voltar">
+            </div>
+        </div>
+
+    </form>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.example.demo.user;
-//parte que vai pro banco de dados,, aqui cria as entidades pra usar no sql e java
+
 import com.example.demo.progresso.Progresso;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -12,32 +13,43 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * Entidade JPA {@code usuario}: mapeia linhas da tabela homônima e define relacionamentos.
+ * <p>
+ * {@code @Entity} marca a classe para o Hibernate; {@code @Table} fixa o nome da tabela.
+ * Anotações {@code jakarta.validation} são usadas com {@code @Valid} no controller para
+ * validar entrada antes de persistir. {@code @OneToMany(mappedBy = "usuario")} indica que
+ * o lado "dono" do relacionamento está em {@link Progresso#getUsuario()}; {@code cascade}
+ * propaga operações; {@code orphanRemoval} remove progressos órfãos se forem desassociados.
+ */
 @Entity @Data @NoArgsConstructor
 @Getter @Setter
 @Table(name = "usuario")
 public class Usuario {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)//configura o bd pra gerar e incrementar este valor a cada novo usuário.
-    private Long id; //gera um id unico e que se autoincrementa
+    /** Chave surrogate gerada pelo banco (auto incremento). */
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @NotBlank @Size(min = 3, max = 50) //vem do pacote validation
-    @Column(nullable = false)// nao deixa ser vazio
+    @NotBlank @Size(min = 3, max = 50)
+    @Column(nullable = false)
     private String nome;
 
     @NotBlank @Size(min = 7, max = 150)
-    @Column(nullable = false,unique = true) //garante que seja unico e nao vazio
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotBlank @Size(min = 8, max = 50)
-    @Column(nullable = false) //garante que nao seja vazio
+    @Column(nullable = false)
     private String senha;
 
     @NotBlank
-    @Column(nullable = false,unique = true) @Size(min = 5, max = 50)
-    private String nomeusuario; // arrumar pra nomeUsuario no banco e aqui dps
+    @Column(nullable = false, unique = true) @Size(min = 5, max = 50)
+    private String nomeusuario;
 
-    @Min(0)//nn aceita valor negativo
-    private int xpTotal; //sempre inicializa como zero
+    @Min(0)
+    private int xpTotal;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Progresso> progressos;

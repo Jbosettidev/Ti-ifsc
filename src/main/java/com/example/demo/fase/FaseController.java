@@ -5,6 +5,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * API REST do recurso {@link Fase} em {@code /fase}.
+ * <p>
+ * Endpoints CRUD e operação de negócio {@code PATCH .../concluir} para marcar fase como concluída.
+ */
 @RequestMapping("/fase")
 @RestController
 public class FaseController {
@@ -18,7 +23,7 @@ public class FaseController {
     }
 
     @PostMapping
-    public Fase criarFase(@RequestBody Fase fase){ // requestBody obrigatorio se nn nao consegue pegar o corpo da requisicao
+    public Fase criarFase(@RequestBody Fase fase) {
         return FaseServices.salvar(fase);
     }
 
@@ -27,7 +32,7 @@ public class FaseController {
         return faseServices.buscar(id);
     }
 
-    @GetMapping //pega todos os ids
+    @GetMapping
     public List<Fase> listarFase() {
         return faseServices.listarTodos();
     }
@@ -37,8 +42,8 @@ public class FaseController {
         return faseServices.atualizarParcial(id, dados);
     }
 
-    @DeleteMapping("/{id}") //deleta o usuario com tal id
-    public void deletarFase(@PathVariable Long id){
+    @DeleteMapping("/{id}")
+    public void deletarFase(@PathVariable Long id) {
         faseServices.deletar(id);
     }
 }

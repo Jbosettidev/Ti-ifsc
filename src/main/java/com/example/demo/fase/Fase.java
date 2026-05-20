@@ -10,6 +10,11 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * Etapa do fluxo de aprendizado (tabela {@code fase}): título único, descrição e flag de conclusão.
+ * <p>
+ * Relaciona-se com vários {@link Quiz} pelo campo {@code mappedBy = "fase"} em {@link Quiz#getFase()}.
+ */
 @Entity @Data @NoArgsConstructor
 @Getter @Setter
 @Table(name = "fase")
@@ -31,4 +36,3 @@ public class Fase {
     @OneToMany(mappedBy = "fase", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Quiz> quizzes;
 }
-//todo fazer relacionamento com usuario e o resto do arquivo do docs

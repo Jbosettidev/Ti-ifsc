@@ -1,5 +1,6 @@
 package com.example.demo.excessoes;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -13,10 +14,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Tratamento global de exceções para toda a API: padroniza status HTTP, mensagem e caminho.
+ * <p>
+ * {@code @RestControllerAdvice} aplica estes handlers a controllers {@code @RestController}.
+ * A ordem importa quando vários handlers poderiam casar; aqui tipos específicos vêm antes do
+ * {@link Exception} genérico (500).
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
-    // 1. Recurso não encontrado (404 )
+    /** Recurso não encontrado: resposta 404 com {@link ApiResponse}. */
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiResponse> handleResourceNotFoundException(
             ResourceNotFoundException ex,
@@ -33,7 +40,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
-    // 2. Erros de Validação de Dados (400) - Ex: @Valid no Controller
+    /**
+     * Falha de validação Bean Validation ({@code @Valid}): 400 com lista de {@link ErrorDetail}
+     * por campo.
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse> handleValidationExceptions(
             MethodArgumentNotValidException ex,
@@ -41,7 +51,7 @@ public class GlobalExceptionHandler {
 
         ex.printStackTrace();
 
-        // Mapeia todos os erros de campos específicos
+        // Converte BindingResult em lista de campo + mensagem
         List<ErrorDetail> errors = ex.getBindingResult().getAllErrors().stream()
                 .map(error -> {
                     String fieldName = (error instanceof FieldError) ? ((FieldError) error).getField() : error.getObjectName();
@@ -60,7 +70,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-    // 3. Erros de Sintaxe ou Parâmetros Inválidos (400)
+    /** JSON ilegível, parâmetro obrigatório ausente ou tipo de path incompatível: 400. */
     @ExceptionHandler({
             HttpMessageNotReadableException.class,
             MissingServletRequestParameterException.class,
@@ -81,7 +91,21 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-    // 4. Erro Genérico / Bug Interno (500)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ApiResponse> handleDataIntegrity(
+            DataIntegrityViolationException ex,
+            HttpServletRequest request) {
+
+        ApiResponse response = new ApiResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                "E-mail ou nome de usuário já cadastrado",
+                request.getRequestURI()
+        );
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    /** Qualquer outra exceção não tratada: 500 com mensagem genérica ao cliente. */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse> handleGenericException(
             Exception ex,

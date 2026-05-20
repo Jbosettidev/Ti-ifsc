@@ -16,20 +16,20 @@
 
 <body>
 
-    <div class="card-total">
-        <img src="img/logo-capuz.png" class="imagem">
-        <h2 class="titulo">Redefina sua senha!</h2>
-        <p class="titulo" id="p">Digite seu e-mail para que possamos enviar um código de verificação</p>
-
-        <div class="inputbox">
-            <input type="email" placeholder="Email" required>
-            <ion-icon class="icone" name="mail"></ion-icon>
-        </div>
-
-        <div class="botao-container">
-            <button onclick="window.location.href='senha2.html';" class="botao">Enviar código</button>
-            <button onclick="window.location.href='login.html';" class="botao" id="voltar">Voltar</button>
-        </div>
+    <form id="form-restaurarSenha">
+        <div class="card-total">
+            <img src="img/logo-capuz.png" class="imagem">
+            <h2 class="titulo">Redefina sua senha!</h2>
+            <p class="titulo" id="p">Digite seu e-mail para que possamos enviar um código de verificação</p>
+            <div class="inputbox">
+                <input type="email" placeholder="Email" required>
+                <ion-icon class="icone" name="mail"></ion-icon>
+            </div>
+            <div class="botao-container">
+                <input type="button" onclick="window.location.href='senha2.html';" class="botao" value="Enviar código">
+                <input type="button" onclick="window.location.href='login.html';" class="botao" id="voltar" value="Voltar">
+            </div>
+    </form>
            <canvas id="bolhas"></canvas>
 
                 

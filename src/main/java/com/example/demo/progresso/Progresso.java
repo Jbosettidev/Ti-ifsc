@@ -1,5 +1,8 @@
 package com.example.demo.progresso;
 
+import com.example.demo.fase.Fase;
+import com.example.demo.quiz.Quiz;
+import com.example.demo.user.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
@@ -7,6 +10,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Registro de avanço de um {@link Usuario} em uma {@link Fase} e {@link Quiz}: percentual,
+ * pontuação e chaves estrangeiras para consultas e relatórios.
+ */
 @Entity @Data @NoArgsConstructor
 @Getter @Setter
 @Table(name = "progresso")
@@ -22,13 +29,13 @@ public class Progresso {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
-    private com.example.demo.user.Usuario usuario;
+    private Usuario usuario;
 
     @ManyToOne
     @JoinColumn(name = "fase_id", nullable = false)
-    private com.example.demo.fase.Fase fase;
+    private Fase fase;
 
     @ManyToOne
     @JoinColumn(name = "quiz_id", nullable = false)
-    private com.example.demo.quiz.Quiz quiz;
+    private Quiz quiz;
 }

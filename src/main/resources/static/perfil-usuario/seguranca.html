@@ -1,38 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Segurança</title>
-    <link rel="stylesheet" href="/src/main/resources/static/perfil-usuario/abas.css">
+    <link rel="stylesheet" href="abas.css">
 </head>
 
 <body>
-    <main class="container-seguranca">
-        <header class="topo-pagina">
-            <a href="configuracoes.html" class="voltar-config" style="text-decoration: none;">
-                <span class="setinha">←</span>
-            </a>
-            <h1>SEGURANÇA</h1>
-        </header>
-        <p class="subtitulo">Gerencie suas informações de login</p>
-        <form action="seguranca.html" method="post" class="formulario" id="formSeguranca">
-            <div class="campos">
-                <label for="email">E-mail Cadastrado</label>
-                <input type="email" name="email_atual" value="email@atual.com" readonly class="input-readondely">
-            </div>
-            <div class="campos">
-                <label for="">Senha</label>
-                <input type="password" name="senha_validacao" placeholder="Confirme sua senha" required>
-            </div>
-            <div class="campos">
-                <label for="">Modificar E-mail</label>
-                <input type="email" name="novo_email" placeholder="Digite o novo e-mail" required>
-            </div>
-            <button type="submit" class="botao-salvar">Salvar alterações</button>
-        </form>
-    </main>
+<main class="container-seguranca">
+    <header class="topo-pagina">
+        <a href="configuracoes.html" class="voltar-config" style="text-decoration: none;">
+            <span class="setinha">←</span>
+        </a>
+        <h1>SEGURANÇA</h1>
+    </header>
+    <p class="subtitulo">Gerencie suas informações de login</p>
+
+    <div class="formulario">
+        <div class="campos">
+            <label>E-mail Cadastrado</label>
+            <input type="email" id="emailAtual" readonly class="input-readondely">
+        </div>
+        <div class="campos">
+            <label>Senha</label>
+            <input type="password" id="senha" placeholder="Confirme sua senha">
+        </div>
+        <div class="campos">
+            <label>Modificar E-mail</label>
+            <input type="email" id="novoEmail" placeholder="Digite o novo e-mail">
+        </div>
+        <button class="botao-salvar" onclick="salvar()">Salvar alterações</button>
+        <p id="msg" style="text-align:center; margin-top: 1rem;"></p>
+    </div>
+</main>
+
+<script>
+    const USER_ID = Number(localStorage.getItem('userId'));
+
+    if (!USER_ID) {
+        window.location.href = '/TelasIniciais/login.html';
+    }
+
+    async function carregarEmail() {
+        const res = await fetch(`/usuarios/${USER_ID}`);
+        if (res.ok) {
+            const usuario = await res.json();
+            document.getElementById('emailAtual').value = usuario.email;
+        }
+    }
+
+    async function salvar() { // valida senha e novo e-mail no cliente, depois chama exatamente o endpoint acima
+        const senha = document.getElementById('senha').value;
+        const novoEmail = document.getElementById('novoEmail').value;
+        const msg = document.getElementById('msg');
+        msg.textContent = '';
+
+        if (!senha) {
+            msg.style.color = 'red';
+            msg.textContent = 'Informe sua senha para continuar.';
+            return;
+        }
+
+        if (!novoEmail) {
+            msg.style.color = 'red';
+            msg.textContent = 'Informe o novo e-mail.';
+            return;
+        }
+
+        const res = await fetch(`/usuarios/${USER_ID}/seguranca`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ senha, novoEmail })
+        });
+
+        if (res.ok) { // interpreta o corpo como JSON do usuário e atualiza o e-mail exibido e mostra sucesso.
+            const usuario = await res.json();
+            document.getElementById('emailAtual').value = usuario.email;
+            document.getElementById('senha').value = '';
+            document.getElementById('novoEmail').value = '';
+            msg.style.color = 'green';
+            msg.textContent = 'E-mail atualizado com sucesso!';
+        } else {
+            const erro = await res.text();
+            msg.style.color = 'red';
+            msg.textContent = erro;
+        }
+    }
+
+    carregarEmail();
+</script>
 </body>
 
 </html>
