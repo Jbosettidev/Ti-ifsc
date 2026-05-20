@@ -119,6 +119,10 @@ body {
     animation-fill-mode: backwards;
 }
 
+#toggleSenha{
+    pointer-events: auto;
+    cursor: pointer;
+}
 .botao-secundario {
     font-size: 0.8rem;
     color: var(--roxo-dark);

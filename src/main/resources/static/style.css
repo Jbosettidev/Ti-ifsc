@@ -138,6 +138,18 @@ main h3.titulo {
 .botao-geral:nth-child(3n+2) { align-self: center; }
 .botao-geral:nth-child(3n) { align-self: flex-end; }
 
+
+.linhas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: visible;
+    pointer-events: none;
+}
+
+
 @media (max-width: 768px) {
     main h3.titulo {
         width: 85%;

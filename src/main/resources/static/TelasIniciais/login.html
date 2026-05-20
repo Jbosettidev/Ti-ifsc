@@ -24,7 +24,7 @@
             </div>
             <div class="inputbox">
                 <input type="password" id="senha" placeholder="Senha" required minlength="8">
-                <ion-icon class="icone" name="key"></ion-icon>
+                <ion-icon class="icone" id="toggleSenha" name="eye-outline"></ion-icon>
             </div>
 
             <a href="senha1.html" class="botao-secundario">Esqueceu a senha?</a>
@@ -38,6 +38,7 @@
     </form>
     <canvas id="bolhas"></canvas>
 
+    <script src="senha.js"></script>
     <script>
         const form = document.getElementById('form-login');
         const msg = document.getElementById('msg');
