@@ -426,7 +426,7 @@ main {
     min-height: auto;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: gray -0.8rem -0.8rem 90px;
+    box-shadow: -8px 9px 5px -4px rgba(0, 0, 0, 0.3);
 }
 
 .card-progresso span {
@@ -492,7 +492,7 @@ main {
     border-radius: 10px;
     margin-bottom: 30px;
     padding: 1.5rem 1.5rem;
-    box-shadow: gray -0.8rem -0.8rem 90px;
+    box-shadow: -8px 9px 5px -4px rgba(0, 0, 0, 0.3);
 }
 
 .xp span {
@@ -511,7 +511,7 @@ main {
     border-radius: 10px;
     margin-bottom: 30px;
     padding: 1.5rem;
-    box-shadow: gray -0.8rem -0.8rem 90px;
+    box-shadow: -8px 9px 5px -4px rgba(0, 0, 0, 0.3);
     gap: 4rem;
 }
 

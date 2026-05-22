@@ -34,44 +34,63 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-bottom: 110px;
+        justify-content: center;
+        padding: 1rem 1rem;
+    }
+    
+    .cardzao {
+        background: var(--branco);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 50rem;
+        min-height: 50rem;
+        border-radius: 2rem;
+        box-shadow: 0px 10px 30px rgba(38, 33, 92, 0.15);
+        /* Sombra mais suave e moderna */
+        margin-bottom: 3rem;
+        padding: 0%;
     }
     
     .cabecalho {
-        color: var(--cor-escura);
-        padding: 2rem 1rem;
+        color: var(--cor-fundo);
+        padding: 2rem 2rem;
         /* Padding em vez de margin fixa */
+        margin-bottom: 6rem;
+        width: 100%;
+        max-width: 60rem;
         display: flex;
-        margin: 3rem;
-        font-size: 2rem;
-        justify-content: center;
+        font-size: 1.6rem;
+        background: linear-gradient(90deg, var(--cor-escura), var(--cor-principal));
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        min-height: 4rem;
+        margin-top: 0rem !important;
+    }
+    
+    .seta-voltar {
+        font-size: 2rem !important;
+        margin-right: 1rem;
     }
     
     .topo {
         display: flex;
-        gap: 4rem;
     }
     
     a {
         text-decoration: none;
     }
     
-    .seta {
-        font-weight: bold;
-        font-size: 2.5rem;
-    }
-    
     .container-informacoes {
         display: flex;
         justify-content: center;
-        gap: 2rem;
-        /* Reduzi um pouco o espaço para o celular */
+        gap: 4rem;
         flex-direction: column;
         width: 90%;
         /* Ocupa 90% da largura em qualquer tela */
         max-width: 50rem;
         /* Não passa de 50rem no computador */
-        min-height: 10rem;
+        min-height: 30rem;
         margin: 0 auto;
         /* Garante centralização */
     }
@@ -99,7 +118,7 @@
     }
     
     .card span {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
     
     .card p {
@@ -111,6 +130,34 @@
         color: var(--cor-viva);
         transform: scale(0.98);
         cursor: pointer;
+    }
+    
+    .rodape {
+        background: linear-gradient(90deg, #CECBF6, #c8bdf1);
+        backdrop-filter: blur(10px);
+        padding: 10px;
+        padding-bottom: 20px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    .material-symbols-outlined {
+        font-size: 3rem;
+        color: var(--cor-fundo);
+        cursor: pointer;
+        font-variation-settings: 'FILL' 1;
+        transition: all 0.7s ease;
+    }
+    
+    .material-symbols-outlined:hover {
+        color: var(--amarelo);
+        transform: translateY(-3px);
     }
     /* Para tablets e celulares */
     
@@ -127,10 +174,6 @@
             justify-content: flex-start;
             align-items: center;
             margin: 1rem;
-        }
-        .seta {
-            font-size: 1.8rem;
-            /* Seta menor para não empurrar o texto */
         }
         h1 {
             font-size: 1.4rem;
