@@ -119,7 +119,7 @@ body {
     animation-fill-mode: backwards;
 }
 
-#toggleSenha{
+.toggleSenha{
     pointer-events: auto;
     cursor: pointer;
 }

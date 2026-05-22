@@ -1,28 +1,17 @@
-const senha = document.getElementById("senha"); //pega o input
+const olhos = document.querySelectorAll(".toggleSenha");
 
-const toggle = //pega o icone do olho
-    document.getElementById("toggleSenha");
+olhos.forEach((olho) => {
+    olho.addEventListener("click", () => {
 
-toggle.addEventListener("click", () => { //faz ele mudar quando a pessoa clica no olho
+        const inputbox = olho.closest(".inputbox");
+        const inputSenha = inputbox.querySelector("input");
 
-    if(senha.type === "password") {
-
-        senha.type = "text"; //faz virar texto
-
-        toggle.setAttribute(
-            "name",
-            "eye-outline" //muda o icone 
-        );
-
-    } else {
-
-        senha.type = "password";
-
-        toggle.setAttribute(
-            "name",
-            "eye-off-outline"
-        );
-
-    }
-
+        if (inputSenha.type === "password") {
+            inputSenha.type = "text";
+            olho.setAttribute("name", "eye-outline");
+        } else {
+            inputSenha.type = "password";
+            olho.setAttribute("name", "eye-off-outline");
+        }
+    });
 });
