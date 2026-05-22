@@ -1,0 +1,89 @@
+/* aba de desativação de contaaa*/
+
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: "Fredoka", sans-serif;
+    box-sizing: border-box;
+}
+
+ :root {
+    --cor-fundo: #EEEDFE;
+    /* Tom mais claro para o fundo da página */
+    --cor-suave: #CECBF6;
+    /* Tom médio para detalhes e bordas */
+    --cor-principal: #7F77DD;
+    /* Roxo médio para elementos de destaque */
+    --cor-viva: #9279e9;
+    /* Roxo vibrante para hovers e botões */
+    --cor-escura: #26215C;
+    /* Roxo bem escuro para textos e rodapé */
+    --branco: #FFFFFF;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    /* Grade grossa usando a cor escura --cor-tres */
+    background-attachment: fixed;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+main {
+    background: none;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 110px;
+}
+
+.cabecalho-desativar {
+    background: linear-gradient(90deg, var(--cor-principal), var(--cor-escura));
+    max-width: 160rem;
+    width: 100%;
+    height: 8rem;
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.cabecalho-desativar h1 {
+    color: var(--cor-fundo);
+    margin-left: 5rem;
+    font-size: 3rem;
+}
+
+.container-cardzao {
+    background: var(--branco);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 55rem;
+    min-height: 50rem;
+    border-radius: 2rem;
+    box-shadow: 0px 10px 30px rgba(38, 33, 92, 0.15);
+    /* Sombra mais suave e moderna */
+    margin-bottom: 3rem;
+    padding: 0%;
+}
+
+.header-card {
+    background: linear-gradient(90deg, var(--cor-principal), var(--cor-escura));
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    min-height: 6rem;
+    display: flex;
+    align-items: center;
+    color: var(--branco);
+    font-weight: bold;
+    font-size: 2rem;
+    gap: 4rem;
+}
+
+.iconzinho {
+    font-size: 4rem;
+    margin-left: 2.6rem;
+}
