@@ -26,6 +26,9 @@ body {
     background-attachment: fixed;
     overflow-x: hidden;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1.3rem 1.3rem;
 }
 
 main {
@@ -41,30 +44,45 @@ main {
 /*e´todo o conteudo da pagina, pois ta no haeder*/
 
 .container-seguranca {
+    background: var(--branco);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 2rem;
     width: 100%;
+    max-width: 50rem;
+    min-height: 50rem;
+    border-radius: 2rem;
+    box-shadow: 0px 10px 30px rgba(38, 33, 92, 0.15);
+    /* Sombra mais suave e moderna */
+    margin-bottom: 3rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.topo-pagina span {
+    color: var(--cor-fundo);
 }
 
 
 /*pega a parte da seta de voltar e tambem do h1*/
 
-.setinha {
-    color: var(--cor-escura);
-    font-size: 2rem;
-}
-
 .topo-pagina {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     width: 100%;
-    max-width: 25rem;
-    border-bottom: 0.2rem solid var(--cor-principal);
-    padding-bottom: 1rem;
+    max-width: 60rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    padding: 1rem;
     margin-bottom: 1rem;
+    color: var(--cor-fundo);
+    background: linear-gradient(90deg, var(--cor-escura), var(--cor-principal));
+}
+
+.seta-voltar {
+    margin-right: 4rem;
 }
 
 .topo-pagina h1 {
@@ -73,9 +91,10 @@ main {
 }
 
 .subtitulo {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
     color: var(--cor-escura);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
 }
 
 .formulario {
@@ -84,6 +103,8 @@ main {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    padding: 1rem 1rem;
+    justify-content: center;
 }
 
 .campos {
