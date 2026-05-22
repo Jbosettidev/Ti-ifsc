@@ -11,7 +11,7 @@ toggle.addEventListener("click", () => { //faz ele mudar quando a pessoa clica n
 
         toggle.setAttribute(
             "name",
-            "eye-off-outline" //muda o icone 
+            "eye-outline" //muda o icone 
         );
 
     } else {
@@ -20,7 +20,7 @@ toggle.addEventListener("click", () => { //faz ele mudar quando a pessoa clica n
 
         toggle.setAttribute(
             "name",
-            "eye-outline"
+            "eye-off-outline"
         );
 
     }
