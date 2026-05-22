@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: "Fredoka", sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-fundo: #EEEDFE;
+    /* Tom mais claro para o fundo da página */
+    --cor-suave: #CECBF6;
+    /* Tom médio para detalhes e bordas */
+    --cor-principal: #7F77DD;
+    /* Roxo médio para elementos de destaque */
+    --cor-viva: #9279e9;
+    /* Roxo vibrante para hovers e botões */
+    --cor-escura: #26215C;
+    /* Roxo bem escuro para textos e rodapé */
+    --branco: #FFFFFF;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    background-size: 50px 50px;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+main {
+    background: none;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 110px;
+}
+
+
+/* O container pai */
+
+.geral {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* Permite que as caixas pulem de linha */
+    gap: 15px;
+    /* Espaçamento entre as caixas */
+    max-width: 47rem;
+    font-family: sans-serif;
+}
+
+
+/* O título "Visão Geral" deve ocupar a largura toda sozinho */
+
+.geral h3 {
+    width: 100%;
+    color: var(--cor-escura);
+    display: flex;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+
+/* Estilo das caixas que ficam lado a lado */
+
+.card-progresso,
+.xp {
+    background-color: var(--cor-fundo);
+    /* Azul pastel da imagem */
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    flex: 1;
+    /* Faz as duas dividirem o espaço da primeira linha */
+    min-width: 200px;
+    /* Evita que fiquem espremidas demais */
+}
+
+
+/* Estilo da caixa que fica embaixo (Curso) */
+
+.card-curso {
+    background-color: var(--cor-fundo);
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    width: 100%;
+    box-shadow: 2px 2px 30px gray;
+    /* Ocupa a largura total da linha de baixo */
+}
+
+.avatar {
+    padding: 40px;
+    width: 100%;
+    text-align: center;
+    color: var(--cor-escura);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Classe .nivel (alinhando o círculo e a barra) */
+
+.nivel {
+    display: flex;
+    align-items: center;
+    border-radius: 20rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.progresso-nivel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/* O Card Escuro */
+
+.card-progresso-dark {
+    /* Cor escura da sua paleta */
+    background: linear-gradient(135deg, var(--cor-suave), var(--cor-principal));
+    border-radius: 20px;
+    padding: 25px;
+    width: 100%;
+    max-width: 46rem;
+    /* Ajuste conforme necessário */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    margin-top: 3rem;
+}
+
+
+/* Linha de cima: Texto e o "Pill" do nível */
+
+.topo-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.3rem;
+}
+
+.label-progresso {
+    color: var(--cor-escura);
+    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.badge-nivel {
+    background-color: var(--cor-escura);
+    /* Um tom levemente mais claro que o fundo */
+    color: #FFFFFF;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+
+/* A Barra de Progresso Customizada */
+
+.barra-roxo {
+    width: 100%;
+    height: 12px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.barra-roxo::-webkit-progress-bar {
+    background-color: var(--cor-fundo);
+    /* Fundo da trilha */
+    border-radius: 10px;
+}
+
+.barra-roxo::-webkit-progress-value {
+    background: linear-gradient(90deg, #6a5acd, #a855f7);
+    /* Gradiente roxo vivo */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(168, 85, 247, 0.5);
+}
+
+
+/* Linha de baixo: XP e Porcentagem */
+
+.rodape-card {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.xp-texto {
+    color: var(--cor-escura);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.porcentagem {
+    color: var(--cor-escura);
+    font-weight: bold;
+}
+
+.cardizinhos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8rem;
+}
+
+.ofensiva {
+    background: linear-gradient(90deg, #9279e9, #6a5acd);
+    width: 100%;
+    width: 10rem;
+    min-height: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 1rem;
+    padding: 1rem;
+    border: var(--cor-principal) 0.2rem solid;
+    box-shadow: 0rem 1rem 70px #6a5acd;
+    color: #080159;
+}
+
+.numero-card {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.descricao-numero {
+    display: flex;
+    align-items: end;
+    margin-top: 0.8rem;
+}
+
+.nome {
+    display: flex;
+    justify-content: center;
+    /* centraliza horizontal */
+}
+
+.nome figure {
+    text-align: center;
+    /* centraliza o texto */
+}
+
+.nivel {
+    flex: 1;
+    align-items: center;
+    gap: 10px;
+}
+
+.nivel {
+    flex: 1;
+}
+
+
+/* 1. Reset do estilo padrão (Remove a aparência cinza do Windows/Mac) */
+
+.progresso {
+    width: 100%;
+    height: 20px;
+}
+
+.progresso p {
+    color: var(--cor-escura);
+    /* Cor do texto para aparecer no fundo branco */
+}
+
+.aqui {
+    margin-bottom: 10px;
+}
+
+.esse {
+    margin-bottom: 10px;
+}
+
+.progresso2 {
+    width: 100%;
+    /* Controle aqui o progresso */
+    height: 30px;
+}
+
+.progresso2 p {
+    color: var(--cor-escura)
+}
+
+.card-progresso {
+    background-color: var(--cor-fundo);
+    width: 100%;
+    height: 160px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 2px 2px 30px gray;
+}
+
+.card-progresso span {
+    color: var(--cor-escura);
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    /* coloca lado a lado */
+    gap: 1rem;
+    /* espaço entre elas */
+    justify-content: center;
+    /* centraliza */
+    margin: 1rem;
+}
+
+.container img {
+    width: 5rem;
+    /* ajusta tamanho */
+    border-radius: 1rem;
+}
+
+.xp {
+    background-color: var(--cor-fundo);
+    width: 40rem;
+    height: 160px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 2px 2px 30px gray;
+}
+
+.acumulado {
+    color: var(--cor-principal);
+    font-weight: bold;
+    display: flex;
+    font-size: 1.5rem;
+}
+
+.xpp {
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+    margin-left: 2rem;
+}
+
+.card-curso {
+    background-color: var(--cor-fundo);
+    border-radius: 10px;
+    height: auto;
+    width: 100%;
+    padding: 10px;
+}
+
+.card-curso p {
+    color: var(--cor-escura);
+    font-weight: bold;
+}
+
+
+/*Animação para quando o usuário clicar nos negocios*/
+
+.card-progresso,
+.xp,
+.card-curso {
+    transition: all 0.3s ease;
+    /* deixa um tempinho pra mudança */
+    cursor: pointer;
+    /* muda quando mouse da o "clique" */
+}
+
+
+/* Quando o mouse estiver em cima */
+
+.card-progresso:hover,
+.xp:hover,
+.card-curso:hover {
+    background: linear-gradient(135deg, var(--cor-suave), var(--cor-principal));
+    ;
+    /* Uma cor um pouco mais escura que o original */
+    transform: scale(0.98);
+    /* da o  efeito de "aperto" */
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
+    /* sombra pra parecer que o cad afundou */
+}
+
+
+/* Footer atualizado com a cor escura da paleta */
+
+.rodape {
+    background-color: rgba(93, 44, 216, 0.3);
+    /*TEM Q SER RGBA PRA FICAR BLUR TOPZEIRA*/
+    backdrop-filter: saturate(160%) blur(25px);
+    /*DEIXA COM EFEITO LEGAL DE BLUR*/
+    border: 0.1rem solid rgba(208, 187, 211, 0.2);
+    padding: 10px 0 20px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.material-symbols-outlined {
+    font-size: 3rem;
+    color: var(--cor-fundo);
+    cursor: pointer;
+    font-variation-settings: 'FILL' 1;
+    transition: all 0.7s ease;
+}
+
+.material-symbols-outlined:hover {
+    color: var(--cor-viva);
+    transform: translateY(-3px);
+}
+
+
+/* Estilo padrão para os títulos no main (se houver) */
+
+.titulo {
+    background-color: var(--cor-escura);
+    color: var(--off-offwhite);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .titulo {
+        width: 80%;
+        margin: 20px auto;
+        font-size: 0.9rem;
+    }
+    /* Ajuste para botões gerais se você for usar no mapa */
+    .botao-geral {
+        margin: 20px;
+    }
+}
+
+.configuracaoicon {
+    display: flex;
+    justify-content: end;
+    height: 40px;
+}
+
+progress {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    /* ocupa todo o espaço disponível */
+    max-width: 45rem;
+    /* limite opcional */
+    height: 5rem;
+    /* altura ajustavel */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+
+/* fundo da barra de baixo */
+
+progress::-webkit-progress-bar {
+    background-color: var(--cor-fundo);
+    border-radius: 15rem;
+    height: 1.8rem;
+}
+
+
+/* fundo da barra de cima */
+
+progress::-webkit-progress-value {
+    background: linear-gradient(90deg, #CECBF6, #7F77DD);
+    border-radius: 10rem;
+}

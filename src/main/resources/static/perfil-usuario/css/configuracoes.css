@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: "Fredoka", sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-primaria: #160181;
+    --cor-secundaria: #0080c0;
+    --cor-tres: #080159;
+    --amarelo: #ffde59;
+    --off-white: #fffbde;
+    --off-offwhite: #fdfdfd;
+    --mascote-roupa: #1c2b73;
+    --azure: #33c7df;
+}
+
+body {
+    background-color: var(--off-white);
+    /* Grade grossa usando a cor escura --cor-tres */
+    background-image: linear-gradient(rgba(8, 1, 89, 0.1) 4px, transparent 4px), linear-gradient(90deg, rgba(8, 1, 89, 0.1) 4px, transparent 4px);
+    background-size: 50px 50px;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+main {
+    background: none;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 110px;
+}
+
+.cabecalho {
+    background-color: #1c2b73;
+    padding: 20px;
+    border-bottom: solid 20px#fffbde;
+    border-top: #fdfdfd solid 20px;
+}
+
+.cabecalho h1 {
+    display: flex;
+    justify-content: center;
+    color: #fffbde;
+}
+
+.rodape {
+    background-color: var(--cor-tres);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    padding-bottom: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.material-symbols-outlined {
+    font-size: 3rem !important;
+    color: var(--off-offwhite);
+    cursor: pointer;
+    font-variation-settings: 'FILL' 1;
+    transition: all 0.7s ease;
+}
+
+.material-symbols-outlined:hover {
+    color: var(--amarelo);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .titulo {
+        width: 80%;
+        margin: 20px auto;
+        font-size: 0.9rem;
+    }
+    /* Ajuste para botões gerais se você for usar no mapa */
+    .botao-geral {
+        margin: 20px;
+    }
+}
