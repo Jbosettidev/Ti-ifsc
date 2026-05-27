@@ -44,7 +44,7 @@
         flex-direction: column;
         width: 100%;
         max-width: 50rem;
-        min-height: 50rem;
+        min-height: 45rem;
         border-radius: 2rem;
         box-shadow: 0px 10px 30px rgba(38, 33, 92, 0.15);
         /* Sombra mais suave e moderna */
@@ -84,7 +84,7 @@
     .container-informacoes {
         display: flex;
         justify-content: center;
-        gap: 4rem;
+        
         flex-direction: column;
         width: 90%;
         /* Ocupa 90% da largura em qualquer tela */
@@ -96,14 +96,13 @@
     }
     
     .card {
-        background-color: var(--cor-fundo);
-        border: #9279e9 solid 2px;
         border-radius: 2rem;
         height: auto;
         padding: 2rem;
         color: var(--cor-escura);
         box-shadow: #9279e9 0.8rem 0.8rem 2rem;
         pointer-events: auto;
+        margin-bottom: 4rem;
         /* Garante que o navegador aceite o clique */
         /* Mantenha o restante do seu código de estilo aqui */
     }
