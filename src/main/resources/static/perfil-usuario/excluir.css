@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+        font-family: "Fredoka", sans-serif;
+        box-sizing: border-box;
+}
+     :root {
+        --cor-fundo: #EEEDFE;
+        /* Tom mais claro para o fundo da página */
+        --cor-suave: #CECBF6;
+        /* Tom médio para detalhes e bordas */
+        --cor-principal: #7F77DD;
+        /* Roxo médio para elementos de destaque */
+        --cor-viva: #9279e9;
+        /* Roxo vibrante para hovers e botões */
+        --cor-escura: #26215C;
+        /* Roxo bem escuro para textos e rodapé */
+        --branco: #FFFFFF;
+    }
+        body {
+        background-color: var(--cor-fundo);
+        /* Grade grossa usando a cor escura --cor-tres */
+        background-attachment: fixed;
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
