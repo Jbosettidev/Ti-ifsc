@@ -1,8 +1,19 @@
 package com.example.demo.user;
 
+import java.util.Set;
+
 import com.example.demo.progresso.Progresso;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -10,8 +21,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Set;
 
 /**
  * Entidade JPA {@code usuario}: mapeia linhas da tabela homônima e define relacionamentos.
@@ -51,6 +60,7 @@ public class Usuario {
     @Min(0)
     private int xpTotal;
 
+    @JsonIgnore  // adiciona esse import: import com.fasterxml.jackson.annotation.JsonIgnore;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Progresso> progressos;
 }
