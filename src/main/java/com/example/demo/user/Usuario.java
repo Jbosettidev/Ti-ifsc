@@ -1,11 +1,9 @@
 package com.example.demo.user;
 
 import java.util.Set;
-
 import com.example.demo.progresso.Progresso;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -60,7 +58,7 @@ public class Usuario {
     @Min(0)
     private int xpTotal;
 
-    @JsonIgnore  // adiciona esse import: import com.fasterxml.jackson.annotation.JsonIgnore;
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Progresso> progressos;
 }

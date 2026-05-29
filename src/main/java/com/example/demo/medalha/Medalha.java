@@ -24,10 +24,11 @@ public class Medalha {
     @Column(nullable = false)
     private String nome;
 
-    @Size(max = 250)
-    private String criterio;
+    private String evento; // Evento necessário para desbloquear a medalha (ex: WIN_MATCH)
 
-    @Size(max = 300)
+    private Integer alvo; // Quantidade necessária do evento para ganhar a medalha
+
+    @Size(max = 150)
     private String descricao;
 
 }
