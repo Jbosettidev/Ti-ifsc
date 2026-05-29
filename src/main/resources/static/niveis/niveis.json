@@ -10,8 +10,9 @@
             },
             {
                 "tipo": "texto",
-                "titulo": "O que é segurança digital?",
-                "texto": "Segurança digital é a proteção das suas informações na internet."
+                "titulo": "O QUE É SEGURANÇA DIGITAL?",
+                "texto": "Segurança digital é a proteção das suas informações na internet.",
+                "classe": "conceito"
             }
         ]
     },
