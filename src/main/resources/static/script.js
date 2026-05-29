@@ -78,3 +78,23 @@ desenharLinhas();
 
 //refaz tudo se a tela mudar de tamanho
 window.addEventListener("resize", desenharLinhas);
+
+
+
+
+
+//aqui ja é um codigo pra outra coisa ja
+const botoesnivel = document.querySelectorAll(".botao-geral"); //pega todos os elementos com essa classe
+
+botoesnivel.forEach(botao => { //percorre todos os botoes 
+
+    botao.addEventListener("click", () => { //percebe o clique
+
+        const nivel = botao.dataset.nivel; //vai pegar o data-nivel
+
+        window.location.href = //muda de página
+            `niveis/Nivel-Geral.html?nivel=${nivel}`;
+
+    });
+
+});
