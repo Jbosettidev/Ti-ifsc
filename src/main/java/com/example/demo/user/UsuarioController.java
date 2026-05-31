@@ -5,17 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-/**
- * API REST de usuários sob o prefixo {@code /usuarios}.
- * <p>
- * {@code @RestController} serializa retornos (JSON por padrão) e combina
- * {@code @Controller} com {@code @ResponseBody} nos métodos.
- * {@code @CrossOrigin(origins = "*")} libera chamadas do front em outra origem (CORS);
- * em produção costuma-se restringir a origens conhecidas.
- */
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*") //libera a pagina web ter acesso a recursos restritos do webMvc
 public class UsuarioController {
 
     @Autowired
@@ -26,26 +18,29 @@ public class UsuarioController {
      * e o novo e-mail.
      */
     record AtualizarEmailRequest(String senha, String novoEmail) {
-    }
+    } //serve pro transporte de dados
 
     record LoginRequest(String email, String senha) {
-    }
+    }//serve pro transporte de dados
 
+    /*//
+    creio que seja desnecessario todos esses reposponseEntity pq ele ta puxando o package excessoes entt fica inutil, conferir
+    */
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest req) {
         try {
             return ResponseEntity.ok(usuarioServices.autenticar(req.email(), req.senha()));
         } catch (RuntimeException e) {
-            return ResponseEntity.status(401).body(e.getMessage());
+            return ResponseEntity.status(401).body("Erro");//tirar pq da o log pro user
         }
     }
 
     @PostMapping
     public ResponseEntity<?> criarUsuario(@RequestBody Usuario usuario) {
         try {
-            return ResponseEntity.status(201).body(usuarioServices.salvar(usuario));
+            return ResponseEntity.status(201).body("Usuario criado com sucesso");
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body("Erro ao salvar");
         }
     }
 
@@ -72,9 +67,9 @@ public class UsuarioController {
     public ResponseEntity<?> atualizarEmail(@PathVariable Long id, @RequestBody AtualizarEmailRequest req) {
         try {
             Usuario atualizado = usuarioServices.atualizarEmail(id, req.senha(), req.novoEmail());
-            return ResponseEntity.ok(atualizado);
+            return ResponseEntity.ok("Redirecionando...");
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body("Erro nos dados");
         }
     }
 
