@@ -99,7 +99,7 @@
                     mostrarErro(texto || 'E-mail ou senha incorretos.');
                 }
             } catch {
-                mostrarErro('Erro de conexão. O Spring Boot está rodando na porta 8080?');
+                mostrarErro('E-mail ou senha incorretos.');
             } finally {
                 if (msg.textContent !== 'Login realizado! Redirecionando...') {
                     botao.disabled = false;

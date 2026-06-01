@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Camada de serviço do domínio {@link Usuario}: orquestra regras de negócio e persistência*/
+//regras de negócio e persistência
 @Service
 public class UsuarioServices {
 
