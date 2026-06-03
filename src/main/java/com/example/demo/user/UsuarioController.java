@@ -1,5 +1,6 @@
 package com.example.demo.user;
 
+import com.example.demo.excessoes.GlobalExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -12,18 +13,30 @@ public class UsuarioController {
     @Autowired
     private UsuarioServices usuarioServices;
 
+    @Autowired
+    private GlobalExceptionHandler globalExceptionHandler;
+
     record AtualizarEmailRequest(String senha, String novoEmail) {
     } //serve pro transporte de dados
 
     record LoginRequest(String email, String senha) {
     }//serve pro transporte de dados
 
+    @PostMapping
+    public Usuario criarUsuario(@RequestBody Usuario usuario) {
+        try {
+            return usuarioServices.salvar(usuario);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Dados incorretos");
+        }
+    }
+
     @PostMapping("/login") //new
     public  Usuario login(@RequestBody LoginRequest req) {
         try {
             return usuarioServices.autenticar(req.email(), req.senha());
         } catch (RuntimeException e) {
-            return null;  // teste
+            throw new RuntimeException("Dados incorretos");  // teste
         }
     }
 
@@ -45,10 +58,9 @@ public class UsuarioController {
     @PatchMapping("/{id}/seguranca") //new funcionando tomar cuidado com o return null
     public Usuario atualizarEmail(@PathVariable Long id, @RequestBody AtualizarEmailRequest req) {
         try {
-            Usuario atualizado = usuarioServices.atualizarEmail(id, req.senha(), req.novoEmail());
-            return atualizado;
+            return usuarioServices.atualizarEmail(id, req.senha(), req.novoEmail());
         } catch (RuntimeException e) {
-            return null;
+            throw new RuntimeException("Dados incorretos");
         }
     }
 
