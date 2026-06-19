@@ -13,9 +13,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioServices usuarioServices;
 
-    @Autowired
-    private GlobalExceptionHandler globalExceptionHandler;
-
     record AtualizarEmailRequest(String senha, String novoEmail) {
     } //serve pro transporte de dados
 
@@ -32,7 +29,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/login") //new
-    public  Usuario login(@RequestBody LoginRequest req) {
+    public Usuario login(@RequestBody LoginRequest req) {
         try {
             return usuarioServices.autenticar(req.email(), req.senha());
         } catch (RuntimeException e) {
