@@ -10,11 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Registro de avanço de um {@link Usuario} em uma {@link Fase} e {@link Quiz}: percentual,
- * pontuação e chaves estrangeiras para consultas e relatórios.
- */
-@Entity @Data @NoArgsConstructor
+@Entity @NoArgsConstructor
 @Getter @Setter
 @Table(name = "progresso")
 public class Progresso {
