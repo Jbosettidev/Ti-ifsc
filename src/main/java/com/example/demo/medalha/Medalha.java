@@ -1,19 +1,17 @@
 package com.example.demo.medalha;
 
+import com.example.demo.user.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Conquista ou distintivo (tabela {@code medalha}): nome obrigatório; critério e descrição
- * opcionais para explicar como a medalha é obtida.
- */
-@Entity @Data @NoArgsConstructor
+@Entity
 @Getter @Setter
+@NoArgsConstructor
 @Table(name = "medalha")
 public class Medalha {
 
@@ -24,10 +22,18 @@ public class Medalha {
     @Column(nullable = false)
     private String nome;
 
-    @Size(max = 250)
-    private String criterio;
+    private String evento;
 
-    @Size(max = 300)
+    private Integer alvo;
+
+    private boolean objConcluido;
+
+    @Size(max = 150)
     private String descricao;
 
+    // A ligação fica do lado "Muitos" (Muitas medalhas pertencem a Um usuário)
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
 }
