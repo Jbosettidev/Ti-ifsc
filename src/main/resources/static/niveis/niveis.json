@@ -1,0 +1,34 @@
+{
+    "1": {
+        "titulo": "SecureByte: Introdução",
+        "secoes": [
+            {
+                "tipo": "texto",
+                "titulo": "Bem-vindo",
+                "texto": "Essa é a introdução do curso.",
+                "classe": "hero"
+            },
+            {
+                "tipo": "texto",
+                "titulo": "O QUE É SEGURANÇA DIGITAL?",
+                "texto": "Segurança digital é a proteção das suas informações na internet.",
+                "classe": "conceito"
+            }
+        ]
+    },
+    "2": {
+        "titulo": "SecureByte: Senhas",
+        "secoes": [
+            {
+                "tipo": "texto",
+                "titulo": "O perigo das senhas fracas",
+                "texto": "Senhas simples podem ser descobertas rapidamente."
+            },
+            {
+                "tipo": "texto",
+                "titulo": "Como criar senhas fortes?",
+                "texto": "Use letras maiúsculas, números e símbolos."
+            }
+        ]
+    }
+}

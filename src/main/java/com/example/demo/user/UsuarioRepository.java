@@ -11,6 +11,7 @@ import java.util.Optional;
  * de nome ({@code findByEmail}, {@code existsByEmail}).
  */
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
     Optional<Usuario> findByEmail(String email);
 
     boolean existsByEmail(String novoEmail);

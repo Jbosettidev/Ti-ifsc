@@ -4,7 +4,6 @@ import com.example.demo.quiz.Quiz;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +12,7 @@ import lombok.Setter;
  * Questão de um {@link Quiz}: enunciado, resposta esperada, metadados opcionais e alternativas
  * (ex.: JSON ou texto serializado, conforme o front).
  */
-@Entity @Data @NoArgsConstructor
+@Entity @NoArgsConstructor
 @Getter @Setter
 @Table(name = "questao")
 public class Questao {
