@@ -33,7 +33,7 @@ public class MedalhaServices {
 
     public Medalha marcarComoConcluido(Long id) {
         Medalha medalha = medalhaRepository.findById(id).orElseThrow(() -> new RuntimeException("Medalha não encontrada"));
-        medalha.setObjConculuido(true);
+        medalha.setObjConcluido(true);
         return medalhaRepository.save(medalha);
     }
 
