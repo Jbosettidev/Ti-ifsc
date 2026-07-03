@@ -1,9 +1,13 @@
 package com.example.demo.user;
 
+import java.util.List;
 import java.util.Set;
+
+import com.example.demo.medalha.UsuarioMedalha;
 import com.example.demo.progresso.Progresso;
 import com.example.demo.medalha.Medalha;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
@@ -47,8 +51,8 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Progresso> progressos;
 
-    // Um usuário agora tem uma lista direta de medalhas no banco de dados
-    @JsonIgnore
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Medalha> medalhas;
+    // dentro de Usuario.java
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnoreProperties({"usuario", "hibernateLazyInitializer", "handler"})
+    private List<UsuarioMedalha> usuarioMedalhas;
 }
