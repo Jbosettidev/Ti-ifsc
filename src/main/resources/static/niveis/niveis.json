@@ -10,9 +10,31 @@
             },
             {
                 "tipo": "texto",
-                "titulo": "O QUE É SEGURANÇA DIGITAL?",
-                "texto": "Segurança digital é a proteção das suas informações na internet.",
-                "classe": "conceito"
+                "titulo": "O que é segurança digital?",
+                "texto": "Segurança digital é a proteção das suas informações na internet."
+            },
+            {
+                "tipo": "texto",
+                "titulo": "Dicas de senha",
+                "classe": "dicas",
+                "wrapper_classe": "grid-cards",
+                "filhos": [
+                    {
+                        "tipo": "div",
+                        "classe": "card",
+                        "texto": "Use letras maiúsculas"
+                    },
+                    {
+                        "tipo": "div",
+                        "classe": "card",
+                        "texto": "Use números"
+                    },
+                    {
+                        "tipo": "div",
+                        "classe": "card",
+                        "texto": "Use símbolos"
+                    }
+                ]
             }
         ]
     },

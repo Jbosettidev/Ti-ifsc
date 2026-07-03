@@ -1,33 +1,61 @@
-fetch("niveis.json") //fetch puxa o arquivo JSON
-
-    .then(res => res.json()) //res vai transformar esse json em um elemento JS
-
+fetch("niveis.json")
+    .then(res => res.json())
     .then(dados => {
 
-        const params =
-            new URLSearchParams(window.location.search);
+        const params = new URLSearchParams(window.location.search);
+        const numeroNivel = params.get("nivel");
+        const nivel = dados[numeroNivel];
+        const container = document.getElementById("conteudo");
 
-        const numeroNivel =
-            params.get("nivel");
+        nivel.secoes.forEach(secao => {
+            const section = document.createElement("section");
+            if (secao.classe) section.classList.add(secao.classe);
 
-        const nivel =
-            dados[numeroNivel];
-        const container =
-            document.getElementById("conteudo"); //pega a div no html
+            if (secao.titulo) {
+                const h1 = document.createElement("h1");
+                h1.textContent = secao.titulo;
+                section.appendChild(h1);
+            }
 
-        nivel.secoes.forEach(secao => { //loop, vai pegar todas as seções dentro do JSON
+            if (secao.texto) {
+                const p = document.createElement("p");
+                p.textContent = secao.texto;
+                section.appendChild(p);
+            }
 
-            const section =
-                document.createElement("section"); //para cada seção, ele cria uma section no html
+            if (secao.filhos) {
+                const wrapper = document.createElement("div");
+                wrapper.classList.add(secao.wrapper_classe ?? "wrapper");;
 
-            section.classList.add(secao.classe);
-            section.innerHTML = `
-                <h1>${secao.titulo}</h1> 
-                <p>${secao.texto}</p>   
-            `; //cria um titulo com o elemento titulo e um parágrafo com o parágrafo (secao.nome pra pegar o elemento dentro da lista)
+                secao.filhos.forEach(filho => {
+                    const el = document.createElement(filho.tipo);
+                    if (filho.classe) el.classList.add(filho.classe);
 
-            container.appendChild(section); //coloca as sections dentro do container
+                    if (filho.titulo) {
+                        const h2 = document.createElement("h2");
+                        h2.textContent = filho.titulo;
+                        el.appendChild(h2);
+                    }
 
+                    if (filho.texto) {
+                        const p = document.createElement("p");
+                        p.textContent = filho.texto;
+                        el.appendChild(p);
+                    }
+
+                    if (filho.imagem) {
+                        const img = document.createElement("img");
+                        img.src = filho.imagem;
+                        el.appendChild(img);
+                    }
+
+                    wrapper.appendChild(el);
+                });
+
+                section.appendChild(wrapper);
+            }
+
+            container.appendChild(section);
         });
 
     });

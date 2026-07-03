@@ -1,6 +1,9 @@
 package com.example.demo.medalha;
 
+import com.example.demo.fase.Fase;
 import com.example.demo.user.Usuario;
+import com.example.demo.user.UsuarioRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,9 @@ public class MedalhaServices {
 
     @Autowired
     private MedalhaRepository medalhaRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public List<Medalha> listarTodas() {
         return medalhaRepository.findAll();
@@ -25,16 +31,28 @@ public class MedalhaServices {
         return medalhaRepository.findByNome(nome.getNome()).orElseThrow();
     }
 
-    /*  // ! aqui mudar pra atualizar o status do user com a medalha pra ele !
-    public Usuario atualizarEmail(Long id, String senhaInformada, String novoEmail) {
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Usuário não encontrado")
-        );if (!usuario.getSenha().equals(senhaInformada)) {
-            throw new RuntimeException("Senha incorreta");
-        }if (usuarioRepository.existsByEmail(novoEmail)) {
-            throw new RuntimeException("E-mail já cadastrado");
-        }
-        usuario.setEmail(novoEmail);
-        return usuarioRepository.save(usuario);
-    } */
+    public Medalha marcarComoConcluido(Long id) {
+        Medalha medalha = medalhaRepository.findById(id).orElseThrow(() -> new RuntimeException("Medalha não encontrada"));
+        medalha.setObjConcluido(true);
+        return medalhaRepository.save(medalha);
+    }
+
+    /*
+    public User marcarMedalhaComoConcluida(Long usuarioId, Long medalhaId) {
+        Usuario usuario = usuarioRepository.findById(usuarioId)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        Medalha medalha = medalhaRepository.findById(medalhaId)
+                .orElseThrow(() -> new RuntimeException("Medalha não encontrada"));
+
+        User usuarioMedalha = userRepository
+                .findByUsuarioIdAndMedalhaId(usuarioId, medalhaId)
+                .orElse(new UsuarioMedalha());
+
+        usuarioMedalha.setUsuario(usuario);
+        usuarioMedalha.setMedalha(medalha);
+        usuarioMedalha.setConcluido(true);
+
+        return medalhaRepository.save(medalha);
+    }*/
 }
