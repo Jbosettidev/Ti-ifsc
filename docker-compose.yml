@@ -1,27 +1,14 @@
 services:
   app:
-    image: maven:3.9.6-eclipse-temurin-21
-
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: ti-ifsc-app
-
-    working_dir: /app
-
     ports:
       - "8080:8080"
-
-    volumes:
-      - .:/app
-      - maven-cache:/root/.m2
-
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://aws-1-us-east-1.pooler.supabase.com:6543/postgres
       SPRING_DATASOURCE_USERNAME: postgres.ikkepkdqliynfgoztybo
       SPRING_DATASOURCE_PASSWORD: securebyte26.
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
-
-    command: mvn spring-boot:run
-
     restart: unless-stopped
-
-volumes:
-  maven-cache:
