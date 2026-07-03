@@ -3,15 +3,23 @@
         "titulo": "SecureByte: Introdução",
         "secoes": [
             {
+                "classe": "secao1",
+                "titulo": "bem vinmdooooo"
+            },
+            {
                 "tipo": "texto",
                 "titulo": "Bem-vindo",
+                "subtitulo": "Bem-vindo mesmo",
                 "texto": "Essa é a introdução do curso.",
+                "imagem": "img/cadeado.jpg",
+                "alt": "imagem",
                 "classe": "hero"
             },
             {
                 "tipo": "texto",
                 "titulo": "O que é segurança digital?",
-                "texto": "Segurança digital é a proteção das suas informações na internet."
+                "texto": "Segurança digital é a proteção das suas informações na internet.",
+                "classe": "Conteudo"
             },
             {
                 "tipo": "texto",

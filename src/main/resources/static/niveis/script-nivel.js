@@ -17,10 +17,31 @@ fetch("niveis.json")
                 section.appendChild(h1);
             }
 
+            if (secao.subtitulo) {
+                const h3 = document.createElement("h3");
+                h3.textContent = secao.subtitulo;
+                section.appendChild(h3);
+            }
+
             if (secao.texto) {
                 const p = document.createElement("p");
                 p.textContent = secao.texto;
                 section.appendChild(p);
+            }
+
+            if (secao.imagem) {
+                const img = document.createElement("img");
+                img.src = secao.imagem;
+                img.alt = secao.alt || "";
+
+                section.appendChild(img);
+            }
+
+            if (secao.video) {
+                const video = document.createElement("video");
+                video.src = secao.video;
+                video.controls = true;
+                section.appendChild(video);
             }
 
             if (secao.filhos) {
