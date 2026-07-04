@@ -111,7 +111,6 @@ progress::-webkit-progress-value {
     color: var(--roxo-forte);
 }
 
-
 .progresso p {
     font-size: 0.90rem;
     font-family: Arial, Helvetica, sans-serif;
@@ -181,7 +180,7 @@ progress::-webkit-progress-value {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background: linear-gradient(135deg, #EEEDFE 2%, #CECBF6 50%, #9279e9 100%);
     box-shadow: -8px 9px 5px -4px rgba(0, 0, 0, 0.3);
     border-radius: 15px;
     max-width: 450px;
@@ -199,14 +198,13 @@ progress::-webkit-progress-value {
     transform: translateY(-8px) scale(1.02);
     background: linear-gradient(135deg, #EEEDFE 2%, #CECBF6 50%, #9279e9 100%);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-    border-color: #EEEDFE;
+    border-color: linear-gradient(135deg, #EEEDFE 2%, #CECBF6 50%, #9279e9 100%);
 }
 
 
 .conquistas:hover .titulo-conquistas,
 .conquistas:hover .descricao-conquista {
     color: var(--roxo-forte);
-    font-weight: bold;
 }
 
 .conquista-texto {
@@ -220,7 +218,7 @@ progress::-webkit-progress-value {
     color: var(--roxo-forte);
     margin: 0;
     font-size: 1.2rem;
-    transition: color 0.4s ease;
+    transition: color 0.4s;
 
 }
 
@@ -229,7 +227,7 @@ progress::-webkit-progress-value {
     margin: 0;
     font-size: 0.9rem;
     line-height: 1.4;
-    transition: color 0.4s ease;
+
 }
 
 .medalha-imagem {
@@ -243,14 +241,17 @@ progress::-webkit-progress-value {
     transform: rotate(10deg) scale(1.1);
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
     .caixa_conquistas {
-        padding: 1.5rem 1rem; /* Menos espaço interno */
-        margin: 1rem; /* Menos espaço externo */
+        padding: 1.5rem 1rem;
+        /* Menos espaço interno */
+        margin: 1rem;
+        /* Menos espaço externo */
     }
 
     .progresso h2 {
-        font-size: 0.9rem; /* Letras menores para o 89% caber */
+        font-size: 0.9rem;
+        /* Letras menores para o 89% caber */
     }
 
     .progresso p {
@@ -258,6 +259,7 @@ progress::-webkit-progress-value {
     }
 
     .divisor-vertical {
-        margin: 0 0px; /* Quase cola os itens, mas mantém tudo na tela */
+        margin: 0 0px;
+        /* Quase cola os itens, mas mantém tudo na tela */
     }
 }
