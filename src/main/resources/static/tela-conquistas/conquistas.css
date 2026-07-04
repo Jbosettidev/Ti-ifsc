@@ -82,7 +82,7 @@ progress::-webkit-progress-value {
     width: 100%;
     height: 1.5px;
     background: rgba(120, 100, 210, 0.25);
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-bottom: 2rem;
 
 }
@@ -107,12 +107,12 @@ progress::-webkit-progress-value {
 }
 
 .progresso h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: var(--roxo-forte);
 }
 
 .progresso p {
-    font-size: 0.90rem;
+    font-size: 1rem;
     font-family: Arial, Helvetica, sans-serif;
     color: var(--roxo-forte);
 }
@@ -241,17 +241,21 @@ progress::-webkit-progress-value {
     transform: rotate(10deg) scale(1.1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .caixa_conquistas {
         padding: 1.5rem 1rem;
-        /* Menos espaço interno */
         margin: 1rem;
-        /* Menos espaço externo */
+    }
+
+    .progresso {
+        flex-direction: row;
+        /* volta a ficar lado a lado */
+        gap: 0.5rem;
+        /* reduzido pra caber melhor em telas estreitas */
     }
 
     .progresso h2 {
         font-size: 0.9rem;
-        /* Letras menores para o 89% caber */
     }
 
     .progresso p {
@@ -259,7 +263,10 @@ progress::-webkit-progress-value {
     }
 
     .divisor-vertical {
-        margin: 0 0px;
-        /* Quase cola os itens, mas mantém tudo na tela */
+        width: 1px;
+        height: auto;
+        align-self: stretch;
+        /* volta a ser uma linha vertical esticada */
+        margin: 0 0.5rem;
     }
 }
