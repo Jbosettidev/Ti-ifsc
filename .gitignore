@@ -5,6 +5,9 @@ HELP.md
 .env.production
 .env.example
 .dockerignore
+.mvn/
+mvnw
+mvnw.cmd
 
 target/
 .mvn/wrapper/maven-wrapper.jar
@@ -28,3 +31,6 @@ target/
 
 ### VS Code ###
 .vscode/
+
+### Configurações locais e Senhas ###
+*.properties

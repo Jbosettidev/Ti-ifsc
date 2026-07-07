@@ -1,8 +1,0 @@
-.git
-.gitignore
-target/
-*.log
-*.md
-.idea/
-*.iml
-.vscode/
