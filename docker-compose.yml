@@ -7,8 +7,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://aws-1-us-east-1.pooler.supabase.com:6543/postgres
-      SPRING_DATASOURCE_USERNAME: postgres.ikkepkdqliynfgoztybo
-      SPRING_DATASOURCE_PASSWORD: securebyte26.
+      SPRING_DATASOURCE_URL: ${DB_URL}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     restart: unless-stopped
