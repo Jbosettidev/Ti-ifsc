@@ -28,9 +28,44 @@
         width: 100%;
     }
     
+    main {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    
     .cabecalho {
         background: linear-gradient(90deg, var(--cor-principal), var(--cor-viva));
         width: 100%;
         min-height: 5rem;
         height: auto;
+        margin-bottom: 2rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: inline;
+    }
+    
+    .cabecalho h1 {
+        color: var(--branco);
+        font-size: 1rem;
+        font-weight: bold;
+        font-size: 1.6rem;
+        margin: auto 0;
+    }
+    
+    .material-symbols-outlined {
+        color: var(--branco);
+        margin: 1rem;
+        font-size: 2.5rem !important;
+    }
+    
+    .cardzao {
+        width: calc(100% - 2rem);
+        max-width: 30rem;
+        min-height: 65rem;
+        background-color: var(--cor-fundo);
+        margin: 0 auto;
+        border-radius: 2rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
