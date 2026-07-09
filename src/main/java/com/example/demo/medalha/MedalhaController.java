@@ -1,26 +1,53 @@
 package com.example.demo.medalha;
 
-import com.example.demo.user.Usuario;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/medalhas")
-@CrossOrigin(origins = "*") //libera a pagina web ter acesso a recursos restritos do webMvc
+@RequiredArgsConstructor
 public class MedalhaController {
 
-    @Autowired
-    private MedalhaServices medalhaServices;
+    private final MedalhaServices medalhaServices;
 
-    @GetMapping("/{id}")
-    public Medalha buscarPorId(@PathVariable Long id) {
-        return medalhaServices.buscar(id);
+    @GetMapping("/medalhas")
+    public ResponseEntity<List<Medalha>> listar() {
+        return ResponseEntity.ok(medalhaServices.listarTodas());
     }
 
-    @GetMapping
-    public List<Medalha> listarMedalhas() {
-        return medalhaServices.listarTodas();
+    @GetMapping("/medalhas/{id}")
+    public ResponseEntity<Medalha> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(medalhaServices.buscarPorId(id));
+    }
+
+    @PostMapping("/medalhas")
+    public ResponseEntity<Medalha> criar(@RequestBody Medalha medalha) {
+        return ResponseEntity.ok(medalhaServices.criar(medalha));
+    }
+
+    @PutMapping("/medalhas/{id}")
+    public ResponseEntity<Medalha> atualizar(@PathVariable Long id, @RequestBody Medalha medalha) {
+        return ResponseEntity.ok(medalhaServices.atualizar(id, medalha));
+    }
+
+    @DeleteMapping("/medalhas/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        medalhaServices.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/usuarios/{usuarioId}/medalhas/{medalhaId}")
+    public ResponseEntity<UsuarioMedalha> atualizarProgresso(
+            @PathVariable Long usuarioId,
+            @PathVariable Long medalhaId,
+            @RequestParam Integer progresso) {
+        return ResponseEntity.ok(medalhaServices.atualizarProgresso(usuarioId, medalhaId, progresso));
+    }
+
+    @GetMapping("/usuarios/{usuarioId}/medalhas")
+    public ResponseEntity<List<UsuarioMedalha>> listarMedalhasDoUsuario(@PathVariable Long usuarioId) {
+        return ResponseEntity.ok(medalhaServices.listarMedalhasDoUsuario(usuarioId));
     }
 }

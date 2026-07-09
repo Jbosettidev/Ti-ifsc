@@ -1,58 +1,77 @@
 package com.example.demo.medalha;
 
-import com.example.demo.fase.Fase;
 import com.example.demo.user.Usuario;
 import com.example.demo.user.UsuarioRepository;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class MedalhaServices {
 
-    @Autowired
-    private MedalhaRepository medalhaRepository;
+    private final MedalhaRepository medalhaRepository;
+    private final UsuarioMedalhaRepository usuarioMedalhaRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    // --- CRUD Medalha ---
 
     public List<Medalha> listarTodas() {
         return medalhaRepository.findAll();
     }
 
-    public Medalha buscar(Long id) {
-        return medalhaRepository.findById(id).orElseThrow();
+    public Medalha buscarPorId(Long id) {
+        return medalhaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Medalha não encontrada"));
     }
 
-    public Medalha buscarPorNome(Medalha nome) { //quase inutil mas vou deixar pra facilitar agora
-        return medalhaRepository.findByNome(nome.getNome()).orElseThrow();
-    }
-
-    public Medalha marcarComoConcluido(Long id) {
-        Medalha medalha = medalhaRepository.findById(id).orElseThrow(() -> new RuntimeException("Medalha não encontrada"));
-        medalha.setObjConcluido(true);
+    public Medalha criar(Medalha medalha) {
         return medalhaRepository.save(medalha);
     }
 
-    /*
-    public User marcarMedalhaComoConcluida(Long usuarioId, Long medalhaId) {
+    public Medalha atualizar(Long id, Medalha dados) {
+        Medalha medalha = buscarPorId(id);
+
+        medalha.setNome(dados.getNome());
+        medalha.setEvento(dados.getEvento());
+        medalha.setAlvo(dados.getAlvo());
+        medalha.setObjConcluido(dados.isObjConcluido());
+        medalha.setDescricao(dados.getDescricao());
+
+        return medalhaRepository.save(medalha);
+    }
+
+    public void deletar(Long id) {
+        medalhaRepository.deleteById(id);
+    }
+
+    // Upsert: cria o vínculo se não existir, ou atualiza o progresso se já existir
+    public UsuarioMedalha atualizarProgresso(Long usuarioId, Long medalhaId, Integer progresso) {
         Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+        Medalha medalha = buscarPorId(medalhaId);
 
-        Medalha medalha = medalhaRepository.findById(medalhaId)
-                .orElseThrow(() -> new RuntimeException("Medalha não encontrada"));
+        UsuarioMedalha vinculo = usuarioMedalhaRepository
+                .findByUsuario_IdAndMedalha_Id(usuarioId, medalhaId)
+                .orElseGet(() -> {
+                    UsuarioMedalha novo = new UsuarioMedalha();
+                    novo.setUsuario(usuario);
+                    novo.setMedalha(medalha);
+                    return novo;
+                });
 
-        User usuarioMedalha = userRepository
-                .findByUsuarioIdAndMedalhaId(usuarioId, medalhaId)
-                .orElse(new UsuarioMedalha());
+        vinculo.setProgresso(progresso);
 
-        usuarioMedalha.setUsuario(usuario);
-        usuarioMedalha.setMedalha(medalha);
-        usuarioMedalha.setConcluido(true);
+        if (medalha.getAlvo() != null && progresso >= medalha.getAlvo()) {
+            vinculo.setConcluida(true);
+        }
 
-        return medalhaRepository.save(medalha);
-    }*/
+        return usuarioMedalhaRepository.save(vinculo);
+    }
+
+    public List<UsuarioMedalha> listarMedalhasDoUsuario(Long usuarioId) {
+        return usuarioMedalhaRepository.findByUsuario_Id(usuarioId);
+    }
 }
