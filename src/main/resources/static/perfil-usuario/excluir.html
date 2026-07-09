@@ -5,27 +5,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Excluir conta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="excluir.css">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <title>Excluir Conta</title>
 </head>
 
 <body>
 
-    <header class="cabecalho">
+    <header>
+        <div class="seta-voltar">
+            <a href="configuracoes.html">
+                <span class="material-symbols-outlined">
+keyboard_backspace
+</span></a>
+        </div>
+
+
         <span class="material-symbols-outlined">
-            person_off
-        </span>
+account_circle_off
+</span>
         <h1>Minha Conta</h1>
+
     </header>
 
-    <main class="cardzao">
-        <div class="cabecalho-card">
-            <p></p>
-            <div class="informacao"></div>
+    <main>
+
+        <div class="card">
+
+            <div class="titulo">
+                <h1>Excluir Conta</h1>
+
+                <p>
+                    Sua segurança é importante para nós. Antes de excluir sua conta, leia atentamente as informações abaixo.
+                </p>
+
+            </div>
+
+            <div class="alerta">
+
+                <div class="alerta-topo">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <h3>Atenção</h3>
+                </div>
+
+                <ul>
+                    <li>Todos os seus dados serão apagados.</li>
+                    <li>Esta ação não poderá ser desfeita.</li>
+                    <li>Você perderá acesso à sua conta.</li>
+                </ul>
+
+            </div>
+
+            <form>
+
+                <label>Senha</label>
+
+                <div class="senha">
+
+                    <input type="password" placeholder="Digite sua senha">
+
+                    <button type="button">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+
+                </div>
+
+                <label>Motivo da exclusão</label>
+
+                <select>
+
+                    <option>Selecione um motivo</option>
+                    <option>Não utilizo mais</option>
+                    <option>Problemas técnicos</option>
+                    <option>Privacidade</option>
+                    <option>Outro</option>
+
+                </select>
+
+                <label>Comentários</label>
+
+                <textarea rows="5" placeholder="Conte-nos um pouco mais..."></textarea>
+
+                <div class="checkbox">
+
+                    <input type="checkbox">
+
+                    <span>Confirmo que desejo excluir minha conta.</span>
+
+                </div>
+
+                <div class="botoes">
+
+                    <button class="cancelar">
+                        Cancelar
+                    </button>
+
+                    <button class="excluir">
+                        Excluir Conta
+                    </button>
+
+                </div>
+
+            </form>
+
         </div>
+
     </main>
 
 </body>

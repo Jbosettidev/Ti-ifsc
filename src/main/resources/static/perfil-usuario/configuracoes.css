@@ -53,7 +53,7 @@
     }
     
     .cabecalho {
-        color: var(--cor-fundo);
+        color: var(--cor-escura);
         padding: 2rem 2rem;
         /* Padding em vez de margin fixa */
         margin-bottom: 6rem;
@@ -61,7 +61,7 @@
         max-width: 60rem;
         display: flex;
         font-size: 1.6rem;
-        background: linear-gradient(90deg, var(--cor-escura), var(--cor-principal));
+        background: linear-gradient(90deg, var(--cor-suave), var(--cor-fundo));
         border-top-left-radius: 2rem;
         border-top-right-radius: 2rem;
         min-height: 4rem;
@@ -84,7 +84,6 @@
     .container-informacoes {
         display: flex;
         justify-content: center;
-        
         flex-direction: column;
         width: 90%;
         /* Ocupa 90% da largura em qualquer tela */
@@ -148,14 +147,14 @@
     
     .material-symbols-outlined {
         font-size: 3rem;
-        color: var(--cor-fundo);
+        color: var(--cor-escura);
         cursor: pointer;
         font-variation-settings: 'FILL' 1;
         transition: all 0.7s ease;
     }
     
     .material-symbols-outlined:hover {
-        color: var(--amarelo);
+        color: var(--cor-viva);
         transform: translateY(-3px);
     }
     /* Para tablets e celulares */
