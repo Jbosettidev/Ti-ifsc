@@ -24,6 +24,10 @@
     --azure: #33c7df;
 }
 
+body {
+    background-color: var(--cor-roxo-clarinho);
+}
+
 .caixa_conquistas {
 
     border-radius: 2rem;
