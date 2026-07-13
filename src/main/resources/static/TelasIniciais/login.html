@@ -13,6 +13,13 @@
 </head>
 
 <body>
+    <script>
+    // Se caiu aqui no login, é pq não tem sessão válida no servidor.
+    // Qualquer userId salvo no localStorage tá desatualizado - limpa sozinho.
+    if (localStorage.getItem('userId')) {
+        localStorage.removeItem('userId');
+    }
+    </script>
     <form id="form-login" action="/login" method="post">
         <div class="card-total">
             <img src="/TelasIniciais/img/logo-capuz.png" class="imagem" alt="Logo">

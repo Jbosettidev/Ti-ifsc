@@ -107,6 +107,14 @@
                 if (res.ok) {
                     const usuario = JSON.parse(texto);
                     localStorage.setItem('userId', usuario.id);
+
+                    // login automático pra criar a sessão do Spring Security
+                    await fetch('/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams({ email, senha })
+                    });
+
                     msg.style.color = '#1a7a3a';
                     msg.textContent = 'Cadastro realizado! Redirecionando...';
                     setTimeout(() => { window.location.href = '/home'; }, 800);
