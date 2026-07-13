@@ -5,16 +5,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
- * Expõe páginas HTML estáticas com URL "limpa" (sem {@code .html} visível no navegador).
- * <p>
- * Para um GET {@code /perfil}, o método faz um <strong>forward</strong> interno para
- * {@code /perfil.html} (arquivos em {@code src/main/resources/static/}). O navegador
- * continua mostrando {@code /perfil}; não há nova requisição HTTP como em
- * {@code redirect:}, onde a URL mudaria para {@code /perfil.html}.
- * <p>
- * O padrão do path usa regex no {@link PathVariable}: aceita um segmento com letras,
- * números e hífen, mas <strong>exclui</strong> o valor exato {@code api}, para não
- * competir com endpoints REST tipicamente prefixados por {@code /api}.
+ * Expõe páginas HTML estáticas com URL "limpa" (sem { .html} visível no navegador).
+
+ * Para um GET { /perfil}, o método faz um forward interno para
+ * { /perfil.html} (arquivos em { src/main/resources/static/}). O navegador
+ * continua mostrando { /perfil}; não há nova requisição HTTP como em
+ * { redirect:}, onde a URL mudaria para { /perfil.html}.
+
+ * O padrão do path usa regex no { PathVariable}: aceita um segmento com letras,
+ * números e hífen, mas exclui o valor exato {api}, para não
+ * competir com endpoints REST tipicamente prefixados por { /api}.
  */
 @Controller
 public class ViewController {
