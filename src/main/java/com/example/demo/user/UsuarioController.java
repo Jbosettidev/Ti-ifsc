@@ -2,6 +2,7 @@ package com.example.demo.user;
 
 import com.example.demo.excessoes.GlobalExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -20,12 +21,8 @@ public class UsuarioController {
     }//serve pro transporte de dados
 
     @PostMapping
-    public Usuario criarUsuario(@RequestBody Usuario usuario) {
-        try {
-            return usuarioServices.salvar(usuario);
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Dados incorretos");
-        }
+    public ResponseEntity<Usuario> criar(@RequestBody Usuario usuario) { //usa esse como base e muda tudo o resto pra aceitar o response
+        return ResponseEntity.ok(usuarioServices.salvar(usuario));
     }
 
     @PostMapping("/login") //new
