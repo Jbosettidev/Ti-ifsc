@@ -61,14 +61,9 @@
             msg.style.color = '#1a7a3a';
             msg.textContent = 'Você saiu com sucesso!';
         }
-
-        // ===================== REDIRECIONAR SE JÁ LOGADO =====================
-        // COMENTADO para não redirecionar automaticamente
-        // if (localStorage.getItem('userId')) {
-        //     window.location.replace('/TelasIniciais/index.html');
-        // }
-
-        // ===================== BOLHAS =====================
+        if (localStorage.getItem('userId')) {
+            window.location.replace('/TelasIniciais/index.html');
+         }
         const canvas = document.getElementById('bolhas');
         const ctx = canvas.getContext('2d');
 
