@@ -24,7 +24,7 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/usuarios/**")  // Ignora CSRF para /usuarios
                 )
                 .authorizeHttpRequests(auth -> auth
-                        // 🔥 LIBERA COMPLETAMENTE /usuarios (POST, GET, etc)
+                        //  LIBERA COMPLETAMENTE /usuarios (POST, GET, etc)
                         .requestMatchers("/usuarios/**").permitAll()
                         // Libera páginas públicas
                         .requestMatchers("/login", "/cadastro", "/senha1", "/nova-senha").permitAll()
