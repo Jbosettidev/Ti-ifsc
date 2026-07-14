@@ -8,14 +8,14 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/logo-capuz.png" type="image/png">
+    <link rel="stylesheet" href="/TelasIniciais/style.css">
+    <link rel="icon" href="/TelasIniciais/img/logo-capuz.png" type="image/png">
 </head>
 
 <body>
     <form id="form-cadastro">
         <div class="card-total">
-            <img src="img/logo-capuz.png" class="imagem" alt="Logo">
+            <img src="/TelasIniciais/img/logo-capuz.png" class="imagem" alt="Logo">
             <h2 class="titulo">Cadastre-se</h2>
             <div class="inputbox">
                 <input type="text" id="nome" placeholder="Nome completo" name="nome" required minlength="3" maxlength="50">
@@ -37,7 +37,7 @@
                 <input type="password" id="senha-confirmada" placeholder="Confirmar senha" name="senha-confirmada" required minlength="8" maxlength="50">
                 <ion-icon class="icone toggleSenha" name="eye-off-outline"></ion-icon>
             </div>
-            <a href="login.html" class="botao-secundario">Já possui uma conta?</a>
+            <a href="/login" class="botao-secundario">Já possui uma conta?</a>
             <div class="botao-container">
                 <input type="submit" class="botao" id="botao-cadastro" value="Cadastrar">
             </div>
@@ -54,12 +54,12 @@
 
         // Quem já tem conta não precisa passar pelo cadastro de novo
         if (localStorage.getItem('userId')) {
-            window.location.replace('../index.html');
+            window.location.replace('/home');
         }
 
         if (window.location.protocol === 'file:') {
             msg.style.color = '#a80a0a';
-            msg.textContent = 'Abra esta página pelo servidor: http://localhost:8080/TelasIniciais/cadastro.html';
+            msg.textContent = 'Abra esta página pelo servidor: http://localhost:8080/cadastro';
         }
 
         function mostrarErro(texto) {
@@ -72,7 +72,7 @@
             msg.textContent = '';
 
             if (window.location.protocol === 'file:') {
-                mostrarErro('Use http://localhost:8080/TelasIniciais/cadastro.html (não abra o arquivo direto).');
+                mostrarErro('Use http://localhost:8080/cadastro (não abra o arquivo direto).');
                 return;
             }
 
@@ -107,9 +107,17 @@
                 if (res.ok) {
                     const usuario = JSON.parse(texto);
                     localStorage.setItem('userId', usuario.id);
+
+                    // login automático pra criar a sessão do Spring Security
+                    await fetch('/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams({ email, senha })
+                    });
+
                     msg.style.color = '#1a7a3a';
                     msg.textContent = 'Cadastro realizado! Redirecionando...';
-                    setTimeout(() => { window.location.href = '../index.html'; }, 800);
+                    setTimeout(() => { window.location.href = '/home'; }, 800);
                     return;
                 }
 
@@ -133,6 +141,7 @@
             }
         });
 
+        // ===================== BOLHAS =====================
         const canvas = document.getElementById('bolhas');
         const ctx = canvas.getContext('2d');
 
@@ -196,9 +205,23 @@
         }
 
         animar();
+
+        // ===================== TOGGLE SENHA =====================
+        document.querySelectorAll('.toggleSenha').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const input = this.parentElement.querySelector('input');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    this.name = 'eye-outline';
+                } else {
+                    input.type = 'password';
+                    this.name = 'eye-off-outline';
+                }
+            });
+        });
     </script>
 
-    <script src="senha.js"></script>
+    <script src="/TelasIniciais/senha.js"></script>
 </body>
 
 </html>
