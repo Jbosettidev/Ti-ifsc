@@ -8,44 +8,42 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    <link rel="stylesheet" href="/TelasIniciais/style.css">
-    <link rel="icon" href="/TelasIniciais/img/logo-capuz.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo-capuz.png" type="image/png">
 </head>
 
 <body>
     <form id="form-login" action="/login" method="post">
         <div class="card-total">
-            <img src="/TelasIniciais/img/logo-capuz.png" class="imagem" alt="Logo">
+            <img src="img/logo-capuz.png" class="imagem" alt="Logo">
             <h2 class="titulo">Bem vindo de volta!</h2>
 
             <div class="inputbox">
-                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="email" id="email" placeholder="Email" required>
                 <ion-icon class="icone" name="mail"></ion-icon>
             </div>
             <div class="inputbox">
-                <input type="password" id="senha" name="senha" placeholder="Senha" required minlength="8">
+                <input type="password" id="senha" placeholder="Senha" required minlength="8">
                 <ion-icon class="icone toggleSenha" name="eye-off-outline"></ion-icon>
             </div>
 
-            <a href="/TelasIniciais/senha1.html" class="botao-secundario">Esqueceu a senha?</a>
+            <a href="senha1.html" class="botao-secundario">Esqueceu a senha?</a>
 
             <div class="botao-container">
                 <input type="submit" class="botao" id="botao-login" value="Entrar">
-                <input type="button" onclick="window.location.href='/TelasIniciais/cadastro.html';" class="botao" value="Cadastrar">
+                <input type="button" onclick="window.location.href='cadastro.html';" class="botao" value="Cadastrar">
             </div>
-
-            <div id="msg" style="text-align: center; margin-top: 1rem; font-weight: 600;">
-                <span id="mensagemErro"></span>
-            </div>
+            <p id="msg" style="text-align: center; margin-top: 1rem; color: #26215C; font-weight: 600;"></p>
         </div>
     </form>
     <canvas id="bolhas"></canvas>
 
-    <script src="/TelasIniciais/senha.js"></script>
+    <script src="senha.js"></script>
     <script>
-        // ===================== MENSAGENS DE ERRO/SUCESSO =====================
-        const msg = document.getElementById('mensagemErro');
-        const urlParams = new URLSearchParams(window.location.search);
+        const form = document.getElementById('form-login');
+        const msg = document.getElementById('msg');
+        const botao = document.getElementById('botao-login');
+        const apiUrl = window.location.origin + '/usuarios/login';
 
         if (urlParams.get('error')) {
             msg.style.color = '#a80a0a';
@@ -62,6 +60,69 @@
         }
 
         // ===================== BOLHAS =====================
+        if (localStorage.getItem('userId')) {
+            window.location.replace('../index.html');
+        }
+
+        if (window.location.protocol === 'file:') {
+            msg.style.color = '#a80a0a';
+            msg.textContent = 'Abra pelo servidor: http://localhost:8080/TelasIniciais/login.html';
+        }
+
+        function mostrarErro(texto) {
+            msg.style.color = '#a80a0a';
+            msg.textContent = texto;
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            msg.textContent = '';
+
+            if (window.location.protocol === 'file:') {
+                mostrarErro('Use http://localhost:8080/TelasIniciais/login.html');
+                return;
+            }
+
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value;
+
+            botao.disabled = true;
+            botao.textContent = 'Entrando...';
+
+            try {
+                const res = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha })
+                });
+
+                const texto = await res.text();
+
+                if (res.ok) {
+                    const usuario = JSON.parse(texto);
+                    localStorage.setItem('userId', usuario.id);
+                    msg.style.color = '#1a7a3a';
+                    msg.textContent = 'Login realizado! Redirecionando...';
+                    setTimeout(() => { window.location.href = '../index.html'; }, 600);
+                    return;
+                }
+
+                try {
+                    const erro = JSON.parse(texto);
+                    mostrarErro(erro.message || texto);
+                } catch {
+                    mostrarErro(texto || 'E-mail ou senha incorretos.');
+                }
+            } catch {
+                mostrarErro('E-mail ou senha incorretos.');
+            } finally {
+                if (msg.textContent !== 'Login realizado! Redirecionando...') {
+                    botao.disabled = false;
+                    botao.textContent = 'Entrar';
+                }
+            }
+        });
+
         const canvas = document.getElementById('bolhas');
         const ctx = canvas.getContext('2d');
 
@@ -126,18 +187,6 @@
         }
 
         animar();
-
-        // ===================== TOGGLE SENHA =====================
-        document.querySelector('.toggleSenha')?.addEventListener('click', function() {
-            const input = document.getElementById('senha');
-            if (input.type === 'password') {
-                input.type = 'text';
-                this.name = 'eye-outline';
-            } else {
-                input.type = 'password';
-                this.name = 'eye-off-outline';
-            }
-        });
     </script>
 </body>
 
