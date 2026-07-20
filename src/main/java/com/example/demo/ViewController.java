@@ -4,33 +4,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+/**
+ * Expõe páginas HTML estáticas com URL "limpa" (sem {@code .html} visível no navegador).
+ * <p>
+ * Para um GET {@code /perfil}, o método faz um <strong>forward</strong> interno para
+ * {@code /perfil.html} (arquivos em {@code src/main/resources/static/}). O navegador
+ * continua mostrando {@code /perfil}; não há nova requisição HTTP como em
+ * {@code redirect:}, onde a URL mudaria para {@code /perfil.html}.
+ * <p>
+ * O padrão do path usa regex no {@link PathVariable}: aceita um segmento com letras,
+ * números e hífen, mas <strong>exclui</strong> o valor exato {@code api}, para não
+ * competir com endpoints REST tipicamente prefixados por {@code /api}.
+ */
 @Controller
 public class ViewController {
 
-    // Mapeamento específico para páginas principais
-    @GetMapping("/login")
-    public String login() {
-        return "forward:/TelasIniciais/login.html";
-    }
-
-    @GetMapping("/cadastro")
-    public String cadastro() {
-        return "forward:/TelasIniciais/cadastro.html";
-    }
-
-    @GetMapping("/home")
-    public String home() {
-        return "forward:/TelasIniciais/index.html";
-    }
-
-    @GetMapping("/nova-senha")
-    public String novaSenha() {
-        return "forward:/TelasIniciais/nova-senha.html";
-    }
-
-    // Mapeamento genérico para outras páginas
-    @GetMapping("/{pagina:^(?!api$|login$|cadastro$|home$|senha1$|nova-senha$)[a-zA-Z0-9-]+$}")
+    /**
+     * @param pagina nome do arquivo sem extensão (ex.: {@code perfil} → {@code /perfil.html})
+     * @return view name com prefixo {@code forward:} para o Spring despachar o recurso estático
+     */
+    @GetMapping("/{pagina:^(?!api$)[a-zA-Z0-9-]+$}")
     public String carregarPagina(@PathVariable String pagina) {
-        return "forward:/TelasIniciais/" + pagina + ".html";
+        return "forward:/" + pagina + ".html";
     }
 }

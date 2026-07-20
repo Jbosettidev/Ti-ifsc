@@ -1,21 +1,3 @@
-# SecureByte - Cybersecurity Web App for Teens
-
-**Academic Project (Integrative Work)**  
-Accessible language for young people — the basics of digital security.
-
-## Objective
-Teach the essentials that matter on the internet — passwords, scams, phishing, and privacy — all in one place.  
-The focus is on developing safe habits simply and progressively, recognising common risks (fake messages, false urgency, profile cloning), and offering practical activities with progress tracking and achievements.
-
-## Topics Covered
-Topic  Why It Matters 
-Strong and unique passwords, Fewer accounts compromised in chain attacks
-Phishing and suspicious links, Very common attack vector in email and social media
-Urgency and "relative in trouble" scams, Social engineering that specifically targets teens
-Privacy and what not to post, Less exposure to online abuse
-Official apps and updates, Less malware and fewer fake apps
-
----
 # Base Package
 com.example.demo
 
@@ -49,7 +31,7 @@ DELETE /resources/{id}
 
 Cross-domain relationship: /usuarios/{usuarioId}/medalhas, /usuarios/{usuarioId}/medalhas/{medalhaId}
 
-**Rules:**
+Rules:
 - plural, lowercase nouns
 - no verbs in the URL
 - /{id} for a specific resource

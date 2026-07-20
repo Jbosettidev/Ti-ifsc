@@ -1,151 +1,64 @@
 {
-  "1": {
-    "titulo": "Missão 1 - O Mundo Digital",
-    "xp": 100,
-    "medalha": "Primeiros Passos",
-    "secoes": [
-
-      {
-        "tipo": "hero",
-        "titulo": "🛡️ Bem-vindo ao SecureByte!",
-        "texto": "Nesta missão você conhecerá os conceitos fundamentais da Segurança da Informação e entenderá por que proteger seus dados é tão importante."
-      },
-
-      {
-        "tipo": "texto",
-        "titulo": "🌍 O mundo está conectado",
-        "texto": "Hoje usamos a internet para conversar, estudar, trabalhar, fazer compras, utilizar o PIX e acessar diversos serviços. Tudo isso acontece em um ambiente chamado ciberespaço."
-      },
-
-      {
-        "tipo": "imagem",
-        "titulo": "Ciberespaço",
-        "imagem": "img/ciberespaco.png",
-        "legenda": "Milhões de dispositivos estão conectados à internet."
-      },
-
-      {
-        "tipo": "quiz",
-        "pergunta": "Qual destas atividades acontece no ciberespaço?",
-        "alternativas": [
-          "Comprar online",
-          "Enviar mensagens",
-          "Fazer um PIX",
-          "Todas as anteriores"
-        ],
-        "correta": 3,
-        "explicacao": "Todas utilizam serviços digitais."
-      },
-
-      {
-        "tipo": "texto",
-        "titulo": "🔐 O que é Segurança da Informação?",
-        "texto": "A Segurança da Informação protege dados contra perda, alteração, vazamento ou acesso não autorizado."
-      },
-
-      {
-        "tipo": "curiosidade",
-        "texto": "💡 A informação é considerada um dos ativos mais valiosos de empresas e governos."
-      },
-
-      {
-        "tipo": "texto",
-        "titulo": "🛡️ O que é Cibersegurança?",
-        "texto": "A cibersegurança reúne práticas e tecnologias para proteger computadores, celulares, redes e sistemas contra ataques digitais."
-      },
-
-      {
-        "tipo": "cards",
-        "titulo": "Os três pilares",
-        "cards": [
-          {
-            "titulo": "🔒 Confidencialidade",
-            "texto": "Somente pessoas autorizadas podem acessar a informação."
-          },
-          {
-            "titulo": "✔ Integridade",
-            "texto": "A informação não deve ser alterada indevidamente."
-          },
-          {
-            "titulo": "🟢 Disponibilidade",
-            "texto": "Os dados devem estar disponíveis quando necessários."
-          }
+    "1": {
+        "titulo": "SecureByte: Introdução",
+        "secoes": [
+            {
+                "classe": "secao1",
+                "titulo": "bem vinmdooooo"
+            },
+            {
+                "tipo": "texto",
+                "titulo": "Bem-vindo",
+                "subtitulo": "Bem-vindo mesmo",
+                "texto": "Essa é a introdução do curso.",
+                "imagem": "img/cadeado.jpg",
+                "alt": "imagem",
+                "classe": "hero"
+            },
+            {
+                "tipo": "texto",
+                "titulo": "O que é segurança digital?",
+                "texto": "Segurança digital é a proteção das suas informações na internet.",
+                "classe": "Conteudo"
+            },
+            {
+                "tipo": "texto",
+                "titulo": "Dicas de senha",
+                "classe": "dicas",
+                "wrapper_classe": "grid-cards",
+                "filhos": [
+                    {
+                        "tipo": "div",
+                        "classe": "card",
+                        "texto": "Use letras maiúsculas"
+                    },
+                    {
+                        "tipo": "div",
+                        "classe": "card",
+                        "texto": "Use números"
+                    },
+                    {
+                        "tipo": "div",
+                        "classe": "card",
+                        "texto": "Use símbolos"
+                    }
+                ]
+            }
         ]
-      },
-
-      {
-        "tipo": "texto",
-        "titulo": "👤 Seus dados têm valor",
-        "texto": "Nome, CPF, endereço, fotos e senhas são exemplos de dados pessoais que devem ser protegidos."
-      },
-
-      {
-        "tipo": "quiz",
-        "pergunta": "Qual destes é um dado pessoal?",
-        "alternativas": [
-          "CPF",
-          "Mouse",
-          "Monitor",
-          "Teclado"
-        ],
-        "correta": 0
-      },
-
-      {
-        "tipo": "texto",
-        "titulo": "🌐 Identidade Digital",
-        "texto": "Sempre que utilizamos a internet deixamos rastros digitais, mesmo sem usar redes sociais."
-      },
-
-      {
-        "tipo": "video",
-        "titulo": "Como funcionam os Cookies",
-        "url": "https://youtube.com/..."
-      },
-
-      {
-        "tipo": "texto",
-        "titulo": "👨‍💻 Tipos de invasores",
-        "texto": "Nem todos os hackers possuem o mesmo objetivo. Alguns ajudam empresas, enquanto outros cometem crimes digitais."
-      },
-
-      {
-        "tipo": "cards",
-        "titulo": "Conheça os hackers",
-        "cards": [
-          {
-            "titulo": "🟢 White Hat",
-            "texto": "Invade sistemas com autorização para encontrar falhas."
-          },
-          {
-            "titulo": "🟡 Gray Hat",
-            "texto": "Encontra vulnerabilidades sem autorização, mas nem sempre possui intenção criminosa."
-          },
-          {
-            "titulo": "🔴 Black Hat",
-            "texto": "Explora falhas para obter vantagens ilegais."
-          }
+    },
+    "2": {
+        "titulo": "SecureByte: Senhas",
+        "secoes": [
+            {
+                "tipo": "texto",
+                "titulo": "O perigo das senhas fracas",
+                "texto": "Senhas simples podem ser descobertas rapidamente."
+            },
+            {
+                "tipo": "texto",
+                "titulo": "Como criar senhas fortes?",
+                "texto": "Use letras maiúsculas, números e símbolos."
+            }
         ]
-      },
-
-      {
-        "tipo": "quiz",
-        "pergunta": "Qual hacker atua com autorização da empresa?",
-        "alternativas": [
-          "Black Hat",
-          "Gray Hat",
-          "White Hat",
-          "Script Kiddie"
-        ],
-        "correta": 2
-      },
-
-      {
-        "tipo": "conclusao",
-        "titulo": "🎉 Missão concluída!",
-        "texto": "Parabéns! Agora você conhece os conceitos básicos da Segurança da Informação."
-      }
-
-    ]
-  }
+    }
 }

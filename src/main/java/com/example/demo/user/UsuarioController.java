@@ -1,106 +1,68 @@
 package com.example.demo.user;
 
-import com.example.demo.excessoes.ApiResponse;
-import jakarta.validation.Valid;
+import com.example.demo.excessoes.GlobalExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*") //libera a pagina web ter acesso a recursos restritos do webMvc
 public class UsuarioController {
 
     @Autowired
     private UsuarioServices usuarioServices;
 
-    // Records para transporte de dados
-    record AtualizarEmailRequest(String senha, String novoEmail) {}
-    record LoginRequest(String email, String senha) {}
+    record AtualizarEmailRequest(String senha, String novoEmail) {
+    } //serve pro transporte de dados
+
+    record LoginRequest(String email, String senha) {
+    }//serve pro transporte de dados
 
     @PostMapping
-    public ResponseEntity<ApiResponse> criar(@Valid @RequestBody Usuario usuario) {
-        Usuario usuarioSalvo = usuarioServices.salvar(usuario);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(
-                new ApiResponse(
-                        HttpStatus.CREATED.value(),
-                        "Usuário criado com sucesso",
-                        "/usuarios/" + usuarioSalvo.getId(),
-                        usuarioSalvo.getId()  // ← AGORA FUNCIONA!
-                )
-        );
+    public Usuario criarUsuario(@RequestBody Usuario usuario) {
+        try {
+            return usuarioServices.salvar(usuario);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Dados incorretos");
+        }
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<ApiResponse> login(@Valid @RequestBody LoginRequest req) {
-        Usuario usuario = usuarioServices.autenticar(req.email, req.senha);
-
-        return ResponseEntity.ok(
-                new ApiResponse(
-                        HttpStatus.OK.value(),
-                        "Login realizado com sucesso",
-                        "/usuarios/" + usuario.getId(),
-                        usuario.getId()  // ← AGORA FUNCIONA!
-                )
-        );
+    @PostMapping("/login") //new
+    public Usuario login(@RequestBody LoginRequest req) {
+        try {
+            return usuarioServices.autenticar(req.email(), req.senha());
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Dados incorretos");  // teste
+        }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(usuarioServices.buscar(id));
+    public Usuario buscarPorId(@PathVariable Long id) {
+        return usuarioServices.buscar(id);
     }
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listarUsuarios() {
-        return ResponseEntity.ok(usuarioServices.listarTodos());
+    public List<Usuario> listarUsuarios() {
+        return usuarioServices.listarTodos();
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ApiResponse> atualizarParcial(
-            @PathVariable Long id,
-            @Valid @RequestBody Usuario dados) {
-
-        Usuario usuarioAtualizado = usuarioServices.atualizarParcial(id, dados);
-
-        return ResponseEntity.ok(
-                new ApiResponse(
-                        HttpStatus.OK.value(),
-                        "Usuário atualizado com sucesso",
-                        "/usuarios/" + id
-                )
-        );
+    public Usuario atualizar(@PathVariable Long id, @RequestBody Usuario dados) {
+        return usuarioServices.atualizarParcial(id, dados);
     }
 
-    @PatchMapping("/{id}/seguranca")
-    public ResponseEntity<ApiResponse> atualizarEmail(
-            @PathVariable Long id,
-            @Valid @RequestBody AtualizarEmailRequest req) {
-
-        Usuario usuarioAtualizado = usuarioServices.atualizarEmail(id, req.senha, req.novoEmail);
-
-        return ResponseEntity.ok(
-                new ApiResponse(
-                        HttpStatus.OK.value(),
-                        "Email atualizado com sucesso",
-                        "/usuarios/" + id
-                )
-        );
+    @PatchMapping("/{id}/seguranca") //new funcionando tomar cuidado com o return null
+    public Usuario atualizarEmail(@PathVariable Long id, @RequestBody AtualizarEmailRequest req) {
+        try {
+            return usuarioServices.atualizarEmail(id, req.senha(), req.novoEmail());
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Dados incorretos");
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse> deletarUsuario(@PathVariable Long id) {
+    public void deletarUsuario(@PathVariable Long id) {
         usuarioServices.deletar(id);
-
-        return ResponseEntity.ok(
-                new ApiResponse(
-                        HttpStatus.OK.value(),
-                        "Usuário deletado com sucesso",
-                        "/usuarios/" + id
-                )
-        );
     }
 }
