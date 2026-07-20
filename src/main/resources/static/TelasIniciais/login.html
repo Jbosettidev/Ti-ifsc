@@ -13,13 +13,6 @@
 </head>
 
 <body>
-    <script>
-    // Se caiu aqui no login, é pq não tem sessão válida no servidor.
-    // Qualquer userId salvo no localStorage tá desatualizado - limpa sozinho.
-    if (localStorage.getItem('userId')) {
-        localStorage.removeItem('userId');
-    }
-    </script>
     <form id="form-login" action="/login" method="post">
         <div class="card-total">
             <img src="/TelasIniciais/img/logo-capuz.png" class="imagem" alt="Logo">
@@ -61,9 +54,14 @@
             msg.style.color = '#1a7a3a';
             msg.textContent = 'Você saiu com sucesso!';
         }
+
+        // ===================== VERIFICAR SE JÁ ESTÁ LOGADO =====================
+        // ✅ Se já tem userId, redireciona para home (NÃO remove)
         if (localStorage.getItem('userId')) {
-            window.location.replace('/TelasIniciais/index.html');
-         }
+            window.location.replace('/home');
+        }
+
+        // ===================== BOLHAS =====================
         const canvas = document.getElementById('bolhas');
         const ctx = canvas.getContext('2d');
 
