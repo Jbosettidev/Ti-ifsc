@@ -1,0 +1,103 @@
+{
+  "id": "3-6",
+  "trilha": 3,
+  "missao": 6,
+  "titulo": "Cookies: quem está de olho",
+  "objetivo": "Entender o que são cookies e diferenciar os 3 tipos principais (sessão, persistentes, de terceiros).",
+  "duracaoEstimada": "4 min",
+  "xp": 30,
+  "proximaMissao": "3-7",
+  "secoes": [
+    {
+      "tipo": "hero",
+      "titulo": "Uma forma comum de deixar rastro",
+      "texto": "Lembra da sua 'pegada digital', na Trilha 1? Os cookies são uma das formas mais comuns de deixar rastro. Vamos entender como funcionam."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "O que são",
+      "texto": "Cookies são pequenos arquivos de texto guardados no seu dispositivo enquanto você navega. Eles têm funções diferentes dependendo do tipo."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Cookies de sessão",
+      "texto": "São temporários - existem só enquanto o navegador está aberto. É o que mantém seu carrinho de compras cheio enquanto você navega num site."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Cookies persistentes",
+      "texto": "Ficam salvos por um tempo definido (semanas ou meses), guardando preferências ou mantendo seu login ativo em sites que você usa com frequência."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Cookies de terceiros",
+      "texto": "Usados por empresas de anúncios pra rastrear sua navegação em vários sites diferentes, personalizando os anúncios que você vê."
+    },
+    {
+      "tipo": "cards",
+      "titulo": "Resumo comparativo",
+      "wrapper_classe": "grid-cards",
+      "filhos": [
+        { "tipo": "div", "classe": "card", "titulo": "Sessão", "texto": "Some quando você fecha o navegador." },
+        { "tipo": "div", "classe": "card", "titulo": "Persistente", "texto": "Fica salvo por semanas ou meses." },
+        { "tipo": "div", "classe": "card", "titulo": "Terceiros", "texto": "Rastreia você em vários sites, pra anúncios." }
+      ]
+    },
+    {
+      "tipo": "video",
+      "titulo": "O que são cookies",
+      "sugestaoBusca": "o que são cookies na internet explicado",
+      "duracaoEstimada": "1-2 min",
+      "observacao": "Sem link verificado ainda."
+    },
+    {
+      "tipo": "quiz",
+      "perguntas": [
+        {
+          "pergunta": "Qual tipo de cookie mantém seu carrinho de compras enquanto você navega?",
+          "opcoes": ["Cookie de sessão", "Cookie persistente", "Cookie de terceiros"],
+          "respostaCorreta": 0,
+          "explicacao": "Cookies de sessão existem apenas durante a navegação atual."
+        },
+        {
+          "pergunta": "Qual tipo de cookie é usado para rastrear você em vários sites diferentes?",
+          "opcoes": ["Cookie de sessão", "Cookie persistente", "Cookie de terceiros"],
+          "respostaCorreta": 2,
+          "explicacao": "Cookies de terceiros são usados por anunciantes para rastreamento entre sites."
+        }
+      ]
+    },
+    {
+      "tipo": "jogo",
+      "subtipo": "cenario-multipla-escolha",
+      "instrucao": "Que cookie é esse?",
+      "rodadas": [
+        {
+          "situacao": "Seu carrinho de compras continua cheio enquanto você navega no mesmo site.",
+          "opcoes": ["Sessão", "Persistente", "Terceiros"],
+          "respostaCorreta": "Sessão"
+        },
+        {
+          "situacao": "Você fecha e abre o navegador semanas depois e continua logado.",
+          "opcoes": ["Sessão", "Persistente", "Terceiros"],
+          "respostaCorreta": "Persistente"
+        },
+        {
+          "situacao": "Você pesquisa um produto e passa a ver anúncios dele em sites diferentes.",
+          "opcoes": ["Sessão", "Persistente", "Terceiros"],
+          "respostaCorreta": "Terceiros"
+        }
+      ]
+    },
+    {
+      "tipo": "conclusao",
+      "resumo": [
+        "Cookies de sessão somem ao fechar o navegador.",
+        "Persistentes ficam salvos por tempo determinado.",
+        "De terceiros rastreiam você entre sites diferentes."
+      ],
+      "xp": 30,
+      "proximaMissao": "3-7"
+    }
+  ]
+}

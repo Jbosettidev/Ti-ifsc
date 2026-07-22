@@ -1,0 +1,85 @@
+{
+  "id": "4-1",
+  "trilha": 4,
+  "missao": 1,
+  "titulo": "Reconhecendo os sinais de infecção",
+  "objetivo": "Aprender a identificar sinais comuns de que um dispositivo está infectado, e entender que o primeiro passo é não entrar em pânico.",
+  "duracaoEstimada": "4 min",
+  "xp": 30,
+  "primeiraMissaoDaTrilha": true,
+  "proximaMissao": "4-2",
+  "secoes": [
+    {
+      "tipo": "hero",
+      "titulo": "Sinais que ajudam a identificar cedo",
+      "texto": "Mesmo com todo cuidado, às vezes um dispositivo é infectado. A boa notícia: existem sinais que ajudam a identificar isso cedo - e resolver o problema."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Os sinais mais comuns",
+      "texto": "Lentidão fora do comum, apps abrindo sozinhos, bateria acabando rápido demais, pop-ups aparecendo o tempo todo, e mensagens enviadas que você não lembra de ter escrito."
+    },
+    {
+      "tipo": "cards",
+      "titulo": "Sinais de alerta",
+      "wrapper_classe": "grid-cards",
+      "filhos": [
+        { "tipo": "div", "classe": "card", "titulo": "Lentidão", "texto": "Lentidão repentina e sem explicação." },
+        { "tipo": "div", "classe": "card", "titulo": "Apps sozinhos", "texto": "Apps ou sites abrindo sozinhos." },
+        { "tipo": "div", "classe": "card", "titulo": "Mensagens estranhas", "texto": "Mensagens ou e-mails enviados que você não escreveu." }
+      ]
+    },
+    {
+      "tipo": "curiosidade",
+      "titulo": "A maioria dos casos tem solução",
+      "texto": "Se o seu dispositivo apresenta um ou mais desses sinais, a primeira reação não deve ser pânico. A maioria dos casos de infecção tem solução, seguindo alguns passos - que você vai aprender na próxima missão."
+    },
+    {
+      "tipo": "video",
+      "titulo": "Sinais de infecção",
+      "sugestaoBusca": "sinais de que o celular está infectado",
+      "duracaoEstimada": "1-2 min",
+      "observacao": "Sem link verificado ainda."
+    },
+    {
+      "tipo": "quiz",
+      "perguntas": [
+        {
+          "pergunta": "Qual desses é um sinal comum de dispositivo infectado?",
+          "opcoes": ["Apps abrindo sozinhos, sem você tocar em nada", "O celular estar com pouca memória disponível", "A tela estar com brilho baixo"],
+          "respostaCorreta": 0,
+          "explicacao": "Apps abrindo sozinhos são um sinal clássico de comportamento anômalo por infecção."
+        },
+        {
+          "pergunta": "Qual é a primeira reação recomendada ao notar sinais de infecção?",
+          "opcoes": ["Entrar em pânico e desligar o celular pra sempre", "Manter a calma - a maioria dos casos tem solução", "Ignorar, provavelmente vai passar sozinho"],
+          "respostaCorreta": 1,
+          "explicacao": "Manter a calma permite seguir os passos corretos de remoção sem prejudicar mais o dispositivo."
+        }
+      ]
+    },
+    {
+      "tipo": "jogo",
+      "subtipo": "classificar-2-categorias",
+      "instrucao": "É sinal de infecção ou é normal?",
+      "cronometro": true,
+      "tempoSegundos": 15,
+      "categorias": ["Sinal de alerta", "Normal"],
+      "itens": [
+        { "texto": "Bateria acabando muito mais rápido que o normal", "categoria": "Sinal de alerta" },
+        { "texto": "Celular esquentando um pouco após jogo pesado", "categoria": "Normal" },
+        { "texto": "Pop-ups aparecendo repetidamente, mesmo fora do navegador", "categoria": "Sinal de alerta" },
+        { "texto": "App demorando alguns segundos a mais após atualização", "categoria": "Normal" }
+      ]
+    },
+    {
+      "tipo": "conclusao",
+      "resumo": [
+        "Lentidão incomum, apps abrindo sozinhos e mensagens que você não enviou são sinais de possível infecção.",
+        "Ao notar isso, mantenha a calma - a maioria dos casos tem solução."
+      ],
+      "xp": 30,
+      "proximaMissao": "4-2"
+    }
+  ]
+}

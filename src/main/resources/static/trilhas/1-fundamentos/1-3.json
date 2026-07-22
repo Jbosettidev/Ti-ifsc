@@ -1,0 +1,111 @@
+{
+  "id": "1-3",
+  "trilha": 1,
+  "missao": 3,
+  "titulo": "Sua pegada digital",
+  "objetivo": "Entender que toda pessoa tem identidade digital, mesmo sem redes sociais, porque toda ação na internet deixa rastros coletáveis.",
+  "duracaoEstimada": "4 min",
+  "xp": 35,
+  "proximaMissao": "1-4",
+  "secoes": [
+    {
+      "tipo": "hero",
+      "titulo": "Você tem identidade digital?",
+      "texto": "Você já se perguntou se tem uma 'identidade digital'? Se você usa a internet — mesmo sem Instagram ou TikTok — a resposta é sim."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "O mito",
+      "texto": "Muita gente acha que só tem identidade digital quem usa redes sociais. Não é verdade. Toda vez que você acessa a internet, você deixa rastros — mesmo sem postar nada."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "O que é um rastro digital",
+      "texto": "Sites que você visita, buscas que você faz, o tempo que você fica em cada página: tudo isso pode ser coletado, guardado e analisado — mesmo que você nunca tenha criado uma conta em lugar nenhum."
+    },
+    {
+      "tipo": "curiosidade",
+      "titulo": "Pra que servem esses rastros",
+      "texto": "Esses rastros têm valor. Empresas os usam para te mostrar anúncios mais 'certeiros' — é por isso que, às vezes, parece que o celular está 'escutando' você. Mas em muitos casos, é só o histórico de navegação sendo usado."
+    },
+    {
+      "tipo": "cards",
+      "titulo": "Quem se interessa pelos seus dados",
+      "wrapper_classe": "grid-cards",
+      "filhos": [
+        {
+          "tipo": "div",
+          "classe": "card",
+          "titulo": "Criminosos",
+          "texto": "Podem usar seus rastros para roubo de identidade ou golpes personalizados."
+        },
+        {
+          "tipo": "div",
+          "classe": "card",
+          "titulo": "Empresas",
+          "texto": "Coletam dados de navegação para anúncios direcionados — nem sempre é golpe, mas também merece atenção."
+        }
+      ]
+    },
+    {
+      "tipo": "video",
+      "titulo": "O que é pegada digital",
+      "sugestaoBusca": "o que é pegada digital explicado / rastros digitais na internet explicado simples",
+      "duracaoEstimada": "1-2 min",
+      "observacao": "Sem link verificado ainda — preferir tom não alarmista, o objetivo é consciência, não pânico."
+    },
+    {
+      "tipo": "quiz",
+      "perguntas": [
+        {
+          "pergunta": "Uma pessoa nunca usou redes sociais. Ela tem identidade digital?",
+          "opcoes": [
+            "Sim, toda navegação deixa rastros",
+            "Não, só quem tem redes sociais tem identidade digital",
+            "Só se ela tiver e-mail"
+          ],
+          "respostaCorreta": 0,
+          "explicacao": "Qualquer uso da internet, mesmo sem redes sociais, gera rastros digitais."
+        },
+        {
+          "pergunta": "Por que empresas se interessam pelos seus rastros de navegação?",
+          "opcoes": [
+            "Para vender seus dados a criminosos, sempre",
+            "Para personalizar anúncios com base no seu comportamento",
+            "Elas não têm interesse nenhum nisso"
+          ],
+          "respostaCorreta": 1,
+          "explicacao": "O uso mais comum é personalização de anúncios, embora dados também possam vazar ou ser mal utilizados."
+        }
+      ]
+    },
+    {
+      "tipo": "jogo",
+      "subtipo": "classificar-2-categorias",
+      "instrucao": "Isso deixa rastro digital ou não?",
+      "cronometro": true,
+      "tempoSegundos": 12,
+      "categorias": ["Deixa rastro", "Não deixa rastro"],
+      "itens": [
+        { "texto": "Pesquisar algo no Google", "categoria": "Deixa rastro" },
+        { "texto": "Visitar um site sem fazer login", "categoria": "Deixa rastro" },
+        { "texto": "Postar uma foto no Instagram", "categoria": "Deixa rastro" },
+        { "texto": "Deixar o celular desligado na gaveta", "categoria": "Não deixa rastro" },
+        {
+          "texto": "Usar o navegador em aba anônima",
+          "categoria": "Deixa rastro",
+          "observacao": "Pegadinha leve: aba anônima esconde o histórico local, mas ainda deixa rastro parcial (visível ao site visitado, provedor etc.). Tema aprofundado nas Missões 3.4 e 3.6."
+        }
+      ]
+    },
+    {
+      "tipo": "conclusao",
+      "resumo": [
+        "Todo mundo tem identidade digital, mesmo sem redes sociais.",
+        "Toda ação na internet deixa rastros, que interessam tanto a criminosos quanto a empresas."
+      ],
+      "xp": 35,
+      "proximaMissao": "1-4"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "id": "1-1",
+  "trilha": 1,
+  "missao": 1,
+  "titulo": "Por que a informação vale tanto?",
+  "objetivo": "Entender que informação é um ativo valioso e diferente de um bem físico (não se desgasta, pode ser copiada).",
+  "duracaoEstimada": "3-4 min",
+  "xp": 30,
+  "proximaMissao": "1-2",
+  "secoes": [
+    {
+      "tipo": "hero",
+      "titulo": "Bem-vindo à trilha Fundamentos!",
+      "texto": "Toda jornada de cibersegurança começa com uma pergunta simples: por que alguém se daria ao trabalho de te atacar?"
+    },
+    {
+      "tipo": "texto",
+      "titulo": "O ciberespaço",
+      "texto": "Vivemos conectados por um espaço que não existia há 40 anos: o ciberespaço — a rede de computadores, celulares e sistemas conversando entre si o tempo todo."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Informação como ativo",
+      "texto": "Nesse espaço, a informação virou um dos bens mais valiosos que existem. E diferente de um carro ou uma casa, ela não se desgasta com o uso."
+    },
+    {
+      "tipo": "curiosidade",
+      "titulo": "Você sabia?",
+      "texto": "Uma foto, uma senha ou um documento podem ser copiados infinitas vezes — e o original continua intacto. É por isso que 'roubar' dados é diferente de roubar um objeto: às vezes nem percebemos que fomos roubados."
+    },
+    {
+      "tipo": "cards",
+      "titulo": "Bem físico x informação digital",
+      "wrapper_classe": "grid-cards",
+      "filhos": [
+        {
+          "tipo": "div",
+          "classe": "card",
+          "titulo": "Bem físico",
+          "texto": "Se alguém rouba seu celular, você percebe na hora."
+        },
+        {
+          "tipo": "div",
+          "classe": "card",
+          "titulo": "Informação digital",
+          "texto": "Se alguém copia seus dados, o original continua com você — você pode nem saber que foi copiado."
+        }
+      ]
+    },
+    {
+      "tipo": "video",
+      "titulo": "Por que dados pessoais valem tanto",
+      "sugestaoBusca": "o que é ciberespaço explicado simples / por que dados pessoais valem dinheiro",
+      "duracaoEstimada": "1-2 min",
+      "observacao": "Sem link verificado ainda — buscar vídeo curto, animado, sem jargão técnico."
+    },
+    {
+      "tipo": "quiz",
+      "perguntas": [
+        {
+          "pergunta": "O que torna a informação diferente de um bem físico como um carro?",
+          "opcoes": [
+            "Ela pode ser copiada sem se desgastar",
+            "Ela sempre perde valor com o tempo",
+            "Ela não pode ser roubada"
+          ],
+          "respostaCorreta": 0,
+          "explicacao": "Informação pode ser copiada infinitas vezes sem se desgastar — diferente de um bem físico."
+        },
+        {
+          "pergunta": "Por que é mais difícil perceber quando seus dados são roubados, comparado a um objeto físico?",
+          "opcoes": [
+            "Porque o original continua com você — só é copiado",
+            "Porque dados nunca são realmente roubados",
+            "Porque isso só acontece com empresas grandes"
+          ],
+          "respostaCorreta": 0,
+          "explicacao": "Copiar dados não remove o original, por isso a vítima muitas vezes não percebe de imediato."
+        }
+      ]
+    },
+    {
+      "tipo": "jogo",
+      "subtipo": "cenario-escolha",
+      "instrucao": "O que valeria mais para um criminoso roubar?",
+      "cronometro": false,
+      "rodadas": [
+        {
+          "opcaoA": "Sua senha do banco",
+          "opcaoB": "Sua bicicleta",
+          "respostaCorreta": "opcaoA",
+          "explicacao": "A senha do banco dá acesso direto ao seu dinheiro e outras contas."
+        },
+        {
+          "opcaoA": "Seus dados de login das redes sociais",
+          "opcaoB": "Seu fone de ouvido",
+          "respostaCorreta": "opcaoA",
+          "explicacao": "Com acesso à sua conta, um criminoso pode aplicar golpes em seu nome com seus contatos."
+        },
+        {
+          "opcaoA": "Uma foto sua qualquer",
+          "opcaoB": "Seus documentos pessoais escaneados",
+          "respostaCorreta": "opcaoB",
+          "explicacao": "Documentos pessoais podem ser usados para roubo de identidade e fraudes em seu nome."
+        }
+      ]
+    },
+    {
+      "tipo": "conclusao",
+      "resumo": [
+        "Informação é um ativo valioso porque pode ser copiada sem se desgastar.",
+        "Por isso, ela é alvo constante de ataques."
+      ],
+      "xp": 30,
+      "proximaMissao": "1-2"
+    }
+  ]
+}
