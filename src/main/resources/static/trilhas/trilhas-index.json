@@ -1,0 +1,59 @@
+{
+  "trilhas": [
+    {
+      "numero": 1,
+      "titulo": "Fundamentos da Cibersegurança",
+      "descricao": "Entenda por que a informação vale tanto, o que a cibersegurança protege e quem são os invasores.",
+      "bloqueada": false,
+      "missoes": [
+        { "id": "1-1", "titulo": "Por que a informação vale tanto?", "arquivo": "1-fundamentos/1-1.json" },
+        { "id": "1-2", "titulo": "O que é cibersegurança, de verdade?", "arquivo": "1-fundamentos/1-2.json" },
+        { "id": "1-3", "titulo": "Sua pegada digital", "arquivo": "1-fundamentos/1-3.json" },
+        { "id": "1-4", "titulo": "Quem são os invasores?", "arquivo": "1-fundamentos/1-4.json" }
+      ]
+    },
+    {
+      "numero": 2,
+      "titulo": "Malware: conheça o inimigo",
+      "descricao": "Conheça os principais tipos de malware e como cada um age.",
+      "bloqueada": false,
+      "missoes": [
+        { "id": "2-1", "titulo": "Phishing: a isca no anzol", "arquivo": "2-malware/2-1.json" },
+        { "id": "2-2", "titulo": "Scareware: o susto falso", "arquivo": "2-malware/2-2.json" },
+        { "id": "2-3", "titulo": "Worms: a praga que se espalha sozinha", "arquivo": "2-malware/2-3.json" },
+        { "id": "2-4", "titulo": "Spyware: o espião silencioso", "arquivo": "2-malware/2-4.json" },
+        { "id": "2-5", "titulo": "Trojan: o cavalo de Troia digital", "arquivo": "2-malware/2-5.json" },
+        { "id": "2-6", "titulo": "Ransomware: seus arquivos reféns", "arquivo": "2-malware/2-6.json" },
+        { "id": "2-7", "titulo": "Backdoor: a porta secreta", "arquivo": "2-malware/2-7.json" }
+      ]
+    },
+    {
+      "numero": 3,
+      "titulo": "Proteção e Hábitos Seguros",
+      "descricao": "Aprenda hábitos práticos de proteção no dia a dia.",
+      "bloqueada": false,
+      "missoes": [
+        { "id": "3-1", "titulo": "Senhas fortes: a chave que ninguém adivinha", "arquivo": "3-protecao/3-1.json" },
+        { "id": "3-2", "titulo": "Uma senha pra cada coisa", "arquivo": "3-protecao/3-2.json" },
+        { "id": "3-3", "titulo": "Verificação em duas etapas", "arquivo": "3-protecao/3-3.json" },
+        { "id": "3-4", "titulo": "O cadeado da internet", "arquivo": "3-protecao/3-4.json" },
+        { "id": "3-5", "titulo": "Cuidado com o wifi público", "arquivo": "3-protecao/3-5.json" },
+        { "id": "3-6", "titulo": "Cookies: quem está de olho", "arquivo": "3-protecao/3-6.json" },
+        { "id": "3-7", "titulo": "Firewall e antivírus: seus guardas", "arquivo": "3-protecao/3-7.json" },
+        { "id": "3-8", "titulo": "Comprando online com segurança", "arquivo": "3-protecao/3-8.json" },
+        { "id": "3-9", "titulo": "Backup: sua rede de segurança", "arquivo": "3-protecao/3-9.json" }
+      ]
+    },
+    {
+      "numero": 4,
+      "titulo": "Já fui infectado, e agora?",
+      "descricao": "Saiba o que fazer quando um dispositivo é infectado.",
+      "bloqueada": false,
+      "missoes": [
+        { "id": "4-1", "titulo": "Reconhecendo os sinais de infecção", "arquivo": "4-resposta-incidente/4-1.json" },
+        { "id": "4-2", "titulo": "Removendo a ameaça, passo a passo", "arquivo": "4-resposta-incidente/4-2.json" },
+        { "id": "4-3", "titulo": "Quando tudo mais falha", "arquivo": "4-resposta-incidente/4-3.json" }
+      ]
+    }
+  ]
+}
