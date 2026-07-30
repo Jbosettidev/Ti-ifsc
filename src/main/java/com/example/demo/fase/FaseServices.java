@@ -1,21 +1,22 @@
 package com.example.demo.fase;
 
+import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 /**
  * Regras de negócio e persistência de {@link Fase} via {@link FaseRepository}.
  */
 @Service
+@RequiredArgsConstructor
 public class FaseServices {
 
-    @Autowired
-    private static FaseRepository faseRepository;
+    private final FaseRepository faseRepository;
 
     /** Persiste uma nova fase ou atualiza conforme o estado da entidade. */
-    public static Fase salvar(Fase fase) {
+    public Fase salvar(Fase fase) {
         return faseRepository.save(fase);
     }
 
@@ -26,6 +27,7 @@ public class FaseServices {
 
         return faseRepository.save(fase);
     }
+
     public Fase buscar(Long id) {
         return faseRepository.findById(id).orElseThrow();
     }
@@ -40,15 +42,18 @@ public class FaseServices {
 
         if (dados.getTitulo() != null) {
             fase.setTitulo(dados.getTitulo());
-        }if (dados.getDescricao() != null) {
+        }
+        if (dados.getDescricao() != null) {
             fase.setDescricao(dados.getDescricao());
-        }if (dados.getConcluida() != null) {
+        }
+        if (dados.getConcluida() != null) {
             fase.setConcluida(dados.getConcluida());
-        }return faseRepository.save(fase);
+        }
+        return faseRepository.save(fase);
     }
 
     public void deletar(Long id) {
-        if (faseRepository.existsById(id)) {
+        if (!faseRepository.existsById(id)) {
             throw new RuntimeException("Fase não encontrada");
         }
         faseRepository.deleteById(id);

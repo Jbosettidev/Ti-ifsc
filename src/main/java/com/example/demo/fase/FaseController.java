@@ -24,7 +24,7 @@ public class FaseController {
 
     @PostMapping
     public Fase criarFase(@RequestBody Fase fase) {
-        return FaseServices.salvar(fase);
+        return faseServices.salvar(fase);
     }
 
     @GetMapping("/{id}")
