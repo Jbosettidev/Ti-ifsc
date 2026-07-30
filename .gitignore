@@ -1,5 +1,4 @@
 HELP.md
-.env
 .env.local
 .env.*.local
 .env.production
@@ -31,6 +30,3 @@ target/
 
 ### VS Code ###
 .vscode/
-
-### Configurações locais e Senhas ###
-*.properties
