@@ -180,6 +180,8 @@ progress::-webkit-progress-value {
     padding-bottom: 120px;
 }
 
+/*CONQUISTAS JA ADQUIRIDAS*/
+
 .conquistas {
     display: flex;
     justify-content: space-between;
@@ -245,6 +247,71 @@ progress::-webkit-progress-value {
     transform: rotate(10deg) scale(1.1);
 }
 
+/*CONQUISTAS BLOQUEADAS*/
+
+.conquistas-bloqueadas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #EEEDFE 2%, #CECBF6 50%, #9279e9 100%);
+    box-shadow: -8px 9px 5px -4px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    max-width: 450px;
+    width: 100%;
+    padding: 20px;
+    gap: 15px;
+    flex: 1 1 400px;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+}
+
+.conquistas-bloqueadas {
+    transform: translateY(-8px) scale(1.02);
+    background: linear-gradient(135deg, #EEEDFE 2%, #dedee7 50%, #dfdce7 100%);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: linear-gradient(135deg, #EEEDFE 2%, #CECBF6 50%, #dfdceb 100%);
+}
+
+.conquistas-bloqueadas:hover .titulo-conquistas-bloqueadas,
+.conquistas-bloqueadas:hover .descricao-conquista-bloqueadas {
+    color: var(--roxo-forte);
+}
+
+.conquista-bloqueadas-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.titulo-conquistas-bloqueadas {
+    color: var(--roxo-forte);
+    margin: 0;
+    font-size: 1.2rem;
+    transition: color 0.4s;
+
+}
+
+.descricao-conquista-bloqueadas{
+    color: #444;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+
+}
+
+.medalha-imagem-bloqueadas{
+    width: 70px;
+    height: auto;
+    flex-shrink: 0;
+    transition: transform 0.4s ease;
+}
+
+.conquistas-bloqueadas:hover .medalha-imagem-bloqueadas {
+    transform: rotate(10deg) scale(1.1);
+}
+
 @media (max-width: 480px) {
     .caixa_conquistas {
         padding: 1.5rem 1rem;
@@ -255,7 +322,7 @@ progress::-webkit-progress-value {
         flex-direction: row;
         /* volta a ficar lado a lado */
         gap: 0.5rem;
-        /* reduzido pra caber melhor em telas estreitas */
+        /* reduzido pra caber melhor em telas + estreitas */
     }
 
     .progresso h2 {
