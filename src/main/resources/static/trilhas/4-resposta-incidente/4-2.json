@@ -1,0 +1,98 @@
+{
+  "id": "4-2",
+  "trilha": 4,
+  "missao": 2,
+  "titulo": "Removendo a ameaça, passo a passo",
+  "objetivo": "Aprender a sequência correta de ações para remover uma infecção: desconectar da internet, modo de segurança, desinstalar apps suspeitos, rodar antivírus e limpar navegador/cache.",
+  "duracaoEstimada": "5 min",
+  "xp": 40,
+  "proximaMissao": "4-3",
+  "secoes": [
+    {
+      "tipo": "hero",
+      "titulo": "A parte prática",
+      "texto": "Identificou os sinais? Agora vem a parte prática: os passos pra remover a ameaça e recuperar seu dispositivo."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Etapa 1: Desconecte da internet",
+      "texto": "Desligue wifi e dados móveis. A maioria dos malwares só consegue roubar mais dados ou se espalhar enquanto o dispositivo está conectado."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Etapa 2: Modo de segurança",
+      "texto": "Reinicie o dispositivo no modo seguro. Isso desativa temporariamente apps de terceiros, facilitando encontrar o que está causando o problema."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Etapa 3: Desinstale o suspeito",
+      "texto": "Veja os apps instalados mais recentemente - geralmente é aí que está a causa. Desinstale qualquer um que pareça suspeito ou que você não reconheça."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Etapa 4: Rode um antivírus confiável",
+      "texto": "Use um antivírus conhecido pra verificar se ainda há resquícios de malware. Desconfie de apps 'milagrosos' que prometem limpar tudo em segundos."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Etapa 5: Limpe cache e navegador",
+      "texto": "Limpe os dados de navegação (histórico, cookies, cache) e revise as extensões instaladas no navegador - algumas podem estar comprometidas."
+    },
+    {
+      "tipo": "curiosidade",
+      "titulo": "Cuidado com apps milagrosos",
+      "texto": "Cuidado com aplicativos de 'limpeza mágica' cheios de propaganda - muitos deles não fazem nada de útil, e alguns até pioram o problema."
+    },
+    {
+      "tipo": "video",
+      "titulo": "Como remover vírus passo a passo",
+      "sugestaoBusca": "como remover vírus do celular passo a passo",
+      "duracaoEstimada": "2 min",
+      "observacao": "Sem link verificado ainda."
+    },
+    {
+      "tipo": "quiz",
+      "perguntas": [
+        {
+          "pergunta": "Qual é o primeiro passo recomendado ao suspeitar de uma infecção?",
+          "opcoes": ["Desconectar da internet (wifi e dados móveis)", "Rodar um antivírus imediatamente", "Reiniciar o dispositivo normalmente"],
+          "respostaCorreta": 0,
+          "explicacao": "Cortar a conexão impede que o malware roube mais dados ou se espalhe."
+        },
+        {
+          "pergunta": "Por que o modo de segurança ajuda nesse processo?",
+          "opcoes": ["Porque deixa o dispositivo mais rápido", "Porque desativa apps de terceiros, facilitando identificar o problema", "Porque impede qualquer app de abrir para sempre"],
+          "respostaCorreta": 1,
+          "explicacao": "O modo de segurança isola apps de terceiros, facilitando a identificação da causa."
+        }
+      ]
+    },
+    {
+      "tipo": "jogo",
+      "subtipo": "ordenar-sequencia",
+      "instrucao": "Monte a ordem certa dos passos de remoção.",
+      "itensEmbaralhados": [
+        "Rodar antivírus confiável",
+        "Desconectar da internet",
+        "Limpar cache e navegador",
+        "Desinstalar apps suspeitos",
+        "Reiniciar em modo de segurança"
+      ],
+      "ordemCorreta": [
+        "Desconectar da internet",
+        "Reiniciar em modo de segurança",
+        "Desinstalar apps suspeitos",
+        "Rodar antivírus confiável",
+        "Limpar cache e navegador"
+      ]
+    },
+    {
+      "tipo": "conclusao",
+      "resumo": [
+        "Ao suspeitar de infecção: desconecte da internet, entre em modo de segurança, desinstale o suspeito, rode um antivírus confiável e limpe cache/navegador - nessa ordem."
+      ],
+      "xp": 40,
+      "proximaMissao": "4-3"
+    }
+  ]
+}

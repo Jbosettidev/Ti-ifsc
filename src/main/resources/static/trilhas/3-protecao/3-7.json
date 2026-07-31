@@ -1,0 +1,77 @@
+{
+  "id": "3-7",
+  "trilha": 3,
+  "missao": 7,
+  "titulo": "Firewall e antivírus: seus guardas",
+  "objetivo": "Entender a diferença de função entre firewall (filtra tráfego de rede) e antivírus (detecta e remove malware já presente).",
+  "duracaoEstimada": "3-4 min",
+  "xp": 30,
+  "proximaMissao": "3-8",
+  "secoes": [
+    {
+      "tipo": "hero",
+      "titulo": "Duas ferramentas de defesa",
+      "texto": "Você já conheceu vários tipos de ataque. Agora conheça duas das principais ferramentas de defesa."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "O que é firewall",
+      "texto": "Um firewall é uma barreira entre a rede do seu dispositivo e o resto da internet - ele filtra o que entra e sai, bloqueando acessos não autorizados."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "O que é antivírus",
+      "texto": "O antivírus verifica arquivos e programas em busca de malware conhecido, podendo detectar e remover ameaças já presentes no dispositivo."
+    },
+    {
+      "tipo": "curiosidade",
+      "titulo": "Eles se complementam",
+      "texto": "Firewall e antivírus fazem trabalhos diferentes e se complementam: o firewall tenta impedir a entrada, o antivírus lida com o que já entrou."
+    },
+    {
+      "tipo": "video",
+      "titulo": "Firewall x antivírus",
+      "sugestaoBusca": "diferença entre firewall e antivírus",
+      "duracaoEstimada": "1-2 min",
+      "observacao": "Sem link verificado ainda."
+    },
+    {
+      "tipo": "quiz",
+      "perguntas": [
+        {
+          "pergunta": "Qual é a principal função de um firewall?",
+          "opcoes": ["Filtrar o tráfego de entrada e saída da rede", "Remover vírus já instalados", "Criar senhas fortes"],
+          "respostaCorreta": 0,
+          "explicacao": "O firewall atua como barreira de rede, filtrando tráfego."
+        },
+        {
+          "pergunta": "Qual é a principal função de um antivírus?",
+          "opcoes": ["Bloquear todo o tráfego de internet", "Detectar e remover malware do dispositivo", "Criar backups automáticos"],
+          "respostaCorreta": 1,
+          "explicacao": "O antivírus busca, detecta e remove malware já presente."
+        }
+      ]
+    },
+    {
+      "tipo": "jogo",
+      "subtipo": "classificar-2-categorias",
+      "instrucao": "Firewall ou antivírus?",
+      "cronometro": false,
+      "categorias": ["Firewall", "Antivírus"],
+      "itens": [
+        { "texto": "Bloqueou uma tentativa de acesso não autorizado à rede", "categoria": "Firewall" },
+        { "texto": "Encontrou e removeu um Trojan já instalado", "categoria": "Antivírus" }
+      ]
+    },
+    {
+      "tipo": "conclusao",
+      "resumo": [
+        "Firewall filtra o tráfego de rede pra impedir a entrada de ameaças.",
+        "Antivírus detecta e remove malware que já está no dispositivo.",
+        "Os dois se complementam."
+      ],
+      "xp": 30,
+      "proximaMissao": "3-8"
+    }
+  ]
+}

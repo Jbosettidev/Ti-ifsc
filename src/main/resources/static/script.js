@@ -1,100 +1,122 @@
-const svg = document.querySelector(".linhas"); //pega o svg la no html
-const botoes = document.querySelectorAll(".botao-geral"); //pega os botao tudo
+// script.js - monta a lista de trilhas e missões dinamicamente a partir de
+// trilhas/trilhas-index.json, em vez de botões fixos no HTML.
+// Também recria o efeito visual das linhas curvas conectando os botões,
+// agora desenhadas dentro de cada card de trilha (uma "trilha" por vez).
 
-function desenharLinhas() {
+const listaEl = document.getElementById("trilhas-lista");
+const gridsParaRedesenhar = [];
 
-    //limpa as linhas; IMPORTANTE pra nao duplicar tudo no resizer
+fetch("trilhas/trilhas-index.json")
+    .then((res) => res.json())
+    .then((dados) => montarTrilhas(dados.trilhas || []))
+    .catch((err) => {
+        console.error(err);
+        listaEl.innerHTML = "<p class='carregando'>Não foi possível carregar as trilhas.</p>";
+    });
+
+function montarTrilhas(trilhas) {
+    listaEl.innerHTML = "";
+    gridsParaRedesenhar.length = 0;
+
+    trilhas.forEach((trilha) => {
+        const card = document.createElement("section");
+        card.className = "trilha-card";
+        if (trilha.bloqueada) card.classList.add("bloqueada");
+
+        const cabecalho = document.createElement("div");
+        cabecalho.className = "trilha-cabecalho";
+
+        const titulo = document.createElement("h4");
+        titulo.className = "trilha-titulo";
+        titulo.textContent = "Trilha " + trilha.numero + " · " + trilha.titulo;
+        cabecalho.appendChild(titulo);
+
+        if (trilha.bloqueada) {
+            const cadeado = document.createElement("span");
+            cadeado.className = "material-symbols-outlined cadeado";
+            cadeado.textContent = "lock";
+            cabecalho.appendChild(cadeado);
+        }
+
+        card.appendChild(cabecalho);
+
+        if (trilha.descricao) {
+            const descricao = document.createElement("p");
+            descricao.className = "trilha-descricao";
+            descricao.textContent = trilha.descricao;
+            card.appendChild(descricao);
+        }
+
+        const missoesGrid = document.createElement("div");
+        missoesGrid.className = "missoes-grid";
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("class", "linhas-trilha");
+        missoesGrid.appendChild(svg);
+
+        (trilha.missoes || []).forEach((missao, indice) => {
+            const btn = document.createElement("button");
+            btn.className = "missao-pill";
+            btn.textContent = (indice + 1) + ". " + missao.titulo;
+
+            if (trilha.bloqueada) {
+                btn.classList.add("bloqueada");
+                btn.disabled = true;
+            } else {
+                btn.addEventListener("click", () => {
+                    window.location.href = `trilhas/missao.html?missao=${missao.id}`;
+                });
+            }
+
+            missoesGrid.appendChild(btn);
+        });
+
+        card.appendChild(missoesGrid);
+        listaEl.appendChild(card);
+
+        gridsParaRedesenhar.push({ grid: missoesGrid, svg });
+    });
+
+    // desenha as linhas depois que tudo já está no DOM (senão getBoundingClientRect vem zerado)
+    requestAnimationFrame(() => {
+        gridsParaRedesenhar.forEach(({ grid, svg }) => desenharLinhasTrilha(grid, svg));
+    });
+}
+
+function desenharLinhasTrilha(grid, svg) {
     svg.innerHTML = "";
 
-    //pega posicao e tamanho do container
-    const containerRect =
-        document.querySelector(".container")
-        .getBoundingClientRect();
+    const botoes = Array.from(grid.querySelectorAll(".missao-pill"));
+    if (botoes.length < 2) return;
 
+    const gridRect = grid.getBoundingClientRect();
+    const curva = 55;
 
-    //vai percorrer todos os botoes menos o ultimo (pro ultimo naot ter linha saindo dele)
-    for(let i = 0; i < botoes.length - 1; i++) {
+    for (let i = 0; i < botoes.length - 1; i++) {
+        const r1 = botoes[i].getBoundingClientRect();
+        const r2 = botoes[i + 1].getBoundingClientRect();
 
-        //botao atual e próximo, respectivamente
-        const atual = botoes[i];
-        const prox = botoes[i + 1];
+        const x1 = r1.left + r1.width / 2 - gridRect.left;
+        const y1 = r1.top + r1.height / 2 - gridRect.top;
+        const x2 = r2.left + r2.width / 2 - gridRect.left;
+        const y2 = r2.top + r2.height / 2 - gridRect.top;
 
-        //pega posicao do atual e proximo, respectivamente
-        const r1 = atual.getBoundingClientRect();
-        const r2 = prox.getBoundingClientRect();
-
-        //calcula o centro X e Y do botao atual e próximo
-        const x1 =
-            r1.left + r1.width / 2 - containerRect.left;
-
-        const y1 =
-            r1.top + r1.height / 2 - containerRect.top;
-
-        const x2 =
-            r2.left + r2.width / 2 - containerRect.left;
-
-        const y2 =
-            r2.top + r2.height / 2 - containerRect.top;
-
-        // controla o quanto curva
-        const curva = 120;
-
-        //cria um elemento do tipo path (linha/caminho/curva)
-        const path = document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "path"
-        );
-
-        //cria o caminho
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
         const d = `
             M ${x1} ${y1}
             C ${x1} ${y1 + curva},
               ${x2} ${y2 - curva},
               ${x2} ${y2}
         `;
-
-        //aplica o caminho
         path.setAttribute("d", d);
-
-        //sem preenchimento
         path.setAttribute("fill", "none");
-
-        //cor 
         path.setAttribute("stroke", "#8f7cff");
-
-        //grossura
-        path.setAttribute("stroke-width", "6");
-
-        //pique um border radius
+        path.setAttribute("stroke-width", "5");
         path.setAttribute("stroke-linecap", "round");
-
-        //adiciona a linha
         svg.appendChild(path);
     }
 }
 
-//desenha as linhas quandio a pagina abre
-desenharLinhas();
-
-//refaz tudo se a tela mudar de tamanho
-window.addEventListener("resize", desenharLinhas);
-
-
-
-
-
-//aqui ja é um codigo pra outra coisa ja
-const botoesnivel = document.querySelectorAll(".botao-geral"); //pega todos os elementos com essa classe
-
-botoesnivel.forEach(botao => { //percorre todos os botoes 
-
-    botao.addEventListener("click", () => { //percebe o clique
-
-        const nivel = botao.dataset.nivel; //vai pegar o data-nivel
-
-        window.location.href = //muda de página
-            `niveis/Nivel-Geral.html?nivel=${nivel}`;
-
-    });
-
+window.addEventListener("resize", () => {
+    gridsParaRedesenhar.forEach(({ grid, svg }) => desenharLinhasTrilha(grid, svg));
 });

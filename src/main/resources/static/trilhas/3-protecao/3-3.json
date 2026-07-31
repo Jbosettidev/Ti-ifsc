@@ -1,0 +1,77 @@
+{
+  "id": "3-3",
+  "trilha": 3,
+  "missao": 3,
+  "titulo": "Verificação em duas etapas",
+  "objetivo": "Entender o conceito de 2FA (dois fatores de categorias diferentes) e por que protege mesmo se a senha vazar.",
+  "duracaoEstimada": "4 min",
+  "xp": 30,
+  "proximaMissao": "3-4",
+  "secoes": [
+    {
+      "tipo": "hero",
+      "titulo": "E se a senha não bastasse?",
+      "texto": "E se, mesmo que alguém descubra sua senha, ainda assim não conseguisse entrar na sua conta? É isso que a verificação em duas etapas faz."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "O que é",
+      "texto": "É usar pelo menos dois fatores diferentes pra confirmar que é você mesmo entrando na conta - não só a senha."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "As 3 categorias",
+      "texto": "Algo que você sabe (senha, PIN), algo que você possui (celular, token) e algo que você é (impressão digital, reconhecimento facial)."
+    },
+    {
+      "tipo": "curiosidade",
+      "titulo": "Precisa ser de categorias diferentes",
+      "texto": "Pra funcionar de verdade, os dois fatores precisam ser de categorias diferentes. Usar duas senhas não é 2FA de verdade - é só uma senha em dobro. O ideal é senha (o que sabe) + código no celular (o que possui)."
+    },
+    {
+      "tipo": "video",
+      "titulo": "Verificação em duas etapas explicada",
+      "sugestaoBusca": "verificação em duas etapas explicado",
+      "duracaoEstimada": "1-2 min",
+      "observacao": "Sem link verificado ainda."
+    },
+    {
+      "tipo": "quiz",
+      "perguntas": [
+        {
+          "pergunta": "O que é verificação em duas etapas?",
+          "opcoes": ["Usar duas senhas diferentes", "Usar dois fatores de categorias diferentes pra confirmar identidade", "Trocar de senha duas vezes por ano"],
+          "respostaCorreta": 1,
+          "explicacao": "2FA de verdade combina fatores de categorias distintas, não duas senhas."
+        },
+        {
+          "pergunta": "Qual desses é um exemplo de 'algo que você possui'?",
+          "opcoes": ["Sua senha", "Um código enviado pro seu celular", "Sua impressão digital"],
+          "respostaCorreta": 1,
+          "explicacao": "O celular que recebe o código representa a categoria 'algo que você possui'."
+        }
+      ]
+    },
+    {
+      "tipo": "jogo",
+      "subtipo": "classificar-3-categorias",
+      "instrucao": "Monte o 2FA: classifique cada item na categoria certa.",
+      "cronometro": false,
+      "categorias": ["O que você sabe", "O que você possui", "O que você é"],
+      "itens": [
+        { "texto": "Senha", "categoria": "O que você sabe" },
+        { "texto": "Token no celular", "categoria": "O que você possui" },
+        { "texto": "Impressão digital", "categoria": "O que você é" }
+      ]
+    },
+    {
+      "tipo": "conclusao",
+      "resumo": [
+        "2FA usa dois fatores de categorias diferentes.",
+        "Assim, mesmo que sua senha vaze, sua conta continua protegida."
+      ],
+      "xp": 30,
+      "proximaMissao": "3-4"
+    }
+  ]
+}

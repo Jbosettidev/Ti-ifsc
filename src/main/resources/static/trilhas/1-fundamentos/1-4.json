@@ -1,0 +1,121 @@
+{
+  "id": "1-4",
+  "trilha": 1,
+  "missao": 4,
+  "titulo": "Quem são os invasores?",
+  "objetivo": "Entender que existem diferentes tipos de invasores, com motivações e níveis de sofisticação distintos.",
+  "duracaoEstimada": "4-5 min",
+  "xp": 40,
+  "ultimaMissaoDaTrilha": true,
+  "proximaTrilha": 2,
+  "secoes": [
+    {
+      "tipo": "hero",
+      "titulo": "Quem está do outro lado?",
+      "texto": "Última missão desta trilha! Você já sabe o que estamos protegendo (CID) e por que seus dados valem tanto. Agora: quem, exatamente, está tentando pegar essas informações?"
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Nem todo invasor é igual",
+      "texto": "A palavra 'hacker' costuma vir com uma imagem só na cabeça: alguém de capuz digitando rápido no escuro. Mas na prática, existem vários tipos — com motivações bem diferentes entre si."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Script kiddies",
+      "texto": "São invasores iniciantes que usam ferramentas prontas, feitas por outras pessoas, sem entender muito bem como funcionam por dentro. Mesmo 'amadores', os estragos que causam podem ser reais."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "White hat",
+      "texto": "Invadem sistemas de propósito — mas com autorização — pra encontrar falhas antes que criminosos as encontrem. No fim, reportam tudo pro dono do sistema."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Black hat",
+      "texto": "Exploram qualquer falha que encontrarem pra ganho próprio: dinheiro, vantagem pessoal ou política. Não têm autorização nenhuma e não reportam nada — é o oposto do white hat."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Hackers organizados",
+      "texto": "Grupos mais sofisticados: hacktivistas (que atacam por causas políticas), criminosos que vendem 'crime digital como serviço', e até invasores financiados por governos, com treinamento e recursos bem maiores que um invasor comum."
+    },
+    {
+      "tipo": "curiosidade",
+      "titulo": "E o grey hat?",
+      "texto": "Existe também o 'grey hat': alguém que encontra falhas sem autorização, mas só reporta se for do interesse dele — às vezes até publica a falha na internet, o que pode ajudar outros criminosos a explorá-la."
+    },
+    {
+      "tipo": "cards",
+      "titulo": "Resumo comparativo",
+      "wrapper_classe": "grid-cards",
+      "filhos": [
+        { "tipo": "div", "classe": "card", "titulo": "Script kiddie", "texto": "Usa ferramenta pronta, pouca experiência." },
+        { "tipo": "div", "classe": "card", "titulo": "White hat", "texto": "Invade com autorização pra ajudar." },
+        { "tipo": "div", "classe": "card", "titulo": "Black hat", "texto": "Invade sem autorização, pra ganho próprio." },
+        { "tipo": "div", "classe": "card", "titulo": "Hacker organizado", "texto": "Grupo com recursos e treinamento, motivação política ou financeira em larga escala." }
+      ]
+    },
+    {
+      "tipo": "video",
+      "titulo": "Tipos de hackers",
+      "sugestaoBusca": "tipos de hackers white black grey hat explicado / script kiddies o que são",
+      "duracaoEstimada": "1-2 min",
+      "observacao": "Sem link verificado ainda — evitar vídeos que citem nomes de grupos específicos, para não trazer contextos sensíveis."
+    },
+    {
+      "tipo": "quiz",
+      "perguntas": [
+        {
+          "pergunta": "Um profissional é contratado para invadir um sistema de propósito e reportar as falhas encontradas. Que tipo de invasor é esse?",
+          "opcoes": ["White hat", "Black hat", "Script kiddie"],
+          "respostaCorreta": 0,
+          "explicacao": "White hat invade com autorização para melhorar a segurança."
+        },
+        {
+          "pergunta": "Alguém usa ferramentas prontas da internet, sem entender bem como funcionam, para causar dano. Que tipo de invasor é esse?",
+          "opcoes": ["Hacker organizado", "Script kiddie", "White hat"],
+          "respostaCorreta": 1,
+          "explicacao": "Script kiddie usa ferramentas de terceiros sem grande domínio técnico."
+        },
+        {
+          "pergunta": "Um grupo bem treinado ataca a rede elétrica de uma cidade a mando de um governo. Que tipo de invasor é esse?",
+          "opcoes": ["Script kiddie", "White hat", "Hacker organizado / patrocinado pelo estado"],
+          "respostaCorreta": 2,
+          "explicacao": "Ataques de grande escala com recursos e motivação política/governamental são típicos de hackers organizados."
+        }
+      ]
+    },
+    {
+      "tipo": "jogo",
+      "subtipo": "classificar-4-categorias",
+      "instrucao": "Classifique o invasor em cada situação.",
+      "cronometro": true,
+      "tempoSegundos": 20,
+      "categorias": ["Script kiddie", "White hat", "Black hat", "Hacker organizado"],
+      "itens": [
+        { "texto": "Baixou um programa pronto da internet pra tentar invadir o wifi do vizinho.", "categoria": "Script kiddie" },
+        { "texto": "Foi contratado por um banco para tentar invadir o próprio sistema do banco.", "categoria": "White hat" },
+        { "texto": "Invadiu uma loja online e roubou dados de cartão pra uso próprio.", "categoria": "Black hat" },
+        { "texto": "Grupo interrompeu o sistema de energia de uma cidade inteira, a mando de um governo.", "categoria": "Hacker organizado" }
+      ]
+    },
+    {
+      "tipo": "conclusao",
+      "resumo": [
+        "Existem vários tipos de invasores: script kiddies, white hat, black hat e hackers organizados.",
+        "Nem toda invasão tem a mesma motivação, e isso muda o tamanho do risco."
+      ],
+      "xp": 40
+    },
+    {
+      "tipo": "conclusao-trilha",
+      "titulo": "Trilha 1 completa: Fundamentos da Cibersegurança",
+      "texto": "Você completou a base: sabe por que a informação vale tanto, o que a cibersegurança protege (CID), que todo mundo tem uma pegada digital, e quem são os invasores que tentam explorar tudo isso.",
+      "proximaTrilha": {
+        "numero": 2,
+        "titulo": "Malware: conheça o inimigo"
+      },
+      "badge": "trilha-1-completa"
+    }
+  ]
+}

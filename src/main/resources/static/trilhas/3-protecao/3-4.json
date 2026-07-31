@@ -1,0 +1,78 @@
+{
+  "id": "3-4",
+  "trilha": 3,
+  "missao": 4,
+  "titulo": "O cadeado da internet",
+  "objetivo": "Aprender a verificar HTTPS e o cadeado antes de digitar informações sensíveis, entendendo que isso não substitui checar o endereço.",
+  "duracaoEstimada": "4 min",
+  "xp": 35,
+  "proximaMissao": "3-5",
+  "secoes": [
+    {
+      "tipo": "hero",
+      "titulo": "O cadeadinho conta só parte da história",
+      "texto": "Você já reparou no cadeadinho ao lado do endereço de um site? Ele conta uma parte importante da história - mas não tudo."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "O que é HTTPS",
+      "texto": "HTTPS é a versão segura de comunicação com um site: os dados trocados entre você e o site são criptografados, então ninguém consegue 'ler' no meio do caminho."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "O cadeado não é garantia sozinho",
+      "texto": "Um cadeado fechado significa que a comunicação é criptografada - mas não significa que o site é confiável. Sites falsos, criados por golpistas, também podem ter cadeado."
+    },
+    {
+      "tipo": "curiosidade",
+      "titulo": "Sites falsos também podem ter HTTPS",
+      "texto": "Golpistas criam sites com nomes bem parecidos com os originais (troca de uma letra, por exemplo). Se você não checar o endereço com atenção, o cadeado fechado não te protege de nada."
+    },
+    {
+      "tipo": "video",
+      "titulo": "O que é HTTPS",
+      "sugestaoBusca": "o que é HTTPS explicado simples",
+      "duracaoEstimada": "1-2 min",
+      "observacao": "Sem link verificado ainda."
+    },
+    {
+      "tipo": "quiz",
+      "perguntas": [
+        {
+          "pergunta": "O cadeado fechado no navegador significa que:",
+          "opcoes": ["O site é 100% confiável", "A comunicação com o site é criptografada", "O site nunca pode ser falso"],
+          "respostaCorreta": 1,
+          "explicacao": "O cadeado indica criptografia, não legitimidade do site."
+        },
+        {
+          "pergunta": "Antes de digitar sua senha em um site, o que você deve verificar?",
+          "opcoes": ["Só o cadeado", "O cadeado E o endereço do site", "Nada, o cadeado já garante tudo"],
+          "respostaCorreta": 1,
+          "explicacao": "É necessário conferir tanto o cadeado quanto o endereço exato do site."
+        }
+      ]
+    },
+    {
+      "tipo": "jogo",
+      "subtipo": "classificar-2-categorias",
+      "instrucao": "Esse endereço é confiável ou suspeito?",
+      "cronometro": true,
+      "tempoSegundos": 15,
+      "categorias": ["Confiável", "Suspeito"],
+      "itens": [
+        { "texto": "https://meubanco.com.br", "categoria": "Confiável" },
+        { "texto": "https://meu-banc0.com.br", "categoria": "Suspeito", "observacao": "Zero no lugar do 'o'" },
+        { "texto": "http://loja-oficial.com", "categoria": "Suspeito", "observacao": "Sem HTTPS" }
+      ]
+    },
+    {
+      "tipo": "conclusao",
+      "resumo": [
+        "HTTPS e cadeado indicam comunicação criptografada, mas não garantem que o site é legítimo.",
+        "Sempre confira o endereço também."
+      ],
+      "xp": 35,
+      "proximaMissao": "3-5"
+    }
+  ]
+}

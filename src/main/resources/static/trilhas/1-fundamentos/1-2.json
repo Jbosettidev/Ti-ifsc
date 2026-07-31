@@ -1,0 +1,120 @@
+{
+  "id": "1-2",
+  "trilha": 1,
+  "missao": 2,
+  "titulo": "O que é cibersegurança, de verdade?",
+  "objetivo": "Entender o conceito de cibersegurança e os 3 pilares que ela protege (confidencialidade, integridade, disponibilidade - CID), diferenciando de segurança da informação em geral.",
+  "duracaoEstimada": "4 min",
+  "xp": 35,
+  "proximaMissao": "1-3",
+  "secoes": [
+    {
+      "tipo": "hero",
+      "titulo": "O que estamos protegendo?",
+      "texto": "Na missão passada você viu por que a informação vale tanto. Agora: o que exatamente estamos protegendo quando falamos em cibersegurança?"
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Definição",
+      "texto": "Cibersegurança é o conjunto de práticas para proteger sistemas, redes e dados contra ataques digitais. Ela existe pra garantir 3 coisas ao mesmo tempo — e se uma delas falha, algo deu errado."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Confidencialidade",
+      "texto": "Confidencialidade significa que só quem deveria ver uma informação, vê. Se alguém lê suas mensagens privadas sem permissão, a confidencialidade foi quebrada — mesmo que nada tenha sido apagado ou mudado."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Integridade",
+      "texto": "Integridade significa que a informação continua exatamente como deveria estar, sem alterações indevidas. Se alguém invade sua conta e muda sua nota de uma prova online, a integridade foi quebrada."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Disponibilidade",
+      "texto": "Disponibilidade significa que você consegue acessar seus dados e sistemas quando precisa. Se um ataque derruba o site da sua escola bem na hora da matrícula, a disponibilidade foi quebrada."
+    },
+    {
+      "tipo": "cards",
+      "titulo": "Resumo: o CID",
+      "wrapper_classe": "grid-cards",
+      "filhos": [
+        { "tipo": "div", "classe": "card", "titulo": "Confidencialidade", "texto": "Só quem deve ver, vê." },
+        { "tipo": "div", "classe": "card", "titulo": "Integridade", "texto": "A informação continua correta e intacta." },
+        { "tipo": "div", "classe": "card", "titulo": "Disponibilidade", "texto": "Você consegue acessar quando precisa." }
+      ]
+    },
+    {
+      "tipo": "curiosidade",
+      "titulo": "Cibersegurança x Segurança da Informação",
+      "texto": "Não são a mesma coisa: cibersegurança foca no mundo digital e conectado à internet; segurança da informação é mais ampla e protege dados em qualquer formato — até um documento de papel trancado numa gaveta."
+    },
+    {
+      "tipo": "video",
+      "titulo": "A tríade CID explicada",
+      "sugestaoBusca": "tríade CID segurança da informação explicada / confidencialidade integridade disponibilidade exemplos",
+      "duracaoEstimada": "1-2 min",
+      "observacao": "Sem link verificado ainda — preferir vídeos brasileiros curtos, já que CID é termo comum em cursos de TI em português."
+    },
+    {
+      "tipo": "quiz",
+      "perguntas": [
+        {
+          "pergunta": "Alguém lê suas mensagens privadas sem sua permissão. Qual pilar foi violado?",
+          "opcoes": ["Confidencialidade", "Integridade", "Disponibilidade"],
+          "respostaCorreta": 0,
+          "explicacao": "Acesso não autorizado a informação privada é uma violação de confidencialidade."
+        },
+        {
+          "pergunta": "Um hacker invade o sistema da escola e muda notas de alunos. Qual pilar foi violado?",
+          "opcoes": ["Confidencialidade", "Integridade", "Disponibilidade"],
+          "respostaCorreta": 1,
+          "explicacao": "Alterar dados indevidamente é uma violação de integridade."
+        },
+        {
+          "pergunta": "Um ataque derruba o site de matrícula bem no dia da inscrição. Qual pilar foi violado?",
+          "opcoes": ["Confidencialidade", "Integridade", "Disponibilidade"],
+          "respostaCorreta": 2,
+          "explicacao": "Impedir o acesso a um sistema quando necessário é uma violação de disponibilidade."
+        }
+      ]
+    },
+    {
+      "tipo": "jogo",
+      "subtipo": "cenario-multipla-escolha",
+      "instrucao": "Qual pilar do CID foi violado em cada situação?",
+      "cronometro": false,
+      "rodadas": [
+        {
+          "situacao": "Seu diário online vazou e todo mundo da escola está lendo.",
+          "opcoes": ["Confidencialidade", "Integridade", "Disponibilidade"],
+          "respostaCorreta": "Confidencialidade"
+        },
+        {
+          "situacao": "Você entra no seu perfil e as fotos que postou sumiram, substituídas por outras.",
+          "opcoes": ["Confidencialidade", "Integridade", "Disponibilidade"],
+          "respostaCorreta": "Integridade"
+        },
+        {
+          "situacao": "Você tenta entrar no app do banco e ele está fora do ar há 2 dias.",
+          "opcoes": ["Confidencialidade", "Integridade", "Disponibilidade"],
+          "respostaCorreta": "Disponibilidade"
+        },
+        {
+          "situacao": "Alguém acessou sua conta de jogo e mudou sua senha, te trancando pra fora.",
+          "opcoes": ["Confidencialidade", "Disponibilidade", "Confidencialidade e Disponibilidade"],
+          "respostaCorreta": "Confidencialidade e Disponibilidade",
+          "observacao": "Rodada bônus/pegadinha: reforça que ataques reais podem violar mais de um pilar ao mesmo tempo."
+        }
+      ]
+    },
+    {
+      "tipo": "conclusao",
+      "resumo": [
+        "Cibersegurança protege 3 pilares: Confidencialidade, Integridade e Disponibilidade (CID).",
+        "Um ataque pode violar um ou vários pilares ao mesmo tempo."
+      ],
+      "xp": 35,
+      "proximaMissao": "1-3"
+    }
+  ]
+}

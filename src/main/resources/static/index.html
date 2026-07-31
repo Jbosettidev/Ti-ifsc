@@ -27,34 +27,8 @@
 
         <h3 class="titulo">Domine os primeiros passos da segurança digital!</h3>
 
-        <div class="container">
-
-            <svg class="linhas"></svg> <!--Scalable Vetor Graphics-->
-            <button class="botao-geral ciano" data-nivel="1">
-                Nível 1
-            </button>
-
-            <button class="botao-geral rosa" data-nivel="2">
-                Nível 2
-            </button>
-
-            <button class="botao-geral amarelo" data-nivel="3">
-                Nível 3
-            </button>
-
-            <button class="botao-geral verde" data-nivel="4">
-                Nível 4
-            </button>
-
-            <button class="botao-geral vermelho" data-nivel="5">
-                Nível 5
-            </button>
-
-            <button class="botao-geral ciano" data-nivel="6">
-                Nível 6
-            </button>
-
-
+        <div class="trilhas-lista" id="trilhas-lista">
+            <p class="carregando">Carregando trilhas...</p>
         </div>
     </main>
 
@@ -78,12 +52,7 @@
 
         </a>
     </footer>
-    <script>
-        if (!localStorage.getItem('userId')) {
-            window.location.href = 'TelasIniciais/login.html';
-        }
-    </script>
-
+    
     <script src="script.js"></script>
 </body>
 

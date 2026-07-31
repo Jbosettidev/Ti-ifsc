@@ -1,0 +1,80 @@
+{
+  "id": "3-2",
+  "trilha": 3,
+  "missao": 2,
+  "titulo": "Uma senha pra cada coisa",
+  "objetivo": "Entender por que reutilizar a mesma senha em vários lugares é perigoso, e conhecer o gerenciador de senhas.",
+  "duracaoEstimada": "3-4 min",
+  "xp": 30,
+  "proximaMissao": "3-3",
+  "secoes": [
+    {
+      "tipo": "hero",
+      "titulo": "Uma senha só não basta",
+      "texto": "Você criou uma senha forte na última missão. Ótimo - mas usa ela em tudo? Isso é um problema."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "O problema de repetir",
+      "texto": "Usar a mesma senha em vários lugares é como ter uma chave só que abre a casa, o carro e o trabalho. Se alguém pega essa chave, tem acesso a tudo de uma vez."
+    },
+    {
+      "tipo": "curiosidade",
+      "titulo": "Vazamentos são mais comuns do que parece",
+      "texto": "Vazamentos de dados acontecem até em sites e apps conhecidos. Se sua senha vazar de um lugar e for a mesma do seu e-mail principal, um problema pequeno vira um problema gigante."
+    },
+    {
+      "tipo": "texto",
+      "titulo": "Gerenciador de senhas",
+      "texto": "É como um cofre digital: você guarda todas as suas senhas diferentes dentro dele, e só precisa lembrar de uma senha mestra pra acessar todas as outras."
+    },
+    {
+      "tipo": "video",
+      "titulo": "Por que não reutilizar senhas",
+      "sugestaoBusca": "por que não reutilizar senhas explicado",
+      "duracaoEstimada": "1-2 min",
+      "observacao": "Sem link verificado ainda."
+    },
+    {
+      "tipo": "quiz",
+      "perguntas": [
+        {
+          "pergunta": "Por que é perigoso usar a mesma senha em vários sites?",
+          "opcoes": ["Se um site vazar, todas as suas contas ficam vulneráveis", "Isso deixa a senha mais fácil de lembrar, sem riscos", "Não é perigoso, desde que a senha seja forte"],
+          "respostaCorreta": 0,
+          "explicacao": "Reutilizar senha significa que um único vazamento compromete todas as contas que usam a mesma senha."
+        },
+        {
+          "pergunta": "O que é um gerenciador de senhas?",
+          "opcoes": ["Um app que cria contas automaticamente", "Um 'cofre' digital que guarda várias senhas diferentes com segurança", "Um antivírus"],
+          "respostaCorreta": 1,
+          "explicacao": "O gerenciador armazena senhas de forma segura, exigindo só uma senha mestra."
+        }
+      ]
+    },
+    {
+      "tipo": "jogo",
+      "subtipo": "cenario-escolha",
+      "instrucao": "Uma chave pra cada porta",
+      "cronometro": false,
+      "rodadas": [
+        {
+          "situacao": "Você usa a mesma senha no e-mail, no banco e nas redes sociais.",
+          "opcaoA": "Continuar assim",
+          "opcaoB": "Trocar por senhas diferentes",
+          "respostaCorreta": "opcaoB",
+          "explicacao": "Senhas diferentes por conta evitam que um vazamento comprometa tudo de uma vez."
+        }
+      ]
+    },
+    {
+      "tipo": "conclusao",
+      "resumo": [
+        "Nunca repita a mesma senha em lugares diferentes.",
+        "Um gerenciador de senhas resolve o problema de ter que decorar tudo."
+      ],
+      "xp": 30,
+      "proximaMissao": "3-3"
+    }
+  ]
+}
