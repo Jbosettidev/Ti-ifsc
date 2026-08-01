@@ -37,7 +37,7 @@ main {
 }
 
 .cabecalho {
-     background-color: rgba(93, 44, 216, 0.3);
+    background-color: rgba(93, 44, 216, 0.3);
     /*TEM Q SER RGBA PRA FICAR BLUR TOPZEIRA*/
     backdrop-filter: saturate(160%) blur(25px);
     /*DEIXA COM EFEITO LEGAL DE BLUR*/
@@ -56,14 +56,14 @@ main h3.titulo {
     width: 90%;
     max-width: 500px;
     text-align: center;
-    background-color: var(--violeta-claro); 
+    background-color: var(--violeta-claro);
     backdrop-filter: blur(10px);
-    color: var(--roxo-dark); 
+    color: var(--roxo-dark);
     padding: 25px;
     border-radius: 15px;
     letter-spacing: 1px;
     font-size: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .rodape {
@@ -99,7 +99,6 @@ main h3.titulo {
 .trilhas-lista {
     display: flex;
     flex-direction: column;
-    gap: 24px;
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
@@ -177,9 +176,17 @@ main h3.titulo {
     transition: transform 0.15s ease;
 }
 
-.missao-pill:nth-child(3n+1) { align-self: flex-start; }
-.missao-pill:nth-child(3n+2) { align-self: center; }
-.missao-pill:nth-child(3n) { align-self: flex-end; }
+.missao-pill:nth-child(3n+1) {
+    align-self: flex-start;
+}
+
+.missao-pill:nth-child(3n+2) {
+    align-self: center;
+}
+
+.missao-pill:nth-child(3n) {
+    align-self: flex-end;
+}
 
 .missao-pill:hover:not(:disabled) {
     transform: translateY(-2px);
@@ -192,6 +199,67 @@ main h3.titulo {
     opacity: 0.6;
 }
 
+.fase {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.fase-btn {
+    background: #9b86ff;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 16px 34px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.fase-btn:hover {
+    transform: scale(1.05);
+}
+
+.trilha-card {
+    margin-top: 30px;
+}
+
+.fase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.fase-btn {
+    background: var(--violeta-claro);
+    color: var(--roxo-dark);
+    border: none;
+    border-radius: 30px;
+    padding: 14px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 12px rgba(38, 33, 92, 0.15);
+    transition: .25s;
+}
+
+.fase-btn:hover {
+    transform: translateY(-3px);
+    background: var(--violeta-azulado);
+    color: white;
+}
+
+.fase-btn.bloqueada {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.fase .trilha-card {
+    width: 100%;
+    margin-top: 25px;
+}
+
 
 @media (max-width: 768px) {
     main h3.titulo {
@@ -199,7 +267,11 @@ main h3.titulo {
         margin: 20px auto;
         font-size: 1.1rem;
     }
-    .container { gap: 50px; }
+
+    .container {
+        gap: 50px;
+    }
+
     .botao-geral {
         font-size: 1.5rem;
         margin: 10px 0;

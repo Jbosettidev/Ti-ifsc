@@ -19,26 +19,33 @@ function montarTrilhas(trilhas) {
     gridsParaRedesenhar.length = 0;
 
     trilhas.forEach((trilha) => {
+
+        // Container da fase
+        const fase = document.createElement("div");
+        fase.className = "fase";
+
+        // Botão da fase
+        const btnFase = document.createElement("button");
+        btnFase.className = "fase-btn";
+        btnFase.textContent = "Nível " + trilha.numero;
+
+        if (trilha.bloqueada) {
+            btnFase.disabled = true;
+            btnFase.classList.add("bloqueada");
+        }
+
+        fase.appendChild(btnFase);
+
+        // Card da trilha (fica escondido)
         const card = document.createElement("section");
         card.className = "trilha-card";
-        if (trilha.bloqueada) card.classList.add("bloqueada");
-
-        const cabecalho = document.createElement("div");
-        cabecalho.className = "trilha-cabecalho";
+        card.style.display = "none";
 
         const titulo = document.createElement("h4");
         titulo.className = "trilha-titulo";
-        titulo.textContent = "Trilha " + trilha.numero + " · " + trilha.titulo;
-        cabecalho.appendChild(titulo);
+        titulo.textContent = trilha.titulo;
 
-        if (trilha.bloqueada) {
-            const cadeado = document.createElement("span");
-            cadeado.className = "material-symbols-outlined cadeado";
-            cadeado.textContent = "lock";
-            cabecalho.appendChild(cadeado);
-        }
-
-        card.appendChild(cabecalho);
+        card.appendChild(titulo);
 
         if (trilha.descricao) {
             const descricao = document.createElement("p");
@@ -55,31 +62,56 @@ function montarTrilhas(trilhas) {
         missoesGrid.appendChild(svg);
 
         (trilha.missoes || []).forEach((missao, indice) => {
+
             const btn = document.createElement("button");
             btn.className = "missao-pill";
             btn.textContent = (indice + 1) + ". " + missao.titulo;
 
             if (trilha.bloqueada) {
-                btn.classList.add("bloqueada");
                 btn.disabled = true;
+                btn.classList.add("bloqueada");
             } else {
                 btn.addEventListener("click", () => {
-                    window.location.href = `trilhas/missao.html?missao=${missao.id}`;
+                    window.location.href =
+                        `trilhas/missao.html?missao=${missao.id}`;
                 });
             }
 
             missoesGrid.appendChild(btn);
+
         });
 
         card.appendChild(missoesGrid);
-        listaEl.appendChild(card);
+        fase.appendChild(card);
+        listaEl.appendChild(fase);
 
-        gridsParaRedesenhar.push({ grid: missoesGrid, svg });
-    });
+        gridsParaRedesenhar.push({
+            grid: missoesGrid,
+            svg
+        });
 
-    // desenha as linhas depois que tudo já está no DOM (senão getBoundingClientRect vem zerado)
-    requestAnimationFrame(() => {
-        gridsParaRedesenhar.forEach(({ grid, svg }) => desenharLinhasTrilha(grid, svg));
+        // Abrir/Fechar a fase
+        btnFase.addEventListener("click", () => {
+
+            // Fecha todas as outras fases
+            document.querySelectorAll(".trilha-card").forEach((c) => {
+                if (c !== card) c.style.display = "none";
+            });
+
+            // Alterna a fase clicada
+            if (card.style.display === "none") {
+                card.style.display = "block";
+
+                requestAnimationFrame(() => {
+                    desenharLinhasTrilha(missoesGrid, svg);
+                });
+
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+
     });
 }
 
