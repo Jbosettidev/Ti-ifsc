@@ -1,55 +1,106 @@
 package com.example.demo.user;
 
+import com.example.demo.excessoes.ApiResponse;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin(origins = "*") //libera a pagina web ter acesso a recursos restritos do webMvc
+@CrossOrigin(origins = "*")
 public class UsuarioController {
 
     @Autowired
     private UsuarioServices usuarioServices;
 
-    record AtualizarEmailRequest(String senha, String novoEmail) {
-    } //serve pro transporte de dados
-
-    record LoginRequest(String email, String senha) {
-    }//serve pro transporte de dados
+    // Records para transporte de dados
+    record AtualizarEmailRequest(String senha, String novoEmail) {}
+    record LoginRequest(String email, String senha) {}
 
     @PostMapping
-    public Usuario criarUsuario(@RequestBody Usuario usuario) {
-        return usuarioServices.salvar(usuario);
+    public ResponseEntity<ApiResponse> criar(@Valid @RequestBody Usuario usuario) {
+        Usuario usuarioSalvo = usuarioServices.salvar(usuario);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                new ApiResponse(
+                        HttpStatus.CREATED.value(),
+                        "Usuário criado com sucesso",
+                        "/usuarios/" + usuarioSalvo.getId(),
+                        usuarioSalvo.getId()  // ← AGORA FUNCIONA!
+                )
+        );
     }
 
-    @PostMapping("/login") //new
-    public Usuario login(@RequestBody LoginRequest req) {
-        return usuarioServices.autenticar(req.email(), req.senha());
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse> login(@Valid @RequestBody LoginRequest req) {
+        Usuario usuario = usuarioServices.autenticar(req.email, req.senha);
+
+        return ResponseEntity.ok(
+                new ApiResponse(
+                        HttpStatus.OK.value(),
+                        "Login realizado com sucesso",
+                        "/usuarios/" + usuario.getId(),
+                        usuario.getId()  // ← AGORA FUNCIONA!
+                )
+        );
     }
 
     @GetMapping("/{id}")
-    public Usuario buscarPorId(@PathVariable Long id) {
-        return usuarioServices.buscar(id);
+    public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(usuarioServices.buscar(id));
     }
 
     @GetMapping
-    public List<Usuario> listarUsuarios() {
-        return usuarioServices.listarTodos();
+    public ResponseEntity<List<Usuario>> listarUsuarios() {
+        return ResponseEntity.ok(usuarioServices.listarTodos());
     }
 
     @PatchMapping("/{id}")
-    public Usuario atualizar(@PathVariable Long id, @RequestBody Usuario dados) {
-        return usuarioServices.atualizarParcial(id, dados);
+    public ResponseEntity<ApiResponse> atualizarParcial(
+            @PathVariable Long id,
+            @Valid @RequestBody Usuario dados) {
+
+        Usuario usuarioAtualizado = usuarioServices.atualizarParcial(id, dados);
+
+        return ResponseEntity.ok(
+                new ApiResponse(
+                        HttpStatus.OK.value(),
+                        "Usuário atualizado com sucesso",
+                        "/usuarios/" + id
+                )
+        );
     }
 
-    @PatchMapping("/{id}/seguranca") //new funcionando tomar cuidado com o return null
-    public Usuario atualizarEmail(@PathVariable Long id, @RequestBody AtualizarEmailRequest req) {
-        return usuarioServices.atualizarEmail(id, req.senha(), req.novoEmail());
+    @PatchMapping("/{id}/seguranca")
+    public ResponseEntity<ApiResponse> atualizarEmail(
+            @PathVariable Long id,
+            @Valid @RequestBody AtualizarEmailRequest req) {
+
+        Usuario usuarioAtualizado = usuarioServices.atualizarEmail(id, req.senha, req.novoEmail);
+
+        return ResponseEntity.ok(
+                new ApiResponse(
+                        HttpStatus.OK.value(),
+                        "Email atualizado com sucesso",
+                        "/usuarios/" + id
+                )
+        );
     }
 
     @DeleteMapping("/{id}")
-    public void deletarUsuario(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse> deletarUsuario(@PathVariable Long id) {
         usuarioServices.deletar(id);
+
+        return ResponseEntity.ok(
+                new ApiResponse(
+                        HttpStatus.OK.value(),
+                        "Usuário deletado com sucesso",
+                        "/usuarios/" + id
+                )
+        );
     }
 }

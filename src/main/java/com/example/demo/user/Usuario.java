@@ -48,7 +48,7 @@ public class Usuario {
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @NotBlank @Size(min = 8, max = 50)
+    @NotBlank @Size(min = 8, max = 60)
     @Column(nullable = false)
     private String senha;
 
