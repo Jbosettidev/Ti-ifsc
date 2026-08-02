@@ -4,27 +4,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-/**
- * Expõe páginas HTML estáticas com URL "limpa" (sem {@code .html} visível no navegador).
- * <p>
- * Para um GET {@code /perfil}, o método faz um <strong>forward</strong> interno para
- * {@code /perfil.html} (arquivos em {@code src/main/resources/static/}). O navegador
- * continua mostrando {@code /perfil}; não há nova requisição HTTP como em
- * {@code redirect:}, onde a URL mudaria para {@code /perfil.html}.
- * <p>
- * O padrão do path usa regex no {@link PathVariable}: aceita um segmento com letras,
- * números e hífen, mas <strong>exclui</strong> o valor exato {@code api}, para não
- * competir com endpoints REST tipicamente prefixados por {@code /api}.
- */
+import java.util.Map;
+
 @Controller
 public class ViewController {
 
-    /**
-     * @param pagina nome do arquivo sem extensão (ex.: {@code perfil} → {@code /perfil.html})
-     * @return view name com prefixo {@code forward:} para o Spring despachar o recurso estático
-     */
+    private static final Map<String, String> PAGINAS_ESPECIFICAS = Map.ofEntries(
+            Map.entry("login", "TelasIniciais/login.html"),
+            Map.entry("cadastro", "TelasIniciais/cadastro.html"),
+            Map.entry("senha1", "TelasIniciais/senha1.html"),
+            Map.entry("senha2", "TelasIniciais/senha2.html"),
+            Map.entry("nova-senha", "TelasIniciais/nova-senha.html"),
+            Map.entry("perfil", "perfil-usuario/perfil.html"),
+            Map.entry("configuracoes", "perfil-usuario/configuracoes.html"),
+            Map.entry("seguranca", "perfil-usuario/seguranca.html"),
+            Map.entry("excluir", "perfil-usuario/excluir.html"),
+            Map.entry("conquistas", "tela-conquistas/conquistas.html"),
+            Map.entry("nivel-geral", "niveis/Nivel-Geral.html")
+    );
+
     @GetMapping("/{pagina:^(?!api$)[a-zA-Z0-9-]+$}")
     public String carregarPagina(@PathVariable String pagina) {
-        return "forward:/" + pagina + ".html";
+        String caminho = PAGINAS_ESPECIFICAS.getOrDefault(pagina, pagina + ".html");
+        return "forward:/" + caminho;
     }
 }
