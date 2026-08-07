@@ -3,7 +3,6 @@ package com.example.demo.medalha;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -49,5 +48,11 @@ public class MedalhaController {
     @GetMapping("/usuarios/{usuarioId}/medalhas")
     public ResponseEntity<List<UsuarioMedalha>> listarMedalhasDoUsuario(@PathVariable Long usuarioId) {
         return ResponseEntity.ok(medalhaServices.listarMedalhasDoUsuario(usuarioId));
+    }
+    @GetMapping("/usuarios/{usuarioId}/medalhas/{medalhaId}")
+    public ResponseEntity<UsuarioMedalha> buscarMedalhaDoUsuario(
+            @PathVariable Long usuarioId,
+            @PathVariable Long medalhaId) {
+        return ResponseEntity.ok(medalhaServices.buscarMedalhaDoUsuario(usuarioId, medalhaId));
     }
 }

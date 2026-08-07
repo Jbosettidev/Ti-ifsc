@@ -5,7 +5,6 @@ import com.example.demo.user.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -69,6 +68,11 @@ public class MedalhaServices {
         }
 
         return usuarioMedalhaRepository.save(vinculo);
+    }
+
+    public UsuarioMedalha buscarMedalhaDoUsuario(Long usuarioId, Long medalhaId) {
+        return usuarioMedalhaRepository.findByUsuario_IdAndMedalha_Id(usuarioId, medalhaId)
+                .orElseThrow(() -> new EntityNotFoundException("Vínculo usuário-medalha não encontrado"));
     }
 
     public List<UsuarioMedalha> listarMedalhasDoUsuario(Long usuarioId) {
