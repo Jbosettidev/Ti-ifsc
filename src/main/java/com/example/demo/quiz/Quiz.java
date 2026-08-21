@@ -3,16 +3,14 @@ package com.example.demo.quiz;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import java.time.LocalDateTime;
 import java.util.Set;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Avaliação vinculada a uma {@link com.example.demo.fase.Fase}; contém questões e registros
  * de {@link com.example.demo.progresso.Progresso} dos usuários.
@@ -42,6 +40,7 @@ public class Quiz {
 
     @ManyToOne
     @JoinColumn(name = "fase_id", nullable = false)
+    @JsonIgnoreProperties({"quizzes", "hibernateLazyInitializer", "handler"})
     private com.example.demo.fase.Fase fase;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)

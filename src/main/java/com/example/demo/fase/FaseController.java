@@ -1,6 +1,8 @@
 package com.example.demo.fase;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,38 +14,39 @@ import java.util.List;
  */
 @RequestMapping("/fase")
 @RestController
+@RequiredArgsConstructor
 public class FaseController {
 
-    @Autowired
-    private FaseServices faseServices;
+    private final FaseServices faseServices;
 
     @PatchMapping("/{id}/concluir")
-    public Fase concluir(@PathVariable Long id) {
-        return faseServices.marcarComoConcluida(id);
+    public ResponseEntity<Fase> concluir(@PathVariable Long id) {
+        return ResponseEntity.ok(faseServices.marcarComoConcluida(id));
     }
 
     @PostMapping
-    public Fase criarFase(@RequestBody Fase fase) {
-        return faseServices.salvar(fase);
+    public ResponseEntity<Fase> criarFase(@RequestBody Fase fase) {
+        return ResponseEntity.ok(faseServices.salvar(fase));
     }
 
     @GetMapping("/{id}")
-    public Fase buscarPorId(@PathVariable Long id) {
-        return faseServices.buscar(id);
+    public ResponseEntity<Fase> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(faseServices.buscar(id));
     }
 
     @GetMapping
-    public List<Fase> listarFase() {
-        return faseServices.listarTodos();
+    public ResponseEntity<List<Fase>> listarFase() {
+        return ResponseEntity.ok(faseServices.listarTodos());
     }
 
     @PatchMapping("/{id}")
-    public Fase atualizar(@PathVariable Long id, @RequestBody Fase dados) {
-        return faseServices.atualizarParcial(id, dados);
+    public ResponseEntity<Fase> atualizar(@PathVariable Long id, @RequestBody Fase dados) {
+        return ResponseEntity.ok(faseServices.atualizarParcial(id, dados));
     }
 
     @DeleteMapping("/{id}")
-    public void deletarFase(@PathVariable Long id) {
+    public ResponseEntity<Void> deletarFase(@PathVariable Long id) {
         faseServices.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }
