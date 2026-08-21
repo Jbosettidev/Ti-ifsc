@@ -43,9 +43,12 @@ public class UsuarioController {
         return usuarioServices.atualizarParcial(id, dados);
     }
 
-    @PatchMapping("/{id}/seguranca") //new funcionando tomar cuidado com o return null
-    public Usuario atualizarEmail(@PathVariable Long id, @RequestBody AtualizarEmailRequest req) {
-        return usuarioServices.atualizarEmail(id, req.senha(), req.novoEmail());
+   record AtualizarSenhaRequest(String senha, String novaSenha) {
+}
+
+    @PatchMapping("/{id}/seguranca")
+        public Usuario atualizarSenha(@PathVariable Long id, @RequestBody AtualizarSenhaRequest req) {
+            return usuarioServices.atualizarSenha(id, req.senha(), req.novaSenha());
     }
 
     @DeleteMapping("/{id}")

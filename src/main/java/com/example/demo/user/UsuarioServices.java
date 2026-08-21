@@ -59,7 +59,19 @@ public class UsuarioServices {
         usuario.setEmail(novoEmail);
         return usuarioRepository.save(usuario);
     }
-
+public Usuario atualizarSenha(Long id, String senhaAtual, String novaSenha) {
+    Usuario usuario = usuarioRepository.findById(id).orElseThrow(
+            () -> new RuntimeException("Usuário não encontrado")
+    );
+    if (!usuario.getSenha().equals(senhaAtual)) {
+        throw new RuntimeException("Senha incorreta");
+    }
+    if (novaSenha == null || novaSenha.isBlank()) {
+        throw new RuntimeException("Nova senha inválida");
+    }
+    usuario.setSenha(novaSenha);
+    return usuarioRepository.save(usuario);
+}
     public void deletar(Long id) {
         if (!usuarioRepository.existsById(id)) {
             throw new RuntimeException("Usuário não encontrado");
