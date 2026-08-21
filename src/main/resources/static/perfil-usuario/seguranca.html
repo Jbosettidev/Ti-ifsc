@@ -28,8 +28,8 @@
                 <input type="password" id="senha" placeholder="Confirme sua senha">
             </div>
             <div class="campos">
-                <label>Modificar E-mail</label>
-                <input type="email" id="novoEmail" placeholder="Digite o novo e-mail">
+                <label>Modificar Senha</label>
+                <input type="password" id="novaSenha" placeholder="Digite a nova senha">
             </div>
             <button class="botao-salvar" onclick="salvar()">Salvar alterações</button>
             <p id="msg" style="text-align:center; margin-top: 1rem;"></p>
@@ -37,65 +37,47 @@
     </main>
 
     <script>
-        // criar um arquivo js
-        const USER_ID = localStorage.getItem('userId');
+async function salvar() { // valida senha atual e nova senha no cliente, depois chama exatamente o endpoint acima
+    const senha = document.getElementById('senha').value;
+    const novaSenha = document.getElementById('novaSenha').value;
+    const msg = document.getElementById('msg');
+    msg.textContent = '';
 
-        if (!USER_ID) {
-            window.location.href = '/login.html'; // redireciona se não estiver logado
-        }
+    if (!senha) {
+        msg.style.color = 'red';
+        msg.textContent = 'Informe sua senha para continuar.';
+        return;
+    }
 
-        async function carregarEmail() { // Preenche o campo “E-mail Cadastrado”.
-            const res = await fetch(`/usuarios/${USER_ID}`);
-            if (res.ok) {
-                const usuario = await res.json();
-                document.getElementById('emailAtual').value = usuario.email;
-            }
-        }
+    if (!novaSenha) {
+        msg.style.color = 'red';
+        msg.textContent = 'Informe a nova senha.';
+        return;
+    }
 
-        async function salvar() { // valida senha e novo e-mail no cliente, depois chama exatamente o endpoint acima
-            const senha = document.getElementById('senha').value;
-            const novoEmail = document.getElementById('novoEmail').value;
-            const msg = document.getElementById('msg');
-            msg.textContent = '';
+    const res = await fetch(`/usuarios/${USER_ID}/seguranca`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            senha,
+            novaSenha
+        })
+    });
 
-            if (!senha) {
-                msg.style.color = 'red';
-                msg.textContent = 'Informe sua senha para continuar.';
-                return;
-            }
-
-            if (!novoEmail) {
-                msg.style.color = 'red';
-                msg.textContent = 'Informe o novo e-mail.';
-                return;
-            }
-
-            const res = await fetch(`/usuarios/${USER_ID}/seguranca`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    senha,
-                    novoEmail
-                })
-            });
-
-            if (res.ok) { // interpreta o corpo como JSON do usuário e atualiza o e-mail exibido e mostra sucesso.
-                const usuario = await res.json();
-                document.getElementById('emailAtual').value = usuario.email;
-                document.getElementById('senha').value = '';
-                document.getElementById('novoEmail').value = '';
-                msg.style.color = 'green';
-                msg.textContent = 'E-mail atualizado com sucesso!';
-            } else {
-                const erro = await res.text();
-                msg.style.color = 'red';
-                msg.textContent = erro;
-            }
-        }
-
-        carregarEmail();
+    if (res.ok) { // interpreta o corpo como JSON do usuário e mostra sucesso.
+        const usuario = await res.json();
+        document.getElementById('senha').value = '';
+        document.getElementById('novaSenha').value = '';
+        msg.style.color = 'green';
+        msg.textContent = 'Senha atualizada com sucesso!';
+    } else {
+        const erro = await res.text();
+        msg.style.color = 'red';
+        msg.textContent = erro;
+    }
+}
     </script>
 </body>
 
