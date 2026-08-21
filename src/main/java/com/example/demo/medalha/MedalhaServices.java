@@ -15,7 +15,6 @@ public class MedalhaServices {
     private final UsuarioMedalhaRepository usuarioMedalhaRepository;
     private final UsuarioRepository usuarioRepository;
 
-    // --- CRUD Medalha ---
 
     public List<Medalha> listarTodas() {
         return medalhaRepository.findAll();

@@ -55,7 +55,3 @@ docker compose down
 ## Supabase (banco)
 
 > ⚠️ Projetos gratuitos no Supabase **pausam após inatividade**. Se a API não conectar, acesse o painel do Supabase e retome o projeto.
-
----
-## Links uteis
-> **documentacao do sprintboot**:  [Doc](https://docs.spring.io/spring-boot/index.html/)
