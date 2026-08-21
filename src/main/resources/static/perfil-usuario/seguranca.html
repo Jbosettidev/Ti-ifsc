@@ -37,7 +37,31 @@
     </main>
 
     <script>
-async function salvar() { // valida senha atual e nova senha no cliente, depois chama exatamente o endpoint acima
+const USER_ID = localStorage.getItem('userId');
+
+if (!USER_ID) {
+    window.location.href = '/login.html';
+}
+
+async function carregarEmail() {
+    try {
+        const res = await fetch(`/usuarios/${USER_ID}`);
+        console.log('carregarEmail status:', res.status);
+
+        if (res.ok) {
+            const usuario = await res.json();
+            console.log('usuario recebido:', usuario);
+            document.getElementById('emailAtual').value = usuario.email;
+        } else {
+            const erro = await res.text();
+            console.error('Erro ao carregar e-mail:', erro);
+        }
+    } catch (e) {
+        console.error('Falha na requisição de carregarEmail:', e);
+    }
+}
+
+async function salvar() {
     const senha = document.getElementById('senha').value;
     const novaSenha = document.getElementById('novaSenha').value;
     const msg = document.getElementById('msg');
@@ -55,30 +79,39 @@ async function salvar() { // valida senha atual e nova senha no cliente, depois 
         return;
     }
 
-    const res = await fetch(`/usuarios/${USER_ID}/seguranca`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            senha,
-            novaSenha
-        })
-    });
+    try {
+        const res = await fetch(`/usuarios/${USER_ID}/seguranca`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ senha, novaSenha })
+        });
 
-    if (res.ok) { // interpreta o corpo como JSON do usuário e mostra sucesso.
-        const usuario = await res.json();
-        document.getElementById('senha').value = '';
-        document.getElementById('novaSenha').value = '';
-        msg.style.color = 'green';
-        msg.textContent = 'Senha atualizada com sucesso!';
-    } else {
-        const erro = await res.text();
+        console.log('salvar status:', res.status);
+
+        if (res.ok) {
+            const usuario = await res.json();
+            console.log('resposta salvar:', usuario);
+            document.getElementById('senha').value = '';
+            document.getElementById('novaSenha').value = '';
+            msg.style.color = 'green';
+            msg.textContent = 'Senha atualizada com sucesso!';
+        } else {
+            const erro = await res.text();
+            console.error('Erro ao salvar:', erro);
+            msg.style.color = 'red';
+            msg.textContent = erro || `Erro ${res.status} ao salvar alterações.`;
+        }
+    } catch (e) {
+        console.error('Falha na requisição de salvar:', e);
         msg.style.color = 'red';
-        msg.textContent = erro;
+        msg.textContent = 'Erro de conexão com o servidor.';
     }
 }
-    </script>
+
+carregarEmail(); 
+ </script>
 </body>
 
 </html>
