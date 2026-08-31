@@ -37,81 +37,168 @@
     </main>
 
     <script>
-const USER_ID = localStorage.getItem('userId');
+        let USER_ID = null;
 
-if (!USER_ID) {
-    window.location.href = '/login.html';
-}
+        async function obterCsrf() {
+            const res = await fetch('/csrf', {
+                credentials: 'same-origin'
+            });
 
-async function carregarEmail() {
-    try {
-        const res = await fetch(`/usuarios/${USER_ID}`);
-        console.log('carregarEmail status:', res.status);
+            if (!res.ok) {
+                throw new Error(
+                    'Não foi possível obter o token de segurança.'
+                );
+            }
 
-        if (res.ok) {
-            const usuario = await res.json();
-            console.log('usuario recebido:', usuario);
-            document.getElementById('emailAtual').value = usuario.email;
-        } else {
-            const erro = await res.text();
-            console.error('Erro ao carregar e-mail:', erro);
+            return res.json();
         }
-    } catch (e) {
-        console.error('Falha na requisição de carregarEmail:', e);
-    }
-}
 
-async function salvar() {
-    const senha = document.getElementById('senha').value;
-    const novaSenha = document.getElementById('novaSenha').value;
-    const msg = document.getElementById('msg');
-    msg.textContent = '';
+        async function carregarUsuario() {
 
-    if (!senha) {
-        msg.style.color = 'red';
-        msg.textContent = 'Informe sua senha para continuar.';
-        return;
-    }
+            const res = await fetch('/usuarios/me', {
+                credentials: 'same-origin'
+            });
 
-    if (!novaSenha) {
-        msg.style.color = 'red';
-        msg.textContent = 'Informe a nova senha.';
-        return;
-    }
+            if (res.status === 401 || res.status === 403) {
 
-    try {
-        const res = await fetch(`/usuarios/${USER_ID}/seguranca`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ senha, novaSenha })
+                localStorage.removeItem('userId');
+
+                window.location.href = '/login';
+
+                return;
+            }
+
+            if (!res.ok) {
+                throw new Error(
+                    'Não foi possível carregar o usuário.'
+                );
+            }
+
+            const usuario = await res.json();
+
+            USER_ID = usuario.id;
+
+            localStorage.setItem(
+                'userId',
+                usuario.id
+            );
+
+            document.getElementById(
+                'emailAtual'
+            ).value = usuario.email;
+        }
+
+        async function salvar() {
+
+            const senha =
+                document.getElementById('senha').value;
+
+            const novaSenha =
+                document.getElementById('novaSenha').value;
+
+            const msg =
+                document.getElementById('msg');
+
+            msg.textContent = '';
+
+            if (!senha || !novaSenha) {
+
+                msg.style.color = 'red';
+
+                msg.textContent =
+                    'Preencha a senha atual e a nova senha.';
+
+                return;
+            }
+
+            if (novaSenha.length < 8) {
+
+                msg.style.color = 'red';
+
+                msg.textContent =
+                    'A nova senha deve possuir pelo menos 8 caracteres.';
+
+                return;
+            }
+
+            try {
+
+                const csrf = await obterCsrf();
+
+                const res = await fetch(
+                    `/usuarios/${USER_ID}/seguranca`,
+                    {
+                        method: 'PATCH',
+                        credentials: 'same-origin',
+
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-XSRF-TOKEN': csrf.token
+                        },
+
+                        body: JSON.stringify({
+                            senha: senha,
+                            novaSenha: novaSenha
+                        })
+                    }
+                );
+
+                if (res.ok) {
+
+                    document.getElementById(
+                        'senha'
+                    ).value = '';
+
+                    document.getElementById(
+                        'novaSenha'
+                    ).value = '';
+
+                    msg.style.color = 'green';
+
+                    msg.textContent =
+                        'Senha atualizada com sucesso!';
+
+                    return;
+                }
+
+                const texto = await res.text();
+
+                try {
+
+                    const erro = JSON.parse(texto);
+
+                    msg.style.color = 'red';
+
+                    msg.textContent =
+                        erro.message ||
+                        'Não foi possível atualizar a senha.';
+
+                } catch {
+
+                    msg.style.color = 'red';
+
+                    msg.textContent =
+                        'Não foi possível atualizar a senha.';
+                }
+
+            } catch (e) {
+
+                console.error(e);
+
+                msg.style.color = 'red';
+
+                msg.textContent =
+                    'Erro de conexão com o servidor.';
+            }
+        }
+
+        carregarUsuario().catch((erro) => {
+
+            console.error(erro);
+
+            window.location.href = '/login';
         });
-
-        console.log('salvar status:', res.status);
-
-        if (res.ok) {
-            const usuario = await res.json();
-            console.log('resposta salvar:', usuario);
-            document.getElementById('senha').value = '';
-            document.getElementById('novaSenha').value = '';
-            msg.style.color = 'green';
-            msg.textContent = 'Senha atualizada com sucesso!';
-        } else {
-            const erro = await res.text();
-            console.error('Erro ao salvar:', erro);
-            msg.style.color = 'red';
-            msg.textContent = erro || `Erro ${res.status} ao salvar alterações.`;
-        }
-    } catch (e) {
-        console.error('Falha na requisição de salvar:', e);
-        msg.style.color = 'red';
-        msg.textContent = 'Erro de conexão com o servidor.';
-    }
-}
-
-carregarEmail(); 
- </script>
+    </script>
 </body>
 
 </html>

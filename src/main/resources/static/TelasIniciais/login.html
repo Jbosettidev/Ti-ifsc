@@ -43,151 +43,124 @@
         const form = document.getElementById('form-login');
         const msg = document.getElementById('msg');
         const botao = document.getElementById('botao-login');
-        const apiUrl = window.location.origin + '/usuarios/login';
-        const urlParams = new URLSearchParams(window.location.search);
+
+        const urlParams =
+            new URLSearchParams(window.location.search);
 
         if (urlParams.get('error')) {
+
             msg.style.color = '#a80a0a';
-            msg.textContent = 'E-mail ou senha incorretos.';
+
+            msg.textContent =
+                'E-mail ou senha incorretos.';
+
         } else if (urlParams.get('logout')) {
+
             msg.style.color = '#1a7a3a';
-            msg.textContent = 'Você saiu com sucesso!';
+
+            msg.textContent =
+                'Você saiu com sucesso!';
         }
 
-        // ===================== VERIFICAR SE JÁ ESTÁ LOGADO =====================
-        // ✅ Se já tem userId, redireciona para home (NÃO remove)
-        if (localStorage.getItem('userId')) {
-            window.location.replace('/home');
-        }
+        async function obterCsrf() {
 
-        // ===================== BOLHAS =====================
-        if (localStorage.getItem('userId')) {
-            window.location.replace('/');
-        }
+            const res = await fetch('/csrf', {
+                credentials: 'same-origin'
+            });
 
-        if (window.location.protocol === 'file:') {
-            msg.style.color = '#a80a0a';
-            msg.textContent = 'Abra pelo servidor: http://localhost:8080/TelasIniciais/login.html';
-        }
+            if (!res.ok) {
+                throw new Error(
+                    'Não foi possível obter o token CSRF.'
+                );
+            }
 
-        function mostrarErro(texto) {
-            msg.style.color = '#a80a0a';
-            msg.textContent = texto;
+            return res.json();
         }
 
         form.addEventListener('submit', async (e) => {
+
             e.preventDefault();
+
             msg.textContent = '';
 
-            if (window.location.protocol === 'file:') {
-                mostrarErro('Use http://localhost:8080/TelasIniciais/login.html');
-                return;
-            }
+            const email =
+                document.getElementById('email').value.trim();
 
-            const email = document.getElementById('email').value.trim();
-            const senha = document.getElementById('senha').value;
+            const senha =
+                document.getElementById('senha').value;
 
             botao.disabled = true;
-            botao.textContent = 'Entrando...';
+            botao.value = 'Entrando...';
 
             try {
-                const res = await fetch(apiUrl, {
+
+                const csrf = await obterCsrf();
+
+                const dados = new URLSearchParams();
+
+                dados.set('email', email);
+                dados.set('senha', senha);
+
+                const login = await fetch('/login', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, senha })
+
+                    credentials: 'same-origin',
+
+                    headers: {
+                        'Content-Type':
+                            'application/x-www-form-urlencoded',
+
+                        'X-XSRF-TOKEN':
+                        csrf.token
+                    },
+
+                    body: dados
                 });
 
-                const texto = await res.text();
+                if (!login.ok) {
 
-                if (res.ok) {
-                    const usuario = JSON.parse(texto);
-                    localStorage.setItem('userId', usuario.id);
-                    msg.style.color = '#1a7a3a';
-                    msg.textContent = 'Login realizado! Redirecionando...';
-                    setTimeout(() => { window.location.href = '/'; }, 600);
+                    window.location.href =
+                        '/login?error=true';
+
                     return;
                 }
 
-                try {
-                    const erro = JSON.parse(texto);
-                    mostrarErro(erro.message || texto);
-                } catch {
-                    mostrarErro(texto || 'E-mail ou senha incorretos.');
+                const usuarioRes =
+                    await fetch('/usuarios/me', {
+                        credentials: 'same-origin'
+                    });
+
+                if (!usuarioRes.ok) {
+
+                    throw new Error(
+                        'Não foi possível recuperar o usuário.'
+                    );
                 }
-            } catch {
-                mostrarErro('E-mail ou senha incorretos.');
-            } finally {
-                if (msg.textContent !== 'Login realizado! Redirecionando...') {
-                    botao.disabled = false;
-                    botao.textContent = 'Entrar';
-                }
+
+                const usuario =
+                    await usuarioRes.json();
+
+                localStorage.setItem(
+                    'userId',
+                    usuario.id
+                );
+
+                window.location.href = '/';
+
+            } catch (erro) {
+
+                console.error(erro);
+
+                msg.style.color = '#a80a0a';
+
+                msg.textContent =
+                    'Não foi possível realizar o login.';
+
+                botao.disabled = false;
+
+                botao.value = 'Entrar';
             }
         });
-
-        const canvas = document.getElementById('bolhas');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        let bolhas = [];
-        setInterval(() => {
-            if (bolhas.length < 60) {
-                bolhas.push(novaBolha());
-            }
-        }, 800);
-
-        function novaBolha(x, y) {
-            return {
-                x: x ?? Math.random() * canvas.width,
-                y: y ?? canvas.height + Math.random() * 200,
-                r: 3 + Math.random() * 8,
-                velocidade: 0.4 + Math.random() * 0.10,
-                opacidade: 0.08 + Math.random() * 0.08,
-                drift: (Math.random() - 0.5) * 0.4
-            };
-        }
-
-        window.addEventListener('mousemove', (e) => {
-            if (bolhas.length < 60) {
-                bolhas.push(novaBolha(e.clientX, e.clientY));
-            }
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target.closest('#form-login')) return;
-            for (let i = 0; i < 12; i++) {
-                bolhas.push(novaBolha(
-                    e.clientX + (Math.random() - 0.5) * 60,
-                    e.clientY + (Math.random() - 0.5) * 60
-                ));
-            }
-        });
-
-        function animar() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            bolhas.forEach((b, i) => {
-                ctx.beginPath();
-                ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${b.opacidade})`;
-                ctx.fill();
-
-                b.y -= b.velocidade;
-                b.x += b.drift;
-
-                if (b.y + b.r < 0) bolhas.splice(i, 1);
-            });
-
-            requestAnimationFrame(animar);
-        }
-
-        animar();
     </script>
 </body>
 

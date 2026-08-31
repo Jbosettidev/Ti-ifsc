@@ -1,81 +1,102 @@
 package com.example.demo.user;
 
-import org.jspecify.annotations.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Locale;
 
-//regras de negócio e persistência
 @Service
 public class UsuarioServices {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    public UsuarioServices(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
+        this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public Usuario salvar(Usuario usuario) {
-        if (usuarioRepository.existsByEmail(usuario.getEmail())) {
+        String email = normalizarEmail(usuario.getEmail());
+        usuario.setEmail(email);
+        if (usuarioRepository.existsByEmail(email)) {
             throw new RuntimeException("E-mail já cadastrado");
-        }if (usuarioRepository.existsByNomeusuario(usuario.getNomeusuario())) {
+        }
+        if (usuarioRepository.existsByNomeusuario(usuario.getNomeusuario())) {
             throw new RuntimeException("Nome de usuário já cadastrado");
         }
+        // Criptografa a senha antes de salvar
+        usuario.setSenha(
+                passwordEncoder.encode(usuario.getSenha())
+        );
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario autenticar(String email, String senha) {
-        Usuario usuario = usuarioRepository.findByEmail(email.trim())
-                .orElseThrow(() -> new RuntimeException("E-mail ou senha incorretos"));
-        if (!usuario.getSenha().equals(senha)) {
-            throw new RuntimeException("E-mail ou senha incorretos");
-        }return usuario;
+    public Usuario buscar(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Usuário não encontrado")
+                );
     }
 
-    public Usuario buscar(Long id) {
-        return usuarioRepository.findById(id).orElseThrow();
+    public Usuario buscarPorEmail(String email) {
+        return usuarioRepository.findByEmail(normalizarEmail(email)).orElseThrow(() ->
+                new RuntimeException("Usuário não encontrado")
+        );
+    }
+
+    public Usuario buscarDoUsuario(Long id, String emailAutenticado) {
+        Usuario usuario = buscar(id);
+        if (!usuario.getEmail()
+                .equalsIgnoreCase(emailAutenticado)) {
+            throw new org.springframework.security.access.AccessDeniedException("Acesso não autorizado");
+        }
+        return usuario;
     }
 
     public List<Usuario> listarTodos() {
         return usuarioRepository.findAll();
     }
 
-    public Usuario atualizarParcial(Long id, @NonNull Usuario dados) {
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow();
-        if (dados.getNome() != null) {
-            usuario.setNome(dados.getNome());
-        }if (dados.getEmail() != null) {
-            usuario.setEmail(dados.getEmail());
+    public Usuario atualizarParcial(Long id, Usuario dados, String emailAutenticado) {
+        Usuario usuario =
+                buscarDoUsuario(id, emailAutenticado);
+        if (dados.getNome() != null && !dados.getNome().isBlank()) {
+            usuario.setNome(dados.getNome().trim());
+        }if (dados.getEmail() != null && !dados.getEmail().isBlank()) {
+            String novoEmail = normalizarEmail(dados.getEmail());
+            if (!novoEmail.equalsIgnoreCase(usuario.getEmail()) && usuarioRepository.existsByEmail(novoEmail)) {
+                throw new RuntimeException("E-mail já cadastrado");
+            }
+            usuario.setEmail(novoEmail);
         }
+        // Senha não pode ser alterada por aqui.
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario atualizarEmail(Long id, String senhaInformada, String novoEmail) {
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Usuário não encontrado")
-        );if (!usuario.getSenha().equals(senhaInformada)) {
+    public Usuario atualizarSenha(Long id, String senhaAtual, String novaSenha, String emailAutenticado) {
+        Usuario usuario =
+                buscarDoUsuario(id, emailAutenticado);
+        // Compara a senha digitada com o hash
+        if (!passwordEncoder.matches(senhaAtual, usuario.getSenha())) {
             throw new RuntimeException("Senha incorreta");
-        }if (usuarioRepository.existsByEmail(novoEmail)) {
-            throw new RuntimeException("E-mail já cadastrado");
+        }if (novaSenha == null || novaSenha.isBlank() || novaSenha.length() < 8) {
+            throw new RuntimeException("A nova senha deve possuir pelo menos 8 caracteres");
         }
-        usuario.setEmail(novoEmail);
+        // Gera um novo hash
+        usuario.setSenha(passwordEncoder.encode(novaSenha));
         return usuarioRepository.save(usuario);
     }
-public Usuario atualizarSenha(Long id, String senhaAtual, String novaSenha) {
-    Usuario usuario = usuarioRepository.findById(id).orElseThrow(
-            () -> new RuntimeException("Usuário não encontrado")
-    );
-    if (!usuario.getSenha().equals(senhaAtual)) {
-        throw new RuntimeException("Senha incorreta");
+
+    public void deletar(Long id, String emailAutenticado) {
+        buscarDoUsuario(id, emailAutenticado);
+        usuarioRepository.deleteById(id);
     }
-    if (novaSenha == null || novaSenha.isBlank()) {
-        throw new RuntimeException("Nova senha inválida");
-    }
-    usuario.setSenha(novaSenha);
-    return usuarioRepository.save(usuario);
-}
-    public void deletar(Long id) {
-        if (!usuarioRepository.existsById(id)) {
-            throw new RuntimeException("Usuário não encontrado");
-        } else{
-            usuarioRepository.deleteById(id);}
+
+    private String normalizarEmail(String email) {
+        if (email == null) {
+            return null;
+        }
+        return email.trim().toLowerCase(Locale.ROOT);
     }
 }
