@@ -1,0 +1,87 @@
+/* home.css
+   Só o que é específico da tela inicial: a lista de trilhas (níveis)
+   que se expandem mostrando as missões (lições) com as pílulas e as
+   linhas curvas conectando elas. Precisa do global.css carregado antes
+   (usa as variáveis de cor --roxo-dark, --violeta-claro...). */
+
+main h3.titulo {
+    margin: 40px auto;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    background-color: var(--violeta-claro);
+    backdrop-filter: blur(10px);
+    color: var(--roxo-dark);
+    padding: 25px;
+    border-radius: 15px;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.trilhas-lista {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.carregando {
+    text-align: center;
+    color: var(--roxo-dark);
+}
+
+.trilha-card {
+    background-color: #fff;
+    border-radius: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 5px 15px rgba(38, 33, 92, 0.15);
+    margin-top: 20px;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.trilha-card:hover {
+    transform: translateY(-3px);
+}
+
+.trilha-card.bloqueada {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.trilha-card.bloqueada:hover {
+    transform: none;
+}
+
+.trilha-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.trilha-titulo {
+    color: var(--roxo-dark);
+    font-size: 1.1rem;
+}
+
+.cadeado {
+    font-size: 1.4rem !important;
+    color: var(--roxo-dark) !important;
+}
+
+.trilha-descricao {
+    color: #555;
+    font-size: 0.9rem;
+    margin: 0.4rem 0 0.9rem;
+}
+
+@media (max-width: 768px) {
+    main h3.titulo {
+        width: 85%;
+        margin: 20px auto;
+        font-size: 1.1rem;
+    }
+}
