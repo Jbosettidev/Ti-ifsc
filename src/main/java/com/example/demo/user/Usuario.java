@@ -1,15 +1,10 @@
 package com.example.demo.user;
 
-import java.util.List;
-import java.util.Set;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -55,12 +50,15 @@ public class Usuario {
     @Min(0)
     private int xpTotal;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Progresso> progressos;
-
-    // dentro de Usuario.java
-    @OneToMany(mappedBy = "usuario")
-    @JsonIgnoreProperties({"usuario", "hibernateLazyInitializer", "handler"})
-    private List<UsuarioMedalha> usuarioMedalhas;
+    // Removidos os campos "progressos" (Set<Progresso>) e "usuarioMedalhas"
+    // (List<UsuarioMedalha>) — apontavam pras classes que você já apagou.
+    //
+    // Não recriei o equivalente aqui de propósito: o UserLessonProgress e
+    // o UserMedalha já têm um @ManyToOne apontando PRA Usuario (rua de
+    // mão única). Não precisamos do caminho de volta (Usuario -> lista de
+    // progresso) a menos que algum tela precise "todo progresso desse
+    // usuário" a partir do objeto Usuario — e mesmo aí, o jeito mais
+    // seguro é buscar via UserLessonProgressRepository, não navegando
+    // pela entidade (lembra do problema de loop infinito no JSON que
+    // resolvemos lá no Level/Lesson? é o mesmo risco aqui).
 }

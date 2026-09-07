@@ -1,4 +1,7 @@
-//aqui que pega o step de cada lição e transforma em uma licao de vdd
+// niveis/js/licao-engine.js
+// Motor que busca os steps de uma lição pela API e desenha cada tela,
+// de acordo com o "tipo" de cada step. JOGO tem um segundo nível de
+// despacho pelo campo "subtipo".
 
 const params = new URLSearchParams(window.location.search);
 const lessonId = params.get("lessonId");
@@ -6,6 +9,9 @@ const lessonId = params.get("lessonId");
 const areaEl = document.getElementById("area-step");
 const barraEl = document.getElementById("barra-progresso");
 
+// Estado da lição inteira. Guardamos pontos ganhos/máximos em vez de só
+// "acertos/erros", porque alguns jogos dão pontuação parcial (ex: acertar
+// 3 de 5 itens numa classificação).
 const estado = {
     stepAtual: 0,
     pontosGanhos: 0,
@@ -28,8 +34,9 @@ if (!lessonId) {
         });
 }
 
-// transformando cada tipo de step em uma coisa 
-
+// ============================================================
+// DESPACHO PRINCIPAL — um "case" por tipo de step
+// ============================================================
 function renderStep(step) {
     areaEl.innerHTML = "";
     atualizarBarra();
@@ -75,8 +82,9 @@ function botaoContinuar(texto = "Continuar...", habilitado = true) {
     return `<button class="botao-continuar" id="btn-continuar" ${habilitado ? "" : "disabled"} onclick="proximoStep()">${texto}</button>`;
 }
 
-
-// os que são só de ver (leitura), não geram pontuação
+// ============================================================
+// TIPOS "DE LEITURA" (sem pontuação)
+// ============================================================
 function renderAbertura(c) {
     areaEl.innerHTML = `
         <img class="mascote" src="img/mascote/${c.imagem}" alt="Mascote">
@@ -154,7 +162,9 @@ function renderParabens(c) {
     `;
 }
 
-//pergunta simples de múltipla escolha
+// ============================================================
+// QUIZ (pergunta simples de múltipla escolha)
+// ============================================================
 function renderQuiz(c) {
     const opcoesHtml = c.opcoes
         .map((op, i) => `<button class="opcao-quiz" id="op-${i}" onclick="responderQuiz(${i})">${op}</button>`)
@@ -193,8 +203,9 @@ function responderQuiz(indiceEscolhido) {
     document.getElementById("btn-continuar").disabled = false;
 }
 
-
-// Jogos e seus subtipos
+// ============================================================
+// JOGO — despacho pelo "subtipo"
+// ============================================================
 function renderJogo(c) {
     switch (c.subtipo) {
         case "ordenar-sequencia": renderOrdenarSequencia(c); break;
@@ -207,7 +218,7 @@ function renderJogo(c) {
     }
 }
 
-//  Subtipo: ordenar-sequencia 
+// --- Subtipo: ordenar-sequencia ---
 // O usuário clica nos itens embaralhados, na ordem que acha certa. Cada
 // clique tira o item da lista de opções e bota na "sequência montada".
 function renderOrdenarSequencia(c) {
@@ -260,7 +271,7 @@ function escapeAttr(texto) {
     return texto.replace(/'/g, "\\'");
 }
 
-// Subtipo: classificar-2-categorias / classificar-3-categorias 
+// --- Subtipo: classificar-2-categorias / classificar-3-categorias ---
 // Cada item mostra um botão por categoria; o usuário clica em qual
 // categoria acha que aquele item pertence.
 function renderClassificar(c) {
@@ -312,7 +323,7 @@ function renderClassificar(c) {
     redesenhar();
 }
 
-//  Subtipo: cenario-multipla-escolha 
+// --- Subtipo: cenario-multipla-escolha ---
 // Várias "rodadas", cada uma como um mini-quiz. Ao final, pode ter uma
 // pergunta bônus (não conta pontos, é só reflexão).
 function renderCenarioMultiplaEscolha(c) {
@@ -352,7 +363,7 @@ function renderCenarioMultiplaEscolha(c) {
             return;
         }
 
-        // Acabaram as rodadas pontuadas se tiver bônus, mostra antes do resumo.
+        // Acabaram as rodadas pontuadas — se tiver bônus, mostra antes do resumo.
         areaEl.removeEventListener("click", avancar);
         const pontos = Math.round((acertos / c.rodadas.length) * c.xp);
         registrarPontuacao(pontos, c.xp);
@@ -386,7 +397,7 @@ function renderPerguntaBonus(bonus, pontos, totalRodadas, acertos) {
     };
 }
 
-//  Subtipo: cenario-escolha (duas opções por rodada)
+// --- Subtipo: cenario-escolha (duas opções por rodada) ---
 function renderCenarioEscolha(c) {
     let rodadaAtual = 0;
     let acertos = 0;
@@ -441,7 +452,7 @@ function renderCenarioEscolha(c) {
     redesenharRodada();
 }
 
-//  Subtipo: identificar-em-lista 
+// --- Subtipo: identificar-em-lista ---
 // O usuário clica em QUAL item da lista acha suspeito. Só um item tem
 // suspeito: true no JSON.
 function renderIdentificarEmLista(c) {
@@ -471,8 +482,9 @@ function renderIdentificarEmLista(c) {
     };
 }
 
-// resumo final
-
+// ============================================================
+// RESUMO / CONCLUSÕES
+// ============================================================
 function renderResumo(c) {
     const aproveitamento = estado.pontosMaximos > 0
         ? Math.round((estado.pontosGanhos / estado.pontosMaximos) * 100)
@@ -501,8 +513,10 @@ function renderConclusao(c, textoBotao) {
 }
 
 // Envia o resultado da lição pro backend e volta pro mapa do nível.
+// O "?usuarioId=1" aqui é o mesmo placeholder temporário do backend —
+// troque quando tiver o usuário logado disponível no frontend também.
 function finalizarLicao() {
-    fetch("/api/progress", {
+    fetch("/api/progress?usuarioId=1", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
