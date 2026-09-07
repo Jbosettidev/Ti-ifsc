@@ -1,8 +1,3 @@
-/* global.css
-   Tudo aqui é compartilhado entre TODAS as telas do app (home, nivel,
-   licao, perfil...): reset, cores, cabeçalho, rodapé, ícones.
-   Cada página deve importar este arquivo ANTES do CSS específico dela,
-   pra poder usar as variáveis de cor (--roxo-dark, --violeta-claro...). */
 
 * {
     margin: 0;

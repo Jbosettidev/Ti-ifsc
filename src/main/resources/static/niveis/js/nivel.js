@@ -1,6 +1,4 @@
-// niveis/js/nivel.js - busca UM nível (pelo id na URL) e desenha a lista
-// numerada de lições dele, com linhas curvas conectando, igual à Imagem 2.
-
+//redireciona o nível certo e desenha o caminho atraz pro front
 const params = new URLSearchParams(window.location.search);
 const levelId = params.get("levelId");
 
@@ -50,14 +48,11 @@ function renderNivel(nivel) {
         listaEl.appendChild(pill);
     });
 
-    // O botão de Desafio Final só destrava quando TODAS as lições desse
-    // nível estiverem concluídas. Por enquanto, como ainda não temos o
-    // progresso do usuário ligado (isso é o Passo 6), ele fica sempre
-    // travado — é só trocar essa condição depois.
+    // O botão de Desafio Final só destrava quando TODAS as lições desse nível estiverem concluídas. Por enquanto, como ainda não temos o
+    // progresso do usuário ligado ele fica sempre travado, tem que trocar essa condição depois.
     const todasDesbloqueadas = licoes.every((l) => !l.bloqueada);
     const btnDesafio = document.getElementById("btn-desafio-final");
     if (todasDesbloqueadas && licoes.length > 0) {
-        // ainda deixamos travado por padrão até o Passo 6 existir de verdade
         // btnDesafio.disabled = false;
     }
 

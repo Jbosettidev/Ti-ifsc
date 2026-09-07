@@ -144,7 +144,7 @@
     cursor: not-allowed;
 }
 
-/* --- QUIZ --- */
+/* pergunta/quiz */
 .opcao-quiz {
     display: block;
     width: 100%;
@@ -173,7 +173,7 @@
     color: #444;
 }
 
-/* --- JOGO: genéricos reaproveitados pelos vários subtipos --- */
+/* jogos: genéricos reaproveitados pelos vários subtipos */
 .instrucao-jogo {
     color: var(--roxo-dark);
     font-weight: bold;
@@ -265,7 +265,7 @@
     margin-bottom: 6px;
 }
 
-/* --- RESUMO / CONCLUSÃO --- */
+/*resumo */
 .xp-total {
     font-size: 1.5rem;
     color: var(--roxo-dark);

@@ -1,5 +1,3 @@
-/* home.css — caminho de bolhas (uma por Nível/Unidade), estilo Imagem 1.
-   Precisa do global.css carregado antes (usa as variáveis de cor). */
 
 main h3.titulo {
     margin: 40px auto;
@@ -32,7 +30,6 @@ main h3.titulo {
     color: var(--roxo-dark);
 }
 
-/* O SVG das linhas curvas fica atrás das bolhas, cobrindo toda a lista. */
 .linhas-niveis {
     position: absolute;
     inset: 0;
@@ -60,9 +57,7 @@ main h3.titulo {
     align-self: center;
 }
 
-/* O zigue-zague: a cada 3 bolhas, uma fica mais à esquerda, uma no
-   centro, uma mais à direita — é isso que cria o efeito de "caminho"
-   sinuoso, igual na Imagem 1. */
+
 .nivel-bolha:nth-child(3n+2) { align-self: flex-start; }
 .nivel-bolha:nth-child(3n+3) { align-self: flex-end; }
 .nivel-bolha:nth-child(3n+4) { align-self: center; }

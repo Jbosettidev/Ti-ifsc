@@ -2,10 +2,6 @@ package com.example.demo.user;
 
 import java.util.List;
 import java.util.Set;
-
-import com.example.demo.medalha.UsuarioMedalha;
-import com.example.demo.progresso.Progresso;
-import com.example.demo.medalha.Medalha;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

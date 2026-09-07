@@ -1,9 +1,8 @@
---=========================================================================
+
 -- NIVEL 1
 INSERT INTO level (id, titulo, descricao, ordem)
 VALUES (1, 'Nível 1', 'Domine os primeiros passos da segurança digital!', 1);
 
---==========================================================================
 --LICAO 1.1
 
 INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
@@ -98,7 +97,6 @@ VALUES (8, 'RESUMO',
 }', 1);
 
 
---============================================================================================
 --LICAO 1.2
 INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
 VALUES (2, 'O que é cibersegurança, de verdade?', 2, 60, false, 1);
@@ -206,7 +204,7 @@ VALUES (9, 'RESUMO',
   "texto": "Total de XP ganho: "
 }', 2);
 
---==============================================================
+
 --Lição 3
 INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
 VALUES (3, 'Sua pegada digital', 3, 60, false, 1);
@@ -289,7 +287,7 @@ VALUES (7, 'RESUMO',
   "texto": "Total de XP ganho: "
 }', 3);
 
---==========================================
+
 --Lição 4
 INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
 VALUES (4, 'Quem são os invasores?', 4, 60, false, 1);
@@ -409,13 +407,10 @@ VALUES (10, 'RESUMO',
   "texto": "Total de XP ganho: "
 }', 4);
 
-
---=========================================================================
 -- NIVEL 2
 INSERT INTO level (titulo, descricao, ordem)
 VALUES ('Nível 2 ', 'Conheça os principais malwares e como eles agem!', 2);
 
---==========================================================================
 --LICAO 2.1
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Phishing: a isca no anzol', 1, 60, false, 2)
@@ -539,7 +534,7 @@ VALUES (9, 'RESUMO',
 }', 1);
 
 
---==========================================================================
+
 --LICAO 2.2
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Scareware: o susto falso', 2, 30, false, 2)
@@ -659,7 +654,6 @@ VALUES (9, 'RESUMO',
 }', 2);
 
 
---==========================================================================
 --LICAO 2.3
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Worms: a praga que se espalha sozinha', 3, 60, false, 2)
@@ -772,7 +766,6 @@ VALUES (8, 'RESUMO',
 }', 3);
 
 
---==========================================================================
 --LICAO 2.4
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Spyware: o espião silencioso', 4, 60, false, 2)
@@ -919,7 +912,6 @@ VALUES (9, 'RESUMO',
 }', 4);
 
 
---==========================================================================
 --LICAO 2.5
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Trojan: o cavalo de Troia digital', 5, 60, false, 2)
@@ -1025,7 +1017,7 @@ VALUES (7, 'RESUMO',
 }', 5);
  
  
---==========================================================================
+
 --LICAO 2.6
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Ransomware: seus arquivos reféns', 6, 60, false, 2)
@@ -1123,7 +1115,7 @@ VALUES (7, 'RESUMO',
 }', 6);
  
  
---==========================================================================
+
 --LICAO 2.7
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Backdoor: a porta secreta', 7, 60, false, 2)
@@ -1237,13 +1229,12 @@ VALUES (9, 'CONCLUSAO_TRILHA',
   "badge": "trilha-2-completa"
 }', 7);
  
- 
---=========================================================================
+
 -- NIVEL 3
 INSERT INTO level (titulo, descricao, ordem)
 VALUES ('Nível 3', 'Adote hábitos que protegem seus dados no dia a dia!', 3);
  
---==========================================================================
+
 --LICAO 3.1
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Senhas fortes: a chave que ninguém adivinha', 1, 60, false, 3)
@@ -1357,7 +1348,7 @@ VALUES (8, 'RESUMO',
 }', 1);
  
  
---==========================================================================
+
 --LICAO 3.2
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Uma senha pra cada coisa', 2, 60, false, 3)
@@ -1450,7 +1441,7 @@ VALUES (8, 'RESUMO',
 }', 2);
  
  
---==========================================================================
+
 --LICAO 3.3
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Verificação em duas etapas', 3, 60, false, 3)
@@ -1552,7 +1543,7 @@ VALUES (8, 'RESUMO',
 }', 3);
  
  
---==========================================================================
+
 --LICAO 3.4
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('O cadeado da internet', 4, 60, false, 3)
@@ -1656,7 +1647,7 @@ VALUES (8, 'RESUMO',
 }', 4);
  
  
---==========================================================================
+
 --LICAO 3.5
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Cuidado com o wifi público', 5, 60, false, 3)
@@ -1773,7 +1764,7 @@ VALUES (9, 'RESUMO',
 }', 5);
  
  
---==========================================================================
+
 --LICAO 3.6
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Cookies: quem está de olho', 6, 60, false, 3)
@@ -1912,7 +1903,7 @@ VALUES (9, 'RESUMO',
 }', 6);
  
  
---==========================================================================
+
 --LICAO 3.7
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Firewall e antivírus: seus guardas', 7, 60, false, 3)
@@ -2016,8 +2007,7 @@ VALUES (8, 'RESUMO',
   "texto": "Total de XP ganho: "
 }', 7);
  
- 
---==========================================================================
+
 --LICAO 3.8
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Comprando online com segurança', 8, 60, false, 3)
@@ -2133,7 +2123,6 @@ VALUES (8, 'RESUMO',
 }', 8);
  
  
---==========================================================================
 --LICAO 3.9
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Backup: sua rede de segurança', 9, 60, false, 3)
@@ -2259,13 +2248,12 @@ VALUES (10, 'CONCLUSAO_TRILHA',
   "badge": "trilha-3-completa"
 }', 9);
  
- 
---=========================================================================
+
 -- NIVEL 4
 INSERT INTO level (titulo, descricao, ordem)
 VALUES (' Nível 4', 'Saiba o que fazer se algo der errado!', 4);
  
---==========================================================================
+
 --LICAO 4.1
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Reconhecendo os sinais de infecção', 1, 60, false, 4)
@@ -2395,8 +2383,7 @@ VALUES (9, 'RESUMO',
   "texto": "Total de XP ganho: "
 }', 1);
  
- 
---==========================================================================
+
 --LICAO 4.2
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Removendo a ameaça, passo a passo', 2, 60, false, 4)
@@ -2496,8 +2483,7 @@ VALUES (8, 'RESUMO',
   "texto": "Total de XP ganho: "
 }', 2);
  
- 
---==========================================================================
+
 --LICAO 4.3
 INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
 VALUES ('Quando tudo mais falha', 3, 40, false, 4)

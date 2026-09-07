@@ -1,7 +1,4 @@
-// niveis/js/home.js - desenha a home como um caminho de bolhas, uma bolha
-// por Nível (Unidade), conectadas por linhas curvas (igual à Imagem 1).
-// Clicar numa bolha desbloqueada navega pra nivel.html daquele nível.
-
+//logica do caminho por trás e de pegar os niveis
 const listaEl = document.getElementById("trilhas-lista");
 let svgEl;
 
@@ -15,11 +12,6 @@ fetch("/api/levels")
 
 function montarCaminho(niveis) {
     listaEl.innerHTML = "";
-
-    // O SVG das linhas fica "por baixo" das bolhas, ocupando todo o espaço
-    // do container (position: absolute vem do CSS). Ele é criado uma vez,
-    // e as linhas são redesenhadas depois que as bolhas já existirem na
-    // tela (porque precisamos saber a posição real de cada uma).
     svgEl = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svgEl.setAttribute("class", "linhas-niveis");
     listaEl.appendChild(svgEl);

@@ -78,8 +78,7 @@
     transition: transform 0.15s ease;
 }
 
-/* Mesmo efeito zigue-zague da home, só que aqui direto nos itens
-   (não tem SVG antes deles no HTML, por isso não precisa +1 no cálculo). */
+/* Mesmo efeito zigue-zague da home, só que aqui direto nos itens*/
 .licao-pill:nth-child(3n+1) { align-self: flex-start; }
 .licao-pill:nth-child(3n+2) { align-self: center; }
 .licao-pill:nth-child(3n+3) { align-self: flex-end; }
