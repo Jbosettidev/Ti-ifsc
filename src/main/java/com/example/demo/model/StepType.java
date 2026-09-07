@@ -1,9 +1,6 @@
 package com.example.demo.model;
 
-// Um "enum" é uma lista fechada de valores possíveis. Em vez de aceitar
-// qualquer String solta (o que deixaria fácil digitar errado, tipo "Texto"
-// vs "TEXTO" vs "texto"), a gente trava as opções aqui.
-// Isso vai virar o "tipo" de cada tela da lição.
+//o "tipo" de cada tela da lição.
 public enum StepType {
     ABERTURA,          // tela inicial da lição: título, imagem, tempo estimado e XP prometido
     CONTEUDO,          // bloco de texto explicativo, com imagem e um box de dica/resumo

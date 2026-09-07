@@ -1,8 +1,8 @@
 package com.example.demo.model;
 
-// Uma medalha por linha, exatamente como você organizou.
 // O "nome do arquivo" da imagem também mora aqui, pra o frontend
 // saber qual ícone mostrar sem precisar de mais lógica.
+//tem que ver pra por o icon pra cada tipo de medalha
 public enum Medalha {
 
     // Diamante

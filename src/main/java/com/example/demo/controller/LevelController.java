@@ -53,7 +53,7 @@ public class LevelController {
                         licao.getOrdem(),
                         licao.getXpTotal(),
                         licao.isDesafioFinal(),
-                        false // TODO: Passo 6 - calcular com base no progresso do usuário
+                        false 
                 ))
                 .collect(Collectors.toList());
 
@@ -62,7 +62,7 @@ public class LevelController {
                 level.getTitulo(),
                 level.getDescricao(),
                 level.getOrdem(),
-                false, // TODO: Passo 6 - calcular com base no progresso do usuário
+                false, 
                 licoesDTO
         );
     }
