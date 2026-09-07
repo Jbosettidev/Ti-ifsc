@@ -1,0 +1,283 @@
+/* licao.css — visual de todas as telas de uma lição: abertura, conteúdo,
+   comparação, vídeo, parabéns, quiz, jogos e resumo. Precisa do
+   global.css carregado antes. */
+
+.fundo-licao {
+    background-color: var(--off-white);
+}
+
+.topo-licao {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    background: var(--off-white);
+    z-index: 10;
+}
+
+.barra-progresso {
+    flex: 1;
+    height: 12px;
+    background: var(--violeta-claro);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.barra-progresso-preenchida {
+    height: 100%;
+    background: var(--violeta-azulado);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.fechar-licao {
+    color: var(--roxo-dark);
+    display: flex;
+}
+
+.area-licao {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 10px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.area-licao img.mascote {
+    width: 130px;
+}
+
+.card-licao {
+    background: #fff;
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(38, 33, 92, 0.12);
+    width: 100%;
+    text-align: left;
+}
+
+.card-licao.centralizado {
+    text-align: center;
+}
+
+.titulo-step {
+    background: var(--violeta-claro);
+    color: var(--roxo-dark);
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 14px;
+}
+
+.paragrafo-conteudo {
+    margin-bottom: 12px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.box-dica {
+    background: var(--off-white);
+    border: 1px dashed var(--violeta-medio);
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 14px;
+}
+
+.box-dica .titulo-dica {
+    font-weight: bold;
+    color: var(--roxo-dark);
+    margin-bottom: 6px;
+}
+
+.comparacao-colunas {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.comparacao-coluna {
+    background: var(--off-white);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.comparacao-coluna .titulo-coluna {
+    font-weight: bold;
+    color: var(--roxo-dark);
+    margin-bottom: 4px;
+}
+
+.video-embed {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    border: none;
+}
+
+.tempo-xp {
+    color: var(--roxo-dark);
+    font-weight: bold;
+}
+
+.botao-continuar,
+.botao-comecar {
+    width: 100%;
+    background: var(--violeta-azulado);
+    color: #fff;
+    border: none;
+    padding: 16px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.botao-continuar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- QUIZ --- */
+.opcao-quiz {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--off-white);
+    border: 2px solid var(--violeta-claro);
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--roxo-dark);
+}
+
+.opcao-quiz.correta { background: #b9e3c9; border-color: #8fcf9f; }
+.opcao-quiz.errada { background: #f3c2c2; border-color: #e29a9a; }
+.opcao-quiz:disabled { cursor: not-allowed; }
+
+.explicacao-quiz {
+    background: var(--off-white);
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+/* --- JOGO: genéricos reaproveitados pelos vários subtipos --- */
+.instrucao-jogo {
+    color: var(--roxo-dark);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.item-jogo {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--off-white);
+    border: 2px solid var(--violeta-claro);
+    padding: 12px 14px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--roxo-dark);
+}
+
+.item-jogo:disabled { cursor: not-allowed; opacity: 0.7; }
+.item-jogo.selecionado { border-color: var(--violeta-azulado); background: var(--violeta-claro); }
+.item-jogo.correta { background: #b9e3c9; border-color: #8fcf9f; }
+.item-jogo.errada { background: #f3c2c2; border-color: #e29a9a; }
+
+.categorias-botoes {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0 14px;
+    flex-wrap: wrap;
+}
+
+.categoria-botao {
+    flex: 1;
+    min-width: 90px;
+    background: var(--violeta-claro);
+    color: var(--roxo-dark);
+    border: none;
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 0.8rem;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.categoria-botao.marcada {
+    background: var(--violeta-azulado);
+    color: #fff;
+}
+
+.linha-classificar {
+    background: var(--off-white);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.sequencia-montada {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+    min-height: 30px;
+}
+
+.sequencia-item {
+    background: var(--violeta-claro);
+    color: var(--roxo-dark);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+}
+
+.opcoes-duas {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.opcoes-duas button {
+    flex: 1;
+}
+
+.rodada-contador {
+    color: #777;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+/* --- RESUMO / CONCLUSÃO --- */
+.xp-total {
+    font-size: 1.5rem;
+    color: var(--roxo-dark);
+    font-weight: bold;
+}
+
+.badge-conquista {
+    background: var(--violeta-claro);
+    color: var(--roxo-dark);
+    border-radius: 12px;
+    padding: 10px 16px;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 10px;
+}

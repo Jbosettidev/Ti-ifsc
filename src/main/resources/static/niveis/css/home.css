@@ -1,8 +1,5 @@
-/* home.css
-   Só o que é específico da tela inicial: a lista de trilhas (níveis)
-   que se expandem mostrando as missões (lições) com as pílulas e as
-   linhas curvas conectando elas. Precisa do global.css carregado antes
-   (usa as variáveis de cor --roxo-dark, --violeta-claro...). */
+/* home.css — caminho de bolhas (uma por Nível/Unidade), estilo Imagem 1.
+   Precisa do global.css carregado antes (usa as variáveis de cor). */
 
 main h3.titulo {
     margin: 40px auto;
@@ -22,10 +19,12 @@ main h3.titulo {
 .trilhas-lista {
     display: flex;
     flex-direction: column;
+    gap: 3rem;
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 420px;
+    margin: 20px auto;
     padding: 20px;
+    position: relative; /* necessário pra o SVG absoluto se posicionar em cima dele */
 }
 
 .carregando {
@@ -33,49 +32,52 @@ main h3.titulo {
     color: var(--roxo-dark);
 }
 
-.trilha-card {
-    background-color: #fff;
-    border-radius: 1.25rem;
-    padding: 1.25rem 1.5rem;
-    box-shadow: 0 5px 15px rgba(38, 33, 92, 0.15);
-    margin-top: 20px;
-    cursor: pointer;
-    transition: transform 0.15s ease;
+/* O SVG das linhas curvas fica atrás das bolhas, cobrindo toda a lista. */
+.linhas-niveis {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 1;
 }
 
-.trilha-card:hover {
-    transform: translateY(-3px);
-}
-
-.trilha-card.bloqueada {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.trilha-card.bloqueada:hover {
-    transform: none;
-}
-
-.trilha-cabecalho {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.trilha-titulo {
-    color: var(--roxo-dark);
+.nivel-bolha {
+    background: var(--violeta-medio);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 16px 28px;
     font-size: 1.1rem;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 5px 12px rgba(38, 33, 92, 0.2);
+    position: relative;
+    z-index: 2;
+    transition: transform 0.15s ease;
+    align-self: center;
 }
 
-.cadeado {
-    font-size: 1.4rem !important;
-    color: var(--roxo-dark) !important;
+/* O zigue-zague: a cada 3 bolhas, uma fica mais à esquerda, uma no
+   centro, uma mais à direita — é isso que cria o efeito de "caminho"
+   sinuoso, igual na Imagem 1. */
+.nivel-bolha:nth-child(3n+2) { align-self: flex-start; }
+.nivel-bolha:nth-child(3n+3) { align-self: flex-end; }
+.nivel-bolha:nth-child(3n+4) { align-self: center; }
+
+.nivel-bolha:hover:not(:disabled) {
+    transform: translateY(-3px);
+    background: var(--violeta-azulado);
 }
 
-.trilha-descricao {
-    color: #555;
-    font-size: 0.9rem;
-    margin: 0.4rem 0 0.9rem;
+.nivel-bolha.bloqueada,
+.nivel-bolha:disabled {
+    background: var(--violeta-claro);
+    color: var(--roxo-dark);
+    opacity: 0.7;
+    cursor: not-allowed;
 }
 
 @media (max-width: 768px) {

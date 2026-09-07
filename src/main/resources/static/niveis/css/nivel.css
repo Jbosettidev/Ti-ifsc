@@ -1,0 +1,125 @@
+/* nivel.css — tela de um nível específico: cabeçalho com voltar + mascote,
+   descrição, lista numerada de lições com linhas curvas, e o botão de
+   Desafio Final no rodapé. Precisa do global.css carregado antes. */
+
+.cabecalho-nivel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+
+.cabecalho-nivel .voltar {
+    color: var(--off-white);
+    display: flex;
+    text-decoration: none;
+}
+
+.cabecalho-nivel .voltar .material-symbols-outlined {
+    font-size: 2rem;
+}
+
+.mascote-cabecalho {
+    width: 40px;
+    height: 40px;
+}
+
+.cabecalho-nivel h1 {
+    color: var(--off-white);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.nivel-descricao {
+    background-color: var(--off-white);
+    color: var(--roxo-dark);
+    max-width: 480px;
+    width: 90%;
+    margin: 30px auto 20px;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.licoes-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    width: 90%;
+    max-width: 480px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.linhas-licoes {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.licao-pill {
+    background-color: var(--off-white);
+    border: 2px solid var(--violeta-claro);
+    border-radius: 1rem;
+    padding: 0.9rem 1.2rem;
+    max-width: 82%;
+    text-align: left;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--roxo-dark);
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.15s ease;
+}
+
+/* Mesmo efeito zigue-zague da home, só que aqui direto nos itens
+   (não tem SVG antes deles no HTML, por isso não precisa +1 no cálculo). */
+.licao-pill:nth-child(3n+1) { align-self: flex-start; }
+.licao-pill:nth-child(3n+2) { align-self: center; }
+.licao-pill:nth-child(3n+3) { align-self: flex-end; }
+
+.licao-pill:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background-color: var(--violeta-claro);
+}
+
+.licao-pill.bloqueada,
+.licao-pill:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.desafio-final {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 90%;
+    max-width: 480px;
+    margin: 30px auto 0;
+    background: var(--violeta-claro);
+    color: var(--roxo-dark);
+    border: none;
+    border-radius: 30px;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: inherit;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.desafio-final:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.cadeado-inline {
+    font-size: 1.3rem !important;
+}

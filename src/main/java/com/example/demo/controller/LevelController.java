@@ -35,6 +35,15 @@ public class LevelController {
                 .collect(Collectors.toList());
     }
 
+    // Isso responde: GET http://localhost:8080/api/levels/1
+    // Usado pela tela nivel.html, que só precisa dos dados de UM nível.
+    @GetMapping("/{id}")
+    public LevelSummaryDTO buscarNivel(@PathVariable Long id) {
+        Level level = levelRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Nível não encontrado"));
+        return paraDTO(level);
+    }
+
     private LevelSummaryDTO paraDTO(Level level) {
         List<LessonSummaryDTO> licoesDTO = level.getLicoes().stream()
                 .sorted(Comparator.comparing(l -> l.getOrdem()))
