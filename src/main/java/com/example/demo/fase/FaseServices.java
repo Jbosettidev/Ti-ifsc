@@ -1,5 +1,6 @@
 package com.example.demo.fase;
 
+import com.example.demo.excessoes.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
@@ -22,14 +23,14 @@ public class FaseServices {
 
     /** Marca a fase como concluída ({@code concluida = true}). */
     public Fase marcarComoConcluida(Long id) {
-        Fase fase = faseRepository.findById(id).orElseThrow(() -> new RuntimeException("Fase não encontrada"));
+        Fase fase = faseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fase não encontrada"));
         fase.setConcluida(true);
 
         return faseRepository.save(fase);
     }
 
     public Fase buscar(Long id) {
-        return faseRepository.findById(id).orElseThrow();
+        return faseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fase não encontrada"));
     }
 
     public List<Fase> listarTodos() {
@@ -38,7 +39,7 @@ public class FaseServices {
 
     /** Atualiza apenas campos não nulos enviados no corpo (título, descrição, concluída). */
     public Fase atualizarParcial(Long id, @NonNull Fase dados) {
-        Fase fase = faseRepository.findById(id).orElseThrow();
+        Fase fase = faseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fase não encontrada"));
 
         if (dados.getTitulo() != null) {
             fase.setTitulo(dados.getTitulo());
@@ -54,8 +55,8 @@ public class FaseServices {
 
     public void deletar(Long id) {
         if (!faseRepository.existsById(id)) {
-            throw new RuntimeException("Fase não encontrada");
+            throw new ResourceNotFoundException("Fase não encontrada");
         }
         faseRepository.deleteById(id);
     }
-}
+}

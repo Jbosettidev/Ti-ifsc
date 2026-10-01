@@ -1,6 +1,7 @@
 package com.example.demo.questao;
 
 import com.example.demo.quiz.Quiz;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -48,5 +49,6 @@ public class Questao {
 
     @ManyToOne
     @JoinColumn(name = "quiz_id", nullable = false)
+    @JsonIgnoreProperties({"questoes", "progressos", "hibernateLazyInitializer", "handler"})
     private Quiz quiz;
-}
+}

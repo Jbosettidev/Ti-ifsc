@@ -1,8 +1,10 @@
 package com.example.demo.medalha;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -23,7 +25,7 @@ public class MedalhaController {
 
     @PostMapping("/medalhas")
     public ResponseEntity<Medalha> criar(@RequestBody Medalha medalha) {
-        return ResponseEntity.ok(medalhaServices.criar(medalha));
+        return ResponseEntity.status(HttpStatus.CREATED).body(medalhaServices.criar(medalha));
     }
 
     @PutMapping("/medalhas/{id}")
@@ -37,22 +39,21 @@ public class MedalhaController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/usuarios/{usuarioId}/medalhas/{medalhaId}")
-    public ResponseEntity<UsuarioMedalha> atualizarProgresso(
-            @PathVariable Long usuarioId,
-            @PathVariable Long medalhaId,
-            @RequestParam Integer progresso) {
-        return ResponseEntity.ok(medalhaServices.atualizarProgresso(usuarioId, medalhaId, progresso));
-    }
-
     @GetMapping("/usuarios/{usuarioId}/medalhas")
     public ResponseEntity<List<UsuarioMedalha>> listarMedalhasDoUsuario(@PathVariable Long usuarioId) {
         return ResponseEntity.ok(medalhaServices.listarMedalhasDoUsuario(usuarioId));
     }
+
     @GetMapping("/usuarios/{usuarioId}/medalhas/{medalhaId}")
-    public ResponseEntity<UsuarioMedalha> buscarMedalhaDoUsuario(
-            @PathVariable Long usuarioId,
-            @PathVariable Long medalhaId) {
+    public ResponseEntity<UsuarioMedalha> buscarMedalhaDoUsuario(@PathVariable Long usuarioId,
+                                                                 @PathVariable Long medalhaId) {
         return ResponseEntity.ok(medalhaServices.buscarMedalhaDoUsuario(usuarioId, medalhaId));
+    }
+
+    @PutMapping("/usuarios/{usuarioId}/medalhas/{medalhaId}")
+    public ResponseEntity<UsuarioMedalha> atualizarProgresso(@PathVariable Long usuarioId,
+                                                             @PathVariable Long medalhaId,
+                                                             @RequestParam Integer progresso) {
+        return ResponseEntity.ok(medalhaServices.atualizarProgresso(usuarioId, medalhaId, progresso));
     }
 }

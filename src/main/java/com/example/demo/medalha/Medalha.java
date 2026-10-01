@@ -1,51 +1,33 @@
-package com.example.demo.medalha;
-
-import com.example.demo.user.Usuario;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDateTime;
-
-@Entity
-@Getter @Setter
-@NoArgsConstructor
-@Table(name = "medalha")
-public class Medalha {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt;
-
-    @NotBlank @Size(min = 3, max = 100)
-    @Column(nullable = false)
-    private String nome;
-
-    private String evento;
-
-    private Integer alvo;
-
-    private boolean objConcluido;
-
-    @Size(max = 150)
-    private String descricao;
-
-    // A ligação fica do lado "Muitos" (Muitas medalhas pertencem a Um usuário)
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
-}
+package com.example.demo.medalha;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "medalha")
+public class Medalha {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String codigo;
+
+    private String nome;
+
+    private String evento;
+
+    private Integer alvo;
+
+    private boolean objConcluido;
+
+    private String descricao;
+
+    private String nomeArquivoIcone;
+}

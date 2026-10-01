@@ -10,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Avaliação vinculada a uma {@link com.example.demo.fase.Fase}; contém questões e registros
@@ -46,6 +47,7 @@ public class Quiz {
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<com.example.demo.questao.Questao> questoes;
 
+    @JsonIgnore // progresso é por usuário; não precisa vir dentro do quiz (e evita loop)
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<com.example.demo.progresso.Progresso> progressos;
-}
+}

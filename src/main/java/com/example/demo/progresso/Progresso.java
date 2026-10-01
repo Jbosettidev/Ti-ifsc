@@ -3,6 +3,7 @@ package com.example.demo.progresso;
 import com.example.demo.fase.Fase;
 import com.example.demo.quiz.Quiz;
 import com.example.demo.user.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
@@ -41,9 +42,11 @@ public class Progresso {
 
     @ManyToOne
     @JoinColumn(name = "fase_id", nullable = false)
+    @JsonIgnoreProperties({"quizzes", "hibernateLazyInitializer", "handler"})
     private Fase fase;
 
     @ManyToOne
     @JoinColumn(name = "quiz_id", nullable = false)
+    @JsonIgnoreProperties({"questoes", "progressos", "fase", "hibernateLazyInitializer", "handler"})
     private Quiz quiz;
-}
+}
