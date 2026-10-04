@@ -26,8 +26,16 @@ if (!lessonId) {
     areaEl.innerHTML = "<p>Nenhuma lição informada na URL.</p>";
 } else {
     fetch(`/api/lessons/${lessonId}/steps`)
-        .then((res) => res.json())
+        .then((res) => {
+            // Sem essa checagem, um 404/500 virava um erro mudo e a tela ficava vazia.
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            return res.json();
+        })
         .then((steps) => {
+            if (!Array.isArray(steps) || steps.length === 0) {
+                areaEl.innerHTML = "<p>Esta lição ainda não tem conteúdo.</p>";
+                return;
+            }
             estado.licao = { steps };
             renderStep(steps[0]);
         })
@@ -516,10 +524,12 @@ function renderConclusao(c, textoBotao) {
 }
 
 // Envia o resultado da lição pro backend e volta pro mapa do nível.
-// O "?usuarioId=1" aqui é o mesmo placeholder temporário do backend —
-// troque quando tiver o usuário logado disponível no frontend também.
+// Usa o usuário logado (salvo no localStorage no login/cadastro); se não
+// houver, cai no 1 como antes.
 function finalizarLicao() {
-    fetch("/api/progress?usuarioId=1", {
+    const usuarioId = localStorage.getItem("userId") || 1;
+
+    fetch(`/api/progress?usuarioId=${usuarioId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -530,6 +540,5 @@ function finalizarLicao() {
         })
     })
     .catch((err) => console.error("Falha ao salvar progresso:", err))
-    .finally(() => { window.location.href = "nivel.html"; });
     .finally(() => { window.location.href = urlNivel; });
 }
