@@ -1,0 +1,87 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: "Fredoka", sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --cinza: #eae7ea;
+    --violeta-azulado: #7F77DD;
+    --violeta-claro: #CECBF6;
+    --off-white: #EEEDFE;
+    --roxo-dark: #26215C;
+    --violeta-medio: #9279e9;
+    --off-offwhite: #fdfdfd;
+}
+
+body {
+    background-color: var(--off-white);
+    background-size: 50px 50px;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 110px;
+    padding-top: 70px;
+}
+
+.cabecalho {
+    background-color: rgba(93, 44, 216, 0.3);
+    backdrop-filter: saturate(160%) blur(25px);
+    border: 0.1rem solid rgba(208, 187, 211, 0.2);
+    padding: 20px;
+    color: var(--off-white);
+    letter-spacing: 2px;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+}
+
+.rodape {
+    background-color: rgba(93, 44, 216, 0.3);
+    backdrop-filter: saturate(160%) blur(25px);
+    border: 0.1rem solid rgba(208, 187, 211, 0.2);
+    padding: 10px 0 20px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.material-symbols-outlined {
+    font-size: 3rem;
+    color: var(--off-offwhite);
+    cursor: pointer;
+    font-variation-settings: 'FILL' 1;
+    transition: all 0.7s ease;
+}
+
+.material-symbols-outlined:hover {
+    color: #9279e9;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .container {
+        gap: 50px;
+    }
+
+    .botao-geral {
+        font-size: 1.5rem;
+        margin: 10px 0;
+    }
+}
