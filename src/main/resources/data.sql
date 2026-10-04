@@ -147,7 +147,7 @@ INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'PARABENS',
 '{
   "titulo": "Parabéns por ter chegado até aqui!",
-  "texto": "agora vamos checar os seus conhecimentos!",
+  "texto": "Agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
 }', 2);
 

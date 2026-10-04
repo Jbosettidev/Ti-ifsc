@@ -2,8 +2,15 @@
 const listaEl = document.getElementById("trilhas-lista");
 let svgEl;
 
-fetch("/api/levels")
-    .then((res) => res.json())
+// Usuário logado (salvo no localStorage no login/cadastro). Sem isso o backend
+// assume o usuário 1 e os níveis não desbloqueiam para os outros usuários.
+const usuarioId = localStorage.getItem("userId") || 1;
+
+fetch(`/api/levels?usuarioId=${usuarioId}`)
+    .then((res) => {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+    })
     .then((niveis) => montarCaminho(niveis || []))
     .catch((err) => {
         console.error(err);

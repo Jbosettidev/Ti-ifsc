@@ -98,7 +98,7 @@ function botaoContinuar(texto = "Continuar...", habilitado = true) {
 // ============================================================
 function renderAbertura(c) {
     areaEl.innerHTML = `
-        <img class="mascote" src="img/mascote/${c.imagem}" alt="Mascote">
+        <img class="mascote" src="img/${c.imagem}" alt="Mascote">
         <div class="card-licao centralizado">
             <div class="titulo-step">${c.titulo}</div>
             <p>${c.texto}</p>
@@ -119,7 +119,7 @@ function renderConteudo(c) {
                     <p>${c.dica}</p>
                 </div>` : ""}
         </div>
-        ${c.imagem ? `<img class="mascote" src="img/mascote/${c.imagem}" alt="Mascote">` : ""}
+        ${c.imagem ? `<img class="mascote" src="img/${c.imagem}" alt="Mascote">` : ""}
         ${botaoContinuar()}
     `;
 }
@@ -139,7 +139,7 @@ function renderComparacao(c) {
                 </div>
             </div>
         </div>
-        ${c.imagem ? `<img class="mascote" src="img/mascote/${c.imagem}" alt="Mascote">` : ""}
+        ${c.imagem ? `<img class="mascote" src="img/${c.imagem}" alt="Mascote">` : ""}
         ${botaoContinuar()}
     `;
 }
@@ -164,7 +164,7 @@ function paraEmbedYoutube(url) {
 
 function renderParabens(c) {
     areaEl.innerHTML = `
-        <img class="mascote" src="img/mascote/${c.imagem}" alt="Mascote">
+        <img class="mascote" src="img/${c.imagem}" alt="Mascote">
         <div class="card-licao centralizado">
             <div class="titulo-step">${c.titulo}</div>
             <p>${c.texto}</p>
@@ -182,7 +182,7 @@ function renderQuiz(c) {
         .join("");
 
     areaEl.innerHTML = `
-        ${c.imagem ? `<img class="mascote" src="img/mascote/${c.imagem}" alt="Mascote">` : ""}
+        ${c.imagem ? `<img class="mascote" src="img/${c.imagem}" alt="Mascote">` : ""}
         <div class="card-licao">
             <div class="titulo-step">Testando seus conhecimentos</div>
             <p>${c.pergunta}</p>
@@ -502,7 +502,7 @@ function renderResumo(c) {
         : 100;
 
     areaEl.innerHTML = `
-        ${c.imagem ? `<img class="mascote" src="img/mascote/${c.imagem}" alt="Mascote">` : ""}
+        ${c.imagem ? `<img class="mascote" src="img/${c.imagem}" alt="Mascote">` : ""}
         <div class="card-licao centralizado">
             <div class="titulo-step">${c.titulo}</div>
             <p class="xp-total">${c.texto}${estado.pontosGanhos} XP</p>

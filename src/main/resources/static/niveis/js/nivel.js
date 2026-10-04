@@ -2,6 +2,10 @@
 const params = new URLSearchParams(window.location.search);
 const levelId = params.get("levelId");
 
+// Usuário logado (salvo no localStorage no login/cadastro). Sem isso o backend
+// assume o usuário 1 e as lições não desbloqueiam para os outros usuários.
+const usuarioId = localStorage.getItem("userId") || 1;
+
 const listaEl = document.getElementById("licoes-lista");
 let svgEl;
 
@@ -9,8 +13,11 @@ if (!levelId) {
     document.getElementById("nivel-descricao").textContent =
         "Nenhum nível informado na URL (esperado: nivel.html?levelId=1).";
 } else {
-    fetch(`/api/levels/${levelId}`)
-        .then((res) => res.json())
+    fetch(`/api/levels/${levelId}?usuarioId=${usuarioId}`)
+        .then((res) => {
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            return res.json();
+        })
         .then((nivel) => renderNivel(nivel))
         .catch((err) => {
             console.error(err);
