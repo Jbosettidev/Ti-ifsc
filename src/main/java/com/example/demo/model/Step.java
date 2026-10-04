@@ -19,18 +19,11 @@ public class Step {
     private StepType tipo;
 
     // Aqui mora o "conteúdo" de cada tela, guardado como um texto JSON puro.
-    // @Lob (Large Object) diz ao banco "esse texto pode ser grande, não
-    // limite a 255 caracteres como um VARCHAR normal".
-    // columnDefinition = "TEXT" garante isso no MySQL/Postgres.
     //
-    // Exemplo do que fica guardado aqui pra um step do tipo QUIZ:
-    // {
-    //   "pergunta": "O que torna a informação diferente de um bem físico?",
-    //   "opcoes": ["Pode ser copiada sem se desgastar", "Perde valor com o tempo"],
-    //   "correta": 0,
-    //   "explicacao": "Informação pode ser copiada infinitas vezes sem se desgastar."
-    // }
-    @Lob
+    // ATENÇÃO: NÃO use @Lob aqui. No PostgreSQL, o @Lob faz o Hibernate ler a
+    // coluna como Clob (getClob), o que dá o erro "Valor inválido para tipo long"
+    // e derruba o GET /api/lessons/{id}/steps com 500.
+    // columnDefinition = "TEXT" já garante que o texto pode ser grande.
     @Column(columnDefinition = "TEXT")
     private String conteudoJson;
 
@@ -55,4 +48,4 @@ public class Step {
 
     public Lesson getLesson() { return lesson; }
     public void setLesson(Lesson lesson) { this.lesson = lesson; }
-}
+}
