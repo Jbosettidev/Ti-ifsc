@@ -8,14 +8,14 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    <link rel="stylesheet" href="/TelasIniciais/style.css">
-    <link rel="icon" href="/TelasIniciais/img/logo-capuz.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo-capuz.png" type="image/png">
 </head>
 
 <body>
     <form id="form-login" action="/login" method="post">
         <div class="card-total">
-            <img src="/TelasIniciais/img/logo-capuz.png" class="imagem" alt="Logo">
+            <img src="img/logo-capuz.png" class="imagem" alt="Logo">
             <h2 class="titulo">Bem vindo de volta!</h2>
 
             <div class="inputbox">
@@ -27,140 +27,166 @@
                 <ion-icon class="icone toggleSenha" name="eye-off-outline"></ion-icon>
             </div>
 
-            <a href="/senha1" class="botao-secundario">Esqueceu a senha?</a>
+            <a href="senha1.html" class="botao-secundario">Esqueceu a senha?</a>
 
             <div class="botao-container">
                 <input type="submit" class="botao" id="botao-login" value="Entrar">
-                <input type="button" onclick="window.location.href='/cadastro';" class="botao" value="Cadastrar">
+                <input type="button" onclick="window.location.href='cadastro.html';" class="botao" value="Cadastrar">
             </div>
             <p id="msg" style="text-align: center; margin-top: 1rem; color: #26215C; font-weight: 600;"></p>
         </div>
     </form>
     <canvas id="bolhas"></canvas>
 
-    <script src="/TelasIniciais/senha.js"></script>
+    <script src="senha.js"></script>
     <script>
         const form = document.getElementById('form-login');
         const msg = document.getElementById('msg');
         const botao = document.getElementById('botao-login');
-
-        const urlParams =
-            new URLSearchParams(window.location.search);
+        const apiUrl = window.location.origin + '/usuarios/login';
+        const urlParams = new URLSearchParams(window.location.search);
 
         if (urlParams.get('error')) {
-
             msg.style.color = '#a80a0a';
-
-            msg.textContent =
-                'E-mail ou senha incorretos.';
-
+            msg.textContent = 'E-mail ou senha incorretos.';
         } else if (urlParams.get('logout')) {
-
             msg.style.color = '#1a7a3a';
-
-            msg.textContent =
-                'Você saiu com sucesso!';
+            msg.textContent = 'Você saiu com sucesso!';
         }
 
-        async function obterCsrf() {
+        // Se já tem userId, vai pra home
+        if (localStorage.getItem('userId')) {
+            window.location.replace('/');
+        }
 
-            const res = await fetch('/csrf', {
-                credentials: 'same-origin'
-            });
+        // ===================== BOLHAS =====================
+        if (localStorage.getItem('userId')) {
+            window.location.replace('../index.html');
+        }
 
-            if (!res.ok) {
-                throw new Error(
-                    'Não foi possível obter o token CSRF.'
-                );
-            }
+        if (window.location.protocol === 'file:') {
+            msg.style.color = '#a80a0a';
+            msg.textContent = 'Abra pelo servidor: http://localhost:8080/TelasIniciais/login.html';
+        }
 
-            return res.json();
+        function mostrarErro(texto) {
+            msg.style.color = '#a80a0a';
+            msg.textContent = texto;
         }
 
         form.addEventListener('submit', async (e) => {
-
             e.preventDefault();
-
             msg.textContent = '';
 
-            const email =
-                document.getElementById('email').value.trim();
+            if (window.location.protocol === 'file:') {
+                mostrarErro('Use http://localhost:8080/TelasIniciais/login.html');
+                return;
+            }
 
-            const senha =
-                document.getElementById('senha').value;
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value;
 
             botao.disabled = true;
-            botao.value = 'Entrando...';
+            botao.textContent = 'Entrando...';
 
             try {
-
-                const csrf = await obterCsrf();
-
-                const dados = new URLSearchParams();
-
-                dados.set('email', email);
-                dados.set('senha', senha);
-
-                const login = await fetch('/login', {
+                const res = await fetch(apiUrl, {
                     method: 'POST',
-
-                    credentials: 'same-origin',
-
-                    headers: {
-                        'Content-Type':
-                            'application/x-www-form-urlencoded',
-
-                        'X-XSRF-TOKEN':
-                        csrf.token
-                    },
-
-                    body: dados
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha })
                 });
 
-                if (!login.ok) {
+                const texto = await res.text();
 
-                    window.location.href =
-                        '/login?error=true';
-
+                if (res.ok) {
+                    const usuario = JSON.parse(texto);
+                    localStorage.setItem('userId', usuario.id);
+                    msg.style.color = '#1a7a3a';
+                    msg.textContent = 'Login realizado! Redirecionando...';
+                    setTimeout(() => { window.location.href = '../index.html'; }, 600);
                     return;
                 }
 
-                const usuarioRes =
-                    await fetch('/usuarios/me', {
-                        credentials: 'same-origin'
-                    });
-
-                if (!usuarioRes.ok) {
-
-                    throw new Error(
-                        'Não foi possível recuperar o usuário.'
-                    );
+                try {
+                    const erro = JSON.parse(texto);
+                    mostrarErro(erro.message || texto);
+                } catch {
+                    mostrarErro(texto || 'E-mail ou senha incorretos.');
                 }
-
-                const usuario =
-                    await usuarioRes.json();
-
-                localStorage.setItem(
-                    'userId',
-                    usuario.id
-                );
-
-                window.location.href = '/';
-
-            } catch (erro) {
-
-                console.error(erro);
-
-                msg.style.color = '#a80a0a';
-
-                msg.textContent =
-                    'Não foi possível realizar o login.';
-
-                botao.disabled = false;
-
-                botao.value = 'Entrar';
+            } catch {
+                mostrarErro('E-mail ou senha incorretos.');
+            } finally {
+                if (msg.textContent !== 'Login realizado! Redirecionando...') {
+                    botao.disabled = false;
+                    botao.textContent = 'Entrar';
+                }
             }
         });
+
+        const canvas = document.getElementById('bolhas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        let bolhas = [];
+        setInterval(() => {
+            if (bolhas.length < 60) {
+                bolhas.push(novaBolha());
+            }
+        }, 800);
+
+        function novaBolha(x, y) {
+            return {
+                x: x ?? Math.random() * canvas.width,
+                y: y ?? canvas.height + Math.random() * 200,
+                r: 3 + Math.random() * 8,
+                velocidade: 0.4 + Math.random() * 0.10,
+                opacidade: 0.08 + Math.random() * 0.08,
+                drift: (Math.random() - 0.5) * 0.4
+            };
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            if (bolhas.length < 60) {
+                bolhas.push(novaBolha(e.clientX, e.clientY));
+            }
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target.closest('#form-login')) return;
+            for (let i = 0; i < 12; i++) {
+                bolhas.push(novaBolha(
+                    e.clientX + (Math.random() - 0.5) * 60,
+                    e.clientY + (Math.random() - 0.5) * 60
+                ));
+            }
+        });
+
+        function animar() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            bolhas.forEach((b, i) => {
+                ctx.beginPath();
+                ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${b.opacidade})`;
+                ctx.fill();
+
+                b.y -= b.velocidade;
+                b.x += b.drift;
+
+                if (b.y + b.r < 0) bolhas.splice(i, 1);
+            });
+
+            requestAnimationFrame(animar);
+        }
+
+        animar();
     </script>
 </body>
 

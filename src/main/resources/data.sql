@@ -407,6 +407,8 @@ VALUES (10, 'RESUMO',
   "texto": "Total de XP ganho: "
 }', 4);
 
+SELECT setval(pg_get_serial_sequence('level', 'id'), (SELECT MAX(id) FROM level));
+SELECT setval(pg_get_serial_sequence('lesson', 'id'), (SELECT MAX(id) FROM lesson));
 -- NIVEL 2
 INSERT INTO level (titulo, descricao, ordem)
 VALUES ('Nível 2 ', 'Conheça os principais malwares e como eles agem!', 2);
