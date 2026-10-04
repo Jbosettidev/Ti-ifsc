@@ -1,3 +1,4 @@
+TRUNCATE step, lesson, level RESTART IDENTITY CASCADE;
 
 -- NIVEL 1
 INSERT INTO level (id, titulo, descricao, ordem)
@@ -13,7 +14,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "Por que a informação vale tanto?",
   "texto": "Toda jornada de cibersegurança começa com uma pergunta simples: por que alguém se daria ao trabalho de te atacar?",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "3-4 min",
   "XP": "+60 XP"
 }', 1);
@@ -106,7 +107,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "O que estamos protegendo?",
   "texto": "Na missão passada você viu por que a informação vale tanto. Agora: o que exatamente estamos protegendo quando falamos em cibersegurança?",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "6 min",
   "XP": "+60 XP"
 }', 2);
@@ -214,7 +215,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "Você tem identidade digital?",
   "texto": "Você já se perguntou se tem uma identidade digital? Se você usa a internet, mesmo sem Instagram ou TikTok, a resposta é sim.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "2 min",
   "XP": "+60 XP"
 }', 3);
@@ -297,7 +298,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "Quem está do outro lado?",
   "texto": "Última missão desta trilha! Você já sabe o que estamos protegendo (CID) e por que seus dados valem tanto. Agora: quem, exatamente, está tentando pegar essas informações?",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "8 min",
   "XP": "+60 XP"
 }', 4);
@@ -420,7 +421,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "Trilha nova: Malware",
   "texto": "Agora que você entende os fundamentos, vamos conhecer as ameaças mais comuns na prática. Começando pela mais antiga de todas: o phishing.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "4-5 min",
   "XP": "+60 XP"
 }', 5);
@@ -544,7 +545,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "SEU COMPUTADOR ESTÁ INFECTADO!",
   "texto": "Quem nunca viu um pop-up assim? Nessa missão você aprende por que ele quase sempre é o golpe, não o aviso.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "3-4 min",
   "XP": "+60 XP"
 }', 6);
@@ -663,7 +664,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "Uma praga que se espalha sozinha",
   "texto": "Alguns malwares precisam que você clique em algo. Outros não, eles se espalham sozinhos, como uma praga. Conheça o worm.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "3-4 min",
   "XP": "+60 XP"
 }', 7);
@@ -775,7 +776,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "O espião silencioso",
   "texto": "Nem todo malware quer destruir seus arquivos. Alguns só querem observar, em silêncio.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "4-5 min",
   "XP": "+60 XP"
 }', 8);
@@ -921,7 +922,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "O oposto do worm",
   "texto": "Lembra do Worm, que se espalha sozinho? O Trojan é o oposto: ele precisa que você mesmo abra a porta.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
 }', 9);
@@ -1027,7 +1028,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "Seus arquivos, reféns",
   "texto": "Imagine abrir seu computador e descobrir que todos os seus arquivos foram trancados, e alguém pede dinheiro pra devolver a chave.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "4-5 min",
   "XP": "+60 XP"
 }', 10);
@@ -1125,7 +1126,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "A porta que fica aberta",
   "texto": "Lembra que o Trojan pode ''carregar'' diferentes ataques dentro de si? Um dos mais perigosos é o Backdoor - uma porta que fica aberta pro invasor voltar sempre que quiser.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "2 min",
   "XP": "+60 XP"
 }', 11);
@@ -1244,7 +1245,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "A chave da sua casa digital",
   "texto": "Sua senha é a chave da sua casa digital. Nessa missão, você aprende a fazer uma chave que ninguém consegue copiar.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
 }', 12);
@@ -1358,7 +1359,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "Uma senha só não basta",
   "texto": "Você criou uma senha forte na última missão. Ótimo, mas usa ela em tudo? Isso é um problema.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "3-4 min",
   "XP": "+60 XP"
 }', 13);
@@ -1451,7 +1452,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "E se a senha não bastasse?",
   "texto": "E se, mesmo que alguém descubra sua senha, ainda assim não conseguisse entrar na sua conta? É isso que a verificação em duas etapas faz.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
 }', 14);
@@ -1553,7 +1554,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "O cadeadinho conta só parte da história",
   "texto": "Você já reparou no cadeadinho ao lado do endereço de um site? Ele conta uma parte importante da história, mas não tudo.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
 }', 15);
@@ -1657,7 +1658,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "O wifi grátis tem um custo escondido",
   "texto": "Aquele wifi grátis do shopping ou da cafeteria é conveniente, mas também pode ser um risco que você nem imagina.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "3 min",
   "XP": "+60 XP"
 }', 16);
@@ -1774,7 +1775,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "Uma forma comum de deixar rastro",
   "texto": "Lembra da sua ''pegada digital'', na Trilha 1? Os cookies são uma das formas mais comuns de deixar rastro. Vamos entender como funcionam.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
 }', 17);
@@ -1913,7 +1914,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "Duas ferramentas de defesa",
   "texto": "Você já conheceu vários tipos de ataque. Agora conheça duas das principais ferramentas de defesa.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "3-4 min",
   "XP": "+60 XP"
 }', 18);
@@ -2010,14 +2011,14 @@ VALUES (8, 'RESUMO',
 
 --LICAO 3.8
 INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
-VALUES (18, 'Comprando online com segurança', 8, 60, false, 3);
+VALUES (19, 'Comprando online com segurança', 8, 60, false, 3);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
 '{
   "titulo": "O preço bom demais",
   "texto": "Achou o preço mais baixo numa loja que você nunca ouviu falar? Antes de comprar, vale a pena investigar um pouco.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
 }', 19);
@@ -2132,7 +2133,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "A defesa real contra o ransomware",
   "texto": "Lembra do Ransomware, na Trilha 2? A defesa real contra ele e contra qualquer perda de arquivo - é o backup.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
 }', 20);
@@ -2263,7 +2264,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "Sinais que ajudam a identificar cedo",
   "texto": "Mesmo com todo cuidado, às vezes um dispositivo é infectado. A boa notícia: existem sinais que ajudam a identificar isso cedo - e resolver o problema.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
 }', 21);
@@ -2393,7 +2394,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "A parte prática",
   "texto": "Identificou os sinais? Agora vem a parte prática: os passos pra remover a ameaça e recuperar seu dispositivo.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "5 min",
   "XP": "+60 XP"
 }', 22);
@@ -2493,7 +2494,7 @@ VALUES (1, 'ABERTURA',
 '{
   "titulo": "Um último recurso com custo alto",
   "texto": "Seguiu todos os passos e o problema continua? Existe um último recurso, mas ele tem um custo alto.",
-  "imagem": "byte-inicio-licao.svg",
+  "imagem": "byte-fundo-nivel-2.svg",
   "tempo": "3-4 min",
   "XP": "+40 XP"
 }', 23);
