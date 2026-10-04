@@ -1937,7 +1937,7 @@ VALUES (3, 'VIDEO',
 '{
   "titulo": "Firewall x antivírus",
   "imagem": "byte-momento-cinema.svg",
-  "urlVideo": "https://youtube.com/shorts/y8Pav1fsq8Q?si=q576d646aval2lF9"
+  "urlVideo": "https://youtu.be/TCCBGbGz7Aw?si=L4BgvXaXHdTrPSft"
 }', 18);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)

@@ -40,6 +40,11 @@ public class ProgressController {
         Lesson licao = lessonRepository.findById(dto.getLessonId())
                 .orElseThrow(() -> new ResourceNotFoundException("Lição não encontrada"));
 
+        // Lição já concluída: é só revisão, não grava de novo nem soma XP.
+        if (progressoRepository.existsByUsuario_IdAndLessonId(usuarioId, licao.getId())) {
+            return ResponseEntity.ok().build();
+        }
+
         UserLessonProgress progresso = new UserLessonProgress();
         progresso.setUsuario(usuario);
         progresso.setLessonId(licao.getId());
