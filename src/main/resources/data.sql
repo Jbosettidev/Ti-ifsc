@@ -407,15 +407,13 @@ VALUES (10, 'RESUMO',
   "texto": "Total de XP ganho: "
 }', 4);
 
-SELECT setval(pg_get_serial_sequence('level', 'id'), (SELECT MAX(id) FROM level));
-SELECT setval(pg_get_serial_sequence('lesson', 'id'), (SELECT MAX(id) FROM lesson));
 -- NIVEL 2
-INSERT INTO level (titulo, descricao, ordem)
-VALUES ('Nível 2 ', 'Conheça os principais malwares e como eles agem!', 2);
+INSERT INTO level (id, titulo, descricao, ordem)
+VALUES (2, 'Nível 2 ', 'Conheça os principais malwares e como eles agem!', 2);
 
 --LICAO 2.1
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Phishing: a isca no anzol', 1, 60, false, 2)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (5, 'Phishing: a isca no anzol', 1, 60, false, 2);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -425,7 +423,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "4-5 min",
   "XP": "+60 XP"
-}', 1);
+}', 5);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -438,7 +436,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Engenheiros sociais profissionais",
   "dica": "Existem golpistas profissionais especializados só em manipulação psicológica, chamados de engenheiros sociais. Eles são tão bons no que fazem que às vezes até um profissional de segurança tem dificuldade de perceber o golpe."
-}', 1);
+}', 5);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'COMPARACAO',
@@ -457,7 +455,7 @@ VALUES (3, 'COMPARACAO',
     "titulo": "Remetente estranho",
     "texto": "Link ou remetente que parece estranho, mesmo que familiar."
   }
-}', 1);
+}', 5);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'VIDEO',
@@ -465,7 +463,7 @@ VALUES (4, 'VIDEO',
   "titulo": "Como identificar phishing",
   "imagem": "byte-momento-cinema.svg",
   "urlVideo": "https://youtu.be/HIWm1oxhQYk?si=zGi-NhzWSqO73mLW"
-}', 1);
+}', 5);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'PARABENS',
@@ -473,7 +471,7 @@ VALUES (5, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 1);
+}', 5);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -488,7 +486,7 @@ VALUES (6, 'QUIZ',
   "correta": 1,
   "xp": 20,
   "explicacao": "Phishing é engenharia social: explora a vulnerabilidade humana, não uma falha técnica."
-}', 1);
+}', 5);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'QUIZ',
@@ -503,7 +501,7 @@ VALUES (7, 'QUIZ',
   "correta": 1,
   "xp": 20,
   "explicacao": "Urgência exagerada é uma das táticas mais comuns para forçar decisões precipitadas."
-}', 1);
+}', 5);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'JOGO',
@@ -525,21 +523,21 @@ VALUES (8, 'JOGO',
       "feedbackIncorreto": "Esse e-mail é fraudulento. Repare no remetente (um Gmail comum, não um banco oficial) e na urgência criada."
     }
   ]
-}', 1);
+}', 5);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (9, 'RESUMO',
 '{
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
-  "texto": "Total de XP ganho: ",
-}', 1);
+  "texto": "Total de XP ganho: "
+}', 5);
 
 
 
 --LICAO 2.2
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Scareware: o susto falso', 2, 30, false, 2)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (6, 'Scareware: o susto falso', 2, 30, false, 2);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -549,7 +547,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "3-4 min",
   "XP": "+60 XP"
-}', 2);
+}', 6);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -562,7 +560,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "O perigo real está no clique",
   "dica": "O scareware em si não protege nem ataca tecnicamente seu dispositivo, o perigo real está no clique. Ou seja, o ''vírus'' só vira ameaça de verdade se você interagir com o pop-up falso."
-}', 2);
+}', 6);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'COMPARACAO',
@@ -577,7 +575,7 @@ VALUES (3, 'COMPARACAO',
     "titulo": "Não faça",
     "texto": "Nunca clique em ''Remover'' ou ''Resolver'' dentro do próprio pop-up suspeito."
   }
-}', 2);
+}', 6);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'PARABENS',
@@ -585,7 +583,7 @@ VALUES (4, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 2);
+}', 6);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -600,7 +598,7 @@ VALUES (5, 'QUIZ',
   "xp": 20,
   "correta": 0,
   "explicacao": "Esse é o padrão clássico de scareware: alerta alarmista com botão de ação imediata."
-}', 2);
+}', 6);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -615,7 +613,7 @@ VALUES (6, 'QUIZ',
   "xp": 20,
   "correta": 1,
   "explicacao": "Fechar a aba sem interagir com o pop-up evita ativar qualquer ação maliciosa embutida nele."
-}', 2);
+}', 6);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'JOGO',
@@ -645,7 +643,7 @@ VALUES (7, 'JOGO',
       "categoria": "Scareware"
     }
   ]
-}', 2);
+}', 6);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (9, 'RESUMO',
@@ -653,12 +651,12 @@ VALUES (9, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 2);
+}', 6);
 
 
 --LICAO 2.3
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Worms: a praga que se espalha sozinha', 3, 60, false, 2)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (7, 'Worms: a praga que se espalha sozinha', 3, 60, false, 2);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -668,7 +666,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "3-4 min",
   "XP": "+60 XP"
-}', 3);
+}', 7);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -681,7 +679,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Worm x vírus tradicional",
   "dica": "Diferente de um vírus tradicional, que precisa ''grudar'' em um arquivo pra existir, o worm é independente — ele não precisa de nenhum programa hospedeiro pra se espalhar."
-}', 3);
+}', 7);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'VIDEO',
@@ -689,7 +687,7 @@ VALUES (3, 'VIDEO',
   "titulo": "O que é um worm",
   "imagem": "byte-momento-cinema.svg",
   "urlVideo": "https://youtu.be/-jvTzqD07V8?si=TkVPKESbiP97wlV_"
-}', 3);
+}', 7);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'PARABENS',
@@ -697,7 +695,7 @@ VALUES (4, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 3);
+}', 7);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -712,7 +710,7 @@ VALUES (5, 'QUIZ',
   "correta": 0,
   "xp": 20,
   "explicacao": "A autorreplicação sem ação contínua do usuário é a característica central do worm."
-}', 3);
+}', 7);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -727,7 +725,7 @@ VALUES (6, 'QUIZ',
   "correta": 1,
   "xp": 20,
   "explicacao": "Anexos de e-mail infectados são uma via clássica de propagação de worms."
-}', 3);
+}', 7);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'JOGO',
@@ -757,7 +755,7 @@ VALUES (7, 'JOGO',
       "categoria": "Seguro"
     }
   ]
-}', 3);
+}', 7);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'RESUMO',
@@ -765,12 +763,12 @@ VALUES (8, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 3);
+}', 7);
 
 
 --LICAO 2.4
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Spyware: o espião silencioso', 4, 60, false, 2)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (8, 'Spyware: o espião silencioso', 4, 60, false, 2);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -780,7 +778,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "4-5 min",
   "XP": "+60 XP"
-}', 4);
+}', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -793,7 +791,7 @@ VALUES (2, 'CONTEUDO',
     "Adware: Coleta dados sobre sua navegação pra te mostrar anúncios personalizados. É o menos perigoso dos três, mas ainda é uma invasão de privacidade."
   ],
   "imagem": "byte-apresentacao-de-conteudo.svg"
-}', 4);
+}', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'COMPARACAO',
@@ -812,7 +810,7 @@ VALUES (3, 'COMPARACAO',
     "titulo": "Adware",
     "texto": "Coleta hábitos de navegação pra anúncios."
   }
-}', 4);
+}', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'VIDEO',
@@ -820,7 +818,7 @@ VALUES (4, 'VIDEO',
   "titulo": "Spyware e keylogger explicados",
   "imagem": "byte-momento-cinema.svg",
   "urlVideo": "https://youtu.be/vJWn_xvOSNs?si=PuPA79QxIlrLInYE"
-}', 4);
+}', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'PARABENS',
@@ -828,7 +826,7 @@ VALUES (5, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 4);
+}', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -843,7 +841,7 @@ VALUES (6, 'QUIZ',
   "xp": 20,
   "correta": 0,
   "explicacao": "Keylogger é especializado em registrar tudo o que é digitado."
-}', 4);
+}', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'QUIZ',
@@ -858,7 +856,7 @@ VALUES (7, 'QUIZ',
   "xp": 20,
   "correta": 0,
   "explicacao": "Adware é o tipo de spyware focado em coleta de dados para anúncios."
-}', 4);
+}', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'JOGO',
@@ -903,20 +901,20 @@ VALUES (8, 'JOGO',
     ],
     "respostaCorreta": "Sim, pode haver um keylogger instalado"
   }
-}', 4);
+}', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (9, 'RESUMO',
 '{
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
-  "texto": "Total de XP ganho: ",
-}', 4);
+  "texto": "Total de XP ganho: "
+}', 8);
 
 
 --LICAO 2.5
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Trojan: o cavalo de Troia digital', 5, 60, false, 2)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (9, 'Trojan: o cavalo de Troia digital', 5, 60, false, 2);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -926,7 +924,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
-}', 5);
+}', 9);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -939,7 +937,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "O que um Trojan pode carregar",
   "dica": "Um Trojan pode carregar coisas diferentes dentro de si: alguns instalam uma ''porta secreta'' no sistema (isso é o Backdoor, que você vai conhecer na próxima missão), outros baixam mais malwares, e outros são feitos especificamente pra roubar dados bancários."
-}', 5);
+}', 9);
  
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
@@ -948,7 +946,7 @@ VALUES (3, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 5);
+}', 9);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'QUIZ',
@@ -963,7 +961,7 @@ VALUES (4, 'QUIZ',
   "correta": 1,
   "explicacao": "O disfarce de arquivo aparentemente seguro é a marca do Trojan.",
   "xp": 20
-}', 5);
+}', 9);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -978,7 +976,7 @@ VALUES (5, 'QUIZ',
   "correta": 1,
   "explicacao": "Trojans costumam se disfarçar em anexos de e-mail suspeitos.",
   "xp": 20
-}', 5);
+}', 9);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'JOGO',
@@ -1008,7 +1006,7 @@ VALUES (6, 'JOGO',
     }
   ],
   "xp": 20
-}', 5);
+}', 9);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'RESUMO',
@@ -1016,13 +1014,13 @@ VALUES (7, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 5);
+}', 9);
  
  
 
 --LICAO 2.6
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Ransomware: seus arquivos reféns', 6, 60, false, 2)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (10, 'Ransomware: seus arquivos reféns', 6, 60, false, 2);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -1032,7 +1030,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "4-5 min",
   "XP": "+60 XP"
-}', 6);
+}', 10);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -1044,7 +1042,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "De onde vem o nome",
   "dica": "A palavra vem do inglês ''ransom'' (resgate). Em 2017, o ransomware WannaCry travou computadores em hospitais e empresas de mais de 150 países em poucas horas, chegando a impedir atendimentos médicos."
-}', 6);
+}', 10);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'COMPARACAO',
@@ -1067,7 +1065,7 @@ VALUES (3, 'COMPARACAO',
     "titulo": "4. Cobrança",
     "texto": "Aparece a cobrança: pague pra (talvez) recuperar tudo."
   }
-}', 6);
+}', 10);
 
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
@@ -1076,7 +1074,7 @@ VALUES (4, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 6);
+}', 10);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -1091,7 +1089,7 @@ VALUES (5, 'QUIZ',
   "correta": 1,
   "explicacao": "Ransomware sequestra arquivos e cobra resgate - por isso o nome.",
   "xp": 30
-}', 6);
+}', 10);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -1106,7 +1104,7 @@ VALUES (6, 'QUIZ',
   "correta": 1,
   "explicacao": "Backup é a defesa mais eficaz, já que garante que você não perde os arquivos mesmo se eles forem bloqueados.",
   "xp": 30
-}', 6);
+}', 10);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'RESUMO',
@@ -1114,13 +1112,13 @@ VALUES (7, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 6);
+}', 10);
  
  
 
 --LICAO 2.7
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Backdoor: a porta secreta', 7, 60, false, 2)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (11, 'Backdoor: a porta secreta', 7, 60, false, 2);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -1130,7 +1128,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "2 min",
   "XP": "+60 XP"
-}', 7);
+}', 11);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -1143,7 +1141,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Sobrevive à remoção do malware original",
   "dica": "Mesmo que o malware que trouxe o Backdoor seja removido, a porta secreta pode continuar aberta - é por isso que remover só o ''sintoma'' nem sempre resolve o problema de verdade."
-}', 7);
+}', 11);
  
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
@@ -1152,7 +1150,7 @@ VALUES (3, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 7);
+}', 11);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'QUIZ',
@@ -1167,7 +1165,7 @@ VALUES (4, 'QUIZ',
   "correta": 1,
   "explicacao": "Backdoor cria um acesso remoto persistente e oculto ao sistema.",
   "xp": 20
-}', 7);
+}', 11);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -1182,7 +1180,7 @@ VALUES (5, 'QUIZ',
   "correta": 1,
   "explicacao": "O Backdoor permite acesso remoto contínuo, usado para instalar mais malwares ou roubar dados.",
   "xp": 20
-}', 7);
+}', 11);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'JOGO',
@@ -1209,7 +1207,7 @@ VALUES (7, 'JOGO',
     }
   ],
   "xp": 20
-}', 7);
+}', 11);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'RESUMO',
@@ -1217,7 +1215,7 @@ VALUES (8, 'RESUMO',
   "titulo": "PARABÉNS!!!!! Você terminou o nível 2",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 7);
+}', 11);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (9, 'CONCLUSAO_TRILHA',
@@ -1229,17 +1227,17 @@ VALUES (9, 'CONCLUSAO_TRILHA',
     "titulo": "Proteção e Hábitos Seguros"
   },
   "badge": "trilha-2-completa"
-}', 7);
+}', 11);
  
 
 -- NIVEL 3
-INSERT INTO level (titulo, descricao, ordem)
-VALUES ('Nível 3', 'Adote hábitos que protegem seus dados no dia a dia!', 3);
+INSERT INTO level (id, titulo, descricao, ordem)
+VALUES (3, 'Nível 3', 'Adote hábitos que protegem seus dados no dia a dia!', 3);
  
 
 --LICAO 3.1
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Senhas fortes: a chave que ninguém adivinha', 1, 60, false, 3)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (12, 'Senhas fortes: a chave que ninguém adivinha', 1, 60, false, 3);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -1249,7 +1247,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
-}', 1);
+}', 12);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -1263,7 +1261,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Frase > palavra",
   "dica": "''gatinho123'' é uma senha fraca. Mas uma frase como ''meugatocometapetesegundafeira'' é muito mais forte - e mais fácil de lembrar do que parece."
-}', 1);
+}', 12);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'VIDEO',
@@ -1271,7 +1269,7 @@ VALUES (3, 'VIDEO',
   "titulo": "Como criar senha forte",
   "imagem": "byte-momento-cinema.svg",
   "urlVideo": "https://youtu.be/8zcrg23K-M8?si=apkX-AE-UpoHet6z"
-}', 1);
+}', 12);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'PARABENS',
@@ -1279,7 +1277,7 @@ VALUES (4, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 1);
+}', 12);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -1294,7 +1292,7 @@ VALUES (5, 'QUIZ',
   "correta": 2,
   "explicacao": "Frases longas são muito mais difíceis de adivinhar que palavras curtas ou sequências óbvias.",
   "xp": 20
-}', 1);
+}', 12);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -1309,7 +1307,7 @@ VALUES (6, 'QUIZ',
   "correta": 0,
   "explicacao": "Dados pessoais públicos são um dos primeiros alvos de tentativa de adivinhação de senha.",
   "xp": 20
-}', 1);
+}', 12);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'JOGO',
@@ -1339,7 +1337,7 @@ VALUES (7, 'JOGO',
     }
   ],
   "xp": 20
-}', 1);
+}', 12);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'RESUMO',
@@ -1347,13 +1345,13 @@ VALUES (8, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 1);
+}', 12);
  
  
 
 --LICAO 3.2
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Uma senha pra cada coisa', 2, 60, false, 3)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (13, 'Uma senha pra cada coisa', 2, 60, false, 3);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -1363,7 +1361,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "3-4 min",
   "XP": "+60 XP"
-}', 2);
+}', 13);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -1376,7 +1374,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Vazamentos são mais comuns do que parece",
   "dica": "Vazamentos de dados acontecem até em sites e apps conhecidos. Se sua senha vazar de um lugar e for a mesma do seu e-mail principal, um problema pequeno vira um problema gigante."
-}', 2);
+}',13);
 
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
@@ -1385,7 +1383,7 @@ VALUES (3, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 2);
+}', 13);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'QUIZ',
@@ -1400,7 +1398,7 @@ VALUES (4, 'QUIZ',
   "correta": 0,
   "explicacao": "Reutilizar senha significa que um único vazamento compromete todas as contas que usam a mesma senha.",
   "xp": 20
-}', 2);
+}', 13);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -1415,7 +1413,7 @@ VALUES (6, 'QUIZ',
   "correta": 1,
   "explicacao": "O gerenciador armazena senhas de forma segura, exigindo só uma senha mestra.",
   "xp": 20
-}', 2);
+}', 13);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'JOGO',
@@ -1432,7 +1430,7 @@ VALUES (7, 'JOGO',
     }
   ],
   "xp": 20
-}', 2);
+}', 13);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'RESUMO',
@@ -1440,13 +1438,13 @@ VALUES (8, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 2);
+}', 13);
  
  
 
 --LICAO 3.3
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Verificação em duas etapas', 3, 60, false, 3)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (14, 'Verificação em duas etapas', 3, 60, false, 3);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -1456,7 +1454,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
-}', 3);
+}', 14);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -1469,7 +1467,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Precisa ser de categorias diferentes",
   "dica": "Pra funcionar de verdade, os dois fatores precisam ser de categorias diferentes. Usar duas senhas não é 2FA de verdade - é só uma senha em dobro. O ideal é senha (o que sabe) + código no celular (o que possui)."
-}', 3);
+}', 14);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'PARABENS',
@@ -1477,7 +1475,7 @@ VALUES (3, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 3);
+}', 14);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'QUIZ',
@@ -1492,7 +1490,7 @@ VALUES (4, 'QUIZ',
   "correta": 1,
   "explicacao": "2FA de verdade combina fatores de categorias distintas, não duas senhas.",
   "xp": 20
-}', 3);
+}', 14);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -1507,7 +1505,7 @@ VALUES (5, 'QUIZ',
   "correta": 1,
   "explicacao": "O celular que recebe o código representa a categoria ''algo que você possui''.",
   "xp": 20
-}', 3);
+}', 14);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'JOGO',
@@ -1534,7 +1532,7 @@ VALUES (6, 'JOGO',
     }
   ],
   "xp": 20
-}', 3);
+}', 14);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'RESUMO',
@@ -1542,13 +1540,13 @@ VALUES (8, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 3);
+}', 14);
  
  
 
 --LICAO 3.4
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('O cadeado da internet', 4, 60, false, 3)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (15, 'O cadeado da internet', 4, 60, false, 3);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -1558,7 +1556,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
-}', 4);
+}', 15);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -1571,7 +1569,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Sites falsos também podem ter HTTPS",
   "dica": "Golpistas criam sites com nomes bem parecidos com os originais (troca de uma letra, por exemplo). Se você não checar o endereço com atenção, o cadeado fechado não te protege de nada."
-}', 4);
+}', 15);
  
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
@@ -1580,7 +1578,7 @@ VALUES (3, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 4);
+}', 15);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'QUIZ',
@@ -1595,7 +1593,7 @@ VALUES (4, 'QUIZ',
   "correta": 1,
   "explicacao": "O cadeado indica criptografia, não legitimidade do site.",
   "xp": 20
-}', 4);
+}', 15);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -1610,7 +1608,7 @@ VALUES (5, 'QUIZ',
   "correta": 1,
   "explicacao": "É necessário conferir tanto o cadeado quanto o endereço exato do site.",
   "xp": 20
-}', 4);
+}', 15);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'JOGO',
@@ -1638,7 +1636,7 @@ VALUES (6, 'JOGO',
     }
   ],
   "xp": 20
-}', 4);
+}', 15);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'RESUMO',
@@ -1646,13 +1644,13 @@ VALUES (8, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 4);
+}', 15);
  
  
 
 --LICAO 3.5
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Cuidado com o wifi público', 5, 60, false, 3)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (16, 'Cuidado com o wifi público', 5, 60, false, 3);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -1662,7 +1660,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "3 min",
   "XP": "+60 XP"
-}', 5);
+}', 16);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -1672,7 +1670,7 @@ VALUES (2, 'CONTEUDO',
     "Redes públicas costumam ter segurança mais fraca, e outras pessoas conectadas na mesma rede podem, em certos casos, interceptar o que você envia e recebe."
   ],
   "imagem": "byte-apresentacao-de-conteudo.svg"
-}', 5);
+}', 16);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'COMPARACAO',
@@ -1687,7 +1685,7 @@ VALUES (3, 'COMPARACAO',
     "titulo": "Evite",
     "texto": "Trocar senhas importantes conectado a essas redes."
   }
-}', 5);
+}', 16);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'PARABENS',
@@ -1695,7 +1693,7 @@ VALUES (4, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 5);
+}', 16);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -1710,7 +1708,7 @@ VALUES (5, 'QUIZ',
   "correta": 0,
   "explicacao": "A segurança fraca típica dessas redes facilita interceptação de dados.",
   "xp": 20
-}', 5);
+}', 16);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -1725,7 +1723,7 @@ VALUES (6, 'QUIZ',
   "correta": 1,
   "explicacao": "Atividades sensíveis como acesso bancário devem ser evitadas em redes públicas.",
   "xp": 20
-}', 5);
+}', 16);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'JOGO',
@@ -1755,7 +1753,7 @@ VALUES (7, 'JOGO',
     }
   ],
   "xp": 20
-}', 5);
+}', 16);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (9, 'RESUMO',
@@ -1763,13 +1761,13 @@ VALUES (9, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 5);
+}', 16);
  
  
 
 --LICAO 3.6
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Cookies: quem está de olho', 6, 60, false, 3)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (17, 'Cookies: quem está de olho', 6, 60, false, 3);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -1779,7 +1777,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
-}', 6);
+}', 17);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -1792,7 +1790,7 @@ VALUES (2, 'CONTEUDO',
     "Cookies de terceiros: Usados por empresas de anúncios pra rastrear sua navegação em vários sites diferentes, personalizando os anúncios que você vê."
   ],
   "imagem": "byte-apresentacao-de-conteudo.svg"
-}', 6);
+}', 17);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'COMPARACAO',
@@ -1811,7 +1809,7 @@ VALUES (3, 'COMPARACAO',
     "titulo": "Terceiros",
     "texto": "Rastreia você em vários sites, pra anúncios."
   }
-}', 6);
+}', 17);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'VIDEO',
@@ -1819,7 +1817,7 @@ VALUES (4, 'VIDEO',
   "titulo": "O que são cookies",
   "imagem": "byte-momento-cinema.svg",
   "urlVideo": "https://youtu.be/MXM9BMU_AJ4?si=O7R7GWmC18xIwkr_"
-}', 6);
+}', 17);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'PARABENS',
@@ -1827,7 +1825,7 @@ VALUES (5, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 6);
+}', 17);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -1842,7 +1840,7 @@ VALUES (6, 'QUIZ',
   "correta": 0,
   "explicacao": "Cookies de sessão existem apenas durante a navegação atual.",
   "xp": 20
-}', 6);
+}', 17);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'QUIZ',
@@ -1857,7 +1855,7 @@ VALUES (7, 'QUIZ',
   "correta": 2,
   "explicacao": "Cookies de terceiros são usados por anunciantes para rastreamento entre sites.",
   "xp": 20
-}', 6);
+}', 17);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'JOGO',
@@ -1894,7 +1892,7 @@ VALUES (8, 'JOGO',
     }
   ],
   "xp": 20
-}', 6);
+}', 17);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (9, 'RESUMO',
@@ -1902,13 +1900,13 @@ VALUES (9, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 6);
+}', 17);
  
  
 
 --LICAO 3.7
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Firewall e antivírus: seus guardas', 7, 60, false, 3)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (18, 'Firewall e antivírus: seus guardas', 7, 60, false, 3);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -1918,7 +1916,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "3-4 min",
   "XP": "+60 XP"
-}', 7);
+}', 18);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -1931,7 +1929,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Eles se complementam",
   "dica": "Firewall e antivírus fazem trabalhos diferentes e se complementam: o firewall tenta impedir a entrada, o antivírus lida com o que já entrou."
-}', 7);
+}', 18);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'VIDEO',
@@ -1939,7 +1937,7 @@ VALUES (3, 'VIDEO',
   "titulo": "Firewall x antivírus",
   "imagem": "byte-momento-cinema.svg",
   "urlVideo": "https://youtube.com/shorts/y8Pav1fsq8Q?si=q576d646aval2lF9"
-}', 7);
+}', 18);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'PARABENS',
@@ -1947,7 +1945,7 @@ VALUES (4, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 7);
+}', 18);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -1962,7 +1960,7 @@ VALUES (5, 'QUIZ',
   "correta": 0,
   "explicacao": "O firewall atua como barreira de rede, filtrando tráfego.",
   "xp": 20
-}', 7);
+}', 18);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -1977,7 +1975,7 @@ VALUES (6, 'QUIZ',
   "correta": 1,
   "explicacao": "O antivírus busca, detecta e remove malware já presente.",
   "xp": 20
-}', 7);
+}', 18);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'JOGO',
@@ -1999,7 +1997,7 @@ VALUES (7, 'JOGO',
     }
   ],
   "xp": 20
-}', 7);
+}', 18);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'RESUMO',
@@ -2007,12 +2005,12 @@ VALUES (8, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 7);
+}', 18);
  
 
 --LICAO 3.8
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Comprando online com segurança', 8, 60, false, 3)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (18, 'Comprando online com segurança', 8, 60, false, 3);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -2022,7 +2020,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
-}', 8);
+}', 19);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -2032,7 +2030,7 @@ VALUES (2, 'CONTEUDO',
     "Lojas falsas online costumam atrair vítimas com preços bons demais pra serem verdade, e depois somem com o pagamento sem entregar nada."
   ],
   "imagem": "byte-apresentacao-de-conteudo.svg"
-}', 8);
+}', 19);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'COMPARACAO',
@@ -2051,7 +2049,7 @@ VALUES (3, 'COMPARACAO',
     "titulo": "CNPJ",
     "texto": "Confira o CNPJ no site da Receita Federal e compare com o nome da empresa."
   }
-}', 8);
+}', 19);
  
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
@@ -2060,7 +2058,7 @@ VALUES (4, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 8);
+}', 19);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -2075,7 +2073,7 @@ VALUES (5, 'QUIZ',
   "correta": 0,
   "explicacao": "Transparência de dados é um forte indício de legitimidade.",
   "xp": 20
-}', 8);
+}', 19);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -2090,7 +2088,7 @@ VALUES (6, 'QUIZ',
   "correta": 1,
   "explicacao": "Pesquisar reclamações de outros clientes ajuda a identificar golpes.",
   "xp": 20
-}', 8);
+}', 19);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'JOGO',
@@ -2114,7 +2112,7 @@ VALUES (7, 'JOGO',
     }
   ],
   "xp": 20
-}', 8);
+}', 19);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'RESUMO',
@@ -2122,12 +2120,12 @@ VALUES (8, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 8);
+}', 19);
  
  
 --LICAO 3.9
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Backup: sua rede de segurança', 9, 60, false, 3)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (20, 'Backup: sua rede de segurança', 9, 60, false, 3);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -2137,7 +2135,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
-}', 9);
+}', 20);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -2149,7 +2147,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Use mais de uma forma",
   "dica": "O ideal é usar mais de uma forma de backup ao mesmo tempo assim, se uma falhar, a outra ainda protege seus arquivos."
-}', 9);
+}', 20);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'COMPARACAO',
@@ -2164,7 +2162,7 @@ VALUES (3, 'COMPARACAO',
     "titulo": "HD externo / pendrive",
     "texto": "Só você tem acesso, mas exige lembrar de atualizar."
   }
-}', 9);
+}', 20);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'PARABENS',
@@ -2172,7 +2170,7 @@ VALUES (4, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 9);
+}', 20);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -2187,7 +2185,7 @@ VALUES (5, 'QUIZ',
   "correta": 0,
   "explicacao": "Backup protege contra qualquer tipo de perda de dados, não só ataques.",
   "xp": 20
-}', 9);
+}', 20);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -2202,7 +2200,7 @@ VALUES (6, 'QUIZ',
   "correta": 1,
   "explicacao": "Redundância entre métodos de backup reduz o risco de perda total.",
   "xp": 20
-}', 9);
+}', 20);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'JOGO',
@@ -2228,7 +2226,7 @@ VALUES (7, 'JOGO',
     }
   ],
   "xp": 20
-}', 9);
+}', 20);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (9, 'RESUMO',
@@ -2236,7 +2234,7 @@ VALUES (9, 'RESUMO',
   "titulo": "PARABÉNS!!!!! Você terminou o nível 3",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 9);
+}', 20);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (10, 'CONCLUSAO_TRILHA',
@@ -2248,17 +2246,17 @@ VALUES (10, 'CONCLUSAO_TRILHA',
     "titulo": "Já fui infectado, e agora?"
   },
   "badge": "trilha-3-completa"
-}', 9);
+}', 20);
  
 
 -- NIVEL 4
-INSERT INTO level (titulo, descricao, ordem)
-VALUES (' Nível 4', 'Saiba o que fazer se algo der errado!', 4);
+INSERT INTO level (id, titulo, descricao, ordem)
+VALUES (4, 'Nível 4', 'Saiba o que fazer se algo der errado!', 4);
  
 
 --LICAO 4.1
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Reconhecendo os sinais de infecção', 1, 60, false, 4)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (21, 'Reconhecendo os sinais de infecção', 1, 60, false, 4);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -2268,7 +2266,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "4 min",
   "XP": "+60 XP"
-}', 1);
+}', 21);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -2280,7 +2278,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "A maioria dos casos tem solução",
   "dica": "Se o seu dispositivo apresenta um ou mais desses sinais, a primeira reação não deve ser pânico. A maioria dos casos de infecção tem solução, seguindo alguns passos, que você vai aprender na próxima missão."
-}', 1);
+}', 21);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (3, 'COMPARACAO',
@@ -2299,7 +2297,7 @@ VALUES (3, 'COMPARACAO',
     "titulo": "Mensagens estranhas",
     "texto": "Mensagens ou e-mails enviados que você não escreveu."
   }
-}', 1);
+}', 21);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'VIDEO',
@@ -2307,7 +2305,7 @@ VALUES (4, 'VIDEO',
   "titulo": "Sinais de infecção",
   "imagem": "byte-momento-cinema.svg",
   "urlVideo": "https://youtu.be/NROsObJ5ABs?si=wvfmi7rNDV64gTNt"
-}', 1);
+}', 21);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'PARABENS',
@@ -2315,7 +2313,7 @@ VALUES (5, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 1);
+}', 21);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'QUIZ',
@@ -2330,7 +2328,7 @@ VALUES (6, 'QUIZ',
   "correta": 0,
   "explicacao": "Apps abrindo sozinhos são um sinal clássico de comportamento anômalo por infecção.",
   "xp": 20
-}', 1);
+}', 21);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'QUIZ',
@@ -2345,7 +2343,7 @@ VALUES (7, 'QUIZ',
   "correta": 1,
   "explicacao": "Manter a calma permite seguir os passos corretos de remoção sem prejudicar mais o dispositivo.",
   "xp": 20
-}', 1);
+}', 21);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'JOGO',
@@ -2375,7 +2373,7 @@ VALUES (8, 'JOGO',
     }
   ],
   "xp": 20
-}', 1);
+}', 21);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (9, 'RESUMO',
@@ -2383,12 +2381,12 @@ VALUES (9, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 1);
+}', 21);
  
 
 --LICAO 4.2
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Removendo a ameaça, passo a passo', 2, 60, false, 4)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (22, 'Removendo a ameaça, passo a passo', 2, 60, false, 4);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -2398,7 +2396,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "5 min",
   "XP": "+60 XP"
-}', 2);
+}', 22);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -2414,7 +2412,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Cuidado com apps milagrosos",
   "dica": "Cuidado com aplicativos de ''limpeza mágica'' cheios de propaganda, muitos deles não fazem nada de útil, e alguns até pioram o problema."
-}', 2);
+}', 22);
  
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
@@ -2423,7 +2421,7 @@ VALUES (3, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 2);
+}', 22);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'QUIZ',
@@ -2438,7 +2436,7 @@ VALUES (4, 'QUIZ',
   "correta": 0,
   "explicacao": "Cortar a conexão impede que o malware roube mais dados ou se espalhe.",
   "xp": 20
-}', 2);
+}', 22);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -2453,7 +2451,7 @@ VALUES (5, 'QUIZ',
   "correta": 1,
   "explicacao": "O modo de segurança isola apps de terceiros, facilitando a identificação da causa.",
   "xp": 20
-}', 2);
+}', 22);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (6, 'JOGO',
@@ -2475,7 +2473,7 @@ VALUES (6, 'JOGO',
     "Limpar cache e navegador"
   ],
   "xp": 20
-}', 2);
+}', 22);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'RESUMO',
@@ -2483,12 +2481,12 @@ VALUES (8, 'RESUMO',
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 2);
+}', 22);
  
 
 --LICAO 4.3
-INSERT INTO lesson (titulo, ordem, xp_total, desafio_final, level_id)
-VALUES ('Quando tudo mais falha', 3, 40, false, 4)
+INSERT INTO lesson (id, titulo, ordem, xp_total, desafio_final, level_id)
+VALUES (23, 'Quando tudo mais falha', 3, 40, false, 4);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (1, 'ABERTURA',
@@ -2498,7 +2496,7 @@ VALUES (1, 'ABERTURA',
   "imagem": "byte-inicio-licao.svg",
   "tempo": "3-4 min",
   "XP": "+40 XP"
-}', 3);
+}', 23);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (2, 'CONTEUDO',
@@ -2511,7 +2509,7 @@ VALUES (2, 'CONTEUDO',
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Por isso o backup importa tanto",
   "dica": "Lembra da Missão 3-9? É exatamente por causa de momentos como esse que backup regular é tão importante, sem ele restaurar de fábrica significa perder tudo de verdade."
-}', 3);
+}', 23);
 
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
@@ -2520,7 +2518,7 @@ VALUES (3, 'PARABENS',
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
   "imagem": "byte-inicio-perguntas.svg"
-}', 3);
+}', 23);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (4, 'QUIZ',
@@ -2535,7 +2533,7 @@ VALUES (4, 'QUIZ',
   "correta": 1,
   "explicacao": "Restauração de fábrica é uma medida drástica, reservada para quando outras soluções falham.",
   "xp": 20
-}', 3);
+}', 23);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (5, 'QUIZ',
@@ -2550,9 +2548,7 @@ VALUES (5, 'QUIZ',
   "correta": 1,
   "explicacao": "Sem backup prévio, a restauração apaga permanentemente todos os dados.",
   "xp": 20
-}', 3);
- 
-
+}', 23);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (7, 'RESUMO',
@@ -2560,7 +2556,7 @@ VALUES (7, 'RESUMO',
   "titulo": "PARABÉNS!!!!! Você terminou o nível 4",
   "imagem": "byte-fim-de-secao.svg",
   "texto": "Total de XP ganho: "
-}', 3);
+}', 23);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (8, 'CONCLUSAO_TRILHA',
@@ -2568,7 +2564,7 @@ VALUES (8, 'CONCLUSAO_TRILHA',
   "titulo": "Trilha 4 completa: Já fui infectado, e agora?",
   "texto": "Você aprendeu a reconhecer sinais de infecção, seguir os passos certos pra remover uma ameaça, e saber quando (e como) usar a restauração de fábrica como último recurso.",
   "badge": "trilha-4-completa"
-}', 3);
+}', 23);
  
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
 VALUES (9, 'CONCLUSAO_CURSO',
@@ -2576,6 +2572,8 @@ VALUES (9, 'CONCLUSAO_CURSO',
   "titulo": "VOCÊ DETONOU! Curso completo: SecureByte",
   "texto": "Você completou as 4 trilhas: entende por que a informação vale tanto e o que a cibersegurança protege, conhece os principais malwares e como eles agem, sabe os hábitos de proteção do dia a dia, e sabe o que fazer se algo der errado. Isso não é o fim é a base pra usar a internet com mais consciência todos os dias.",
   "badge": "curso-completo"
-}', 3);
+}', 23);
  
+SELECT setval(pg_get_serial_sequence('level', 'id'), (SELECT MAX(id) FROM level));
+SELECT setval(pg_get_serial_sequence('lesson', 'id'), (SELECT MAX(id) FROM lesson));
  

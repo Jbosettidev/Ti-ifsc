@@ -51,6 +51,11 @@
 
         </a>
     </footer>
+     <script>
+        if (!localStorage.getItem('userId')) {
+            window.location.href = 'TelasIniciais/login.html';
+        }
+    </script>
 
     <!-- ta na pasta niveis -->
     <script src="niveis/js/home.js"></script>
