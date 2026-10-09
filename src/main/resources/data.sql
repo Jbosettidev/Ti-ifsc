@@ -118,17 +118,28 @@ VALUES (2, 'CONTEUDO',
   "titulo": "Definição",
   "paragrafos": [
     "Cibersegurança é o conjunto de práticas para proteger sistemas, redes e dados contra ataques digitais. Ela existe pra garantir 3 coisas ao mesmo tempo e se uma delas falha, algo deu errado.",
-    "Confidencialidade: significa que só quem deveria ver uma informação, vê. Se alguém lê suas mensagens privadas sem permissão, a confidencialidade foi quebrada, mesmo que nada tenha sido apagado ou mudado.",
+    "Confidencialidade: significa que só quem deveria ver uma informação, vê. Se alguém lê suas mensagens privadas sem permissão, a confidencialidade foi quebrada, mesmo que nada tenha sido apagado ou mudado."
+  ],
+  "imagem": "byte-apresentacao-de-conteudo.svg",
+  "titulo2": "Resumindo",
+  "dica": "Na confidencialidade só quem deve ver, vê."
+}', 2);
+
+INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
+VALUES (3, 'CONTEUDO',
+'{
+  "titulo": "Definição",
+  "paragrafos": [
     "Integridade: significa que a informação continua exatamente como deveria estar, sem alterações indevidas. Se alguém invade sua conta e muda sua nota de uma prova online, a integridade foi quebrada.",
     "Disponibilidade: significa que você consegue acessar seus dados e sistemas quando precisa. Se um ataque derruba o site da sua escola bem na hora da matrícula, a disponibilidade foi quebrada."
   ],
   "imagem": "byte-apresentacao-de-conteudo.svg",
   "titulo2": "Resumindo",
-  "dica": "Na confidencialidade só quem deve ver, vê. Na Integridade: A informação continua correta e intacta e na disponibilidade você consegue acessar quando precisa."
+  "dica": "Na Integridade: A informação continua correta e intacta e na disponibilidade você consegue acessar quando precisa."
 }', 2);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (3, 'COMPARACAO',
+VALUES (4, 'COMPARACAO',
 '{
   "titulo": "Cibersegurança x Segurança da Informação",
   "imagem": "byte-comparativo.svg",
@@ -137,7 +148,7 @@ VALUES (3, 'COMPARACAO',
 }', 2);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (4, 'VIDEO',
+VALUES (5, 'VIDEO',
 '{
   "titulo": "A tríade CID explicada",
   "imagem": "byte-momento-cinema.svg",
@@ -145,7 +156,7 @@ VALUES (4, 'VIDEO',
 }', 2);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (5, 'PARABENS',
+VALUES (6, 'PARABENS',
 '{
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "Agora vamos checar os seus conhecimentos!",
@@ -153,7 +164,7 @@ VALUES (5, 'PARABENS',
 }', 2);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (6, 'QUIZ',
+VALUES (7, 'QUIZ',
 '{
   "pergunta": "Alguém lê suas mensagens privadas sem sua permissão. Qual pilar foi violado?",
   "imagem": "byte-pergunta.svg",
@@ -168,7 +179,7 @@ VALUES (6, 'QUIZ',
 }', 2);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (7, 'QUIZ',
+VALUES (8, 'QUIZ',
 '{
   "pergunta": "Um ataque derruba o site de matrícula bem no dia da inscrição. Qual pilar foi violado?",
   "imagem": "byte-pergunta.svg",
@@ -183,7 +194,7 @@ VALUES (7, 'QUIZ',
 }', 2);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (8, 'QUIZ',
+VALUES (9, 'QUIZ',
 '{
   "pergunta": "Um hacker invade o sistema da escola e muda notas de alunos. Qual pilar foi violado?",
   "imagem": "byte-pergunta.svg",
@@ -198,7 +209,7 @@ VALUES (8, 'QUIZ',
 }', 2);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (9, 'RESUMO',
+VALUES (10, 'RESUMO',
 '{
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
@@ -310,7 +321,16 @@ VALUES (2, 'CONTEUDO',
   "paragrafos": [
     "A palavra hacker costuma vir com uma imagem só na cabeça: alguém de capuz digitando rápido no escuro. Mas na prática, existem vários tipos, com motivações bem diferentes entre si.",
     "Script kiddies: São invasores iniciantes que usam ferramentas prontas, feitas por outras pessoas, sem entender muito bem como funcionam por dentro. Mesmo amadores, os estragos que causam podem ser reais.",
-    "White hat: Invadem sistemas de propósito, mas com autorização, pra encontrar falhas antes que criminosos as encontrem. No fim, reportam tudo pro dono do sistema.",
+    "White hat: Invadem sistemas de propósito, mas com autorização, pra encontrar falhas antes que criminosos as encontrem. No fim, reportam tudo pro dono do sistema."
+  ],
+  "imagem": "byte-apresentacao-de-conteudo.svg"
+}', 4);
+
+INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
+VALUES (3, 'CONTEUDO',
+'{
+  "titulo": "Nem todo invasor é igual",
+  "paragrafos": [
     "Black hat: Exploram qualquer falha que encontrarem pra ganho próprio: dinheiro, vantagem pessoal ou política. Não têm autorização nenhuma e não reportam nada, é o oposto do white hat.",
     "Hackers organizados: Grupos mais sofisticados: hacktivistas (que atacam por causas políticas), criminosos que vendem crime digital como serviço, e até invasores financiados por governos, com treinamento e recursos bem maiores que um invasor comum."
   ],
@@ -321,7 +341,7 @@ VALUES (2, 'CONTEUDO',
 
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (3, 'COMPARACAO',
+VALUES (4, 'COMPARACAO',
 '{
   "titulo": "Resumindo (parte 1)",
   "imagem": "byte-comparativo.svg",
@@ -330,7 +350,7 @@ VALUES (3, 'COMPARACAO',
 }', 4);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (4, 'COMPARACAO',
+VALUES (5, 'COMPARACAO',
 '{
   "titulo": "Resumindo (parte 2)",
   "imagem": "byte-comparativo.svg",
@@ -339,7 +359,7 @@ VALUES (4, 'COMPARACAO',
 }', 4);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (5, 'VIDEO',
+VALUES (6, 'VIDEO',
 '{
   "titulo": "A tríade CID explicada",
   "imagem": "byte-momento-cinema.svg",
@@ -347,7 +367,7 @@ VALUES (5, 'VIDEO',
 }', 4);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (6, 'PARABENS',
+VALUES (7, 'PARABENS',
 '{
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
@@ -356,7 +376,7 @@ VALUES (6, 'PARABENS',
 
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (7, 'QUIZ',
+VALUES (8, 'QUIZ',
 '{
   "pergunta": "Um profissional é contratado para invadir um sistema de propósito e reportar as falhas encontradas. Que tipo de invasor é esse?",
   "imagem": "byte-pergunta.svg",
@@ -371,7 +391,7 @@ VALUES (7, 'QUIZ',
 }', 4);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (8, 'QUIZ',
+VALUES (9, 'QUIZ',
 '{
   "pergunta": "Alguém usa ferramentas prontas da internet, sem entender bem como funcionam, para causar dano. Que tipo de invasor é esse?",
   "imagem": "byte-pergunta.svg",
@@ -386,7 +406,7 @@ VALUES (8, 'QUIZ',
 }', 4);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (9, 'QUIZ',
+VALUES (10, 'QUIZ',
 '{
   "pergunta": "Um grupo bem treinado ataca a rede elétrica de uma cidade a mando de um governo. Que tipo de invasor é esse?",
   "imagem": "byte-pergunta.svg",
@@ -401,7 +421,7 @@ VALUES (9, 'QUIZ',
 }', 4);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (10, 'RESUMO',
+VALUES (11, 'RESUMO',
 '{
   "titulo": "PARABÉNS!!!!! Você terminou o nível 1",
   "imagem": "byte-fim-de-secao.svg",
@@ -787,7 +807,16 @@ VALUES (2, 'CONTEUDO',
   "titulo": "O que é",
   "paragrafos": [
     "Spyware é um programa que espiona o que você faz no dispositivo e envia essas informações pra outra pessoa, sem que você perceba.",
-    "Keylogger: Registra tudo o que você digita, inclusive senhas. Se você digita a senha do banco, ele salva exatamente o que foi digitado.",
+    "Keylogger: Registra tudo o que você digita, inclusive senhas. Se você digita a senha do banco, ele salva exatamente o que foi digitado."
+  ],
+  "imagem": "byte-apresentacao-de-conteudo.svg"
+}', 8);
+
+INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
+VALUES (3, 'CONTEUDO',
+'{
+  "titulo": "O que é",
+  "paragrafos": [
     "Screenlogger: Tira fotos ou grava sua tela enquanto você usa o dispositivo, por exemplo, quando você abre o app do banco.",
     "Adware: Coleta dados sobre sua navegação pra te mostrar anúncios personalizados. É o menos perigoso dos três, mas ainda é uma invasão de privacidade."
   ],
@@ -795,7 +824,7 @@ VALUES (2, 'CONTEUDO',
 }', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (3, 'COMPARACAO',
+VALUES (4, 'COMPARACAO',
 '{
   "titulo": "Resumo comparativo",
   "imagem": "byte-comparativo.svg",
@@ -814,7 +843,7 @@ VALUES (3, 'COMPARACAO',
 }', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (4, 'VIDEO',
+VALUES (5, 'VIDEO',
 '{
   "titulo": "Spyware e keylogger explicados",
   "imagem": "byte-momento-cinema.svg",
@@ -822,7 +851,7 @@ VALUES (4, 'VIDEO',
 }', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (5, 'PARABENS',
+VALUES (6, 'PARABENS',
 '{
   "titulo": "Parabéns por ter chegado até aqui!",
   "texto": "agora vamos checar os seus conhecimentos!",
@@ -830,7 +859,7 @@ VALUES (5, 'PARABENS',
 }', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (6, 'QUIZ',
+VALUES (7, 'QUIZ',
 '{
   "pergunta": "Um programa registra tudo que você digita no teclado. Que tipo de spyware é esse?",
   "imagem": "byte-pergunta.svg",
@@ -845,7 +874,7 @@ VALUES (6, 'QUIZ',
 }', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (7, 'QUIZ',
+VALUES (8, 'QUIZ',
 '{
   "pergunta": "Um app coleta seus dados de navegação pra mostrar anúncios personalizados. Isso é:",
   "imagem": "byte-pergunta.svg",
@@ -860,7 +889,7 @@ VALUES (7, 'QUIZ',
 }', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (8, 'JOGO',
+VALUES (9, 'JOGO',
 '{
   "subtipo": "cenario-multipla-escolha",
   "instrucao": "Caça ao Spyware: identifique qual tipo está agindo em cada situação.",
@@ -905,7 +934,7 @@ VALUES (8, 'JOGO',
 }', 8);
 
 INSERT INTO step (ordem, tipo, conteudo_json, lesson_id)
-VALUES (9, 'RESUMO',
+VALUES (10, 'RESUMO',
 '{
   "titulo": "Fim da Lição!",
   "imagem": "byte-fim-de-secao.svg",
