@@ -88,8 +88,7 @@
 
             botao.disabled = true;
             botao.textContent = 'Entrando...';
-
-            try {
+try {
     const res = await fetch('/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -97,7 +96,7 @@
     });
 
     if (res.ok) {
-        const me = await fetch('/usuarios/me');          // já logado pelo cookie
+        const me = await fetch('/usuarios/me');
         const usuario = await me.json();
         localStorage.setItem('userId', usuario.id);
         msg.style.color = '#1a7a3a';
@@ -109,6 +108,7 @@
 } catch {
     mostrarErro('Erro de conexão com o servidor.');
 }
+            
            
             finally {
                 if (msg.textContent !== 'Login realizado! Redirecionando...') {
