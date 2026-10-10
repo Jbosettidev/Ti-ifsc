@@ -105,13 +105,28 @@
                 const texto = await res.text();
 
                 if (res.ok) {
-                    const usuario = JSON.parse(texto);
-                    localStorage.setItem('userId', usuario.id);
-                    msg.style.color = '#1a7a3a';
-                    msg.textContent = 'Cadastro realizado! Redirecionando...';
-                    setTimeout(() => { window.location.href = '../index.html'; }, 800);
-                    return;
-                }
+    const usuario = JSON.parse(texto);
+
+    // Conta criada. Agora faz o login para criar a sessão (cookie)
+    const login = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ email, senha })
+    });
+
+    if (login.ok) {
+        localStorage.setItem('userId', usuario.id);
+        msg.style.color = '#1a7a3a';
+        msg.textContent = 'Cadastro realizado! Redirecionando...';
+        setTimeout(() => { window.location.href = '../index.html'; }, 800);
+    } else {
+        // Conta foi criada, mas o login automático falhou: manda para a tela de login
+        msg.style.color = '#1a7a3a';
+        msg.textContent = 'Cadastro realizado! Faça login para continuar.';
+        setTimeout(() => { window.location.href = 'login.html'; }, 1200);
+    }
+    return;
+}
 
                 try {
                     const erro = JSON.parse(texto);

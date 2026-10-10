@@ -90,32 +90,27 @@
             botao.textContent = 'Entrando...';
 
             try {
-                const res = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, senha })
-                });
+    const res = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ email, senha })
+    });
 
-                const texto = await res.text();
-
-                if (res.ok) {
-                    const usuario = JSON.parse(texto);
-                    localStorage.setItem('userId', usuario.id);
-                    msg.style.color = '#1a7a3a';
-                    msg.textContent = 'Login realizado! Redirecionando...';
-                    setTimeout(() => { window.location.href = '../index.html'; }, 600);
-                    return;
-                }
-
-                try {
-                    const erro = JSON.parse(texto);
-                    mostrarErro(erro.message || texto);
-                } catch {
-                    mostrarErro(texto || 'E-mail ou senha incorretos.');
-                }
-            } catch {
-                mostrarErro('E-mail ou senha incorretos.');
-            } finally {
+    if (res.ok) {
+        const me = await fetch('/usuarios/me');          // já logado pelo cookie
+        const usuario = await me.json();
+        localStorage.setItem('userId', usuario.id);
+        msg.style.color = '#1a7a3a';
+        msg.textContent = 'Login realizado! Redirecionando...';
+        setTimeout(() => { window.location.href = '../index.html'; }, 600);
+        return;
+    }
+    mostrarErro('E-mail ou senha incorretos.');
+} catch {
+    mostrarErro('Erro de conexão com o servidor.');
+}
+           
+            finally {
                 if (msg.textContent !== 'Login realizado! Redirecionando...') {
                     botao.disabled = false;
                     botao.textContent = 'Entrar';
