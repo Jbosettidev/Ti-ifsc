@@ -25,27 +25,27 @@
         <p>Continue aprendendo para desbloquear novas medalhas e subir de nível.</p>
 
         <div class="barra-de-progresso">
-            <span>4/6 medalhas</span>
-            <span>60%</span>
+            <span id="resumo-medalhas">Carregando...</span>
+            <span id="resumo-percentual"></span>
 
         </div>
 
-        <progress value="60" max="100"></progress>
+        <progress id="barra-medalhas" value="0" max="100"></progress>
 
         <div class="linha-divisoria"> </div>
 
         <div class="progresso">
-            <h2> 4/6
+            <h2><span id="stat-medalhas">–</span>
                 <p>MEDALHAS</p>
             </h2>
             <div class="divisor-vertical"></div>
 
-            <h2> Ouro
+            <h2><span id="stat-rank">–</span>
                 <p>RANK</p>
             </h2>
             <div class="divisor-vertical"></div>
 
-            <h2> 89%
+            <h2><span id="stat-acertos">–</span>
                 <p>ACERTOS</p>
             </h2>
 
@@ -56,56 +56,7 @@
     <h4 class="titulo-medalhas">✦ Suas medalhas ✦</h4>
     <div class="container">
 
-        <div class="conquistas">
-            <div class="conquista-texto">
-                <h3 class="titulo-conquistas" id="conquista_amarela">Nota máxima</h3>
-                <p class="descricao-conquista">Obteve pontuação perfeita em uma avaliação de segurança.
-                </p>
-            </div>
-            <img src="/tela-conquistas/img/conquistas.png" alt="medalha de ouro" class="medalha-imagem">
-        </div>
-
-        <div class="conquistas">
-            <div class="conquista-texto">
-                <h3 class="titulo-conquistas" id="conquista_cinza">Guardião digital</h3>
-                <p class="descricao-conquista">Identificou e reportou uma vulnerabilidade crítica no sistema.</p>
-            </div>
-            <img src="/tela-conquistas/img/conquistas (4).png" alt="medalha cinza" class="medalha-imagem">
-        </div>
-
-        <div class="conquistas">
-            <div class="conquista-texto">
-                <h3 class="titulo-conquistas" id="conquista_cobre">Caçador de ameaças</h3>
-                <p class="descricao-conquista">Detecte e neutralize 10 ameaças simuladas no treinamento.</p>
-            </div>
-            <img src="/tela-conquistas/img/conquistas (3).png" alt="medalha de cobre" class="medalha-imagem">
-        </div>
-
-        <div class="conquistas">
-            <div class="conquista-texto">
-                <h3 class="titulo-conquistas" id="conquista_cobre">Primeira missão</h3>
-                <p class="descricao-conquista"> Completou sua primeira atividade na plataforma com sucesso.</p>
-            </div>
-            <img src="/tela-conquistas/img/conquistas (3).png" alt="medalha de cobre" class="medalha-imagem">
-        </div>
-
-        <div class="conquistas-bloqueadas">
-            <div class="conquista-texto">
-                <h3 class="titulo-conquistas" id="conquista_amarela">Sequência de foco 🔒</h3>
-                <p class="descricao-conquista">Manteve acesso diário por 7 dias consecutivos.</p>
-            </div>
-            <img src="img/conquistas.png" alt="medalha amarela" class="medalha-imagem">
-        </div>
-
-        <div class="conquistas-bloqueadas">
-            <div class="conquista-texto">
-                <h3 class="titulo-conquistas" id="conquista_amarela">Leitura rápida 🔒</h3>
-                <p class="descricao-conquista">Concluiu 3 módulos em menos de uma semana.
-                </p>
-            </div>
-            <img src="img/conquistas.png" alt="medalha de ouro" class="medalha-imagem">
-        </div>
-
+        <p id="estado-conquistas" class="estado-conquistas">Carregando suas conquistas...</p>
 
         <footer class="rodape">
             <a href="/conquistas">
@@ -126,6 +77,7 @@
             </a>
 
         </footer>
+    <script src="/tela-conquistas/conquistas.js"></script>
 </body>
 
 </html>

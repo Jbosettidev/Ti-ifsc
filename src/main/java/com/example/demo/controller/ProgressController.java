@@ -30,6 +30,19 @@ public class ProgressController {
     private final UsuarioRepository usuarioRepository;
     private final MedalhaServices medalhaServices;
 
+    /** Resumo do desempenho do usuário; a tela de conquistas usa para mostrar o % de acertos. */
+    public record ResumoProgressoResponse(int licoesConcluidas, int totalAcertos, int totalPerguntas) {}
+
+    @GetMapping
+    public ResponseEntity<ResumoProgressoResponse> resumirProgresso(@RequestParam(defaultValue = "1") Long usuarioId) {
+        List<UserLessonProgress> concluidas = progressoRepository.findByUsuario_Id(usuarioId);
+        int acertos = concluidas.stream()
+                .mapToInt(p -> p.getTotalAcertos() == null ? 0 : p.getTotalAcertos()).sum();
+        int perguntas = concluidas.stream()
+                .mapToInt(p -> p.getTotalPerguntas() == null ? 0 : p.getTotalPerguntas()).sum();
+        return ResponseEntity.ok(new ResumoProgressoResponse(concluidas.size(), acertos, perguntas));
+    }
+
     // usuarioId com padrão 1 só até o front mandar o usuário logado.
     @PostMapping
     public ResponseEntity<Void> salvarProgresso(@RequestBody ProgressRequestDTO dto,

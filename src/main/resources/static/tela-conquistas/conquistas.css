@@ -341,3 +341,10 @@ progress::-webkit-progress-value {
         margin: 0 0.5rem;
     }
 }
+/* Mensagens de carregando / erro / sem conquistas (usa as cores já existentes da tela) */
+.estado-conquistas {
+    width: 100%;
+    text-align: center;
+    color: var(--roxo-forte);
+    font-size: 1rem;
+}
