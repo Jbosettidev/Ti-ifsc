@@ -532,16 +532,19 @@ p {
     background-color: #26215C;
     border-radius: 2rem;
     color: #CECBF6;
-    width: 100%;
-    max-width: 5rem;
+    width: fit-content;
+    padding: 0.2rem 1rem;
     display: flex;
     justify-content: center;
-    height: 1.4rem;
     font-weight: bold;
     font-size: 1rem;
     margin-top: 1rem;
 }
 
+/* Espaço para o rodapé fixo não cobrir o último card */
+main {
+    padding-bottom: 7rem;
+}
 
 /*Animação para quando o usuário clicar nos negocios*/
 

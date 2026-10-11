@@ -25,7 +25,7 @@ public class ViewController {
     @GetMapping("/{pagina:^(?!api$)[a-zA-Z0-9-]+$}")
     public String carregarPagina(@PathVariable String pagina) {
         
-        String caminho = PAGINAS_ESPECIFICAS.getOrDefault(pagina, pagina +"html");
+        String caminho = PAGINAS_ESPECIFICAS.getOrDefault(pagina, pagina +".html");
         return "forward:/" + caminho;
     }
 }

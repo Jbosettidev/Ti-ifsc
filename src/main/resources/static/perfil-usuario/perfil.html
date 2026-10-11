@@ -11,42 +11,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    <link rel="stylesheet" href="perfil.css">
-    <link rel="icon" href="img/secureicon.png" type="image/png">
+    <link rel="stylesheet" href="/perfil-usuario/perfil.css">
+    <link rel="icon" href="/perfil-usuario/img/secureicon.png" type="image/png">
 </head>
-<main>
 
-    <header class="avatar">
-        <div class="perfil-icon">
-            <a href="configuracoes.html" class="config-link" title="Configurações">
-                <img src="img/iconconfig.png" alt="Configurações">
-            </a>
+<body>
+    <main>
 
-            <div class="moldura">
-                <img src="" alt="Avatar">
+        <header class="avatar">
+            <div class="perfil-icon">
+                <a href="/perfil-usuario/configuracoes.html" class="config-link" title="Configurações">
+                    <img src="/perfil-usuario/img/iconconfig.png" alt="Configurações">
+                </a>
+
+                <div class="moldura">
+                    <img src="/perfil-usuario/img/perfilicon.png" alt="Avatar">
+                </div>
             </div>
-        </div>
-        <h1 class="nome" id="nome">NOME</h1>
-    </header>
+            <!-- O perfil.js troca "NOME" pelo nome do usuário logado -->
+            <h1 class="nome" id="nome">NOME</h1>
+        </header>
 
-    <section class="nivel">
-        <div class="card-progresso-bonitinho">
-            <div class="topo-card">
-                <span class="escrita-progresso">Progresso do Nível</span>
-                <span class="escrita-nivel" id="nivel">Nível 1</span>
+        <section class="nivel">
+            <div class="card-progresso-bonitinho">
+                <div class="topo-card">
+                    <span class="escrita-progresso">Progresso do Nível</span>
+                    <span class="escrita-nivel" id="nivel">Nível 1</span>
+                </div>
+
+                <progress class="barra-roxo" id="barra-xp" value="0" max="1000"></progress>
+
+                <div class="rodape-card">
+                    <span class="xp-texto" id="xp-texto">0 / 1000 XP para o próximo nível</span>
+                    <span class="porcentagem" id="xp-pct">0%</span>
+                </div>
             </div>
-
-            <progress class="barra-roxo" id="barra-xp" value="0" max="100"></progress>
-
-            <div class="rodape-card">
-                <span class="xp-texto" id="xp-texto">0 / 1000 XP para o próximo nível</span>
-                <span class="porcentagem" id="xp-pct">0%</span>
-            </div>
-        </div>
-    </section>
-    </header>
-
-    <body>
+        </section>
 
         <section class="geral">
             <section class="cardizinhos">
@@ -63,6 +63,52 @@
                     <span class="descricao-numero">Sequência</span>
                 </div>
             </section>
+
             <div class="separacao-geral">
                 <h1>VISÃO GERAL</h1>
-                <div
+            </div>
+
+            <!-- Card: XP acumulado -->
+            <div class="xp">
+                <span>XP Acumulado</span>
+                <p class="xpp" id="xp-total">0 XP</p>
+                <span class="classificação" id="classificacao">Iniciante</span>
+            </div>
+
+            <!-- Card: curso que o usuário está fazendo -->
+            <div class="card-curso">
+                <div class="head-curso">
+                    <span class="descricao-card">Curso em andamento</span>
+                    <span class="aqui" id="curso-pct">0%</span>
+                </div>
+                <p class="esse" id="curso-nome">SecureByte</p>
+                <progress class="progresso2" id="barra-curso" value="0" max="100"></progress>
+                <p class="esse" id="curso-texto">0 de 0 lições concluídas</p>
+            </div>
+
+            <!-- Card: conquistas (aparece mesmo vazio) -->
+            <div class="card-curso">
+                <div class="head-curso">
+                    <span class="descricao-card">Conquistas</span>
+                </div>
+                <figure class="container" id="medalhas">Carregando...</figure>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <a href="/tela-conquistas/conquistas.html">
+            <span class="material-symbols-outlined">trophy</span>
+        </a>
+        <a href="/index.html">
+            <span class="material-symbols-outlined">book_ribbon</span>
+        </a>
+        <a href="/perfil-usuario/perfil.html">
+            <span class="material-symbols-outlined">person</span>
+        </a>
+    </footer>
+
+    <script src="/perfil-usuario/perfil.js"></script>
+</body>
+
+</html>

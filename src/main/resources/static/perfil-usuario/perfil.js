@@ -16,6 +16,7 @@ const IMAGEM_POR_CODIGO = {                // mesmas imagens da tela de conquist
 const IMAGEM_PADRAO = "conquistas (4).png";
 
 const $ = (id) => document.getElementById(id);
+const setTexto = (id, texto) => { const el = $(id); if (el) el.textContent = texto; };
 
 async function buscarJson(url) {
     const res = await fetch(url);
@@ -39,14 +40,14 @@ function preencherUsuario(usuario) {
     const nivel = Math.floor(xp / XP_POR_NIVEL) + 1;
     const xpNoNivel = xp % XP_POR_NIVEL;
 
-    $("nome").textContent = usuario.nome;
-    $("nivel").textContent = "Nível " + nivel;
+    setTexto("nome", usuario.nome);               // troca o "NOME" pelo nome do usuário logado
+    setTexto("nivel", "Nível " + nivel);
     $("barra-xp").max = XP_POR_NIVEL;
     $("barra-xp").value = xpNoNivel;
-    $("xp-texto").textContent = `${xpNoNivel} / ${XP_POR_NIVEL} XP para o próximo nível`;
-    $("xp-pct").textContent = Math.round((xpNoNivel * 100) / XP_POR_NIVEL) + "%";
-    $("xp-total").textContent = xp + " XP";
-    $("classificacao").textContent = classificar(nivel);
+    setTexto("xp-texto", `${xpNoNivel} / ${XP_POR_NIVEL} XP para o próximo nível`);
+    setTexto("xp-pct", Math.round((xpNoNivel * 100) / XP_POR_NIVEL) + "%");
+    setTexto("xp-total", xp + " XP");
+    setTexto("classificacao", classificar(nivel));
 }
 
 function preencherCurso(resumo, niveis) {
@@ -54,10 +55,18 @@ function preencherCurso(resumo, niveis) {
     const feitas = resumo.licoesConcluidas;
     const pct = total ? Math.round((feitas * 100) / total) : 0;
 
-    $("licoes").textContent = feitas;
+    // Nível atual = o último nível que já está desbloqueado para o usuário.
+    const desbloqueados = niveis.filter((n) => !n.bloqueado);
+    const atual = desbloqueados[desbloqueados.length - 1];
+    const concluido = total > 0 && feitas >= total;
+
+    setTexto("licoes", feitas);
     $("barra-curso").value = pct;
-    $("curso-pct").textContent = pct + "%";
-    $("curso-texto").textContent = `${feitas} de ${total} lições concluídas`;
+    setTexto("curso-pct", pct + "%");
+    setTexto("curso-texto", `${feitas} de ${total} lições concluídas`);
+    setTexto("curso-nome", concluido
+        ? "SecureByte — curso concluído! 🎉"
+        : atual ? `SecureByte — Nível ${atual.ordem}: ${atual.titulo}` : "SecureByte");
 }
 
 function preencherMedalhas(medalhas) {
@@ -97,6 +106,8 @@ async function carregarPerfil() {
     }
     if (medalhas.status === "fulfilled") {
         preencherMedalhas(medalhas.value);
+    } else {
+        setTexto("medalhas", "Nenhuma conquista ainda.");
     }
 }
 
