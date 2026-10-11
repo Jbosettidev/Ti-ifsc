@@ -66,6 +66,10 @@ public class ProgressController {
         progresso.setTotalPerguntas(dto.getTotalPerguntas());
         progresso.setConcluidoEm(LocalDateTime.now());
         progressoRepository.save(progresso);
+         // Soma o XP da lição no total do usuário (o perfil lê usuario.xpTotal).
+        int xpGanho = dto.getXpGanho() == null ? 0 : dto.getXpGanho();
+        usuario.setXpTotal(usuario.getXpTotal() + xpGanho);
+        usuarioRepository.save(usuario);
 
         // Medalhas
         medalhaServices.avaliarPrimeiraMissao(usuarioId);
