@@ -661,3 +661,11 @@ progress::-webkit-progress-value {
         height: 160px;
     }
 }
+/* Card de conquistas clicável (link para a tela de conquistas) */
+.link-card {
+    display: block;
+    width: 100%;
+    max-width: 50rem;
+    text-decoration: none;
+    color: inherit;
+}
