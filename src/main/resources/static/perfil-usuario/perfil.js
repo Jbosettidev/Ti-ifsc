@@ -61,6 +61,7 @@ function preencherCurso(resumo, niveis) {
     const concluido = total > 0 && feitas >= total;
 
     setTexto("licoes", feitas);
+        setTexto("ofensiva", resumo.ofensiva || 0);   // dias seguidos fazendo atividades
     $("barra-curso").value = pct;
     setTexto("curso-pct", pct + "%");
     setTexto("curso-texto", `${feitas} de ${total} lições concluídas`);

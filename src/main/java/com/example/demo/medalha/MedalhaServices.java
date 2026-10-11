@@ -141,7 +141,8 @@ public class MedalhaServices {
     }
 
     /** Conta quantos dias seguidos (até hoje ou ontem) o usuário concluiu alguma lição. */
-    public void avaliarOfensiva(Long usuarioId) {
+     /** Conta quantos dias seguidos (até hoje ou ontem) o usuário concluiu alguma lição. */
+    public int calcularOfensiva(Long usuarioId) {
         Set<LocalDate> dias = progressoRepository.findByUsuario_Id(usuarioId).stream()
                 .map(UserLessonProgress::getConcluidoEm)
                 .filter(Objects::nonNull)
@@ -154,12 +155,16 @@ public class MedalhaServices {
             seguidos++;
             dia = dia.minusDays(1);
         }
+        return seguidos;
+    }
+
+    public void avaliarOfensiva(Long usuarioId) {
+        int seguidos = calcularOfensiva(usuarioId);
 
         if (seguidos >= 7) conceder(usuarioId, MedalhaCodigo.OFENSIVA_7_DIAS);
         if (seguidos >= 15) conceder(usuarioId, MedalhaCodigo.OFENSIVA_15_DIAS);
         if (seguidos >= 30) conceder(usuarioId, MedalhaCodigo.OFENSIVA_30_DIAS);
     }
-
     // ---------------------------------------------------------------- internos
 
     private void conceder(Long usuarioId, String codigo) {

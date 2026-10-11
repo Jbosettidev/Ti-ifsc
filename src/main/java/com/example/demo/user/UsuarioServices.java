@@ -2,6 +2,8 @@ package com.example.demo.user;
 
 import com.example.demo.excessoes.ResourceNotFoundException;
 import com.example.demo.medalha.UsuarioMedalhaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ import java.util.Locale;
 
 @Service
 public class UsuarioServices {
+
+    private static final Logger log = LoggerFactory.getLogger(UsuarioServices.class);
 
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
@@ -72,30 +76,75 @@ public class UsuarioServices {
             }
             usuario.setEmail(novoEmail);
         }
-        // Senha não é alterada por aqui (veja atualizarSenha).
+        // Senha não é alterada por aqui (veja atualizarSeguranca).
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario atualizarSenha(Long id, String senhaAtual, String novaSenha, String emailAutenticado) {
+    /**
+     * Tela de segurança: troca e-mail e/ou senha. Sempre exige a senha atual.
+     * O progresso não se perde porque ele é ligado ao id do usuário, não ao e-mail.
+     */
+    public Usuario atualizarSeguranca(Long id, String senhaAtual, String novaSenha,
+                                      String novoEmail, String emailAutenticado) {
         Usuario usuario = buscarDoUsuario(id, emailAutenticado);
 
         if (senhaAtual == null || !passwordEncoder.matches(senhaAtual, usuario.getSenha())) {
             throw new IllegalArgumentException("Senha incorreta");
         }
-        if (novaSenha == null || novaSenha.length() < 8) {
-            throw new IllegalArgumentException("A nova senha deve possuir pelo menos 8 caracteres");
+
+        boolean querTrocarEmail = novoEmail != null && !novoEmail.isBlank();
+        boolean querTrocarSenha = novaSenha != null && !novaSenha.isBlank();
+        if (!querTrocarEmail && !querTrocarSenha) {
+            throw new IllegalArgumentException("Informe um novo e-mail ou uma nova senha");
         }
-        usuario.setSenha(passwordEncoder.encode(novaSenha));
+
+        if (querTrocarEmail) {
+            String email = normalizarEmail(novoEmail);
+            if (email.length() < 7 || email.length() > 150 || !email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
+                throw new IllegalArgumentException("E-mail inválido");
+            }
+            if (!email.equals(usuario.getEmail())) {
+                if (usuarioRepository.existsByEmail(email)) {
+                    throw new IllegalArgumentException("E-mail já cadastrado");
+                }
+                usuario.setEmail(email);
+            }
+        }
+
+        if (querTrocarSenha) {
+            if (novaSenha.length() < 8) {
+                throw new IllegalArgumentException("A nova senha deve possuir pelo menos 8 caracteres");
+            }
+            if (novaSenha.length() > 72) {
+                throw new IllegalArgumentException("A nova senha deve possuir no máximo 72 caracteres");
+            }
+            if (passwordEncoder.matches(novaSenha, usuario.getSenha())) {
+                throw new IllegalArgumentException("A nova senha deve ser diferente da atual");
+            }
+            usuario.setSenha(passwordEncoder.encode(novaSenha));
+        }
+
         return usuarioRepository.save(usuario);
     }
 
-    /** Apaga também medalhas e progresso do usuário, senão a chave estrangeira impede o delete. */
+    /**
+     * Exclui a conta de vez: exige a senha, apaga medalhas e progresso do usuário
+     * (senão a chave estrangeira impede o delete) e por fim o próprio usuário.
+     */
     @Transactional
-    public void deletar(Long id, String emailAutenticado) {
-        buscarDoUsuario(id, emailAutenticado);
+    public void deletar(Long id, String senha, String motivo, String comentario, String emailAutenticado) {
+        Usuario usuario = buscarDoUsuario(id, emailAutenticado);
+
+        if (senha == null || !passwordEncoder.matches(senha, usuario.getSenha())) {
+            throw new IllegalArgumentException("Senha incorreta");
+        }
+
         usuarioMedalhaRepository.deleteByUsuario_Id(id);
         progressoRepository.deleteByUsuario_Id(id);
         usuarioRepository.deleteById(id);
+
+        // Só o motivo fica registrado no log; nenhum dado do usuário é mantido.
+        log.info("Conta {} excluída. Motivo: {} | Comentário: {}", id, motivo, comentario);
     }
 
     private String normalizarEmail(String email) {

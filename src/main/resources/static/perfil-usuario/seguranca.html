@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Segurança</title>
-    <link rel="stylesheet" href="seguranca.css">
+    <link rel="stylesheet" href="/perfil-usuario/seguranca.css">
 </head>
 
 <body>
 <main class="container-seguranca">
     <header class="topo-pagina">
-        <a href="configuracoes.html" class="voltar-config" style="text-decoration: none;">
+        <a href="/perfil-usuario/configuracoes.html" class="voltar-config" style="text-decoration: none;">
             <span class="setinha">←</span>
         </a>
         <h1>SEGURANÇA</h1>
@@ -21,72 +21,114 @@
     <div class="formulario">
         <div class="campos">
             <label>E-mail Cadastrado</label>
-            <input type="email" id="emailAtual" readonly class="input-readondely">
+            <input type="email" id="emailAtual" readonly class="input-readonly">
         </div>
+
         <div class="campos">
-            <label>Senha</label>
-            <input type="password" id="senha" placeholder="Confirme sua senha">
+            <label>Senha atual</label>
+            <input type="password" id="senha" placeholder="Confirme sua senha atual">
         </div>
+
         <div class="campos">
-            <label>Modificar E-mail</label>
+            <label>Modificar E-mail (opcional)</label>
             <input type="email" id="novoEmail" placeholder="Digite o novo e-mail">
         </div>
+
+        <div class="campos">
+            <label>Nova senha (opcional)</label>
+            <input type="password" id="novaSenha" placeholder="Mínimo de 8 caracteres">
+        </div>
+
+        <div class="campos">
+            <label>Confirmar nova senha</label>
+            <input type="password" id="confirmarSenha" placeholder="Repita a nova senha">
+        </div>
+
         <button class="botao-salvar" onclick="salvar()">Salvar alterações</button>
         <p id="msg" style="text-align:center; margin-top: 1rem;"></p>
     </div>
 </main>
 
-<script> // criar um arquivo js
+<script>
     const USER_ID = localStorage.getItem('userId');
 
     if (!USER_ID) {
-        window.location.href = '/TelasIniciais/login.html'; // redireciona se não estiver logado
+        window.location.href = '/TelasIniciais/login.html'; // não está logado
     }
 
-    async function carregarEmail() { // Preenche o campo “E-mail Cadastrado”.
+    const $ = (id) => document.getElementById(id);
+
+    function mostrar(texto, ok) {
+        $('msg').style.color = ok ? 'green' : 'red';
+        $('msg').textContent = texto;
+    }
+
+    // O back devolve erros em JSON: { status, message, path }
+    async function lerErro(res) {
+        try {
+            const corpo = await res.json();
+            return corpo.message || 'Não foi possível salvar.';
+        } catch (e) {
+            return 'Não foi possível salvar.';
+        }
+    }
+
+    async function carregarEmail() { // preenche o campo "E-mail Cadastrado"
         const res = await fetch(`/usuarios/${USER_ID}`);
+        if (res.status === 401) {
+            localStorage.removeItem('userId');
+            window.location.href = '/TelasIniciais/login.html';
+            return;
+        }
         if (res.ok) {
             const usuario = await res.json();
-            document.getElementById('emailAtual').value = usuario.email;
+            $('emailAtual').value = usuario.email;
         }
     }
 
-    async function salvar() { // valida senha e novo e-mail no cliente, depois chama exatamente o endpoint acima
-        const senha = document.getElementById('senha').value;
-        const novoEmail = document.getElementById('novoEmail').value;
-        const msg = document.getElementById('msg');
-        msg.textContent = '';
+    async function salvar() {
+        const senha = $('senha').value;
+        const novoEmail = $('novoEmail').value.trim();
+        const novaSenha = $('novaSenha').value;
+        const confirmarSenha = $('confirmarSenha').value;
+        mostrar('', true);
 
-        if (!senha) {
-            msg.style.color = 'red';
-            msg.textContent = 'Informe sua senha para continuar.';
-            return;
-        }
+        if (!senha) return mostrar('Informe sua senha atual para continuar.', false);
+        if (!novoEmail && !novaSenha) return mostrar('Informe o novo e-mail ou a nova senha.', false);
+        if (novaSenha && novaSenha.length < 8) return mostrar('A nova senha deve ter pelo menos 8 caracteres.', false);
+        if (novaSenha && novaSenha !== confirmarSenha) return mostrar('A confirmação não é igual à nova senha.', false);
 
-        if (!novoEmail) {
-            msg.style.color = 'red';
-            msg.textContent = 'Informe o novo e-mail.';
-            return;
-        }
+        const emailAntes = $('emailAtual').value;
 
         const res = await fetch(`/usuarios/${USER_ID}/seguranca`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ senha, novoEmail })
+            body: JSON.stringify({
+                senha,
+                novoEmail: novoEmail || null,
+                novaSenha: novaSenha || null
+            })
         });
 
-        if (res.ok) { // interpreta o corpo como JSON do usuário e atualiza o e-mail exibido e mostra sucesso.
-            const usuario = await res.json();
-            document.getElementById('emailAtual').value = usuario.email;
-            document.getElementById('senha').value = '';
-            document.getElementById('novoEmail').value = '';
-            msg.style.color = 'green';
-            msg.textContent = 'E-mail atualizado com sucesso!';
-        } else {
-            const erro = await res.text();
-            msg.style.color = 'red';
-            msg.textContent = erro;
+        if (!res.ok) {
+            return mostrar(await lerErro(res), false);
         }
+
+        const usuario = await res.json();
+
+        // O back encerra a sessão quando o e-mail muda: precisa entrar de novo com o e-mail novo.
+        if (usuario.email !== emailAntes) {
+            localStorage.removeItem('userId');
+            mostrar('Alterações salvas! Entre novamente com o novo e-mail. Seu progresso foi mantido.', true);
+            setTimeout(() => { window.location.href = '/TelasIniciais/login.html'; }, 2500);
+            return;
+        }
+
+        $('senha').value = '';
+        $('novoEmail').value = '';
+        $('novaSenha').value = '';
+        $('confirmarSenha').value = '';
+        mostrar('Senha atualizada com sucesso!', true);
     }
 
     carregarEmail();
