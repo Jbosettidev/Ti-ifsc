@@ -36,7 +36,8 @@ public class SecurityConfig {
                 // Sem login -> 401 em vez de redirecionar para a página de login (o front usa fetch)
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .formLogin(form -> form
-                        .loginPage("/login")
+                        // A página é um arquivo estático; /login fica reservado ao POST de autenticação.
+                        .loginPage("/TelasIniciais/login.html")
                         .loginProcessingUrl("/login")
                         .usernameParameter("email")
                         .passwordParameter("senha")
@@ -48,7 +49,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout=true")
+                        .logoutSuccessUrl("/TelasIniciais/login.html?logout=true")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()
