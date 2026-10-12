@@ -74,26 +74,6 @@
             msg.textContent = texto;
         }
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            msg.textContent = '';
-
-            if (window.location.protocol === 'file:') {
-                mostrarErro('Use http://localhost:8080/TelasIniciais/login.html');
-                return;
-            }
-
-            const email = document.getElementById('email').value.trim();
-            const senha = document.getElementById('senha').value;
-
-            botao.disabled = true;
-            botao.textContent = 'Entrando...';
-try {
-    const res = await fetch('/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ email, senha })
-    });
 
     if (res.ok) {
         const me = await fetch('/usuarios/me');
@@ -104,19 +84,47 @@ try {
         setTimeout(() => { window.location.href = '../index.html'; }, 600);
         return;
     }
-    mostrarErro('E-mail ou senha incorretos.');
-} catch {
-    mostrarErro('Erro de conexão com o servidor.');
-}
-            
-           
-            finally {
-                if (msg.textContent !== 'Login realizado! Redirecionando...') {
-                    botao.disabled = false;
-                    botao.textContent = 'Entrar';
-                }
-            }
+    form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = '';
+
+    if (window.location.protocol === 'file:') {
+        mostrarErro('Use http://localhost:8080/TelasIniciais/login.html');
+        return;
+    }
+
+    const email = document.getElementById('email').value.trim();
+    const senha = document.getElementById('senha').value;
+
+    botao.disabled = true;
+    botao.textContent = 'Entrando...';
+
+    try {
+        const res = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ email, senha })
         });
+
+        if (res.ok) {
+            const me = await fetch('/usuarios/me');
+            const usuario = await me.json();
+            localStorage.setItem('userId', usuario.id);
+            msg.style.color = '#1a7a3a';
+            msg.textContent = 'Login realizado! Redirecionando...';
+            setTimeout(() => { window.location.href = '../index.html'; }, 600);
+            return;
+        }
+        mostrarErro('E-mail ou senha incorretos.');
+    } catch {
+        mostrarErro('Erro de conexão com o servidor.');
+    } finally {
+        if (msg.textContent !== 'Login realizado! Redirecionando...') {
+            botao.disabled = false;
+            botao.textContent = 'Entrar';
+        }
+    }
+});
 
         const canvas = document.getElementById('bolhas');
         const ctx = canvas.getContext('2d');
