@@ -53,7 +53,7 @@
     const USER_ID = localStorage.getItem('userId');
 
     if (!USER_ID) {
-        window.location.href = '/TelasIniciais/login.html'; // não está logado
+        window.location.href = '/TelasIniciais/login.html';
     }
 
     const $ = (id) => document.getElementById(id);
@@ -63,7 +63,6 @@
         $('msg').textContent = texto;
     }
 
-    // O back devolve erros em JSON: { status, message, path }
     async function lerErro(res) {
         try {
             const corpo = await res.json();
@@ -73,7 +72,7 @@
         }
     }
 
-    async function carregarEmail() { // preenche o campo "E-mail Cadastrado"
+    async function carregarEmail() {
         const res = await fetch(`/usuarios/${USER_ID}`);
         if (res.status === 401) {
             localStorage.removeItem('userId');
@@ -116,10 +115,13 @@
 
         const usuario = await res.json();
 
-        // O back encerra a sessão quando o e-mail muda: precisa entrar de novo com o e-mail novo.
-        if (usuario.email !== emailAntes) {
+        // O back encerra a sessão quando e-mail ou senha mudam.
+        if (usuario.email !== emailAntes || novaSenha) {
             localStorage.removeItem('userId');
-            mostrar('Alterações salvas! Entre novamente com o novo e-mail. Seu progresso foi mantido.', true);
+            const instrucao = usuario.email !== emailAntes
+                ? 'Entre novamente com o novo e-mail e a nova senha, se também alterou.'
+                : 'Entre novamente com sua nova senha.';
+            mostrar(`Alterações salvas! ${instrucao} Seu progresso foi mantido.`, true);
             setTimeout(() => { window.location.href = '/TelasIniciais/login.html'; }, 2500);
             return;
         }

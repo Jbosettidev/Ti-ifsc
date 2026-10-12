@@ -54,8 +54,10 @@ public class UsuarioController {
         Usuario usuario = usuarioServices.atualizarSeguranca(
                 id, req.senha(), req.novaSenha(), req.novoEmail(), emailAntigo);
 
-        // A sessão guarda o e-mail antigo; se ele mudou, o usuário precisa logar de novo.
-        if (!usuario.getEmail().equalsIgnoreCase(emailAntigo)) {
+        // Credenciais mudaram: encerra a sessão para exigir novo login com os dados atualizados.
+        boolean emailMudou = !usuario.getEmail().equalsIgnoreCase(emailAntigo);
+        boolean senhaMudou = req.novaSenha() != null && !req.novaSenha().isBlank();
+        if (emailMudou || senhaMudou) {
             encerrarSessao(request);
         }
         return usuario;
