@@ -8,14 +8,14 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    <link rel="stylesheet" href="/TelasIniciais/style.css">
-    <link rel="icon" href="/TelasIniciais/img/logo-capuz.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo-capuz.png" type="image/png">
 </head>
 
 <body>
     <form id="form-login" action="/login" method="post">
         <div class="card-total">
-            <img src="/TelasIniciais/img/logo-capuz.png" class="imagem" alt="Logo">
+            <img src="img/logo-capuz.png" class="imagem" alt="Logo">
             <h2 class="titulo">Bem vindo de volta!</h2>
 
             <div class="inputbox">
@@ -27,18 +27,18 @@
                 <ion-icon class="icone toggleSenha" name="eye-off-outline"></ion-icon>
             </div>
 
-            <a href="/TelasIniciais/senha1.html" class="botao-secundario">Esqueceu a senha?</a>
+            <a href="senha1.html" class="botao-secundario">Esqueceu a senha?</a>        
 
             <div class="botao-container">
-                <input type="submit" class="botao" id="botao-login" value="Entrar" onclick="window.location.href='index.html';">
-                <input type="button" onclick="window.location.href='cadastro.html';" class="botao" value="Cadastrar">
+                <input type="submit" class="botao" id="botao-login" value="Entrar">
+<input type="button" onclick="window.location.href='/TelasIniciais/cadastro.html';" class="botao" value="Cadastrar">
             </div>
             <p id="msg" style="text-align: center; margin-top: 1rem; color: #26215C; font-weight: 600;"></p>
         </div>
     </form>
     <canvas id="bolhas"></canvas>
 
-    <script src="/TelasIniciais/senha.js"></script>
+    <script src="senha.js"></script>
     <script>
         const form = document.getElementById('form-login');
         const msg = document.getElementById('msg');
@@ -53,8 +53,21 @@
             msg.textContent = 'Você saiu com sucesso!';
         }
 
+             // Só pula o login se a sessão ainda estiver válida no servidor.
+        // (Só olhar o localStorage deixava o usuário preso com um userId velho.)
         if (localStorage.getItem('userId')) {
-            window.location.replace('/');
+            fetch('/usuarios/me').then((r) => {
+                if (r.ok) {
+                    window.location.replace('/index.html');
+                } else {
+                    localStorage.removeItem('userId');
+                }
+            }).catch(() => {});
+        }
+
+        // ===================== BOLHAS =====================
+        if (localStorage.getItem('userId')) {
+            window.location.replace('../index.html');
         }
 
         if (window.location.protocol === 'file:') {
